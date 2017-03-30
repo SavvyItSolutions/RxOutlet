@@ -83,6 +83,6 @@ G:\RxOutlet\RxOutlet\bin\Microsoft.Owin.Security.OAuth.xml
 G:\RxOutlet\RxOutlet\bin\Microsoft.Owin.Security.Google.xml
 G:\RxOutlet\RxOutlet\bin\Microsoft.Owin.Security.Twitter.xml
 G:\RxOutlet\RxOutlet\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+G:\RxOutlet\RxOutlet\obj\Debug\RxOutlet.csprojResolveAssemblyReference.cache
 G:\RxOutlet\RxOutlet\obj\Debug\RxOutlet.dll
 G:\RxOutlet\RxOutlet\obj\Debug\RxOutlet.pdb
-G:\RxOutlet\RxOutlet\obj\Debug\RxOutlet.csprojResolveAssemblyReference.cache
