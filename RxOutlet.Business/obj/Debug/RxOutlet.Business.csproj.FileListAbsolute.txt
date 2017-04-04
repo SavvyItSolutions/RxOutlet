@@ -1,0 +1,9 @@
+G:\RxOutlet\RxOutlet.Business\bin\Debug\RxOutlet.Business.dll
+G:\RxOutlet\RxOutlet.Business\bin\Debug\RxOutlet.Business.pdb
+G:\RxOutlet\RxOutlet.Business\bin\Debug\RxOutlet.DataAccess.dll
+G:\RxOutlet\RxOutlet.Business\bin\Debug\RxOutlet.Models.dll
+G:\RxOutlet\RxOutlet.Business\bin\Debug\RxOutlet.DataAccess.pdb
+G:\RxOutlet\RxOutlet.Business\bin\Debug\RxOutlet.Models.pdb
+G:\RxOutlet\RxOutlet.Business\obj\Debug\RxOutlet.Business.csprojResolveAssemblyReference.cache
+G:\RxOutlet\RxOutlet.Business\obj\Debug\RxOutlet.Business.dll
+G:\RxOutlet\RxOutlet.Business\obj\Debug\RxOutlet.Business.pdb
