@@ -12,17 +12,17 @@ namespace RxOutlet.Business
 {
    public class RxOutletService: IRxOutletService
     {
-        public RxOutlet_MenuListRespone GetMenuList()
+        public RxOutletMenuListRespone GetMenuList()
         {
-            RxOutlet_MenuListRespone menuListResponse = new RxOutlet_MenuListRespone();
-            List<E_Menu> itemList = new List<E_Menu>();
+            RxOutletMenuListRespone menuListResponse = new RxOutletMenuListRespone();
+            List<Menu> itemList = new List<Menu>();
 
             IMenuDBManger menuDBManager = new MenuDBManager();
-            IList<sp_Elixir_GetMenuListResult> MainMenuResults = menuDBManager.GetMenuList();
+            IList<GetMenuListResult> MainMenuResults = menuDBManager.GetMenuList();
 
-            foreach (sp_Elixir_GetMenuListResult result in MainMenuResults)
+            foreach (GetMenuListResult result in MainMenuResults)
             {
-                itemList.Add(new E_Menu
+                itemList.Add(new Menu
                 {
                     MenuName = result.MenuName
                 });
@@ -37,17 +37,17 @@ namespace RxOutlet.Business
 
 
 
-        public RxOutlet_SubMenuListResponse GetSubMenuList(int menuID)
+        public RxOutletSubMenuListResponse GetSubMenuList(int menuID)
         {
-            RxOutlet_SubMenuListResponse subMenuListResponse = new RxOutlet_SubMenuListResponse();
-            List<RxOutlet.Models.E_Menu> itemList = new List<RxOutlet.Models.E_Menu>();
+            RxOutletSubMenuListResponse subMenuListResponse = new RxOutletSubMenuListResponse();
+            List<RxOutlet.Models.Menu> itemList = new List<RxOutlet.Models.Menu>();
 
             IMenuDBManger menuDBManager = new MenuDBManager();
-            IList<sp_Elixir_GetSubMenuListResult> SubMenuResults = menuDBManager.GetSubMenuList(menuID).ToList();
+            IList<GetSubMenuListResult> SubMenuResults = menuDBManager.GetSubMenuList(menuID).ToList();
 
-            foreach (sp_Elixir_GetSubMenuListResult result in SubMenuResults)
+            foreach (GetSubMenuListResult result in SubMenuResults)
             {
-                itemList.Add(new RxOutlet.Models.E_Menu
+                itemList.Add(new RxOutlet.Models.Menu
                 {
                     MenuName = result.MenuName,
                     SubMenuName = result.SubMenuName
@@ -59,17 +59,17 @@ namespace RxOutlet.Business
 
 
 
-        public RxOutLet_MenuItemListResponse GetMenuItemList(int menuID, int subMenuID)
+        public RxOutLetMenuItemListResponse GetMenuItemList(int menuID, int subMenuID)
         {
-            RxOutLet_MenuItemListResponse menuItemListResponse = new RxOutLet_MenuItemListResponse();
-            List<RxOutlet.Models.E_Menu> itemList = new List<RxOutlet.Models.E_Menu>();
+            RxOutLetMenuItemListResponse menuItemListResponse = new RxOutLetMenuItemListResponse();
+            List<RxOutlet.Models.Menu> itemList = new List<RxOutlet.Models.Menu>();
 
             IMenuDBManger menuDBManager1 = new MenuDBManager();
-            IList<sp_Elixir_GetMenuItemListResult> MenuitemListResults = menuDBManager1.GetMenuItemList(menuID, subMenuID).ToList();
+            IList<GetMenuItemListResult> MenuitemListResults = menuDBManager1.GetMenuItemList(menuID, subMenuID).ToList();
 
-            foreach (sp_Elixir_GetMenuItemListResult result in MenuitemListResults)
+            foreach (GetMenuItemListResult result in MenuitemListResults)
             {
-                itemList.Add(new RxOutlet.Models.E_Menu
+                itemList.Add(new RxOutlet.Models.Menu
                 {
                     MenuName = result.MenuName,
                     SubMenuName = result.SubMenuName,

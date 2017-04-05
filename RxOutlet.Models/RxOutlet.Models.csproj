@@ -40,12 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\E_Menu.cs" />
+    <Compile Include="Models\Menu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Response\BaseServiceResponse.cs" />
-    <Compile Include="Response\RxOutlet_MenuItemListResponse.cs" />
-    <Compile Include="Response\RxOutlet_MenuListResponse.cs" />
-    <Compile Include="Response\RxOutlet_SubMenuListResponse.cs" />
+    <Compile Include="Response\RxOutletMenuItemListResponse.cs" />
+    <Compile Include="Response\RxOutletMenuListResponse.cs" />
+    <Compile Include="Response\RxOutletSubMenuListResponse.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

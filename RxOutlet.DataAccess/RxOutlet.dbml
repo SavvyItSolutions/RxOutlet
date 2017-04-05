@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Hangouts_dev" Class="RxOutletDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=108.58.151.10,1433;Initial Catalog=Hangouts_dev;Persist Security Info=True;User ID=Ankur" SettingsObjectName="RxOutlet.DataAccess.Properties.Settings" SettingsPropertyName="Hangouts_devConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="RxOutlet" Class="RxOutletDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-19RQ153,1433;Initial Catalog=RxOutlet;Persist Security Info=True;User ID=guest" SettingsObjectName="RxOutlet.DataAccess.Properties.Settings" SettingsPropertyName="RxOutletConnectionString" Provider="System.Data.SqlClient" />
   <Function Name="dbo.sp_Elixir_GetMenuItemList" Method="sp_Elixir_GetMenuItemList">
     <Parameter Name="MenuID" Parameter="menuID" Type="System.Int32" DbType="Int" />
     <Parameter Name="SubMenuID" Parameter="subMenuID" Type="System.Int32" DbType="Int" />
@@ -17,6 +17,27 @@
   <Function Name="dbo.sp_Elixir_GetSubMenuList" Method="sp_Elixir_GetSubMenuList">
     <Parameter Name="MenuID" Parameter="menuID" Type="System.Int32" DbType="Int" />
     <ElementType Name="sp_Elixir_GetSubMenuListResult">
+      <Column Name="MenuName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="SubMenuName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetMenuItemList" Method="GetMenuItemList">
+    <Parameter Name="MenuID" Parameter="menuID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SubMenuID" Parameter="subMenuID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetMenuItemListResult">
+      <Column Name="MenuName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="SubMenuName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="MenuItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetMenuList" Method="GetMenuList">
+    <ElementType Name="GetMenuListResult">
+      <Column Name="MenuName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetSubMenuList" Method="GetSubMenuList">
+    <Parameter Name="MenuID" Parameter="menuID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetSubMenuListResult">
       <Column Name="MenuName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="SubMenuName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
     </ElementType>

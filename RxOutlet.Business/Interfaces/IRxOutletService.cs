@@ -10,8 +10,8 @@ namespace RxOutlet.Business
     public interface IRxOutletService
 
     {
-        RxOutlet_MenuListRespone GetMenuList();
-        RxOutlet_SubMenuListResponse GetSubMenuList(int menuID);
-        RxOutLet_MenuItemListResponse GetMenuItemList(int menuID, int subMenuID);
+        RxOutletMenuListRespone GetMenuList();
+        RxOutletSubMenuListResponse GetSubMenuList(int menuID);
+        RxOutLetMenuItemListResponse GetMenuItemList(int menuID, int subMenuID);
     }
 }

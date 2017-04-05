@@ -95,7 +95,7 @@ namespace RxOutlet.Controllers
             //var menuDetails = ();
             //return Json(menuDetails, JsonRequestBehavior.AllowGet);
 
-            RxOutlet_MenuListRespone resp = new RxOutlet_MenuListRespone();
+            RxOutletMenuListRespone resp = new RxOutletMenuListRespone();
             IRxOutletService itemService = new RxOutletService();
             resp = itemService.GetMenuList();
           
@@ -111,7 +111,7 @@ namespace RxOutlet.Controllers
         {
           
 
-            RxOutlet_SubMenuListResponse resp = new RxOutlet_SubMenuListResponse();
+            RxOutletSubMenuListResponse resp = new RxOutletSubMenuListResponse();
             IRxOutletService itemService = new RxOutletService();
             resp = itemService.GetSubMenuList(objectId);
 
@@ -127,7 +127,7 @@ namespace RxOutlet.Controllers
         {
 
 
-            RxOutLet_MenuItemListResponse resp = new RxOutLet_MenuItemListResponse();
+            RxOutLetMenuItemListResponse resp = new RxOutLetMenuItemListResponse();
             IRxOutletService itemService = new RxOutletService();
             resp = itemService.GetMenuItemList(objectId, userid);
 

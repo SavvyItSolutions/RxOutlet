@@ -20,12 +20,12 @@ namespace RxOutlet.DataAccess.DataManager
         }
 
 
-        public IList<sp_Elixir_GetMenuListResult> GetMenuList()
+        public IList<GetMenuListResult> GetMenuList()
         {
             try
             {
-                ISingleResult<sp_Elixir_GetMenuListResult> result =
-                DBContext.sp_Elixir_GetMenuList();
+                ISingleResult<GetMenuListResult> result =
+                DBContext.GetMenuList();
                 return result.ToList();
             }
             catch (Exception ex)
@@ -36,12 +36,12 @@ namespace RxOutlet.DataAccess.DataManager
 
 
 
-        public IList<sp_Elixir_GetSubMenuListResult> GetSubMenuList(int menuID)
+        public IList<GetSubMenuListResult> GetSubMenuList(int menuID)
         {
             try
             {
-                ISingleResult<sp_Elixir_GetSubMenuListResult> result =
-                DBContext.sp_Elixir_GetSubMenuList(menuID);
+                ISingleResult<GetSubMenuListResult> result =
+                DBContext.GetSubMenuList(menuID);
                 return result.ToList();
             }
             catch (Exception ex)
@@ -51,12 +51,12 @@ namespace RxOutlet.DataAccess.DataManager
         }
 
 
-        public IList<sp_Elixir_GetMenuItemListResult> GetMenuItemList(int menuID, int subMenuID)
+        public IList<GetMenuItemListResult> GetMenuItemList(int menuID, int subMenuID)
         {
             try
             {
-                ISingleResult<sp_Elixir_GetMenuItemListResult> result =
-                DBContext.sp_Elixir_GetMenuItemList(menuID, subMenuID);
+                ISingleResult<GetMenuItemListResult> result =
+                DBContext.GetMenuItemList(menuID, subMenuID);
                 return result.ToList();
             }
             catch (Exception ex)

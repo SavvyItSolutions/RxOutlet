@@ -22,7 +22,7 @@ namespace RxOutlet.DataAccess
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Hangouts_dev")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="RxOutlet")]
 	public partial class RxOutletDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -33,7 +33,7 @@ namespace RxOutlet.DataAccess
     #endregion
 		
 		public RxOutletDataContext() : 
-				base(global::RxOutlet.DataAccess.Properties.Settings.Default.Hangouts_devConnectionString, mappingSource)
+				base(global::RxOutlet.DataAccess.Properties.Settings.Default.RxOutletConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -81,6 +81,27 @@ namespace RxOutlet.DataAccess
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), menuID);
 			return ((ISingleResult<sp_Elixir_GetSubMenuListResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetMenuItemList")]
+		public ISingleResult<GetMenuItemListResult> GetMenuItemList([global::System.Data.Linq.Mapping.ParameterAttribute(Name="MenuID", DbType="Int")] System.Nullable<int> menuID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SubMenuID", DbType="Int")] System.Nullable<int> subMenuID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), menuID, subMenuID);
+			return ((ISingleResult<GetMenuItemListResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetMenuList")]
+		public ISingleResult<GetMenuListResult> GetMenuList()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<GetMenuListResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetSubMenuList")]
+		public ISingleResult<GetSubMenuListResult> GetSubMenuList([global::System.Data.Linq.Mapping.ParameterAttribute(Name="MenuID", DbType="Int")] System.Nullable<int> menuID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), menuID);
+			return ((ISingleResult<GetSubMenuListResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -180,6 +201,138 @@ namespace RxOutlet.DataAccess
 		private string _SubMenuName;
 		
 		public sp_Elixir_GetSubMenuListResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string MenuName
+		{
+			get
+			{
+				return this._MenuName;
+			}
+			set
+			{
+				if ((this._MenuName != value))
+				{
+					this._MenuName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubMenuName", DbType="VarChar(200)")]
+		public string SubMenuName
+		{
+			get
+			{
+				return this._SubMenuName;
+			}
+			set
+			{
+				if ((this._SubMenuName != value))
+				{
+					this._SubMenuName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetMenuItemListResult
+	{
+		
+		private string _MenuName;
+		
+		private string _SubMenuName;
+		
+		private string _MenuItemName;
+		
+		public GetMenuItemListResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string MenuName
+		{
+			get
+			{
+				return this._MenuName;
+			}
+			set
+			{
+				if ((this._MenuName != value))
+				{
+					this._MenuName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubMenuName", DbType="VarChar(200)")]
+		public string SubMenuName
+		{
+			get
+			{
+				return this._SubMenuName;
+			}
+			set
+			{
+				if ((this._SubMenuName != value))
+				{
+					this._SubMenuName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuItemName", DbType="VarChar(200)")]
+		public string MenuItemName
+		{
+			get
+			{
+				return this._MenuItemName;
+			}
+			set
+			{
+				if ((this._MenuItemName != value))
+				{
+					this._MenuItemName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetMenuListResult
+	{
+		
+		private string _MenuName;
+		
+		public GetMenuListResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string MenuName
+		{
+			get
+			{
+				return this._MenuName;
+			}
+			set
+			{
+				if ((this._MenuName != value))
+				{
+					this._MenuName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetSubMenuListResult
+	{
+		
+		private string _MenuName;
+		
+		private string _SubMenuName;
+		
+		public GetSubMenuListResult()
 		{
 		}
 		

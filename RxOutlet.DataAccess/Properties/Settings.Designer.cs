@@ -33,5 +33,16 @@ namespace RxOutlet.DataAccess.Properties {
                 return ((string)(this["Hangouts_devConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-19RQ153,1433;Initial Catalog=RxOutlet;Persist Security Info=T" +
+            "rue;User ID=guest;Password=guest")]
+        public string RxOutletConnectionString {
+            get {
+                return ((string)(this["RxOutletConnectionString"]));
+            }
+        }
     }
 }
