@@ -20,6 +20,12 @@ namespace RxOutlet
                 defaults: new { controller = "Home", action = "SubMenuList", objectId = RouteParameter.Optional }
             );
 
+            routes.MapRoute(
+               name: "Default2",
+               url: "{controller}/{action}/{objectId}",
+               defaults: new { controller = "Account", action = "Login", objectId = RouteParameter.Optional }
+           );
+
 
             routes.MapRoute(
                 name: "Default1",
