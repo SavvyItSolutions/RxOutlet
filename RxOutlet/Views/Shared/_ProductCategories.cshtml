@@ -36,17 +36,16 @@
                         $("#cList").append("<li> <a href='#'><span class='text'>" +
                             data.MenuItemList[i].MenuName + "</span>    </a> </li>");
 
-                        for (i = 0; i < data.MenuItemList.length; i++) {
+                        for (j = 0; j < data.MenuItemList.length; j++) {
                             $("#cList2").append("<li> <a href='#'><span class='text'>" +
-                                data.MenuItemList[i].SubMenuName + "</span>    </a> </li>");
+                                data.MenuItemList[j].SubMenuName + "</span>    </a> </li>");
 
-                            for (i = 0; i < data.MenuItemList.length; i++) {
+                            for (k = 0; k < data.MenuItemList.length; k++) {
                                 $("#cList3").append("<li> <a href='#'><span class='text'>" +
-                                    data.MenuItemList[i].MenuItemName + "</span>    </a> </li>");
+                                    data.MenuItemList[k].MenuItemName + "</span>    </a> </li>");
 
                             }
                         }
-
                     }
                 },
                 error: function (msg) { alert("error"); alert(msg); }
@@ -72,27 +71,6 @@
    
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
