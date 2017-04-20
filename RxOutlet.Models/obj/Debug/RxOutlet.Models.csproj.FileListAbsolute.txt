@@ -3,3 +3,7 @@ G:\RxOutlet\RxOutlet.Models\bin\Debug\RxOutlet.Models.pdb
 G:\RxOutlet\RxOutlet.Models\obj\Debug\RxOutlet.Models.csprojResolveAssemblyReference.cache
 G:\RxOutlet\RxOutlet.Models\obj\Debug\RxOutlet.Models.dll
 G:\RxOutlet\RxOutlet.Models\obj\Debug\RxOutlet.Models.pdb
+G:\GitHub Folder\RxOutlet\RxOutlet.Models\bin\Debug\RxOutlet.Models.dll
+G:\GitHub Folder\RxOutlet\RxOutlet.Models\bin\Debug\RxOutlet.Models.pdb
+G:\GitHub Folder\RxOutlet\RxOutlet.Models\obj\Debug\RxOutlet.Models.dll
+G:\GitHub Folder\RxOutlet\RxOutlet.Models\obj\Debug\RxOutlet.Models.pdb

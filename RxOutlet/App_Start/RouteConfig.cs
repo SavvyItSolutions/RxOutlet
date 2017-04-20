@@ -17,21 +17,21 @@ namespace RxOutlet
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{objectId}",
-                defaults: new { controller = "Home", action = "SubMenuList", objectId = RouteParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", objectId = RouteParameter.Optional }
             );
 
-            routes.MapRoute(
-               name: "Default2",
-               url: "{controller}/{action}/{objectId}",
-               defaults: new { controller = "Account", action = "Login", objectId = RouteParameter.Optional }
-           );
+           // routes.MapRoute(
+           //    name: "Default2",
+           //    url: "{controller}/{action}/{objectId}",
+           //    defaults: new { controller = "Account", action = "Login", objectId = RouteParameter.Optional }
+           //);
 
 
-            routes.MapRoute(
-                name: "Default1",
-                url: "{controller}/{action}/{objectId}/user/{userid}",
-                defaults: new { controller = "Home", action = "MenuItemList", objectId = RouteParameter.Optional , userid= RouteParameter.Optional }
-            );
+           // routes.MapRoute(
+           //     name: "Default1",
+           //     url: "{controller}/{action}/{objectId}/user/{userid}",
+           //     defaults: new { controller = "Home", action = "MenuItemList", objectId = RouteParameter.Optional , userid= RouteParameter.Optional }
+           // );
 
 
         }

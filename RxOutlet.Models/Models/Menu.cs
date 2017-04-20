@@ -8,7 +8,7 @@ namespace RxOutlet.Models
 {
     public class Menu
     {
-        
+      
             public string MenuName { get; set; }
             public string SubMenuName { get; set; }
             public string MenuItemName { get; set; }

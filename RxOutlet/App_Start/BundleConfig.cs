@@ -24,11 +24,13 @@ namespace RxOutlet
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css",
+                      "~/Content/animate.css",
+                    //  "~/Content/bootstrap.css",
+                      //"~/Content/site.css",
                       "~/Content/reset.css",
                       "~/Content/bootstrap.min.css",
                       "~/Content/font-awesome.min.css",
+                       "~/Content/font-awesome.min1.css",
                       "~/Content/owl.carousel.css",
                       "~/Content/jquery-ui.css",
                       "~/Content/animate.css",

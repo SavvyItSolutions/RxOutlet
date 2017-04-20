@@ -9,13 +9,10 @@
     @Scripts.Render("~/bundles/modernizr")
 
 
-
-    @*<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />*@
-
-
 </head>
 <body>
 
+    <!-- header -->
     <header id="header">
         <!-- Top bar -->
         <div class="top-bar">
@@ -29,9 +26,13 @@
                         <li><a href="login.html">My Account</a></li>
                         <li><a href="wishlist.html">My Wishlist</a></li>
                         <li><a href="checkout.html">Checkout</a></li>
-                        <li><a href="login.html">Login</a></li>
+                        <li>@Html.Partial("_LoginPartial")</li>
+                            @*<li><a href="login.html">Login</a></li>
+                               @Html.ActionLink("Login", "Login")*@
 
-                    </ul>
+</ul>
+                        @*@Html.Partial("_LoginPartial")*@
+                  
                 </div>
             </div>
         </div>
@@ -219,36 +220,27 @@
                                         <ul class="dropdown-menu mega_dropdown container-fluid">
                                             <li class="block-container">
                                                 <ul class="block-megamenu-link">
-                                                    <li class="link_container"><a href="#">About RX USA OUTLET</a></li>
-                                                    <li class="link_container"><a href="#"> Who we are </a></li>
-                                                    <li class="link_container"><a href="#"> Certification </a></li>
-                                                    <li class="link_container"><a href="#"> What we do </a></li>
-
+                                                    <li class="link_container"><a href="images/Hipaa-Consent.pdf" target="_blank">Hipaa Consent</a></li>
+                                                    <li class="link_container"><a href="images/Hipaa-Release-Authorization.pdf" target="_blank"> Hipaa Release Authorization </a></li>
+                                                    <li class="link_container"><a href="images/Immunization-Consent-Form.pdf" target="_blank"> Immunization Consent Form </a></li>
+                                                    <li class="link_container"><a href="images/Npp-Fullpage-Hc-Provider.pdf" target="_blank"> Npp Fullpage Hc-Provider </a></li>
+                                                    <li class="link_container"><a href="images/Registration-Form.pdf" target="_blank"> Registration Form </a></li>
                                                 </ul>
                                             </li>
                                         </ul>
                                     </li>
-
-
-
                                     <li class="">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> About Us</a>
-
-
+                                        <a href="about.html"> About Us</a>
                                     </li>
 
                                     <li class="">
-                                        <a href="category-list2.html" class="dropdown-toggle">  Help / Faq</a>
+                                        <a href="faq.html">  Help / Faq</a>
 
                                     </li>
                                     <li class="">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Contact us </a>
+                                        <a href="contact.html"> Contact us </a>
 
                                     </li>
-
-
-
-
                                 </ul>
                             </div><!--/.nav-collapse -->
                         </div>
@@ -258,6 +250,7 @@
         </div>
         <!-- ./main menu-->
     </header>
+    <!-- ./header -->
 
 
 
@@ -288,19 +281,18 @@
                   </div>
               </div>
           </div>*@
+  
 
-
+  
 
     <div class="container body-content">
         @RenderBody()
         <hr />
 
 
-        @*<footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-            </footer>*@
+     
 
-
+        <!-- footer -->
         <footer id="footer">
             <div class="footer-top">
 
@@ -361,52 +353,53 @@
                                     <ul class="list-link flag">
                                         <li class="head"><a href="#" SHOPPING</a></li>
                                         <li><a href="#"><img src="/images/flag1.png" alt="flang">Customer Support</a></li>
+                                        <script type="text/javascript" src="https://feed.mikle.com/js/fw-loader.js" data-fw-param="19041/"></script>
 
                                     </ul>
-                                    <script type="text/javascript" src="https://feed.mikle.com/js/fw-loader.js" data-fw-param="16581/"></script> <!-- end feedwind code -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-social">
+                <div class="container">
+                    <div class="row">
+                        <div class="block-social">
+                            <ul class="list-social">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
 
-
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-<div class="footer-social">
-    <div class="container">
-        <div class="row">
-            <div class="block-social">
-                <ul class="list-social">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-
-                </ul>
+                            </ul>
+                        </div>
+                        <div class="block-payment">
+                            <ul class="list-logo">
+                                <li><a href="#"><img src="/images/payment1.png" alt="Payment Logo"></a></li>
+                                <li><a href="#"><img src="/images/payment2.png" alt="Payment Logo"></a></li>
+                                <li><a href="#"><img src="/images/payment3.png" alt="Payment Logo"></a></li>
+                                <li><a href="#"><img src="/images/payment4.png" alt="Payment Logo"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="block-payment">
-                <ul class="list-logo">
-                    <li><a href="#"><img src="/images/payment1.png" alt="Payment Logo"></a></li>
-                    <li><a href="#"><img src="/images/payment2.png" alt="Payment Logo"></a></li>
-                    <li><a href="#"><img src="/images/payment3.png" alt="Payment Logo"></a></li>
-                    <li><a href="#"><img src="/images/payment4.png" alt="Payment Logo"></a></li>
-                </ul>
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="block-coppyright">
+                            © 2017 RX OUTLET INC. All Rights Reserved.
+                        </div>
+                        <div class="block-shop-phone">
+                            Shop by phone <strong>1-899-353-2268</strong>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="footer-bottom">
-    <div class="container">
-        <div class="row">
-            <div class="block-coppyright">
-                © 2017 RX OUTLET INC. All Rights Reserved.
-            </div>
-            <div class="block-shop-phone">
-                Shop by phone <strong>1-899-353-2268</strong>
-            </div>
-        </div>
-    </div>
-</div>
-          </footer>
+        </footer>
+        <!-- Sliding div starts here -->
+        <!-- Sliding div ends here -->
+        <!-- ./footer -->
 
       </div>
 

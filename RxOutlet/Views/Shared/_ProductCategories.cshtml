@@ -1,523 +1,621 @@
-﻿<div class="container">
-    <div class="row">
-        <div class="row">
-            <div class="col-sm-4 col-md-4 col-lg-3">
-                <!-- block category -->
-                <div class="block block-vertical-menu">
-                    <div class="vertical-head">
-                        <h5 class="vertical-title text-center"> Product Categories</h5>
-                    </div>
-                    <div class="vertical-menu-content">
-                        <ul class="vertical-menu-list">
-                            <li class="vertical-menu1">
-                                <a class="parent" href="#">OTC (Non-prescriptions)</a>
-                                <div class="vertical-dropdown-menu" style="width: 901px;">
-                                    <div class="vertical-groups col-sm-12">
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <div class="block-content-vertical-menu border">
-                                                    <h3 class="head">CATEGORIES</h3>
-                                                    <div class="inner">
-                                                        <div class="inner-img">
-                                                            <a href="#"><img src="/images/4.jpg" alt="Banner"></a>
+﻿@model IEnumerable<RxOutlet.Models.RxOutletMenuListRespone>
+
+@{
+     ViewBag.Title = "Menu";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script type="text/javascript">
+     
+
+        $(document).ready(function () {
+            $.ajax({
+              //  url: "http://localhost:64404/api/RxOutlet/MenuList/",
+                // url: "http://localhost:64404/api/RxOutlet/SubMenuList/3",
+                 url: "http://localhost:64404/api/RxOutlet/MenuItemList/2/1",
+             
+                success: function (data) {
+               
+                   // document.getElementById("demo").innerHTML = Object.values(data.MenuList["0"].MenuName);
+                   
+
+                    $('#LoadPage').append("<ul id='cList'></ul>");
+                    $('#LoadPage2').append("<ul id='cList2'></ul>");
+                    $('#LoadPage3').append("<ul id='cList3'></ul>");
+
+
+                    for (i = 0; i < data.MenuItemList.length; i++) {
+                        $("#cList").append("<li> <a href='#'><span class='text'>" +
+                            data.MenuItemList[i].MenuName + "</span>    </a> </li>");
+
+                        for (i = 0; i < data.MenuItemList.length; i++) {
+                            $("#cList2").append("<li> <a href='#'><span class='text'>" +
+                                data.MenuItemList[i].SubMenuName + "</span>    </a> </li>");
+
+                            for (i = 0; i < data.MenuItemList.length; i++) {
+                                $("#cList3").append("<li> <a href='#'><span class='text'>" +
+                                    data.MenuItemList[i].MenuItemName + "</span>    </a> </li>");
+
+                            }
+                        }
+
+                    }
+                },
+                error: function (msg) { alert("error"); alert(msg); }
+            });
+        });
+
+    </script>
+
+
+
+
+</head>
+<body>
+  
+
+    <div id="LoadPage">
+    </div>  
+    <div id="LoadPage2">
+    </div>  
+    <div id="LoadPage3">
+    </div>  
+        
+   
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @*<div class="container">
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-sm-4 col-md-4 col-lg-3">
+                                    <!-- block category -->
+                                    <div class="block block-vertical-menu">
+                                        <div class="vertical-head">
+                                            <h5 class="vertical-title text-center"> Product Categories</h5>
+                                        </div>
+                                        <div class="vertical-menu-content">
+                                            <ul class="vertical-menu-list">
+                                                <li class="vertical-menu1">
+                                                    <a class="parent" href="#">OTC (Non-prescriptions)</a>
+                                                    <div class="vertical-dropdown-menu" style="width: 901px;">
+                                                        <div class="vertical-groups col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <div class="block-content-vertical-menu border">
+                                                                        <h3 class="head">CATEGORIES</h3>
+                                                                        <div class="inner">
+                                                                            <div class="inner-img">
+                                                                                <a href="#"><img src="/images/4.jpg" alt="Banner"></a>
+                                                                            </div>
+
+                                                                            <ul class="vertical-menu-link">
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Skincare</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Metkup</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Mobile phone</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Tablet</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <div class="block-content-vertical-menu border">
+                                                                        <h3 class="head">CATEGORIES</h3>
+                                                                        <div class="inner">
+                                                                            <div class="inner-img">
+                                                                                <a href="#"><img src="/images/4.jpg" alt="Banner"></a>
+                                                                            </div>
+
+                                                                            <ul class="vertical-menu-link">
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Skincare</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Metkup</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Mobile phone</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Tablet</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <div class="block-content-vertical-menu border">
+                                                                        <h3 class="head">CATEGORIES</h3>
+                                                                        <div class="inner">
+                                                                            <div class="inner-img">
+                                                                                <a href="#"><img src="/images/4.jpg" alt="Banner"></a>
+                                                                            </div>
+
+                                                                            <ul class="vertical-menu-link">
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Skincare</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Metkup</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Mobile phone</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Tablet</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <div class="block-content-vertical-menu border">
+                                                                        <h3 class="head">CATEGORIES</h3>
+                                                                        <div class="inner">
+                                                                            <div class="inner-img">
+                                                                                <a href="#"><img src="/images/4.jpg" alt="Banner"></a>
+                                                                            </div>
+
+                                                                            <ul class="vertical-menu-link">
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Skincare</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Metkup</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Mobile phone</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Tablet</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-
-                                                        <ul class="vertical-menu-link">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Skincare</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Metkup</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Mobile phone</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Tablet</span>
-
-                                                                </a>
-                                                            </li>
-                                                        </ul>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="block-content-vertical-menu border">
-                                                    <h3 class="head">CATEGORIES</h3>
-                                                    <div class="inner">
-                                                        <div class="inner-img">
-                                                            <a href="#"><img src="/images/4.jpg" alt="Banner"></a>
+                                                </li>
+                                                <li class="vertical-menu2">
+                                                    <a class="parent" href="#">Diabetic Supplies </a>
+                                                    <div class="vertical-dropdown-menu" style="width: 901px;">
+                                                        <div class="vertical-groups">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <div class="block-content-vertical-menu border">
+                                                                        <h3 class="head">CATEGORIES</h3>
+                                                                        <div class="inner">
+                                                                            <div class="inner-img">
+                                                                                <a href="#"><img src="/images/4.jpg" alt="Banner"></a>
+                                                                            </div>
+
+                                                                            <ul class="vertical-menu-link">
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Skincare</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Metkup</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Mobile phone</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Tablet</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <div class="block-content-vertical-menu border">
+                                                                        <h3 class="head">CATEGORIES</h3>
+                                                                        <div class="inner">
+                                                                            <div class="inner-img">
+                                                                                <a href="#"><img src="/images/4.jpg" alt="Banner"></a>
+                                                                            </div>
+
+                                                                            <ul class="vertical-menu-link">
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Skincare</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Metkup</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Mobile phone</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Tablet</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <div class="block-content-vertical-menu border">
+                                                                        <h3 class="head">CATEGORIES</h3>
+                                                                        <div class="inner">
+                                                                            <div class="inner-img">
+                                                                                <a href="#"><img src="/images/4.jpg" alt="Banner"></a>
+                                                                            </div>
+
+                                                                            <ul class="vertical-menu-link">
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Skincare</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Metkup</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Mobile phone</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Tablet</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <div class="block-content-vertical-menu border">
+                                                                        <h3 class="head">CATEGORIES</h3>
+                                                                        <div class="inner">
+                                                                            <div class="inner-img">
+                                                                                <a href="#"><img src="/images/4.jpg" alt="Banner"></a>
+                                                                            </div>
+
+                                                                            <ul class="vertical-menu-link">
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Skincare</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Metkup</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Mobile phone</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Tablet</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-
-                                                        <ul class="vertical-menu-link">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Skincare</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Metkup</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Mobile phone</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Tablet</span>
-
-                                                                </a>
-                                                            </li>
-                                                        </ul>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="block-content-vertical-menu border">
-                                                    <h3 class="head">CATEGORIES</h3>
-                                                    <div class="inner">
-                                                        <div class="inner-img">
-                                                            <a href="#"><img src="/images/4.jpg" alt="Banner"></a>
+                                                </li>
+                                                <li class="vertical-menu3">
+                                                    <a class="parent" href="#">Vitamins </a>
+                                                    <div class="vertical-dropdown-menu" style="width: 901px;">
+                                                        <div class="vertical-groups">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <div class="block-content-vertical-menu border">
+                                                                        <h3 class="head">CATEGORIES</h3>
+                                                                        <div class="inner">
+                                                                            <div class="inner-img">
+                                                                                <a href="#"><img src="/images/4.jpg" alt="Banner"></a>
+                                                                            </div>
+
+                                                                            <ul class="vertical-menu-link">
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Skincare</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Metkup</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Mobile phone</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Tablet</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <div class="block-content-vertical-menu border">
+                                                                        <h3 class="head">CATEGORIES</h3>
+                                                                        <div class="inner">
+                                                                            <div class="inner-img">
+                                                                                <a href="#"><img src="/images/4.jpg" alt="Banner"></a>
+                                                                            </div>
+
+                                                                            <ul class="vertical-menu-link">
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Skincare</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Metkup</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Mobile phone</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Tablet</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <div class="block-content-vertical-menu border">
+                                                                        <h3 class="head">CATEGORIES</h3>
+                                                                        <div class="inner">
+                                                                            <div class="inner-img">
+                                                                                <a href="#"><img src="/images/4.jpg" alt="Banner"></a>
+                                                                            </div>
+
+                                                                            <ul class="vertical-menu-link">
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Skincare</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Metkup</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Mobile phone</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Tablet</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <div class="block-content-vertical-menu border">
+                                                                        <h3 class="head">CATEGORIES</h3>
+                                                                        <div class="inner">
+                                                                            <div class="inner-img">
+                                                                                <a href="#"><img src="/images/4.jpg" alt="Banner"></a>
+                                                                            </div>
+
+                                                                            <ul class="vertical-menu-link">
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Skincare</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Metkup</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Mobile phone</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <span class="text">Tablet</span>
+
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-
-                                                        <ul class="vertical-menu-link">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Skincare</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Metkup</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Mobile phone</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Tablet</span>
-
-                                                                </a>
-                                                            </li>
-                                                        </ul>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="block-content-vertical-menu border">
-                                                    <h3 class="head">CATEGORIES</h3>
-                                                    <div class="inner">
-                                                        <div class="inner-img">
-                                                            <a href="#"><img src="/images/4.jpg" alt="Banner"></a>
-                                                        </div>
+                                                </li>
+                                                <li class="vertical-menu4"><a href="#">Sports Aid </a></li>
+                                                <li class="vertical-menu5"><a href="#">Pet Rx Drugs </a></li>
+                                                <li class="vertical-menu6">
+                                                    <a href="#">DME Products</a>
+                                                </li>
 
-                                                        <ul class="vertical-menu-link">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Skincare</span>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- ./block category -->
+                                    <!-- block  top sellers -->
+                                    <!-- block  top sellers -->
+                                </div>
 
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Metkup</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Mobile phone</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Tablet</span>
-
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                <div class="col-sm-8 col-md-8 col-lg-9">
+                                    <!-- Home slide -->
+                                    <div class="block block-slider">
+                                        <ul class="home-slider kt-bxslider">
+                                            <li><img src="/images/slide2.jpg" alt="Slider"></li>
+                                            <li><img src="/images/slide3.jpg" alt="Slider"></li>
+                                            <li><img src="/images/slide1.jpg" alt="Slider"></li>
+                                            <li><img src="/images/slide4.jpg" alt="Slider"></li>
+                                        </ul>
+                                    </div>
+                                    <!-- ./Home slide -->
+                                    <div class="row">
+                                        <div class="col-md-12 col-lg-4">
+                                            <!-- block-shop-features -->
+                                            <!-- ./block-shop-features-->
+                                        </div>
+                                        <div class="col-md-12 col-lg-8">
+                                            <!-- block-offers -->
+                                            <!-- block-offers -->
                                         </div>
                                     </div>
                                 </div>
-                            </li>
-                            <li class="vertical-menu2">
-                                <a class="parent" href="#">Diabetic Supplies </a>
-                                <div class="vertical-dropdown-menu" style="width: 901px;">
-                                    <div class="vertical-groups">
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <div class="block-content-vertical-menu border">
-                                                    <h3 class="head">CATEGORIES</h3>
-                                                    <div class="inner">
-                                                        <div class="inner-img">
-                                                            <a href="#"><img src="/images/4.jpg" alt="Banner"></a>
-                                                        </div>
 
-                                                        <ul class="vertical-menu-link">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Skincare</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Metkup</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Mobile phone</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Tablet</span>
-
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="block-content-vertical-menu border">
-                                                    <h3 class="head">CATEGORIES</h3>
-                                                    <div class="inner">
-                                                        <div class="inner-img">
-                                                            <a href="#"><img src="/images/4.jpg" alt="Banner"></a>
-                                                        </div>
-
-                                                        <ul class="vertical-menu-link">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Skincare</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Metkup</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Mobile phone</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Tablet</span>
-
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="block-content-vertical-menu border">
-                                                    <h3 class="head">CATEGORIES</h3>
-                                                    <div class="inner">
-                                                        <div class="inner-img">
-                                                            <a href="#"><img src="/images/4.jpg" alt="Banner"></a>
-                                                        </div>
-
-                                                        <ul class="vertical-menu-link">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Skincare</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Metkup</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Mobile phone</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Tablet</span>
-
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="block-content-vertical-menu border">
-                                                    <h3 class="head">CATEGORIES</h3>
-                                                    <div class="inner">
-                                                        <div class="inner-img">
-                                                            <a href="#"><img src="/images/4.jpg" alt="Banner"></a>
-                                                        </div>
-
-                                                        <ul class="vertical-menu-link">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Skincare</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Metkup</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Mobile phone</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Tablet</span>
-
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="vertical-menu3">
-                                <a class="parent" href="#">Vitamins </a>
-                                <div class="vertical-dropdown-menu" style="width: 901px;">
-                                    <div class="vertical-groups">
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <div class="block-content-vertical-menu border">
-                                                    <h3 class="head">CATEGORIES</h3>
-                                                    <div class="inner">
-                                                        <div class="inner-img">
-                                                            <a href="#"><img src="/images/4.jpg" alt="Banner"></a>
-                                                        </div>
-
-                                                        <ul class="vertical-menu-link">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Skincare</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Metkup</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Mobile phone</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Tablet</span>
-
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="block-content-vertical-menu border">
-                                                    <h3 class="head">CATEGORIES</h3>
-                                                    <div class="inner">
-                                                        <div class="inner-img">
-                                                            <a href="#"><img src="/images/4.jpg" alt="Banner"></a>
-                                                        </div>
-
-                                                        <ul class="vertical-menu-link">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Skincare</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Metkup</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Mobile phone</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Tablet</span>
-
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="block-content-vertical-menu border">
-                                                    <h3 class="head">CATEGORIES</h3>
-                                                    <div class="inner">
-                                                        <div class="inner-img">
-                                                            <a href="#"><img src="/images/4.jpg" alt="Banner"></a>
-                                                        </div>
-
-                                                        <ul class="vertical-menu-link">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Skincare</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Metkup</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Mobile phone</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Tablet</span>
-
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="block-content-vertical-menu border">
-                                                    <h3 class="head">CATEGORIES</h3>
-                                                    <div class="inner">
-                                                        <div class="inner-img">
-                                                            <a href="#"><img src="/images/4.jpg" alt="Banner"></a>
-                                                        </div>
-
-                                                        <ul class="vertical-menu-link">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Skincare</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Metkup</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Mobile phone</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span class="text">Tablet</span>
-
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="vertical-menu4"><a href="#">Sports Aid </a></li>
-                            <li class="vertical-menu5"><a href="#">Pet Rx Drugs </a></li>
-                            <li class="vertical-menu6">
-                                <a href="#">DME Products</a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-                <!-- ./block category -->
-                <!-- block  top sellers -->
-                <!-- block  top sellers -->
-            </div>
-
-            <div class="col-sm-8 col-md-8 col-lg-9">
-                <!-- Home slide -->
-                <div class="block block-slider">
-                    <ul class="home-slider kt-bxslider">
-                        <li><img src="/images/slide2.jpg" alt="Slider"></li>
-                        <li><img src="/images/slide3.jpg" alt="Slider"></li>
-                        <li><img src="/images/slide1.jpg" alt="Slider"></li>
-                        <li><img src="/images/slide4.jpg" alt="Slider"></li>
-                    </ul>
-                </div>
-                <!-- ./Home slide -->
-                <div class="row">
-                    <div class="col-md-12 col-lg-4">
-                        <!-- block-shop-features -->
-                        <!-- ./block-shop-features-->
-                    </div>
-                    <div class="col-md-12 col-lg-8">
-                        <!-- block-offers -->
-                        <!-- block-offers -->
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
+                            </div>
+                        </div>
+                    </div>*@
 

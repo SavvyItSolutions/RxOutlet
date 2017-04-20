@@ -382,9 +382,10 @@ img.alignright{
   float: left;
 }
 .block .block-head .block-title-text {
-  font-size: 24px;
-  text-transform: uppercase;
+  font-size: 20px;
+  /*text-transform: uppercase;*/
   line-height: 20px;
+  color:#00a6af;
 }
 .block .block-head .block-title-text.text-lg{
   font-weight: 600;
@@ -822,7 +823,7 @@ label{
     z-index: 9999;
     right: 10px;
     bottom: 32px;
-    background: #5a88ca;
+    background: #00dce8;
     border-radius: 50%;
 }
 .scroll_top:before {
