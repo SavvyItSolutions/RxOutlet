@@ -36,13 +36,13 @@
                         $("#cList").append("<li> <a href='#'><span class='text'>" +
                             data.MenuItemList[i].MenuName + "</span>    </a> </li>");
 
-                        for (j = 0; j < data.MenuItemList.length; j++) {
+                        for (i = 0; i < data.MenuItemList.length; i++) {
                             $("#cList2").append("<li> <a href='#'><span class='text'>" +
-                                data.MenuItemList[j].SubMenuName + "</span>    </a> </li>");
+                                data.MenuItemList[i].SubMenuName + "</span>    </a> </li>");
 
-                            for (k = 0; k < data.MenuItemList.length; k++) {
+                            for (i = 0; i < data.MenuItemList.length; i++) {
                                 $("#cList3").append("<li> <a href='#'><span class='text'>" +
-                                    data.MenuItemList[k].MenuItemName + "</span>    </a> </li>");
+                                    data.MenuItemList[i].MenuItemName + "</span>    </a> </li>");
 
                             }
                         }
