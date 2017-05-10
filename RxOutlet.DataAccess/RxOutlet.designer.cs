@@ -22,7 +22,7 @@ namespace RxOutlet.DataAccess
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="RxOutlet")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Elixir")]
 	public partial class RxOutletDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -30,10 +30,19 @@ namespace RxOutlet.DataAccess
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InserttblMainMenu(tblMainMenu instance);
+    partial void UpdatetblMainMenu(tblMainMenu instance);
+    partial void DeletetblMainMenu(tblMainMenu instance);
+    partial void InserttblMenuItem(tblMenuItem instance);
+    partial void UpdatetblMenuItem(tblMenuItem instance);
+    partial void DeletetblMenuItem(tblMenuItem instance);
+    partial void InserttblSubMenus(tblSubMenus instance);
+    partial void UpdatetblSubMenus(tblSubMenus instance);
+    partial void DeletetblSubMenus(tblSubMenus instance);
     #endregion
 		
 		public RxOutletDataContext() : 
-				base(global::RxOutlet.DataAccess.Properties.Settings.Default.RxOutletConnectionString, mappingSource)
+				base(global::RxOutlet.DataAccess.Properties.Settings.Default.ElixirConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -60,6 +69,30 @@ namespace RxOutlet.DataAccess
 				base(connection, mappingSource)
 		{
 			OnCreated();
+		}
+		
+		public System.Data.Linq.Table<tblMainMenu> tblMainMenus
+		{
+			get
+			{
+				return this.GetTable<tblMainMenu>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblMenuItem> tblMenuItems
+		{
+			get
+			{
+				return this.GetTable<tblMenuItem>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblSubMenus> tblSubMenus
+		{
+			get
+			{
+				return this.GetTable<tblSubMenus>();
+			}
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_Elixir_GetMenuItemList")]
@@ -102,6 +135,557 @@ namespace RxOutlet.DataAccess
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), menuID);
 			return ((ISingleResult<GetSubMenuListResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetMenuDetails")]
+		public ISingleResult<GetMenuDetailsResult> GetMenuDetails()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<GetMenuDetailsResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetMenu")]
+		public ISingleResult<GetMenuResult> GetMenu()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<GetMenuResult>)(result.ReturnValue));
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblMainMenu")]
+	public partial class tblMainMenu : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MenuID;
+		
+		private string _MenuName;
+		
+		private EntitySet<tblMenuItem> _tblMenuItems;
+		
+		private EntitySet<tblSubMenus> _tblSubMenus;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMenuIDChanging(int value);
+    partial void OnMenuIDChanged();
+    partial void OnMenuNameChanging(string value);
+    partial void OnMenuNameChanged();
+    #endregion
+		
+		public tblMainMenu()
+		{
+			this._tblMenuItems = new EntitySet<tblMenuItem>(new Action<tblMenuItem>(this.attach_tblMenuItems), new Action<tblMenuItem>(this.detach_tblMenuItems));
+			this._tblSubMenus = new EntitySet<tblSubMenus>(new Action<tblSubMenus>(this.attach_tblSubMenus), new Action<tblSubMenus>(this.detach_tblSubMenus));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int MenuID
+		{
+			get
+			{
+				return this._MenuID;
+			}
+			set
+			{
+				if ((this._MenuID != value))
+				{
+					this.OnMenuIDChanging(value);
+					this.SendPropertyChanging();
+					this._MenuID = value;
+					this.SendPropertyChanged("MenuID");
+					this.OnMenuIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string MenuName
+		{
+			get
+			{
+				return this._MenuName;
+			}
+			set
+			{
+				if ((this._MenuName != value))
+				{
+					this.OnMenuNameChanging(value);
+					this.SendPropertyChanging();
+					this._MenuName = value;
+					this.SendPropertyChanged("MenuName");
+					this.OnMenuNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblMainMenu_tblMenuItem", Storage="_tblMenuItems", ThisKey="MenuID", OtherKey="MenuID")]
+		public EntitySet<tblMenuItem> tblMenuItems
+		{
+			get
+			{
+				return this._tblMenuItems;
+			}
+			set
+			{
+				this._tblMenuItems.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblMainMenu_tblSubMenus", Storage="_tblSubMenus", ThisKey="MenuID", OtherKey="MenuID")]
+		public EntitySet<tblSubMenus> tblSubMenus
+		{
+			get
+			{
+				return this._tblSubMenus;
+			}
+			set
+			{
+				this._tblSubMenus.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblMenuItems(tblMenuItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblMainMenu = this;
+		}
+		
+		private void detach_tblMenuItems(tblMenuItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblMainMenu = null;
+		}
+		
+		private void attach_tblSubMenus(tblSubMenus entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblMainMenu = this;
+		}
+		
+		private void detach_tblSubMenus(tblSubMenus entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblMainMenu = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblMenuItems")]
+	public partial class tblMenuItem : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MenuItemID;
+		
+		private string _MenuItemName;
+		
+		private System.Nullable<int> _MenuID;
+		
+		private System.Nullable<int> _SubMenuID;
+		
+		private EntityRef<tblMainMenu> _tblMainMenu;
+		
+		private EntityRef<tblSubMenus> _tblSubMenus;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMenuItemIDChanging(int value);
+    partial void OnMenuItemIDChanged();
+    partial void OnMenuItemNameChanging(string value);
+    partial void OnMenuItemNameChanged();
+    partial void OnMenuIDChanging(System.Nullable<int> value);
+    partial void OnMenuIDChanged();
+    partial void OnSubMenuIDChanging(System.Nullable<int> value);
+    partial void OnSubMenuIDChanged();
+    #endregion
+		
+		public tblMenuItem()
+		{
+			this._tblMainMenu = default(EntityRef<tblMainMenu>);
+			this._tblSubMenus = default(EntityRef<tblSubMenus>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuItemID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int MenuItemID
+		{
+			get
+			{
+				return this._MenuItemID;
+			}
+			set
+			{
+				if ((this._MenuItemID != value))
+				{
+					this.OnMenuItemIDChanging(value);
+					this.SendPropertyChanging();
+					this._MenuItemID = value;
+					this.SendPropertyChanged("MenuItemID");
+					this.OnMenuItemIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuItemName", DbType="VarChar(200)")]
+		public string MenuItemName
+		{
+			get
+			{
+				return this._MenuItemName;
+			}
+			set
+			{
+				if ((this._MenuItemName != value))
+				{
+					this.OnMenuItemNameChanging(value);
+					this.SendPropertyChanging();
+					this._MenuItemName = value;
+					this.SendPropertyChanged("MenuItemName");
+					this.OnMenuItemNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuID", DbType="Int")]
+		public System.Nullable<int> MenuID
+		{
+			get
+			{
+				return this._MenuID;
+			}
+			set
+			{
+				if ((this._MenuID != value))
+				{
+					if (this._tblMainMenu.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMenuIDChanging(value);
+					this.SendPropertyChanging();
+					this._MenuID = value;
+					this.SendPropertyChanged("MenuID");
+					this.OnMenuIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubMenuID", DbType="Int")]
+		public System.Nullable<int> SubMenuID
+		{
+			get
+			{
+				return this._SubMenuID;
+			}
+			set
+			{
+				if ((this._SubMenuID != value))
+				{
+					if (this._tblSubMenus.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSubMenuIDChanging(value);
+					this.SendPropertyChanging();
+					this._SubMenuID = value;
+					this.SendPropertyChanged("SubMenuID");
+					this.OnSubMenuIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblMainMenu_tblMenuItem", Storage="_tblMainMenu", ThisKey="MenuID", OtherKey="MenuID", IsForeignKey=true)]
+		public tblMainMenu tblMainMenu
+		{
+			get
+			{
+				return this._tblMainMenu.Entity;
+			}
+			set
+			{
+				tblMainMenu previousValue = this._tblMainMenu.Entity;
+				if (((previousValue != value) 
+							|| (this._tblMainMenu.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblMainMenu.Entity = null;
+						previousValue.tblMenuItems.Remove(this);
+					}
+					this._tblMainMenu.Entity = value;
+					if ((value != null))
+					{
+						value.tblMenuItems.Add(this);
+						this._MenuID = value.MenuID;
+					}
+					else
+					{
+						this._MenuID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tblMainMenu");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblSubMenus_tblMenuItem", Storage="_tblSubMenus", ThisKey="SubMenuID", OtherKey="SubMenuID", IsForeignKey=true)]
+		public tblSubMenus tblSubMenus
+		{
+			get
+			{
+				return this._tblSubMenus.Entity;
+			}
+			set
+			{
+				tblSubMenus previousValue = this._tblSubMenus.Entity;
+				if (((previousValue != value) 
+							|| (this._tblSubMenus.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblSubMenus.Entity = null;
+						previousValue.tblMenuItems.Remove(this);
+					}
+					this._tblSubMenus.Entity = value;
+					if ((value != null))
+					{
+						value.tblMenuItems.Add(this);
+						this._SubMenuID = value.SubMenuID;
+					}
+					else
+					{
+						this._SubMenuID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tblSubMenus");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblSubMenus")]
+	public partial class tblSubMenus : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _SubMenuID;
+		
+		private string _SubMenuName;
+		
+		private System.Nullable<int> _MenuID;
+		
+		private EntitySet<tblMenuItem> _tblMenuItems;
+		
+		private EntityRef<tblMainMenu> _tblMainMenu;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnSubMenuIDChanging(int value);
+    partial void OnSubMenuIDChanged();
+    partial void OnSubMenuNameChanging(string value);
+    partial void OnSubMenuNameChanged();
+    partial void OnMenuIDChanging(System.Nullable<int> value);
+    partial void OnMenuIDChanged();
+    #endregion
+		
+		public tblSubMenus()
+		{
+			this._tblMenuItems = new EntitySet<tblMenuItem>(new Action<tblMenuItem>(this.attach_tblMenuItems), new Action<tblMenuItem>(this.detach_tblMenuItems));
+			this._tblMainMenu = default(EntityRef<tblMainMenu>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubMenuID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int SubMenuID
+		{
+			get
+			{
+				return this._SubMenuID;
+			}
+			set
+			{
+				if ((this._SubMenuID != value))
+				{
+					this.OnSubMenuIDChanging(value);
+					this.SendPropertyChanging();
+					this._SubMenuID = value;
+					this.SendPropertyChanged("SubMenuID");
+					this.OnSubMenuIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubMenuName", DbType="VarChar(200)")]
+		public string SubMenuName
+		{
+			get
+			{
+				return this._SubMenuName;
+			}
+			set
+			{
+				if ((this._SubMenuName != value))
+				{
+					this.OnSubMenuNameChanging(value);
+					this.SendPropertyChanging();
+					this._SubMenuName = value;
+					this.SendPropertyChanged("SubMenuName");
+					this.OnSubMenuNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuID", DbType="Int")]
+		public System.Nullable<int> MenuID
+		{
+			get
+			{
+				return this._MenuID;
+			}
+			set
+			{
+				if ((this._MenuID != value))
+				{
+					if (this._tblMainMenu.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMenuIDChanging(value);
+					this.SendPropertyChanging();
+					this._MenuID = value;
+					this.SendPropertyChanged("MenuID");
+					this.OnMenuIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblSubMenus_tblMenuItem", Storage="_tblMenuItems", ThisKey="SubMenuID", OtherKey="SubMenuID")]
+		public EntitySet<tblMenuItem> tblMenuItems
+		{
+			get
+			{
+				return this._tblMenuItems;
+			}
+			set
+			{
+				this._tblMenuItems.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblMainMenu_tblSubMenus", Storage="_tblMainMenu", ThisKey="MenuID", OtherKey="MenuID", IsForeignKey=true)]
+		public tblMainMenu tblMainMenu
+		{
+			get
+			{
+				return this._tblMainMenu.Entity;
+			}
+			set
+			{
+				tblMainMenu previousValue = this._tblMainMenu.Entity;
+				if (((previousValue != value) 
+							|| (this._tblMainMenu.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblMainMenu.Entity = null;
+						previousValue.tblSubMenus.Remove(this);
+					}
+					this._tblMainMenu.Entity = value;
+					if ((value != null))
+					{
+						value.tblSubMenus.Add(this);
+						this._MenuID = value.MenuID;
+					}
+					else
+					{
+						this._MenuID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tblMainMenu");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblMenuItems(tblMenuItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblSubMenus = this;
+		}
+		
+		private void detach_tblMenuItems(tblMenuItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblSubMenus = null;
 		}
 	}
 	
@@ -364,6 +948,220 @@ namespace RxOutlet.DataAccess
 				if ((this._SubMenuName != value))
 				{
 					this._SubMenuName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetMenuDetailsResult
+	{
+		
+		private int _MenuID;
+		
+		private string _MenuName;
+		
+		public GetMenuDetailsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuID", DbType="Int NOT NULL")]
+		public int MenuID
+		{
+			get
+			{
+				return this._MenuID;
+			}
+			set
+			{
+				if ((this._MenuID != value))
+				{
+					this._MenuID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string MenuName
+		{
+			get
+			{
+				return this._MenuName;
+			}
+			set
+			{
+				if ((this._MenuName != value))
+				{
+					this._MenuName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetMenuResult
+	{
+		
+		private int _MainMenuID;
+		
+		private string _MainMenuName;
+		
+		private System.Nullable<int> _SubMainMenuID;
+		
+		private System.Nullable<int> _SubMenuID;
+		
+		private string _SubMenuName;
+		
+		private System.Nullable<int> _ItemMainMenuID;
+		
+		private System.Nullable<int> _ItemSubMenuID;
+		
+		private System.Nullable<int> _MenuItemID;
+		
+		private string _MenuItemName;
+		
+		public GetMenuResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MainMenuID", DbType="Int NOT NULL")]
+		public int MainMenuID
+		{
+			get
+			{
+				return this._MainMenuID;
+			}
+			set
+			{
+				if ((this._MainMenuID != value))
+				{
+					this._MainMenuID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MainMenuName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string MainMenuName
+		{
+			get
+			{
+				return this._MainMenuName;
+			}
+			set
+			{
+				if ((this._MainMenuName != value))
+				{
+					this._MainMenuName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubMainMenuID", DbType="Int")]
+		public System.Nullable<int> SubMainMenuID
+		{
+			get
+			{
+				return this._SubMainMenuID;
+			}
+			set
+			{
+				if ((this._SubMainMenuID != value))
+				{
+					this._SubMainMenuID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubMenuID", DbType="Int")]
+		public System.Nullable<int> SubMenuID
+		{
+			get
+			{
+				return this._SubMenuID;
+			}
+			set
+			{
+				if ((this._SubMenuID != value))
+				{
+					this._SubMenuID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubMenuName", DbType="VarChar(200)")]
+		public string SubMenuName
+		{
+			get
+			{
+				return this._SubMenuName;
+			}
+			set
+			{
+				if ((this._SubMenuName != value))
+				{
+					this._SubMenuName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemMainMenuID", DbType="Int")]
+		public System.Nullable<int> ItemMainMenuID
+		{
+			get
+			{
+				return this._ItemMainMenuID;
+			}
+			set
+			{
+				if ((this._ItemMainMenuID != value))
+				{
+					this._ItemMainMenuID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemSubMenuID", DbType="Int")]
+		public System.Nullable<int> ItemSubMenuID
+		{
+			get
+			{
+				return this._ItemSubMenuID;
+			}
+			set
+			{
+				if ((this._ItemSubMenuID != value))
+				{
+					this._ItemSubMenuID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuItemID", DbType="Int")]
+		public System.Nullable<int> MenuItemID
+		{
+			get
+			{
+				return this._MenuItemID;
+			}
+			set
+			{
+				if ((this._MenuItemID != value))
+				{
+					this._MenuItemID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuItemName", DbType="VarChar(200)")]
+		public string MenuItemName
+		{
+			get
+			{
+				return this._MenuItemName;
+			}
+			set
+			{
+				if ((this._MenuItemName != value))
+				{
+					this._MenuItemName = value;
 				}
 			}
 		}

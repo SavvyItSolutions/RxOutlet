@@ -19,9 +19,7 @@ namespace RxOutlet.Controllers
         [HttpGet]
         public RxOutletMenuListRespone MenuList()
         {
-            //var menuDetails = ();
-            //return Json(menuDetails, JsonRequestBehavior.AllowGet);
-
+            
             RxOutletMenuListRespone resp = new RxOutletMenuListRespone();
             IRxOutletService itemService = new RxOutletService();
              resp = itemService.GetMenuList();
@@ -50,6 +48,47 @@ namespace RxOutlet.Controllers
             return resp;
 
         }
+
+
+        //[HttpGet]
+        //public RxOutletMenuResponse CompleteMenuList()
+        //{
+        //    RxOutletMenuResponse resp = new RxOutletMenuResponse();
+        //    IRxOutletService itemService = new RxOutletService();
+        //    resp = itemService.GetCompleteMenuList();
+
+        //    return resp;
+
+        //}
+
+
+        //[HttpGet]
+        //public void NestedMenu()
+        //{
+        //    //RxOutletMenuResponse resp = new RxOutletMenuResponse();
+        //    IRxOutletService itemService = new RxOutletService();
+        //    //resp = itemService.GetMenuDetails1();
+        //    itemService.GetMenuDetails();
+        //    // return resp;
+
+        //}
+
+
+
+        [HttpGet]
+        public List<CompleteMenu> GetCompleteMenu()
+        {
+            List<CompleteMenu> resp = new List<CompleteMenu>();
+            IRxOutletService itemService = new RxOutletService();
+            resp = itemService.GetCompleteMenu();
+
+            return resp;
+        }
+
+
+
+
+
 
     }
 }

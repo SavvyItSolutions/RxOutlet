@@ -1,0 +1,57 @@
+﻿@model IEnumerable<RxOutlet.Models.RxOutletMenuListRespone>
+
+@{
+    ViewBag.Title = "Menu1";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            $.ajax({
+                url: "http://localhost:64404/api/RxOutlet/GetCompleteMenu",
+               
+                success: function (data) {
+                    alert(data);
+                  
+                    var List=[];
+                  //  var dataSrc = ["australia", "austria", "antartica", "argentina", "algeria"];
+
+                        for (i = 0; i < data.length; i++) {
+                            List.push(data[i].MainMenuName)
+                        }
+                        $("#myText").autocomplete({
+                            source: List,
+                            
+                        });
+                  
+     },
+                error: function (msg) { alert("error"); alert(msg); }
+            });
+        });
+
+    </script>
+
+
+
+
+</head>
+<body>
+
+    <h1>Search Option</h1>
+    <input type="text" id="myText"  />
+
+
+</body>
+</html>
+
+

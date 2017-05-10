@@ -9,7 +9,7 @@ namespace RxOutlet.Controllers
     public class AboutUSController : Controller
     {
         // GET: AboutUS
-        public ActionResult Index()
+        public ActionResult AboutUS()
         {
             return View();
         }

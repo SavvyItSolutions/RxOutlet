@@ -1,5 +1,32 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="RxOutlet" Class="RxOutletDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-19RQ153,1433;Initial Catalog=RxOutlet;Persist Security Info=True;User ID=guest" SettingsObjectName="RxOutlet.DataAccess.Properties.Settings" SettingsPropertyName="RxOutletConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Elixir" Class="RxOutletDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-DDIP9VH\SQLEXPRESS;Initial Catalog=Elixir;Integrated Security=True;Persist Security Info=True" SettingsObjectName="RxOutlet.DataAccess.Properties.Settings" SettingsPropertyName="ElixirConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tblMainMenu" Member="tblMainMenus">
+    <Type Name="tblMainMenu">
+      <Column Name="MenuID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MenuName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Association Name="tblMainMenu_tblMenuItem" Member="tblMenuItems" ThisKey="MenuID" OtherKey="MenuID" Type="tblMenuItem" />
+      <Association Name="tblMainMenu_tblSubMenus" Member="tblSubMenus" ThisKey="MenuID" OtherKey="MenuID" Type="tblSubMenus" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblMenuItems" Member="tblMenuItems">
+    <Type Name="tblMenuItem">
+      <Column Name="MenuItemID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MenuItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="MenuID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SubMenuID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblMainMenu_tblMenuItem" Member="tblMainMenu" ThisKey="MenuID" OtherKey="MenuID" Type="tblMainMenu" IsForeignKey="true" />
+      <Association Name="tblSubMenus_tblMenuItem" Member="tblSubMenus" ThisKey="SubMenuID" OtherKey="SubMenuID" Type="tblSubMenus" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblSubMenus" Member="tblSubMenus">
+    <Type Name="tblSubMenus">
+      <Column Name="SubMenuID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SubMenuName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="MenuID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblSubMenus_tblMenuItem" Member="tblMenuItems" ThisKey="SubMenuID" OtherKey="SubMenuID" Type="tblMenuItem" />
+      <Association Name="tblMainMenu_tblSubMenus" Member="tblMainMenu" ThisKey="MenuID" OtherKey="MenuID" Type="tblMainMenu" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.sp_Elixir_GetMenuItemList" Method="sp_Elixir_GetMenuItemList">
     <Parameter Name="MenuID" Parameter="menuID" Type="System.Int32" DbType="Int" />
     <Parameter Name="SubMenuID" Parameter="subMenuID" Type="System.Int32" DbType="Int" />
@@ -40,6 +67,25 @@
     <ElementType Name="GetSubMenuListResult">
       <Column Name="MenuName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="SubMenuName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetMenuDetails" Method="GetMenuDetails">
+    <ElementType Name="GetMenuDetailsResult">
+      <Column Name="MenuID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MenuName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetMenu" Method="GetMenu">
+    <ElementType Name="GetMenuResult">
+      <Column Name="MainMenuID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MainMenuName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="SubMainMenuID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SubMenuID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SubMenuName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ItemMainMenuID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ItemSubMenuID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MenuItemID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MenuItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

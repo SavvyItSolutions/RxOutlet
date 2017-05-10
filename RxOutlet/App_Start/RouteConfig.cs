@@ -17,7 +17,7 @@ namespace RxOutlet
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{objectId}",
-                defaults: new { controller = "Home", action = "Index", objectId = RouteParameter.Optional }
+                defaults: new { controller = "ContactUS", action = "ContactUS", objectId = RouteParameter.Optional }
             );
 
            // routes.MapRoute(

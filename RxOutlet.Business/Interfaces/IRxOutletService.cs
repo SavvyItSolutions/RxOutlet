@@ -12,6 +12,10 @@ namespace RxOutlet.Business
     {
         RxOutletMenuListRespone GetMenuList();
         RxOutletSubMenuListResponse GetSubMenuList(int menuID);
-        RxOutLetMenuItemListResponse GetMenuItemList(int menuID, int subMenuID);
+        RxOutLetMenuItemListResponse GetMenuItemList(int menuID, int subMenuID);     
+        List<CompleteMenu> GetCompleteMenu();
+
+
+
     }
 }

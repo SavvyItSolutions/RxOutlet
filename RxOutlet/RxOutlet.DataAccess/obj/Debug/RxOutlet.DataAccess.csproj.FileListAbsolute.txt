@@ -1,8 +1,0 @@
-G:\RxOutlet\RxOutlet.DataAccess\bin\Debug\RxOutlet.DataAccess.dll.config
-G:\RxOutlet\RxOutlet.DataAccess\bin\Debug\RxOutlet.DataAccess.dll
-G:\RxOutlet\RxOutlet.DataAccess\bin\Debug\RxOutlet.DataAccess.pdb
-G:\RxOutlet\RxOutlet.DataAccess\bin\Debug\RxOutlet.Models.dll
-G:\RxOutlet\RxOutlet.DataAccess\bin\Debug\RxOutlet.Models.pdb
-G:\RxOutlet\RxOutlet.DataAccess\obj\Debug\RxOutlet.DataAccess.csprojResolveAssemblyReference.cache
-G:\RxOutlet\RxOutlet.DataAccess\obj\Debug\RxOutlet.DataAccess.dll
-G:\RxOutlet\RxOutlet.DataAccess\obj\Debug\RxOutlet.DataAccess.pdb
