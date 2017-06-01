@@ -17,6 +17,48 @@ namespace RxOutlet.Controllers
     {
 
         [HttpGet]
+        public GetDrugNameResponse GetSupplierName()
+        {
+
+            GetDrugNameResponse resp = new GetDrugNameResponse();
+            IRxOutletService itemService = new RxOutletService();
+            resp = itemService.GetSupplierName();
+            return resp;
+        }
+
+
+        [HttpGet]
+        public GetDrugNameResponse DrugList()
+        {
+
+            GetDrugNameResponse resp = new GetDrugNameResponse();
+            IRxOutletService itemService = new RxOutletService();
+            resp = itemService.GetDrugList();
+            return resp;
+        }
+
+        [HttpGet]
+        public GetDrugNameResponse DrugListNew(SearchCreiteria sc)
+        {
+
+            GetDrugNameResponse resp = new GetDrugNameResponse();
+            IRxOutletService itemService = new RxOutletService();
+            resp = itemService.GetDrugList();
+            return resp;
+        }
+
+        public class SearchCreiteria
+        {
+            public string SearchText { get; set; }
+            List<int> Type;
+            int PageStart;
+            int PageSize;
+            public SearchCreiteria()
+            {
+                Type = new List<int>();
+            }
+        }
+        [HttpGet]
         public RxOutletMenuListRespone MenuList()
         {
             

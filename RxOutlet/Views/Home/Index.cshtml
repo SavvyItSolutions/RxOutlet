@@ -4,10 +4,10 @@
 
 
 @{
-        Layout = "~/Views/Shared/_Layout.cshtml";
-  }
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-   @* <div class="row">
+@* <div class="row">
         <div class="col-md-4">
             <h1>
                 @ViewBag.Name
@@ -20,17 +20,41 @@
 
 @*@Html.Partial("SO")*@
 
-@Html.Partial("_ProductCategories")
 
-@Html.Partial("_PrescriptionServices")
+<!DOCTYPE html>
 
-@Html.Partial("_PopularHPCategories")
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script type="text/javascript">
 
-@Html.Partial("_UsefulExternalLinks")
 
-@Html.Partial("_HotDeals")
+$( function() {
+    $( "#dialog" ).dialog();
+  } );
+
+</script>
+    </head>
+        <body>
 
 
+           
+
+                @Html.Partial("_ProductCategories")
+
+                @Html.Partial("_PrescriptionServices")
+
+                @Html.Partial("_PopularHPCategories")
+
+                @Html.Partial("_UsefulExternalLinks")
+
+                @Html.Partial("_HotDeals")
+
+</body>
+</html>
 
 
 
@@ -94,7 +118,7 @@
         <h2>Web Hosting</h2>
         <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-      
+
     </div>
 </div>*@
 

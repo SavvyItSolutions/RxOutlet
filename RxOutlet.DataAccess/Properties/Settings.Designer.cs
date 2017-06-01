@@ -55,5 +55,16 @@ namespace RxOutlet.DataAccess.Properties {
                 return ((string)(this["ElixirConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-DDIP9VH\\SQLEXPRESS;Initial Catalog=RxOutlet;Integrated Securi" +
+            "ty=True;Persist Security Info=True")]
+        public string RxOutletConnectionString1 {
+            get {
+                return ((string)(this["RxOutletConnectionString1"]));
+            }
+        }
     }
 }

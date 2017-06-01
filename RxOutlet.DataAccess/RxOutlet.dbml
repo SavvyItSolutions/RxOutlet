@@ -88,4 +88,17 @@
       <Column Name="MenuItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.GetDrugList" Method="GetDrugList">
+    <ElementType Name="GetDrugListResult">
+      <Column Name="DrugId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DrugName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="RetailPrice" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="RegularPrice" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetSupplierName" Method="GetSupplierName">
+    <ElementType Name="GetSupplierNameResult">
+      <Column Name="supplierName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

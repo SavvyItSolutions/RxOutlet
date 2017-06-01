@@ -6,29 +6,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title RX Outlet</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    @Styles.Render("~/bundles/jquery")
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    @Scripts.Render("~/bundles/modernizr")
+   
     <script type="text/javascript">
+
+        /// Basic Dialog working
+
+        //$(function ()           
+        //    $("#dialog-modal").dialog({
+        //        height: 140,
+        //        modal: true
+                
+        //    });
+            
+        //});
+
+        //// Basic Dialog code ends
+
+
+
+
+
+        $(function () {
+           
+            $("#dialog-modal").dialog({
+                autoOpen: false,
+                modal:true,// to make background html page disable when popup get opened.
+                width: 400,
+                height:400,
+              
+                show: {
+                    effect: "shake",
+                    duration: 100
+                },
+                hide: {
+                    effect: "explode",
+                    duration: 1000
+                }
+
+            });
+           
+
+            $("#modal-opener").click(function () {
+                $("#dialog-modal").dialog("open");
+               
+            });
+
+        });
 
 
         $(document).ready(function () {
             $.ajax({
-                url: "http://localhost:64404/api/RxOutlet/GetCompleteMenu",
-
+           
+                url: "http://localhost:64404/api/RxOutlet/Druglist",
                 success: function (data) {
-                    alert(data);
-
-                    var List=[];
-                  //  var dataSrc = ["australia", "austria", "antartica", "argentina", "algeria"];
-
-                        for (i = 0; i < data.length; i++) {
-                            List.push(data[i].MainMenuName)
+                    var List = [];
+                    //alert(data);
+                    for (i = 0; i < data.DrugList.length; i++) {
+                        List.push(data.DrugList[i].DrugName)
                         }
                         $("#myText").autocomplete({
                             source: List,
-
                         });
+                        //$('#myText').val(""); 
+                        //$('#searchHistory').text(""); 
+    
+                  
+                        //$.each(List, function (index, value) {
+                        //    $('#searchHistory').append("<li class='historyItem'  onclick='addtotextbox(" + index + ")'>" +
+                        //        value + '</li>');
+                        //});
 
      },
                 error: function (msg) { alert("error"); alert(msg); }
@@ -73,7 +124,7 @@
         </div>
         <!-- Top bar -->
         <div class="container">
-            <!-- box header -->
+            <!-- box header -->.
             <div class="row">
                 <div class="box-header">
                     <div class="col-sm-12 col-md-12 col-lg-3"></div>

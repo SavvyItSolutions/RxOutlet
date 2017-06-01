@@ -15,59 +15,41 @@ namespace RxOutlet.Controllers
     {
         public ActionResult ContactUS()
         {
+
+
             ContactUsModel objSubjectHeading = new ContactUsModel();
             objSubjectHeading.SubjectHeading = PopulateSubjectHeading();
-            return View(objSubjectHeading);
-
-          
+            return View(objSubjectHeading);  
         }
-
 
         // Calling on http post (on Submit)
         [HttpPost]
         public ActionResult ContactUS(ContactUsModel obj)
         {
 
-            //obj.SubjectHeading = PopulateSubjectHeading();
-            //var selectedItem = obj.SubjectHeading.Find(p => p.Value == obj.SubjectHeadingID.ToString());
-            //if (selectedItem != null)
-            //{
-            //    selectedItem.Selected = true;
-            //    ViewBag.Message = "SubjectHeading: " + selectedItem.Text;  
-            //}
-
+            // obj.SubjectHeadingID=Convert.ToInt32(Request.Form["ddlVendor"]);
+            //int strDDLValue = Convert.ToInt32(Request.Form["ddlVendor"]);
+            //List<SelectListItem> dd = PopulateSubjectHeading();
+            //obj.SubjectHeadingID = dd[strDDLValue].Text.ToString();
 
             int strDDLValue = Convert.ToInt32(Request.Form["ddlVendor"]);
             List<SelectListItem> dd = PopulateSubjectHeading();
-
-            obj.SubjectHeadingName = dd[strDDLValue].Text.ToString();
-
-
+            obj.SubjectHeadingID = Convert.ToInt32(dd[strDDLValue].Value);
             ContactUsModel objreg = new ContactUsModel();
             string result = objreg.InsertRegDetails(obj);
             ViewData["result"] = result;
             ModelState.Clear();
-
             return View(obj);
-
-
-
-
         }
-
-
 
         private static List<SelectListItem> PopulateSubjectHeading()
         {
             List<SelectListItem> items = new List<SelectListItem>();
-
             string constr = ConfigurationManager.ConnectionStrings["RxOutlet"].ConnectionString;
             SqlConnection con = new SqlConnection("Data Source=DESKTOP-DDIP9VH\\SQLEXPRESS;Initial Catalog=RxOutlet;Persist Security Info=True;Integrated Security=True");
-
             SqlCommand cmd = new SqlCommand("GetSubjectHeading", con);
             cmd.CommandType = CommandType.StoredProcedure;        
             con.Open();
-                     
             using (SqlDataReader sdr = cmd.ExecuteReader())
                     {
                         while (sdr.Read())
@@ -80,12 +62,9 @@ namespace RxOutlet.Controllers
                         }
                     }
                     con.Close();
-
             return items;
         }
             }
-
-          
         }
 
 

@@ -13,12 +13,50 @@ namespace RxOutlet.DataAccess.DataManager
   public  class MenuDBManager:IMenuDBManger
     {
         public RxOutletDataContext DBContext;
+        public RxOutletDataContext DBContextRxOutlet;
 
         public MenuDBManager()
         {
             string connection = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             DBContext = new DataAccess.RxOutletDataContext(connection);
+
+            //string connectionRxoutlet = System.Configuration.ConfigurationManager.ConnectionStrings["RxOutlet"].ConnectionString;
+            //DBContextRxOutlet = new DataAccess.RxOutletDataContext(connection);
+
+
         }
+
+        public IList<GetSupplierNameResult> GetSupplierName()
+        {
+            try
+            {
+                ISingleResult<GetSupplierNameResult> result =
+                DBContext.GetSupplierName();
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
+
+        public IList<GetDrugListResult> GetDrugList()
+        {
+            try
+            {
+                ISingleResult<GetDrugListResult> result =
+                DBContext.GetDrugList();
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
 
 
         public IList<GetMenuListResult> GetMenuList()
@@ -272,6 +310,10 @@ namespace RxOutlet.DataAccess.DataManager
             ISingleResult<GetMenuResult> result = DBContext.GetMenu();
             return result.ToList();
         }
+
+
+
+
 
 
     }

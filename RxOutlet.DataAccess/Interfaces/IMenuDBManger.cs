@@ -10,20 +10,12 @@ namespace RxOutlet.DataAccess.Interfaces
     
         public interface IMenuDBManger
         {
-
             IList<GetMenuListResult> GetMenuList();
             IList<GetSubMenuListResult> GetSubMenuList(int menuID);
             IList<GetMenuItemListResult> GetMenuItemList(int menuID, int subMenuID);
-           // IList<GetMenuResult> GetCompleteMenuList();
-
-
-        IList<GetMenuResult> GetCompleteMenu();
-
-        //   MenuDetailsResponse GetCompleteMenuList();
-
-        // void GetCompleteMenuList();
-
-        // IList<GetMenuDetailsResult> menudetails();
+            IList<GetMenuResult> GetCompleteMenu();
+            IList<GetDrugListResult> GetDrugList();
+        IList<GetSupplierNameResult> GetSupplierName();
 
     }
 

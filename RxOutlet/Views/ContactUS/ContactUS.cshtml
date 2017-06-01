@@ -139,9 +139,51 @@
 </head>
 <body>
 
+    @*@Html.Partial("_LoginModalpopUp")*@
 
-        <div class="container">
+
+        @*<div class="container">
             <div class="row">
+                <div class="col-xs-12">
+
+             <button class="btn btn-primary btn-sm pull-right" data-target="#loginmodal" data-toggle="modal">Login</button>
+
+                    <div class="modal" id="loginmodal" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button class="close" data-dissmiss="modal">&times;</button>
+                                    <h4 class="modal-title">Login</h4>
+                                </div>
+
+                                <div class="modal-body">
+
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="inputusername">User Name </label>
+                                            <input class="form-control" placeholder="Login UserName" type="text" id="inputusername" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputPassword">Password </label>
+                                            <input class="form-control" placeholder="Login Password" type="text" id="inputpassword" />
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary">Login</button>
+                                    <button class="btn btn-primary" data-dissmiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+
+
+
+
+
                 <div class="block block-breadcrumbs">
                     <ul>
                         <li class="home">
@@ -168,8 +210,12 @@
                                                 <td>SubjectHeading</td>
                                               
                                                 <td>
-                                                @Html.DropDownListFor(m => m.SubjectHeading, Model.SubjectHeading, "Please select")
+                                                         @Html.DropDownList("ddlVendor", Model.SubjectHeading, "Select Manufacurer")
+                                                    @*@Html.DropDownListFor(m => m.SubjectHeading, Model.SubjectHeading, "Please select")*@
+                                                    @*@Html.DropDownListFor(m => m.SubjectHeadingID, (IEnumerable<SelectListItem>)ViewBag., new { @class = "form-control" })*@
                                                 </td>
+
+                                               
                                             </tr>
                                             <tr>
                                                 <td>Email ID</td>

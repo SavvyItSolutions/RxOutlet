@@ -150,6 +150,20 @@ namespace RxOutlet.DataAccess
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<GetMenuResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetDrugList")]
+		public ISingleResult<GetDrugListResult> GetDrugList()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<GetDrugListResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetSupplierName")]
+		public ISingleResult<GetSupplierNameResult> GetSupplierName()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<GetSupplierNameResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblMainMenu")]
@@ -1162,6 +1176,112 @@ namespace RxOutlet.DataAccess
 				if ((this._MenuItemName != value))
 				{
 					this._MenuItemName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetDrugListResult
+	{
+		
+		private int _DrugId;
+		
+		private string _DrugName;
+		
+		private string _RetailPrice;
+		
+		private string _RegularPrice;
+		
+		public GetDrugListResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrugId", DbType="Int NOT NULL")]
+		public int DrugId
+		{
+			get
+			{
+				return this._DrugId;
+			}
+			set
+			{
+				if ((this._DrugId != value))
+				{
+					this._DrugId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrugName", DbType="VarChar(256)")]
+		public string DrugName
+		{
+			get
+			{
+				return this._DrugName;
+			}
+			set
+			{
+				if ((this._DrugName != value))
+				{
+					this._DrugName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RetailPrice", DbType="VarChar(256)")]
+		public string RetailPrice
+		{
+			get
+			{
+				return this._RetailPrice;
+			}
+			set
+			{
+				if ((this._RetailPrice != value))
+				{
+					this._RetailPrice = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegularPrice", DbType="VarChar(256)")]
+		public string RegularPrice
+		{
+			get
+			{
+				return this._RegularPrice;
+			}
+			set
+			{
+				if ((this._RegularPrice != value))
+				{
+					this._RegularPrice = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetSupplierNameResult
+	{
+		
+		private string _supplierName;
+		
+		public GetSupplierNameResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_supplierName", DbType="VarChar(256)")]
+		public string supplierName
+		{
+			get
+			{
+				return this._supplierName;
+			}
+			set
+			{
+				if ((this._supplierName != value))
+				{
+					this._supplierName = value;
 				}
 			}
 		}

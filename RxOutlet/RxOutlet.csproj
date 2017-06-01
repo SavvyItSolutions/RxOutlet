@@ -210,7 +210,9 @@
     <Compile Include="Controllers\ContactUSController.cs" />
     <Compile Include="Controllers\HelpController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginPopUpController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RefillController.cs" />
     <Compile Include="Controllers\RxOutletController.cs" />
     <Compile Include="Global.asax.cs">
@@ -291,7 +293,7 @@
     <Content Include="Views\Shared\_HotDeals.cshtml" />
     <Content Include="Views\Shared\_ProductCategories.cshtml" />
     <Content Include="Views\Account\_RegisterPartial.cshtml" />
-    <Content Include="Views\Account\_LogonPartial.cshtml" />
+    <Content Include="Views\Shared\_LogonPartial.cshtml" />
     <Content Include="Views\AboutUS\AboutUS.cshtml" />
     <Content Include="Views\Help\HelpFAQ.cshtml" />
     <Content Include="Views\Refill\Refill.cshtml" />
@@ -299,10 +301,13 @@
     <Content Include="Views\Home\Menu.cshtml" />
     <Content Include="Views\Shared\SO.cshtml" />
     <Content Include="Views\ContactUS\ContactUS.cshtml" />
-    <Content Include="Views\ContactUS\ContactUS1.cshtml" />
+    <Content Include="Views\Shared\_LoginModalPopUp.cshtml" />
+    <Content Include="Views\LoginPopUp\Index.cshtml" />
+    <Content Include="Views\Shared\ProductList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

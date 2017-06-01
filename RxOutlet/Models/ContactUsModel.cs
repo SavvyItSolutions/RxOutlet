@@ -24,9 +24,6 @@ namespace RxOutlet.Models
         public string OrderReference { get; set; }
         public string Message { get; set; }
         public string Status { get; set; }
-
-
-
         string constr = ConfigurationManager.ConnectionStrings["RxOutlet"].ConnectionString;
         SqlConnection con = new SqlConnection("Data Source=DESKTOP-DDIP9VH\\SQLEXPRESS;Initial Catalog=RxOutlet;Persist Security Info=True;Integrated Security=True");
     
@@ -34,7 +31,7 @@ namespace RxOutlet.Models
         {
             SqlCommand cmd = new SqlCommand("InsertContactInfo", con); 
             cmd.CommandType = CommandType.StoredProcedure;  
-            cmd.Parameters.AddWithValue("@SubjectHeading", obj.SubjectHeadingName);       
+            cmd.Parameters.AddWithValue("@SubjectHeading", obj.SubjectHeadingID);       
             cmd.Parameters.AddWithValue("@Email ", obj.Email);    
             cmd.Parameters.AddWithValue("@OrderReference ", obj.OrderReference);
             cmd.Parameters.AddWithValue("@Message ", obj.Message);    
