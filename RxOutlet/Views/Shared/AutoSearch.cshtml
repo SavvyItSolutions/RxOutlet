@@ -13,8 +13,8 @@
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="~/Scripts/jquery-ui.min.js"></script>
     @Scripts.Render("~/bundles/modernizr")
-  
-   
+
+
     <script type="text/javascript">
 
 
@@ -45,7 +45,7 @@
 
         });
 
-        
+
         var search = {
             SearchText: 'asp',
             Type: [4, 2, 7],
@@ -131,7 +131,7 @@
 
 
 
-   
+
 
         $(document).ready(function () {
             $.ajax({
@@ -154,57 +154,51 @@
     </script>
 
     <style>
-                .products .product-right {
-                    position: static;
-                }
+        .products .product-right {
+            position: static;
+        }
 
-                .products .product-container .inner {
-                    padding-bottom: 5px;
-                }
+        .products .product-container .inner {
+            padding-bottom: 5px;
+        }
 
-                .products .product-container {
-                    padding-bottom: 5px;
-                }
-                /* .block-vertical-menu .vertical-head .vertical-title {
+        .products .product-container {
+            padding-bottom: 5px;
+        }
+        /* .block-vertical-menu .vertical-head .vertical-title {
             font-size: 17px;
         } */
-                .product-name a {
-                    font-size: 18px;
-                }
+        .product-name a {
+            font-size: 18px;
+        }
 
 
 
 
 
         .list-unstyled li {
+            padding: 10px 15px;
+        }
 
-padding:10px 15px;
+        .list-unstyled {
+            border-right: 1px solid #00dce8;
+        }
 
-}
+        .autosearch {
+            height: auto;
+            z-index: 2038;
+            box-shadow: 0 1px 6px 0 rgba(0,0,0,0.4);
+            background-color: #fcfcfc;
+        }
 
-.list-unstyled  {
-
-border-right:1px solid #00dce8;
-
-}
-
-.autosearch {
-    height: auto;
-    z-index: 2038;
-    box-shadow: 0 1px 6px 0 rgba(0,0,0,0.4);
-    background-color: #fcfcfc;
-}
-
-.portfolio-item p a {
-
-color:#00dce8;
-
-}
+        .portfolio-item p a {
+            color: #00dce8;
+        }
     </style>
 
 
 </head>
-<body  ng-app="Drugs">
+<body ng-app="Drugs">
 
     <!-- header -->
     <header id="header">
@@ -221,12 +215,12 @@ color:#00dce8;
                         <li><a href="wishlist.html">My Wishlist</a></li>
                         <li><a href="checkout.html">Checkout</a></li>
                         <li>@Html.Partial("_LoginPartial")</li>
-                            @*<li><a href="login.html">Login</a></li>
-                               @Html.ActionLink("Login", "Login")*@
+                        @*<li><a href="login.html">Login</a></li>
+                            @Html.ActionLink("Login", "Login")*@
 
-</ul>
-                        @*@Html.Partial("_LoginPartial")*@
-                  
+                    </ul>
+                    @*@Html.Partial("_LoginPartial")*@
+
                 </div>
             </div>
         </div>
@@ -234,11 +228,11 @@ color:#00dce8;
         <div class="container">
             <!-- box header -->.
             <div class="row">
-  
+
                 <!--   AUTO SEARCH FUNCTIONALITY    -->
 
 
-               <div class="box-header" ng-controller="DisplayDrugInfo">
+                <div class="box-header" ng-controller="DisplayDrugInfo">
 
                     <div class="col-sm-2 col-md-2 col-lg-2"></div>
 
@@ -266,24 +260,24 @@ color:#00dce8;
                         </div>
 
 
-                        <div class="autosearch"  ng-if="Drugname!=null && Drugname!=''" style="position:absolute;z-index:999; background:#ffffff; border:1px solid #f5f5f5; padding:1%;width:96%;">
+                        <div class="autosearch" ng-if="Drugname!=null && Drugname!=''" style="position:absolute;z-index:999; background:#ffffff; border:1px solid #f5f5f5; padding:1%;width:96%;">
                             <div class="row">
                                 <div class="col-sm-6 col-md-6 col-lg-6">
 
-                                    <ul class="list-unstyled" > 
+                                    <ul class="list-unstyled">
 
                                         <li ng-repeat="x in Drug.DrugList"> <a href="#"> {{x.DrugName}} </a> </li>
 
-                                      <!--    <li> <a href="#"> Similac Expert Care Alimentum Ready to Feed  </a> </li>
-                                        <li><a href="#"> Nature's Way Alive! Women's Energy  </a> </li>
-                                        <li><a href="#"> Nature's Way Alive! Children's  </a> </li>
-                                        <li><a href="#"> DDC DNA Diagnostics Center </a> </li>
-                                        <li><a href="#"> Caffeine in drug information </a> </li>
-                                        <li><a href="#"> irin - Regular/Extra Strength </a> </li>
-                                        <li><a href="#"> Nature's Way Alive! Children's  </a> </li>
-                                        <li><a href="#"> DDC DNA Diagnostics Center </a> </li>
-                                        <li><a href="#"> Caffeine in drug information </a> </li>
-                                        <li><a href="#"> irin - Regular/Extra Strength </a> </li>-->
+                                        <!--    <li> <a href="#"> Similac Expert Care Alimentum Ready to Feed  </a> </li>
+                                          <li><a href="#"> Nature's Way Alive! Women's Energy  </a> </li>
+                                          <li><a href="#"> Nature's Way Alive! Children's  </a> </li>
+                                          <li><a href="#"> DDC DNA Diagnostics Center </a> </li>
+                                          <li><a href="#"> Caffeine in drug information </a> </li>
+                                          <li><a href="#"> irin - Regular/Extra Strength </a> </li>
+                                          <li><a href="#"> Nature's Way Alive! Children's  </a> </li>
+                                          <li><a href="#"> DDC DNA Diagnostics Center </a> </li>
+                                          <li><a href="#"> Caffeine in drug information </a> </li>
+                                          <li><a href="#"> irin - Regular/Extra Strength </a> </li>-->
                                     </ul>
 
 
@@ -308,7 +302,7 @@ color:#00dce8;
                                             <div class="col-md-6 portfolio-item" ng-controller="DisplayDrugInfo">
                                                 <a href="#">
                                                     <img class="img-responsive img-thumbnail" src="/images/sr1.jpg" alt="">
-                                                 
+
                                                 </a>
 
                                                 <p>  <a href="#"> Blue Diamond Almonds Honey Roasted </a>  </p>
@@ -425,26 +419,26 @@ color:#00dce8;
 
 
 
-               @*<div class="box-header">
+                @*<div class="box-header">
                     <div class="col-sm-12 col-md-12 col-lg-3"></div>
                     <div class="block-wrap-search col-sm-6 col-md-6 col-lg-5">
                         <div class="advanced-search box-radius">
-                            <form class="form-inline">
-                                <div class="form-group search-category">
-                                    <select id="category-select" class="search-category-select">
-                                        <option value="1">All Categories</option>
-                                        <option value="2"> Category 1</option>
-                                        <option value="3">category 2</option>
-                                    </select>
-                                </div>
-                                <div class="form-group search-input">
-                                    <input type="text" id="myText" placeholder="What are you looking for?">
-                                </div>
-                                <button type="submit" class="btn-search">
-                                <i class="fa fa-search"></i>
-                                </button>
-                            </form>
-                        </div>
+                                <form class="form-inline">
+                                    <div class="form-group search-category">
+                                        <select id="category-select" class="search-category-select">
+                                            <option value="1">All Categories</option>
+                                            <option value="2"> Category 1</option>
+                                            <option value="3">category 2</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group search-input">
+                                        <input type="text" id="myText" placeholder="What are you looking for?">
+                                    </div>
+                                    <button type="submit" class="btn-search">
+                                    <i class="fa fa-search"></i>
+                                    </button>
+                                </form>
+                            </div>
                     </div>
                     <div class="wrap-block-cl col-sm-3 col-md-3 col-lg-2">
 
@@ -639,9 +633,6 @@ color:#00dce8;
         <!-- ./main menu-->
     </header>
     <!-- ./header -->
-
-
-
     @*<div class="navbar navbar-inverse navbar-fixed-top">
               <div class="container">
                   <div class="navbar-header">
@@ -669,16 +660,16 @@ color:#00dce8;
                   </div>
               </div>
           </div>*@
-  
 
-  
+
+
 
     <div class="container body-content">
         @RenderBody()
         <hr />
 
 
-     
+
 
         <!-- footer -->
         <footer id="footer">
@@ -789,20 +780,20 @@ color:#00dce8;
         <!-- Sliding div ends here -->
         <!-- ./footer -->
 
-      </div>
+    </div>
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", required: false)
-<script src="@Url.Content("~/Scripts/jquery-1.11.2.min.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/bootstrap.min.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/jquery.bxslider.min.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/owl.carousel.min.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/jquery-ui.min.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/jquery.plugin.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/jquery.countdown.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/script.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/jquery.actual.min.js")" type="text/javascript"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="@Url.Content("~/Scripts/jquery-1.11.2.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.bxslider.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/owl.carousel.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.plugin.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.countdown.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/script.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.actual.min.js")" type="text/javascript"></script>
     <script>
 
 	$(document).ready(function(e){

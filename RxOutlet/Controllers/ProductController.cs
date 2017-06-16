@@ -43,6 +43,13 @@ namespace RxOutlet.Controllers
         {
             return View();
         }
+        public ActionResult AutoSearchFunctionality()
+        {
+            return View("AutoSearchFunctionality", "~/Views/Shared/AutoSearch.cshtml");
+        }
+       
+
+
     }
     
 }

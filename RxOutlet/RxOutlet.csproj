@@ -308,7 +308,8 @@
     <Content Include="Views\Product\AngularToolTip.cshtml" />
     <Content Include="Views\Product\DisplayGridView.cshtml" />
     <Content Include="Views\Product\DisplayGridViewNew.cshtml" />
-    <Content Include="Views\Product\AutoSearch.cshtml" />
+    <Content Include="Views\Shared\AutoSearch.cshtml" />
+    <Content Include="Views\Product\AutoSearchFunctionality.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
