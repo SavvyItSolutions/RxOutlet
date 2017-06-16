@@ -95,62 +95,6 @@ namespace RxOutlet.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_Elixir_GetMenuItemList")]
-		public ISingleResult<sp_Elixir_GetMenuItemListResult> sp_Elixir_GetMenuItemList([global::System.Data.Linq.Mapping.ParameterAttribute(Name="MenuID", DbType="Int")] System.Nullable<int> menuID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SubMenuID", DbType="Int")] System.Nullable<int> subMenuID)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), menuID, subMenuID);
-			return ((ISingleResult<sp_Elixir_GetMenuItemListResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_Elixir_GetMenuList")]
-		public ISingleResult<sp_Elixir_GetMenuListResult> sp_Elixir_GetMenuList()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<sp_Elixir_GetMenuListResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_Elixir_GetSubMenuList")]
-		public ISingleResult<sp_Elixir_GetSubMenuListResult> sp_Elixir_GetSubMenuList([global::System.Data.Linq.Mapping.ParameterAttribute(Name="MenuID", DbType="Int")] System.Nullable<int> menuID)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), menuID);
-			return ((ISingleResult<sp_Elixir_GetSubMenuListResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetMenuItemList")]
-		public ISingleResult<GetMenuItemListResult> GetMenuItemList([global::System.Data.Linq.Mapping.ParameterAttribute(Name="MenuID", DbType="Int")] System.Nullable<int> menuID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SubMenuID", DbType="Int")] System.Nullable<int> subMenuID)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), menuID, subMenuID);
-			return ((ISingleResult<GetMenuItemListResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetMenuList")]
-		public ISingleResult<GetMenuListResult> GetMenuList()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<GetMenuListResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetSubMenuList")]
-		public ISingleResult<GetSubMenuListResult> GetSubMenuList([global::System.Data.Linq.Mapping.ParameterAttribute(Name="MenuID", DbType="Int")] System.Nullable<int> menuID)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), menuID);
-			return ((ISingleResult<GetSubMenuListResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetMenuDetails")]
-		public ISingleResult<GetMenuDetailsResult> GetMenuDetails()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<GetMenuDetailsResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetMenu")]
-		public ISingleResult<GetMenuResult> GetMenu()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<GetMenuResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetDrugList")]
 		public ISingleResult<GetDrugListResult> GetDrugList()
 		{
@@ -703,488 +647,10 @@ namespace RxOutlet.DataAccess
 		}
 	}
 	
-	public partial class sp_Elixir_GetMenuItemListResult
-	{
-		
-		private string _MenuName;
-		
-		private string _SubMenuName;
-		
-		private string _MenuItemName;
-		
-		public sp_Elixir_GetMenuItemListResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
-		public string MenuName
-		{
-			get
-			{
-				return this._MenuName;
-			}
-			set
-			{
-				if ((this._MenuName != value))
-				{
-					this._MenuName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubMenuName", DbType="VarChar(200)")]
-		public string SubMenuName
-		{
-			get
-			{
-				return this._SubMenuName;
-			}
-			set
-			{
-				if ((this._SubMenuName != value))
-				{
-					this._SubMenuName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuItemName", DbType="VarChar(200)")]
-		public string MenuItemName
-		{
-			get
-			{
-				return this._MenuItemName;
-			}
-			set
-			{
-				if ((this._MenuItemName != value))
-				{
-					this._MenuItemName = value;
-				}
-			}
-		}
-	}
-	
-	public partial class sp_Elixir_GetMenuListResult
-	{
-		
-		private string _MenuName;
-		
-		public sp_Elixir_GetMenuListResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
-		public string MenuName
-		{
-			get
-			{
-				return this._MenuName;
-			}
-			set
-			{
-				if ((this._MenuName != value))
-				{
-					this._MenuName = value;
-				}
-			}
-		}
-	}
-	
-	public partial class sp_Elixir_GetSubMenuListResult
-	{
-		
-		private string _MenuName;
-		
-		private string _SubMenuName;
-		
-		public sp_Elixir_GetSubMenuListResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
-		public string MenuName
-		{
-			get
-			{
-				return this._MenuName;
-			}
-			set
-			{
-				if ((this._MenuName != value))
-				{
-					this._MenuName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubMenuName", DbType="VarChar(200)")]
-		public string SubMenuName
-		{
-			get
-			{
-				return this._SubMenuName;
-			}
-			set
-			{
-				if ((this._SubMenuName != value))
-				{
-					this._SubMenuName = value;
-				}
-			}
-		}
-	}
-	
-	public partial class GetMenuItemListResult
-	{
-		
-		private string _MenuName;
-		
-		private string _SubMenuName;
-		
-		private string _MenuItemName;
-		
-		public GetMenuItemListResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
-		public string MenuName
-		{
-			get
-			{
-				return this._MenuName;
-			}
-			set
-			{
-				if ((this._MenuName != value))
-				{
-					this._MenuName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubMenuName", DbType="VarChar(200)")]
-		public string SubMenuName
-		{
-			get
-			{
-				return this._SubMenuName;
-			}
-			set
-			{
-				if ((this._SubMenuName != value))
-				{
-					this._SubMenuName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuItemName", DbType="VarChar(200)")]
-		public string MenuItemName
-		{
-			get
-			{
-				return this._MenuItemName;
-			}
-			set
-			{
-				if ((this._MenuItemName != value))
-				{
-					this._MenuItemName = value;
-				}
-			}
-		}
-	}
-	
-	public partial class GetMenuListResult
-	{
-		
-		private string _MenuName;
-		
-		public GetMenuListResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
-		public string MenuName
-		{
-			get
-			{
-				return this._MenuName;
-			}
-			set
-			{
-				if ((this._MenuName != value))
-				{
-					this._MenuName = value;
-				}
-			}
-		}
-	}
-	
-	public partial class GetSubMenuListResult
-	{
-		
-		private string _MenuName;
-		
-		private string _SubMenuName;
-		
-		public GetSubMenuListResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
-		public string MenuName
-		{
-			get
-			{
-				return this._MenuName;
-			}
-			set
-			{
-				if ((this._MenuName != value))
-				{
-					this._MenuName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubMenuName", DbType="VarChar(200)")]
-		public string SubMenuName
-		{
-			get
-			{
-				return this._SubMenuName;
-			}
-			set
-			{
-				if ((this._SubMenuName != value))
-				{
-					this._SubMenuName = value;
-				}
-			}
-		}
-	}
-	
-	public partial class GetMenuDetailsResult
-	{
-		
-		private int _MenuID;
-		
-		private string _MenuName;
-		
-		public GetMenuDetailsResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuID", DbType="Int NOT NULL")]
-		public int MenuID
-		{
-			get
-			{
-				return this._MenuID;
-			}
-			set
-			{
-				if ((this._MenuID != value))
-				{
-					this._MenuID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
-		public string MenuName
-		{
-			get
-			{
-				return this._MenuName;
-			}
-			set
-			{
-				if ((this._MenuName != value))
-				{
-					this._MenuName = value;
-				}
-			}
-		}
-	}
-	
-	public partial class GetMenuResult
-	{
-		
-		private int _MainMenuID;
-		
-		private string _MainMenuName;
-		
-		private System.Nullable<int> _SubMainMenuID;
-		
-		private System.Nullable<int> _SubMenuID;
-		
-		private string _SubMenuName;
-		
-		private System.Nullable<int> _ItemMainMenuID;
-		
-		private System.Nullable<int> _ItemSubMenuID;
-		
-		private System.Nullable<int> _MenuItemID;
-		
-		private string _MenuItemName;
-		
-		public GetMenuResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MainMenuID", DbType="Int NOT NULL")]
-		public int MainMenuID
-		{
-			get
-			{
-				return this._MainMenuID;
-			}
-			set
-			{
-				if ((this._MainMenuID != value))
-				{
-					this._MainMenuID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MainMenuName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
-		public string MainMenuName
-		{
-			get
-			{
-				return this._MainMenuName;
-			}
-			set
-			{
-				if ((this._MainMenuName != value))
-				{
-					this._MainMenuName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubMainMenuID", DbType="Int")]
-		public System.Nullable<int> SubMainMenuID
-		{
-			get
-			{
-				return this._SubMainMenuID;
-			}
-			set
-			{
-				if ((this._SubMainMenuID != value))
-				{
-					this._SubMainMenuID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubMenuID", DbType="Int")]
-		public System.Nullable<int> SubMenuID
-		{
-			get
-			{
-				return this._SubMenuID;
-			}
-			set
-			{
-				if ((this._SubMenuID != value))
-				{
-					this._SubMenuID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubMenuName", DbType="VarChar(200)")]
-		public string SubMenuName
-		{
-			get
-			{
-				return this._SubMenuName;
-			}
-			set
-			{
-				if ((this._SubMenuName != value))
-				{
-					this._SubMenuName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemMainMenuID", DbType="Int")]
-		public System.Nullable<int> ItemMainMenuID
-		{
-			get
-			{
-				return this._ItemMainMenuID;
-			}
-			set
-			{
-				if ((this._ItemMainMenuID != value))
-				{
-					this._ItemMainMenuID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemSubMenuID", DbType="Int")]
-		public System.Nullable<int> ItemSubMenuID
-		{
-			get
-			{
-				return this._ItemSubMenuID;
-			}
-			set
-			{
-				if ((this._ItemSubMenuID != value))
-				{
-					this._ItemSubMenuID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuItemID", DbType="Int")]
-		public System.Nullable<int> MenuItemID
-		{
-			get
-			{
-				return this._MenuItemID;
-			}
-			set
-			{
-				if ((this._MenuItemID != value))
-				{
-					this._MenuItemID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuItemName", DbType="VarChar(200)")]
-		public string MenuItemName
-		{
-			get
-			{
-				return this._MenuItemName;
-			}
-			set
-			{
-				if ((this._MenuItemName != value))
-				{
-					this._MenuItemName = value;
-				}
-			}
-		}
-	}
-	
 	public partial class GetDrugListResult
 	{
 		
-		private int _DrugId;
+		private string _ID;
 		
 		private string _DrugName;
 		
@@ -1196,18 +662,18 @@ namespace RxOutlet.DataAccess
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrugId", DbType="Int NOT NULL")]
-		public int DrugId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="VarChar(1)")]
+		public string ID
 		{
 			get
 			{
-				return this._DrugId;
+				return this._ID;
 			}
 			set
 			{
-				if ((this._DrugId != value))
+				if ((this._ID != value))
 				{
-					this._DrugId = value;
+					this._ID = value;
 				}
 			}
 		}
@@ -1264,24 +730,60 @@ namespace RxOutlet.DataAccess
 	public partial class GetSupplierNameResult
 	{
 		
-		private string _supplierName;
+		private System.Nullable<int> _SupplierId;
+		
+		private string _Suppliername;
+		
+		private System.Nullable<int> _drugcount;
 		
 		public GetSupplierNameResult()
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_supplierName", DbType="VarChar(256)")]
-		public string supplierName
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupplierId", DbType="Int")]
+		public System.Nullable<int> SupplierId
 		{
 			get
 			{
-				return this._supplierName;
+				return this._SupplierId;
 			}
 			set
 			{
-				if ((this._supplierName != value))
+				if ((this._SupplierId != value))
 				{
-					this._supplierName = value;
+					this._SupplierId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Suppliername", DbType="VarChar(256)")]
+		public string Suppliername
+		{
+			get
+			{
+				return this._Suppliername;
+			}
+			set
+			{
+				if ((this._Suppliername != value))
+				{
+					this._Suppliername = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_drugcount", DbType="Int")]
+		public System.Nullable<int> drugcount
+		{
+			get
+			{
+				return this._drugcount;
+			}
+			set
+			{
+				if ((this._drugcount != value))
+				{
+					this._drugcount = value;
 				}
 			}
 		}

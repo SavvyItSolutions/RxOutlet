@@ -10,10 +10,10 @@ namespace RxOutlet.Business
     public interface IRxOutletService
 
     {
-        RxOutletMenuListRespone GetMenuList();
-        RxOutletSubMenuListResponse GetSubMenuList(int menuID);
-        RxOutLetMenuItemListResponse GetMenuItemList(int menuID, int subMenuID);     
-        List<CompleteMenu> GetCompleteMenu();
+        //RxOutletMenuListRespone GetMenuList();
+        //RxOutletSubMenuListResponse GetSubMenuList(int menuID);
+        //RxOutLetMenuItemListResponse GetMenuItemList(int menuID, int subMenuID);     
+        //List<CompleteMenu> GetCompleteMenu();
         GetDrugNameResponse GetDrugList();
         GetDrugNameResponse GetSupplierName();
 

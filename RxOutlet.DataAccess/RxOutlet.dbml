@@ -27,70 +27,9 @@
       <Association Name="tblMainMenu_tblSubMenus" Member="tblMainMenu" ThisKey="MenuID" OtherKey="MenuID" Type="tblMainMenu" IsForeignKey="true" />
     </Type>
   </Table>
-  <Function Name="dbo.sp_Elixir_GetMenuItemList" Method="sp_Elixir_GetMenuItemList">
-    <Parameter Name="MenuID" Parameter="menuID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="SubMenuID" Parameter="subMenuID" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_Elixir_GetMenuItemListResult">
-      <Column Name="MenuName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="SubMenuName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="MenuItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_Elixir_GetMenuList" Method="sp_Elixir_GetMenuList">
-    <ElementType Name="sp_Elixir_GetMenuListResult">
-      <Column Name="MenuName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_Elixir_GetSubMenuList" Method="sp_Elixir_GetSubMenuList">
-    <Parameter Name="MenuID" Parameter="menuID" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_Elixir_GetSubMenuListResult">
-      <Column Name="MenuName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="SubMenuName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.GetMenuItemList" Method="GetMenuItemList">
-    <Parameter Name="MenuID" Parameter="menuID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="SubMenuID" Parameter="subMenuID" Type="System.Int32" DbType="Int" />
-    <ElementType Name="GetMenuItemListResult">
-      <Column Name="MenuName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="SubMenuName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="MenuItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.GetMenuList" Method="GetMenuList">
-    <ElementType Name="GetMenuListResult">
-      <Column Name="MenuName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.GetSubMenuList" Method="GetSubMenuList">
-    <Parameter Name="MenuID" Parameter="menuID" Type="System.Int32" DbType="Int" />
-    <ElementType Name="GetSubMenuListResult">
-      <Column Name="MenuName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="SubMenuName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.GetMenuDetails" Method="GetMenuDetails">
-    <ElementType Name="GetMenuDetailsResult">
-      <Column Name="MenuID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="MenuName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.GetMenu" Method="GetMenu">
-    <ElementType Name="GetMenuResult">
-      <Column Name="MainMenuID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="MainMenuName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="SubMainMenuID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SubMenuID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SubMenuName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ItemMainMenuID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ItemSubMenuID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="MenuItemID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="MenuItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.GetDrugList" Method="GetDrugList">
     <ElementType Name="GetDrugListResult">
-      <Column Name="DrugId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
       <Column Name="DrugName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
       <Column Name="RetailPrice" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
       <Column Name="RegularPrice" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
@@ -98,7 +37,9 @@
   </Function>
   <Function Name="dbo.GetSupplierName" Method="GetSupplierName">
     <ElementType Name="GetSupplierNameResult">
-      <Column Name="supplierName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="SupplierId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Suppliername" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="drugcount" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

@@ -14,6 +14,35 @@ namespace RxOutlet.Controllers
             return View();
         }
 
+       
+        public ActionResult PagginationTest()
+        {
+            return View();
+        }
 
+        public ActionResult AngularToolTip()
+        {
+            return View();
+        }
+
+        public ActionResult SearchFunctionality()
+        {
+            return View();
+        }
+
+        public ActionResult DisplayGridView()
+        {
+            return View();
+        }
+
+        public ActionResult DisplayGridViewNew()
+        {
+            return View();
+        }
+        public ActionResult AutoSearch()
+        {
+            return View();
+        }
     }
+    
 }

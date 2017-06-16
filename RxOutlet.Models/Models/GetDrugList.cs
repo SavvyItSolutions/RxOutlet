@@ -8,10 +8,13 @@ namespace RxOutlet.Models
 {
 
     public class GetDrugList
-    {      
+    {
+        public int DrugID { get; set; }
         public string DrugName { get; set; }
         public string RetailPrice { get; set; }
         public string RegularPrice { get; set; }
+        public int? SupplierID { get; set; }
         public string SupplierName { get; set; }
+        public int? DrugCount { get; set; }
     }
 }

@@ -58,74 +58,52 @@ namespace RxOutlet.Controllers
                 Type = new List<int>();
             }
         }
-        [HttpGet]
-        public RxOutletMenuListRespone MenuList()
-        {
+        //[HttpGet]
+        //public RxOutletMenuListRespone MenuList()
+        //{
             
-            RxOutletMenuListRespone resp = new RxOutletMenuListRespone();
-            IRxOutletService itemService = new RxOutletService();
-             resp = itemService.GetMenuList();
-            return resp;
-        }
-
-
-        [HttpGet]
-        public RxOutletSubMenuListResponse SubMenuList(int objectId)
-        {
-            RxOutletSubMenuListResponse resp = new RxOutletSubMenuListResponse();
-            IRxOutletService itemService = new RxOutletService();
-            resp = itemService.GetSubMenuList(objectId);
-            return resp;
-
-        }
-
-
-        [HttpGet]
-        public RxOutLetMenuItemListResponse MenuItemList(int objectId, int userid)
-        {
-            RxOutLetMenuItemListResponse resp = new RxOutLetMenuItemListResponse();
-            IRxOutletService itemService = new RxOutletService();
-            resp = itemService.GetMenuItemList(objectId, userid);
-
-            return resp;
-
-        }
+        //    RxOutletMenuListRespone resp = new RxOutletMenuListRespone();
+        //    IRxOutletService itemService = new RxOutletService();
+        //     resp = itemService.GetMenuList();
+        //    return resp;
+        //}
 
 
         //[HttpGet]
-        //public RxOutletMenuResponse CompleteMenuList()
+        //public RxOutletSubMenuListResponse SubMenuList(int objectId)
         //{
-        //    RxOutletMenuResponse resp = new RxOutletMenuResponse();
+        //    RxOutletSubMenuListResponse resp = new RxOutletSubMenuListResponse();
         //    IRxOutletService itemService = new RxOutletService();
-        //    resp = itemService.GetCompleteMenuList();
-
+        //    resp = itemService.GetSubMenuList(objectId);
         //    return resp;
 
         //}
 
 
         //[HttpGet]
-        //public void NestedMenu()
+        //public RxOutLetMenuItemListResponse MenuItemList(int objectId, int userid)
         //{
-        //    //RxOutletMenuResponse resp = new RxOutletMenuResponse();
+        //    RxOutLetMenuItemListResponse resp = new RxOutLetMenuItemListResponse();
         //    IRxOutletService itemService = new RxOutletService();
-        //    //resp = itemService.GetMenuDetails1();
-        //    itemService.GetMenuDetails();
-        //    // return resp;
+        //    resp = itemService.GetMenuItemList(objectId, userid);
+
+        //    return resp;
 
         //}
 
 
 
-        [HttpGet]
-        public List<CompleteMenu> GetCompleteMenu()
-        {
-            List<CompleteMenu> resp = new List<CompleteMenu>();
-            IRxOutletService itemService = new RxOutletService();
-            resp = itemService.GetCompleteMenu();
 
-            return resp;
-        }
+
+        //[HttpGet]
+        //public List<CompleteMenu> GetCompleteMenu()
+        //{
+        //    List<CompleteMenu> resp = new List<CompleteMenu>();
+        //    IRxOutletService itemService = new RxOutletService();
+        //    resp = itemService.GetCompleteMenu();
+
+        //    return resp;
+        //}
 
 
 

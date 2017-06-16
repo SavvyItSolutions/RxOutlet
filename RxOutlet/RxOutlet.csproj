@@ -303,11 +303,15 @@
     <Content Include="Views\ContactUS\ContactUS.cshtml" />
     <Content Include="Views\Shared\_LoginModalPopUp.cshtml" />
     <Content Include="Views\LoginPopUp\Index.cshtml" />
-    <Content Include="Views\Shared\ProductList.cshtml" />
+    <Content Include="Views\Product\ProductList.cshtml" />
+    <Content Include="Views\Product\PagginationTest.cshtml" />
+    <Content Include="Views\Product\AngularToolTip.cshtml" />
+    <Content Include="Views\Product\DisplayGridView.cshtml" />
+    <Content Include="Views\Product\DisplayGridViewNew.cshtml" />
+    <Content Include="Views\Product\AutoSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
