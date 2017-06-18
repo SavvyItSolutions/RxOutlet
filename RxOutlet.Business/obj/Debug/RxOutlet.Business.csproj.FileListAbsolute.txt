@@ -16,3 +16,12 @@ G:\GitHub Folder\RxOutlet\RxOutlet.Business\bin\Debug\RxOutlet.Models.pdb
 G:\GitHub Folder\RxOutlet\RxOutlet.Business\obj\Debug\RxOutlet.Business.csprojResolveAssemblyReference.cache
 G:\GitHub Folder\RxOutlet\RxOutlet.Business\obj\Debug\RxOutlet.Business.dll
 G:\GitHub Folder\RxOutlet\RxOutlet.Business\obj\Debug\RxOutlet.Business.pdb
+E:\Sample\RxOutlet\RxOutlet.Business\bin\Debug\RxOutlet.Business.dll
+E:\Sample\RxOutlet\RxOutlet.Business\bin\Debug\RxOutlet.Business.pdb
+E:\Sample\RxOutlet\RxOutlet.Business\bin\Debug\RxOutlet.DataAccess.dll
+E:\Sample\RxOutlet\RxOutlet.Business\bin\Debug\RxOutlet.Models.dll
+E:\Sample\RxOutlet\RxOutlet.Business\bin\Debug\RxOutlet.DataAccess.pdb
+E:\Sample\RxOutlet\RxOutlet.Business\bin\Debug\RxOutlet.Models.pdb
+E:\Sample\RxOutlet\RxOutlet.Business\obj\Debug\RxOutlet.Business.csprojResolveAssemblyReference.cache
+E:\Sample\RxOutlet\RxOutlet.Business\obj\Debug\RxOutlet.Business.dll
+E:\Sample\RxOutlet\RxOutlet.Business\obj\Debug\RxOutlet.Business.pdb

@@ -14,3 +14,11 @@ G:\GitHub Folder\RxOutlet\RxOutlet.DataAccess\bin\Debug\RxOutlet.Models.pdb
 G:\GitHub Folder\RxOutlet\RxOutlet.DataAccess\obj\Debug\RxOutlet.DataAccess.csprojResolveAssemblyReference.cache
 G:\GitHub Folder\RxOutlet\RxOutlet.DataAccess\obj\Debug\RxOutlet.DataAccess.dll
 G:\GitHub Folder\RxOutlet\RxOutlet.DataAccess\obj\Debug\RxOutlet.DataAccess.pdb
+E:\Sample\RxOutlet\RxOutlet.DataAccess\bin\Debug\RxOutlet.DataAccess.dll.config
+E:\Sample\RxOutlet\RxOutlet.DataAccess\bin\Debug\RxOutlet.DataAccess.dll
+E:\Sample\RxOutlet\RxOutlet.DataAccess\bin\Debug\RxOutlet.DataAccess.pdb
+E:\Sample\RxOutlet\RxOutlet.DataAccess\bin\Debug\RxOutlet.Models.dll
+E:\Sample\RxOutlet\RxOutlet.DataAccess\bin\Debug\RxOutlet.Models.pdb
+E:\Sample\RxOutlet\RxOutlet.DataAccess\obj\Debug\RxOutlet.DataAccess.csprojResolveAssemblyReference.cache
+E:\Sample\RxOutlet\RxOutlet.DataAccess\obj\Debug\RxOutlet.DataAccess.dll
+E:\Sample\RxOutlet\RxOutlet.DataAccess\obj\Debug\RxOutlet.DataAccess.pdb
