@@ -36,7 +36,8 @@ namespace RxOutlet
                       "~/Content/animate.css",
                       "~/Content/global.css",
                       "~/Content/style.css",
-                      "~/Content/responsive.css"));
+                      "~/Content/responsive.css",
+                      "~/Content/AutoSearchStyle.css"));
         }
     }
 }

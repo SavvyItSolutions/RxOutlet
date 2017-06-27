@@ -61,7 +61,7 @@ namespace RxOutlet.Controllers
         //[HttpGet]
         //public RxOutletMenuListRespone MenuList()
         //{
-            
+
         //    RxOutletMenuListRespone resp = new RxOutletMenuListRespone();
         //    IRxOutletService itemService = new RxOutletService();
         //     resp = itemService.GetMenuList();
@@ -106,7 +106,15 @@ namespace RxOutlet.Controllers
         //}
 
 
+        [HttpGet]
+        public List<DrugSearch> GetDrugNamesSearch()
+        {
+            List<DrugSearch> resp = new List<DrugSearch>();
+            IRxOutletService itemService = new RxOutletService();
+            resp = itemService.GetDrugNamesSearchService();
 
+            return resp;
+        }
 
 
 

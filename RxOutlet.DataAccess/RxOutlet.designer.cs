@@ -22,7 +22,7 @@ namespace RxOutlet.DataAccess
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Elixir")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="ELIXIR")]
 	public partial class RxOutletDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -39,10 +39,16 @@ namespace RxOutlet.DataAccess
     partial void InserttblSubMenus(tblSubMenus instance);
     partial void UpdatetblSubMenus(tblSubMenus instance);
     partial void DeletetblSubMenus(tblSubMenus instance);
+    partial void InsertDruginfo(Druginfo instance);
+    partial void UpdateDruginfo(Druginfo instance);
+    partial void DeleteDruginfo(Druginfo instance);
+    partial void InsertSupplier(Supplier instance);
+    partial void UpdateSupplier(Supplier instance);
+    partial void DeleteSupplier(Supplier instance);
     #endregion
 		
 		public RxOutletDataContext() : 
-				base(global::RxOutlet.DataAccess.Properties.Settings.Default.ElixirConnectionString, mappingSource)
+				base(global::RxOutlet.DataAccess.Properties.Settings.Default.ELIXIRConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -95,6 +101,22 @@ namespace RxOutlet.DataAccess
 			}
 		}
 		
+		public System.Data.Linq.Table<Druginfo> Druginfos
+		{
+			get
+			{
+				return this.GetTable<Druginfo>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Supplier> Suppliers
+		{
+			get
+			{
+				return this.GetTable<Supplier>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetDrugList")]
 		public ISingleResult<GetDrugListResult> GetDrugList()
 		{
@@ -107,6 +129,13 @@ namespace RxOutlet.DataAccess
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<GetSupplierNameResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetDrugNamesSearch")]
+		public ISingleResult<GetDrugNamesSearchResult> GetDrugNamesSearch()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<GetDrugNamesSearchResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -647,6 +676,343 @@ namespace RxOutlet.DataAccess
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Druginfo")]
+	public partial class Druginfo : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _DrugId;
+		
+		private string _DrugName;
+		
+		private System.Nullable<int> _SupplierID;
+		
+		private string _SupplierName;
+		
+		private string _RetailPrice;
+		
+		private string _RegularPrice;
+		
+		private EntityRef<Supplier> _Supplier;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnDrugIdChanging(int value);
+    partial void OnDrugIdChanged();
+    partial void OnDrugNameChanging(string value);
+    partial void OnDrugNameChanged();
+    partial void OnSupplierIDChanging(System.Nullable<int> value);
+    partial void OnSupplierIDChanged();
+    partial void OnSupplierNameChanging(string value);
+    partial void OnSupplierNameChanged();
+    partial void OnRetailPriceChanging(string value);
+    partial void OnRetailPriceChanged();
+    partial void OnRegularPriceChanging(string value);
+    partial void OnRegularPriceChanged();
+    #endregion
+		
+		public Druginfo()
+		{
+			this._Supplier = default(EntityRef<Supplier>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrugId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int DrugId
+		{
+			get
+			{
+				return this._DrugId;
+			}
+			set
+			{
+				if ((this._DrugId != value))
+				{
+					this.OnDrugIdChanging(value);
+					this.SendPropertyChanging();
+					this._DrugId = value;
+					this.SendPropertyChanged("DrugId");
+					this.OnDrugIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrugName", DbType="VarChar(256)")]
+		public string DrugName
+		{
+			get
+			{
+				return this._DrugName;
+			}
+			set
+			{
+				if ((this._DrugName != value))
+				{
+					this.OnDrugNameChanging(value);
+					this.SendPropertyChanging();
+					this._DrugName = value;
+					this.SendPropertyChanged("DrugName");
+					this.OnDrugNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupplierID", DbType="Int")]
+		public System.Nullable<int> SupplierID
+		{
+			get
+			{
+				return this._SupplierID;
+			}
+			set
+			{
+				if ((this._SupplierID != value))
+				{
+					if (this._Supplier.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSupplierIDChanging(value);
+					this.SendPropertyChanging();
+					this._SupplierID = value;
+					this.SendPropertyChanged("SupplierID");
+					this.OnSupplierIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupplierName", DbType="VarChar(256)")]
+		public string SupplierName
+		{
+			get
+			{
+				return this._SupplierName;
+			}
+			set
+			{
+				if ((this._SupplierName != value))
+				{
+					this.OnSupplierNameChanging(value);
+					this.SendPropertyChanging();
+					this._SupplierName = value;
+					this.SendPropertyChanged("SupplierName");
+					this.OnSupplierNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RetailPrice", DbType="VarChar(256)")]
+		public string RetailPrice
+		{
+			get
+			{
+				return this._RetailPrice;
+			}
+			set
+			{
+				if ((this._RetailPrice != value))
+				{
+					this.OnRetailPriceChanging(value);
+					this.SendPropertyChanging();
+					this._RetailPrice = value;
+					this.SendPropertyChanged("RetailPrice");
+					this.OnRetailPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegularPrice", DbType="VarChar(256)")]
+		public string RegularPrice
+		{
+			get
+			{
+				return this._RegularPrice;
+			}
+			set
+			{
+				if ((this._RegularPrice != value))
+				{
+					this.OnRegularPriceChanging(value);
+					this.SendPropertyChanging();
+					this._RegularPrice = value;
+					this.SendPropertyChanged("RegularPrice");
+					this.OnRegularPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Supplier_Druginfo", Storage="_Supplier", ThisKey="SupplierID", OtherKey="SupplierID", IsForeignKey=true)]
+		public Supplier Supplier
+		{
+			get
+			{
+				return this._Supplier.Entity;
+			}
+			set
+			{
+				Supplier previousValue = this._Supplier.Entity;
+				if (((previousValue != value) 
+							|| (this._Supplier.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Supplier.Entity = null;
+						previousValue.Druginfos.Remove(this);
+					}
+					this._Supplier.Entity = value;
+					if ((value != null))
+					{
+						value.Druginfos.Add(this);
+						this._SupplierID = value.SupplierID;
+					}
+					else
+					{
+						this._SupplierID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Supplier");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Suppliers")]
+	public partial class Supplier : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _SupplierID;
+		
+		private string _SupplierName;
+		
+		private EntitySet<Druginfo> _Druginfos;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnSupplierIDChanging(int value);
+    partial void OnSupplierIDChanged();
+    partial void OnSupplierNameChanging(string value);
+    partial void OnSupplierNameChanged();
+    #endregion
+		
+		public Supplier()
+		{
+			this._Druginfos = new EntitySet<Druginfo>(new Action<Druginfo>(this.attach_Druginfos), new Action<Druginfo>(this.detach_Druginfos));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupplierID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int SupplierID
+		{
+			get
+			{
+				return this._SupplierID;
+			}
+			set
+			{
+				if ((this._SupplierID != value))
+				{
+					this.OnSupplierIDChanging(value);
+					this.SendPropertyChanging();
+					this._SupplierID = value;
+					this.SendPropertyChanged("SupplierID");
+					this.OnSupplierIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupplierName", DbType="VarChar(256)")]
+		public string SupplierName
+		{
+			get
+			{
+				return this._SupplierName;
+			}
+			set
+			{
+				if ((this._SupplierName != value))
+				{
+					this.OnSupplierNameChanging(value);
+					this.SendPropertyChanging();
+					this._SupplierName = value;
+					this.SendPropertyChanged("SupplierName");
+					this.OnSupplierNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Supplier_Druginfo", Storage="_Druginfos", ThisKey="SupplierID", OtherKey="SupplierID")]
+		public EntitySet<Druginfo> Druginfos
+		{
+			get
+			{
+				return this._Druginfos;
+			}
+			set
+			{
+				this._Druginfos.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Druginfos(Druginfo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Supplier = this;
+		}
+		
+		private void detach_Druginfos(Druginfo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Supplier = null;
+		}
+	}
+	
 	public partial class GetDrugListResult
 	{
 		
@@ -784,6 +1150,104 @@ namespace RxOutlet.DataAccess
 				if ((this._drugcount != value))
 				{
 					this._drugcount = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetDrugNamesSearchResult
+	{
+		
+		private int _SupplierID;
+		
+		private string _SupplierName;
+		
+		private System.Nullable<int> _DrugID;
+		
+		private string _ImageNum;
+		
+		private string _DrugName;
+		
+		public GetDrugNamesSearchResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupplierID", DbType="Int NOT NULL")]
+		public int SupplierID
+		{
+			get
+			{
+				return this._SupplierID;
+			}
+			set
+			{
+				if ((this._SupplierID != value))
+				{
+					this._SupplierID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupplierName", DbType="VarChar(256)")]
+		public string SupplierName
+		{
+			get
+			{
+				return this._SupplierName;
+			}
+			set
+			{
+				if ((this._SupplierName != value))
+				{
+					this._SupplierName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrugID", DbType="Int")]
+		public System.Nullable<int> DrugID
+		{
+			get
+			{
+				return this._DrugID;
+			}
+			set
+			{
+				if ((this._DrugID != value))
+				{
+					this._DrugID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageNum", DbType="VarChar(1)")]
+		public string ImageNum
+		{
+			get
+			{
+				return this._ImageNum;
+			}
+			set
+			{
+				if ((this._ImageNum != value))
+				{
+					this._ImageNum = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrugName", DbType="VarChar(256)")]
+		public string DrugName
+		{
+			get
+			{
+				return this._DrugName;
+			}
+			set
+			{
+				if ((this._DrugName != value))
+				{
+					this._DrugName = value;
 				}
 			}
 		}

@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Elixir" Class="RxOutletDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-DDIP9VH\SQLEXPRESS;Initial Catalog=Elixir;Integrated Security=True;Persist Security Info=True" SettingsObjectName="RxOutlet.DataAccess.Properties.Settings" SettingsPropertyName="ElixirConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ELIXIR" Class="RxOutletDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-DDIP9VH\SQLEXPRESS;Initial Catalog=ELIXIR;Integrated Security=True;Persist Security Info=True" SettingsObjectName="RxOutlet.DataAccess.Properties.Settings" SettingsPropertyName="ELIXIRConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tblMainMenu" Member="tblMainMenus">
     <Type Name="tblMainMenu">
       <Column Name="MenuID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -27,6 +27,24 @@
       <Association Name="tblMainMenu_tblSubMenus" Member="tblMainMenu" ThisKey="MenuID" OtherKey="MenuID" Type="tblMainMenu" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Druginfo" Member="Druginfos">
+    <Type Name="Druginfo">
+      <Column Name="DrugId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DrugName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="SupplierID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SupplierName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="RetailPrice" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="RegularPrice" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Association Name="Supplier_Druginfo" Member="Supplier" ThisKey="SupplierID" OtherKey="SupplierID" Type="Supplier" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Suppliers" Member="Suppliers">
+    <Type Name="Supplier">
+      <Column Name="SupplierID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SupplierName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Association Name="Supplier_Druginfo" Member="Druginfos" ThisKey="SupplierID" OtherKey="SupplierID" Type="Druginfo" />
+    </Type>
+  </Table>
   <Function Name="dbo.GetDrugList" Method="GetDrugList">
     <ElementType Name="GetDrugListResult">
       <Column Name="ID" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
@@ -40,6 +58,15 @@
       <Column Name="SupplierId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Suppliername" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
       <Column Name="drugcount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetDrugNamesSearch" Method="GetDrugNamesSearch">
+    <ElementType Name="GetDrugNamesSearchResult">
+      <Column Name="SupplierID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SupplierName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="DrugID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ImageNum" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="DrugName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

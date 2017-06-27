@@ -17,11 +17,11 @@ namespace RxOutlet.DataAccess.DataManager
 
         public MenuDBManager()
         {
-            string connection = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            DBContext = new DataAccess.RxOutletDataContext(connection);
+            //string connection = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            //DBContext = new DataAccess.RxOutletDataContext(connection);
 
-            //string connectionRxoutlet = System.Configuration.ConfigurationManager.ConnectionStrings["RxOutlet"].ConnectionString;
-            //DBContextRxOutlet = new DataAccess.RxOutletDataContext(connection);
+            string connection = System.Configuration.ConfigurationManager.ConnectionStrings["RxOutlet"].ConnectionString;
+            DBContext = new DataAccess.RxOutletDataContext(connection);
 
 
         }
@@ -125,10 +125,10 @@ namespace RxOutlet.DataAccess.DataManager
 
 
 
-        
 
 
-        
+
+
 
 
 
@@ -139,15 +139,19 @@ namespace RxOutlet.DataAccess.DataManager
         //}
 
 
+        
 
-
-
+ public IList<GetDrugNamesSearchResult> GetDrugNamesSearch()
+        {
+            ISingleResult<GetDrugNamesSearchResult> result = DBContext.GetDrugNamesSearch();
+            return result.ToList();
+        }
 
     }
 
 
 
 
-    }
+}
 
 

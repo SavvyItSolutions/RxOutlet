@@ -16,6 +16,6 @@ namespace RxOutlet.Business
         //List<CompleteMenu> GetCompleteMenu();
         GetDrugNameResponse GetDrugList();
         GetDrugNameResponse GetSupplierName();
-
+        List<DrugSearch> GetDrugNamesSearchService();
     }
 }

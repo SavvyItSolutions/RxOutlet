@@ -15,7 +15,9 @@ namespace RxOutlet.DataAccess.Interfaces
             //IList<GetMenuItemListResult> GetMenuItemList(int menuID, int subMenuID);
             //IList<GetMenuResult> GetCompleteMenu();
             IList<GetDrugListResult> GetDrugList();
-        IList<GetSupplierNameResult> GetSupplierName();
+            IList<GetSupplierNameResult> GetSupplierName();
+        IList<GetDrugNamesSearchResult> GetDrugNamesSearch();
+
 
     }
 

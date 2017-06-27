@@ -15,7 +15,7 @@ namespace RxOutlet.Business
 
         public GetDrugNameResponse GetSupplierName()
         {
-            GetDrugNameResponse DrugListResponse = new GetDrugNameResponse();
+           GetDrugNameResponse DrugListResponse = new GetDrugNameResponse();
             List<GetDrugList> itemList = new List<GetDrugList>();
 
             IMenuDBManger menuDBManager = new MenuDBManager();
@@ -122,7 +122,7 @@ namespace RxOutlet.Business
         //    return menuItemListResponse;
         //}
 
-      
+
 
         //public List<CompleteMenu> GetCompleteMenu()
         //{
@@ -215,6 +215,73 @@ namespace RxOutlet.Business
         //}
 
 
+
+
+
+
+
+
+        public List<DrugSearch> GetDrugNamesSearchService()
+        {
+            IMenuDBManger menuDbManager = new MenuDBManager();
+            IList<GetDrugNamesSearchResult> DrugResult = menuDbManager.GetDrugNamesSearch();
+            DrugSearch druglistObj = new DrugSearch();
+            DrugNames drugNamesobj = new DrugNames();
+            Druginfo drugObj = new Druginfo();
+            Supplier supplierObj = new Supplier();
+            List<DrugSearch> lstObj = new List<DrugSearch>();
+
+
+          
+            for (int i = 0; i < DrugResult.Count; i++)
+            {
+                DrugSearch testObj = lstObj.Find(x => x.SupplierID == DrugResult[i].SupplierID);
+                if (testObj == null)
+                {
+                    druglistObj = new DrugSearch();
+                    druglistObj.SupplierID = Convert.ToInt32(DrugResult[i].SupplierID);
+                    druglistObj.SupplierName = DrugResult[i].SupplierName.ToString();
+                    int DrugNameCount = 0;
+                    for (int j = 0; j < DrugResult.Count; j++)
+                    {
+                        DrugNames testSub = null;
+                        if (druglistObj.DrugNamesList != null)
+                            testSub = druglistObj.DrugNamesList.Find(x => x.DrugID == DrugResult[j].DrugID);
+                        if (testSub == null)
+                        {
+                            if (DrugResult[j].SupplierID == druglistObj.SupplierID)
+                            {
+                                drugNamesobj = new DrugNames();
+                                drugNamesobj.SupplierID = Convert.ToInt32(DrugResult[j].SupplierID);
+                                drugNamesobj.DrugID = Convert.ToInt32(DrugResult[j].DrugID);
+                                drugNamesobj.DrugName = DrugResult[j].DrugName.ToString();
+                                drugNamesobj.ImageNum = Convert.ToInt32(DrugResult[j].ImageNum);
+                                DrugNameCount++;
+                               
+                                if (druglistObj.DrugNamesList == null)
+                                    druglistObj.DrugNamesList = new List<DrugNames>();
+                                druglistObj.DrugNamesList.Add(drugNamesobj);
+                            }
+                        }
+                    }
+                    if (DrugNameCount == 0)
+                    {
+                        drugNamesobj = new DrugNames();
+                        drugNamesobj.SupplierID = 0;
+                        drugNamesobj.DrugID = 0;
+                        drugNamesobj.ImageNum = 0;
+                        drugNamesobj.DrugName = "";
+                      
+                       
+                        if (druglistObj.DrugNamesList == null)
+                            druglistObj.DrugNamesList = new List<DrugNames>();
+                        druglistObj.DrugNamesList.Add(drugNamesobj);
+                    }
+                    lstObj.Add(druglistObj);
+                }
+            }
+            return lstObj;
+        }
 
 
 

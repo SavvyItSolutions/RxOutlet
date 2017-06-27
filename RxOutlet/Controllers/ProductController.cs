@@ -47,7 +47,10 @@ namespace RxOutlet.Controllers
         {
             return View("AutoSearchFunctionality", "~/Views/Shared/AutoSearch.cshtml");
         }
-       
+        public ActionResult AutoSearchMouseOver()
+        {
+            return View("AutoSearchMouseOver", "~/Views/Shared/AutoSearch.cshtml");
+        }
 
 
     }

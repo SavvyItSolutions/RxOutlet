@@ -234,6 +234,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\AngularScripts.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -310,6 +311,7 @@
     <Content Include="Views\Product\DisplayGridViewNew.cshtml" />
     <Content Include="Views\Shared\AutoSearch.cshtml" />
     <Content Include="Views\Product\AutoSearchFunctionality.cshtml" />
+    <Content Include="Views\Product\AutoSearchMouseOver.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

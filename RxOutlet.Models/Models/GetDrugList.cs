@@ -16,5 +16,7 @@ namespace RxOutlet.Models
         public int? SupplierID { get; set; }
         public string SupplierName { get; set; }
         public int? DrugCount { get; set; }
+        public int? ImageNum { get; set; }
+       
     }
 }
