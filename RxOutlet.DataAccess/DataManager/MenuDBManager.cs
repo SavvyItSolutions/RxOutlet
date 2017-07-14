@@ -10,20 +10,47 @@ using RxOutlet.Models;
 
 namespace RxOutlet.DataAccess.DataManager
 {
-  public  class MenuDBManager:IMenuDBManger
+    public class MenuDBManager : IMenuDBManger
     {
         public RxOutletDataContext DBContext;
         public RxOutletDataContext DBContextRxOutlet;
 
         public MenuDBManager()
-        {
-            //string connection = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            //DBContext = new DataAccess.RxOutletDataContext(connection);
+          {
+        //    string connection = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        //    DBContext = new DataAccess.RxOutletDataContext(connection);
 
             string connection = System.Configuration.ConfigurationManager.ConnectionStrings["RxOutlet"].ConnectionString;
             DBContext = new DataAccess.RxOutletDataContext(connection);
+        }
 
 
+        public IList<GetProductDetailsResult> GetProductDetails(int id)
+        {
+            try
+            {
+                ISingleResult<GetProductDetailsResult> result =
+                DBContext.GetProductDetails(id);
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public IList<GetDrugTypesResult> GetDrugTypes()
+        {
+            try
+            {
+                ISingleResult<GetDrugTypesResult> result =
+                DBContext.GetDrugTypes();
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public IList<GetSupplierNameResult> GetSupplierName()
@@ -108,18 +135,18 @@ namespace RxOutlet.DataAccess.DataManager
 
 
         //public IList<GetMenuResult> GetCompleteMenuList()
-        //{
-        //    try
-        //    {
-        //        ISingleResult<GetMenuResult> result =
-        //        DBContext.GetMenu();
-        //        return result.ToList();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return null;
-        //    }
-        //}
+        // {
+        //     try
+        //     {
+        //         ISingleResult<GetMenuResult> result =
+        //         DBContext.GetMenu();
+        //         return result.ToList();
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return null;
+        //     }
+        // }
 
 
 
@@ -132,16 +159,16 @@ namespace RxOutlet.DataAccess.DataManager
 
 
 
-        //    public IList<GetMenuResult> GetCompleteMenu()
-        //{
-        //    ISingleResult<GetMenuResult> result = DBContext.GetMenu();
-        //    return result.ToList();
-        //}
+        public IList<GetMenuResult> GetCompleteMenu()
+        {
+            ISingleResult<GetMenuResult> result = DBContext.GetMenu();
+            return result.ToList();
+        }
 
 
-        
 
- public IList<GetDrugNamesSearchResult> GetDrugNamesSearch()
+
+        public IList<GetDrugNamesSearchResult> GetDrugNamesSearch()
         {
             ISingleResult<GetDrugNamesSearchResult> result = DBContext.GetDrugNamesSearch();
             return result.ToList();

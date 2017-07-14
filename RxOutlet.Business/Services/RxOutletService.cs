@@ -12,6 +12,58 @@ namespace RxOutlet.Business
 {
    public class RxOutletService: IRxOutletService
     {
+      
+
+
+        public GetDrugNameResponse GetProductDetails(int id)
+        {
+            GetDrugNameResponse DrugListResponse = new GetDrugNameResponse();
+            List<GetDrugList> itemList = new List<GetDrugList>();
+
+            IMenuDBManger menuDBManager = new MenuDBManager();
+            IList<GetProductDetailsResult> MainMenuResults = menuDBManager.GetProductDetails(id).ToList();
+
+            foreach (GetProductDetailsResult result in MainMenuResults)
+            {
+                itemList.Add(new GetDrugList
+                {
+
+                    DrugName = result.Drugname,
+                    DrugTypeName = result.drugtypename,
+                    ImageNum = Convert.ToInt32( result.ImageNum),
+                    RegularPrice = result.RegularPrice,
+                    RetailPrice = result.RetailPrice,
+                    SupplierName = result.SupplierName
+                   
+                });
+            }
+            DrugListResponse.DrugList = itemList;
+            return DrugListResponse;
+        }
+
+
+
+        public GetDrugNameResponse GetDrugTypes()
+        {
+            GetDrugNameResponse DrugListResponse = new GetDrugNameResponse();
+            List<GetDrugList> itemList = new List<GetDrugList>();
+
+            IMenuDBManger menuDBManager = new MenuDBManager();
+            IList<GetDrugTypesResult> MainMenuResults = menuDBManager.GetDrugTypes();
+
+            foreach (GetDrugTypesResult result in MainMenuResults)
+            {
+                itemList.Add(new GetDrugList
+                {
+                    DrugTypeID = result.DrugTypeID,
+                    DrugTypeName = result.DrugTypeName,
+                    DrugCount = result.drugcount
+                });
+            }
+            DrugListResponse.DrugList = itemList;
+            return DrugListResponse;
+        }
+
 
         public GetDrugNameResponse GetSupplierName()
         {
@@ -46,10 +98,12 @@ namespace RxOutlet.Business
             foreach (GetDrugListResult result in MainMenuResults)
             {
                 itemList.Add(new GetDrugList
-                {   DrugID=Convert.ToInt32( result.ID),
+                {   DrugID=Convert.ToInt32( result.DrugId),
+                    ImageNum=Convert.ToInt32(result.ImgNum),
                     DrugName = result.DrugName,
                     RetailPrice= result.RetailPrice,
                     RegularPrice=result.RegularPrice
+                   
                 });
             }
             DrugListResponse.DrugList = itemList;
@@ -124,95 +178,95 @@ namespace RxOutlet.Business
 
 
 
-        //public List<CompleteMenu> GetCompleteMenu()
-        //{
-        //    IMenuDBManger menuDbManager = new MenuDBManager();
-        //    IList<GetMenuResult> menuResult = menuDbManager.GetCompleteMenu();
-        //    CompleteMenu menuObj = new CompleteMenu();
-        //    SubMenu subObj = new SubMenu();
-        //    MenuItem itemObj = new MenuItem();
-        //    List<CompleteMenu> lstObj = new List<CompleteMenu>();
-        //    //List<SubMenu> SubMenuLst = new List<SubMenu>();
-        //    //List<MenuItem> LstItem = new List<MenuItem>();
-        //    for (int i = 0; i < menuResult.Count; i++)
-        //    {
-        //        CompleteMenu testObj = lstObj.Find(x => x.MainMenuID == menuResult[i].MainMenuID);
-        //        if (testObj == null)
-        //        {
-        //            menuObj = new CompleteMenu();
-        //            menuObj.MainMenuID = Convert.ToInt32(menuResult[i].MainMenuID);
-        //            menuObj.MainMenuName = menuResult[i].MainMenuName.ToString();
-        //            int SubMenuCount = 0;
-        //            for (int j = 0; j < menuResult.Count; j++)
-        //            {
-        //                SubMenu testSub = null;
-        //                if (menuObj.SubMenuList != null)
-        //                    testSub = menuObj.SubMenuList.Find(x => x.SubMenuID == menuResult[j].SubMenuID);
-        //                if (testSub == null)
-        //                {
-        //                    if (menuResult[j].SubMainMenuID == menuObj.MainMenuID)
-        //                    {
-        //                        subObj = new SubMenu();
-        //                        subObj.SubMainMenuId = Convert.ToInt32(menuResult[j].SubMainMenuID);
-        //                        subObj.SubMenuID = Convert.ToInt32(menuResult[j].SubMenuID);
-        //                        subObj.SubMenuName = menuResult[j].SubMenuName.ToString();
-        //                        SubMenuCount++;
-        //                        int itemCount = 0;
-        //                        for (int k = 0; k < menuResult.Count; k++)
-        //                        {
-        //                            if (menuResult[k].ItemSubMenuID == subObj.SubMenuID)
-        //                            {
-        //                                itemCount++;
-        //                                itemObj = new MenuItem();
-        //                                itemObj.ItemMainMenuId = Convert.ToInt32(menuResult[k].ItemMainMenuID);
-        //                                itemObj.ItemSubMenuId = Convert.ToInt32(menuResult[k].SubMenuID);
-        //                                itemObj.ItemId = Convert.ToInt32(menuResult[k].MenuItemID);
-        //                                itemObj.ItemName = menuResult[k].MenuItemName.ToString();
-        //                                if (subObj.menuItemList == null)
-        //                                    subObj.menuItemList = new List<MenuItem>();
-        //                                subObj.menuItemList.Add(itemObj);
-        //                            }
-        //                        }
-        //                        if (itemCount == 0)
-        //                        {
-        //                            itemObj = new MenuItem();
-        //                            itemObj.ItemMainMenuId = 0;
-        //                            itemObj.ItemSubMenuId = 0;
-        //                            itemObj.ItemId = 0;
-        //                            itemObj.ItemName = "";
-        //                            if (subObj.menuItemList == null)
-        //                                subObj.menuItemList = new List<MenuItem>();
-        //                            subObj.menuItemList.Add(itemObj);
-        //                        }
-        //                        if (menuObj.SubMenuList == null)
-        //                            menuObj.SubMenuList = new List<SubMenu>();
-        //                        menuObj.SubMenuList.Add(subObj);
-        //                    }
-        //                }
-        //            }
-        //            if (SubMenuCount == 0)
-        //            {
-        //                subObj = new SubMenu();
-        //                subObj.SubMainMenuId = 0;
-        //                subObj.SubMenuID = 0;
-        //                subObj.SubMenuName = "";
-        //                itemObj = new MenuItem();
-        //                itemObj.ItemMainMenuId = 0;
-        //                itemObj.ItemSubMenuId = 0;
-        //                itemObj.ItemId = 0;
-        //                itemObj.ItemName = "";
-        //                if (subObj.menuItemList == null)
-        //                    subObj.menuItemList = new List<MenuItem>();
-        //                subObj.menuItemList.Add(itemObj);
-        //                if (menuObj.SubMenuList == null)
-        //                    menuObj.SubMenuList = new List<SubMenu>();
-        //                menuObj.SubMenuList.Add(subObj);
-        //            }
-        //            lstObj.Add(menuObj);
-        //        }
-        //    }
-        //    return lstObj;
-        //}
+        public List<CompleteMenu> GetCompleteMenu()
+        {
+            IMenuDBManger menuDbManager = new MenuDBManager();
+            IList<GetMenuResult> menuResult = menuDbManager.GetCompleteMenu();
+            CompleteMenu menuObj = new CompleteMenu();
+            SubMenu subObj = new SubMenu();
+            MenuItem itemObj = new MenuItem();
+            List<CompleteMenu> lstObj = new List<CompleteMenu>();
+            //List<SubMenu> SubMenuLst = new List<SubMenu>();
+            //List<MenuItem> LstItem = new List<MenuItem>();
+            for (int i = 0; i < menuResult.Count; i++)
+            {
+                CompleteMenu testObj = lstObj.Find(x => x.MainMenuID == menuResult[i].MainMenuID);
+                if (testObj == null)
+                {
+                    menuObj = new CompleteMenu();
+                    menuObj.MainMenuID = Convert.ToInt32(menuResult[i].MainMenuID);
+                    menuObj.MainMenuName = menuResult[i].MainMenuName.ToString();
+                    int SubMenuCount = 0;
+                    for (int j = 0; j < menuResult.Count; j++)
+                    {
+                        SubMenu testSub = null;
+                        if (menuObj.SubMenuList != null)
+                            testSub = menuObj.SubMenuList.Find(x => x.SubMenuID == menuResult[j].SubMenuID);
+                        if (testSub == null)
+                        {
+                            if (menuResult[j].SubMainMenuID == menuObj.MainMenuID)
+                            {
+                                subObj = new SubMenu();
+                                subObj.SubMainMenuId = Convert.ToInt32(menuResult[j].SubMainMenuID);
+                                subObj.SubMenuID = Convert.ToInt32(menuResult[j].SubMenuID);
+                                subObj.SubMenuName = menuResult[j].SubMenuName.ToString();
+                                SubMenuCount++;
+                                int itemCount = 0;
+                                for (int k = 0; k < menuResult.Count; k++)
+                                {
+                                    if (menuResult[k].ItemSubMenuID == subObj.SubMenuID)
+                                    {
+                                        itemCount++;
+                                        itemObj = new MenuItem();
+                                        itemObj.ItemMainMenuId = Convert.ToInt32(menuResult[k].ItemMainMenuID);
+                                        itemObj.ItemSubMenuId = Convert.ToInt32(menuResult[k].SubMenuID);
+                                        itemObj.ItemId = Convert.ToInt32(menuResult[k].MenuItemID);
+                                        itemObj.ItemName = menuResult[k].MenuItemName.ToString();
+                                        if (subObj.menuItemList == null)
+                                            subObj.menuItemList = new List<MenuItem>();
+                                        subObj.menuItemList.Add(itemObj);
+                                    }
+                                }
+                                if (itemCount == 0)
+                                {
+                                    itemObj = new MenuItem();
+                                    itemObj.ItemMainMenuId = 0;
+                                    itemObj.ItemSubMenuId = 0;
+                                    itemObj.ItemId = 0;
+                                    itemObj.ItemName = "";
+                                    if (subObj.menuItemList == null)
+                                        subObj.menuItemList = new List<MenuItem>();
+                                    subObj.menuItemList.Add(itemObj);
+                                }
+                                if (menuObj.SubMenuList == null)
+                                    menuObj.SubMenuList = new List<SubMenu>();
+                                menuObj.SubMenuList.Add(subObj);
+                            }
+                        }
+                    }
+                    if (SubMenuCount == 0)
+                    {
+                        subObj = new SubMenu();
+                        subObj.SubMainMenuId = 0;
+                        subObj.SubMenuID = 0;
+                        subObj.SubMenuName = "";
+                        itemObj = new MenuItem();
+                        itemObj.ItemMainMenuId = 0;
+                        itemObj.ItemSubMenuId = 0;
+                        itemObj.ItemId = 0;
+                        itemObj.ItemName = "";
+                        if (subObj.menuItemList == null)
+                            subObj.menuItemList = new List<MenuItem>();
+                        subObj.menuItemList.Add(itemObj);
+                        if (menuObj.SubMenuList == null)
+                            menuObj.SubMenuList = new List<SubMenu>();
+                        menuObj.SubMenuList.Add(subObj);
+                    }
+                    lstObj.Add(menuObj);
+                }
+            }
+            return lstObj;
+        }
 
 
 

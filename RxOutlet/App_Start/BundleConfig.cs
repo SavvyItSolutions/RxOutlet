@@ -29,14 +29,20 @@ namespace RxOutlet
                       //"~/Content/site.css",
                       "~/Content/reset.css",
                       "~/Content/bootstrap.min.css",
+                       "~/Content/easyzoom.css",
                       "~/Content/font-awesome.min.css",
                        "~/Content/font-awesome.min1.css",
+                       "~/Content/global.css",
+                       "~/Content/global-circle.css",
+                        "~/Content/jquery.autocomplete.css",
                       "~/Content/owl.carousel.css",
                       "~/Content/jquery-ui.css",
                       "~/Content/animate.css",
                       "~/Content/global.css",
                       "~/Content/style.css",
                       "~/Content/responsive.css",
+                        "~/Content/style.css",
+                          "~/Content/style-circle.css",
                       "~/Content/AutoSearchStyle.css"));
         }
     }

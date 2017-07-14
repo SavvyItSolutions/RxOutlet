@@ -19,228 +19,35 @@
     <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 
-  <script>
+  
 
-      $(function () {
+<style>
 
-          $("#dialog-modal").dialog({
-              autoOpen: false,
-              modal: true,// to make background html page disable when popup get opened.
-              width: 400,
-              height: 400,
+/*+ and - buttons in productdetails page*/
 
-              show: {
-                  effect: "shake",
-                  duration: 100
-              },
-              hide: {
-                  effect: "explode",
-                  duration: 1000
-              }
+#myform {
+    text-align: center;
+    padding: 5px;
+    border: 1px dotted #ccc;
+    margin: 2%;
+}
+.qty {
+    width: 40px;
+    height: 25px;
+    text-align: center;
+}
+input.qtyplus { width:25px; height:25px;}
+input.qtyminus { width:25px; height:25px;}
 
-          });
-
-
-          $("#modal-opener").click(function () {
-              $("#dialog-modal").dialog("open");
-
-          });
-
-      });
+/*+ and - buttons in productdetails page*/
 
 
-      var search = {
-          SearchText: 'asp',
-          Type: [4, 2, 7],
-          PageStart: 4,
-          PageSize: 10
-      };
 
 
-      var app = angular.
-          module("Drugs", ['ui.bootstrap']).
-          controller("DisplayDrugInfo", ['$log', '$scope', '$http', function ($log, $scope, $http) {
-              $http({
-                  method: 'Get',
-                  url: "http://localhost:64404/api/RxOutlet/Druglist",
-                  data: JSON.stringify(search)
-              }).then(function (response) {
-                  $scope.Drug = response.data;
-
-                  $scope.viewby = 10;
-                  $scope.totalItems = response.data.DrugList.length;
-                  console.log(response.data.DrugList.length);
-                  $scope.currentPage = 4;
-                  $scope.itemsPerPage = $scope.viewby;
-                  $scope.maxSize = 5; //Number of pager buttons to show
-
-                  $scope.setPage = function (pageNo) {
-                      $scope.currentPage = pageNo;
-                  };
-
-                  $scope.pageChanged = function () {
-                      console.log('Page changed to: ' + $scope.currentPage);
-                  };
-
-                  $scope.setItemsPerPage = function (num) {
-                      $scope.itemsPerPage = num;
-                      $scope.currentPage = 1; //reset to first paghe
-                  }
-
-                  //    alert(response.data);
-                  //console.log("DrugObject"+response.data);
-                  //console.log("DrugList" + response.data.DrugList);
-                  //console.log("DrugName" + response.data.DrugList[1].DrugName);
-              });
-          }]);
 
 
-      app.controller("SupplierNameCntrl", ['$log', '$scope', '$http', function ($log, $scope, $http) {
-          $http({
-              method: 'Get',
-              url: "http://localhost:64404/api/RxOutlet/GetSupplierName",
-              data: JSON.stringify(search)
-          }).then(function (response) {
-              $scope.SuppilerName = response.data;
-              alert(response.data.length);
-              console.log("DrugObject" + response.data);
-              console.log("DrugList" + response.data.DrugList);
-
-              //console.log("DrugName" + response.data.DrugList[1].DrugName);
-              //    console.log("length" + $scope.SuppilerName.length);
-              //    for (var i = 0; i <= $scope.SuppilerName.length; i++) {
-              //        console.log($scope.items.length);
-              //        if ($scope.selectedName.value === $scope.items[i].name) {
-              //            console.log($scope.items[i].name + "forif" + true);
-              //            break;
-              //        }
-              //        else {
-              //            console.log($scope.items[i].name + "forelse " + false);
-              //            break;
-              //        }
-              //    }
 
 
-          });
-
-
-      }]);
-
-
-      //app.controller("SearchDrugCntrl", ['$log', '$scope', '$http', function ($log, $scope, $http) {
-      //    $http({
-      //        method: 'Get',
-      //        url: "http://localhost:64404/api/RxOutlet/GetDrugNamesSearch",
-      //        data: JSON.stringify(search)
-      //    }).then(function (response) {
-      //        $scope.SearchDrug = response.data;
-      //        alert(response.data.length);
-      //        console.log("DrugSearchObject" + response.data);
-      //        console.log("DrugSearchList" + response.data.DrugList);
-      //    });
-      //}]);
-
-
-      //$(document).ready(function () {
-      //    $.ajax({           
-      //        url: "http://localhost:64404/api/RxOutlet/GetDrugNamesSearch",
-      //        success: function (data) {
-               
-      //            alert(data);
-                 
-      //        },
-      //        error: function (msg) { alert("error"); alert(msg); }
-      //    });
-      //});
-
-      $(document).ready(function () {
-          $.ajax({
-
-              url: "http://localhost:64404/api/RxOutlet/GetDrugNamesSearch",
-              success: function (data) {
-                  $('#LoadMainMenu').append("<ul class='vertical-menu-list' id='vertical-menu-list'></ul>");
-                  var List = [];
-                  //alert(data);
-                  for (i = 0; i < data.length; i++) {
-
-                      List.push(data[i].SupplierName)
-                      $('#autocomplete').autocomplete({
-                          lookup: List
-                      });
-
-                      //    $('#vertical-menu-list').append(
-                      //         "<li class='vertical-menu" + data[i].SupplierID + "'>" +
-                      //         "<a class='parent' href=#>" + data[i].SupplierName + "</a>" +
-                      //        "<div class='vertical-dropdown-menu' style='width: 901px;'>" +
-                      //      "<div class='vertical-groups col-sm-12'>" +
-                      //      "<div class='row' id='subMenu" + data[i].SupplierID + "'>" +
-                      //      "</div> </div></li>");
-
-                      //    for (j = 0; j < data[i].DrugNamesList.length; j++) {
-                      //        if (data[i].DrugNamesList[i].DrugName != "")
-                      //            $('#subMenu' + data[i].SupplierID).append(
-                      //                "<div class='col-sm-3'> <div class='block-content-vertical-menu border'>" +
-                      //                "<h3 class='head'>" + data[i].SupplierName + "</h3> <div class='inner' id='menuItem" + data[i].DrugNamesList[j].DrugID + "'> </div> </div> </div> ");
-                      //        else
-                      //            break;
-
-                      //        for (k = 0; k < data[i].DrugNamesList.length; k++) {
-                      //            $('#menuItem' + data[i].DrugNamesList[j].DrugID).append(
-                      //           "<li> <a href=#> " +
-                      //           "<span class='text'>" + data[i].DrugNamesList[j].DrugName + "</span>" +
-                      //           " </a> </li>");
-                      //        }
-                      //        // data[0].DrugNamesList.length
-                      //        // data[0].DrugNamesList[0].DrugName
-                      //        // data[0].DrugNamesList[0].ImageNum
-                      //    }
-
-                      //}
-
-                      //$('#autocomplete').autocomplete({
-                      //    lookup: List
-                      //});
-                      // console.log("SupplierName" + data[10].SupplierName);
-                      // console.log("SupplierCount" + data.length);
-
-                  }
-              },
-              error: function (msg) { alert("error"); alert(msg); }
-          });
-      });
-
-      ///  Auto Search Functionality with Drug Names start
-
-      //$(document).ready(function () {
-      //    $.ajax({
-
-      //        url: "http://localhost:64404/api/RxOutlet/Druglist",
-      //        success: function (data) {
-      //            var List = [];
-      //            //alert(data);
-      //            for (i = 0; i < data.DrugList.length; i++) {
-      //                List.push(data.DrugList[i].DrugName)
-      //            }
-      //            $('#autocomplete').autocomplete({
-      //                lookup: List
-      //                //,onSelect: function (suggestion) {
-      //                //    alert(suggestion.DrugList);
-      //                //    var thehtml = '<strong>Currency Name:</strong> ' + suggestion.DrugList + ' <br> <strong>Symbol:</strong> ' + suggestion.data;
-      //                //    $('#outputcontent').html(thehtml);
-      //                //}
-      //            });
-      //            //$("#myText").autocomplete({
-      //            //    source: List,
-      //            //});
-      //        },
-      //        error: function (msg) { alert("error"); alert(msg); }
-      //    });
-      //});
-
-      ///  Auto Search Functionality with Drug Names END
-  </script>
-
-    <style>
                 .products .product-right {
                     position: static;
                 }
@@ -304,12 +111,17 @@ color:#00dce8;
                         <li><i class="fa fa-exchange"></i> 30 Days Exchange Policy</li>
                     </ul>
                     <ul class="top-bar-link top-bar-link-right dot">
-                        <li><a href="login.html">My Account</a></li>
+                        @*<li><a href="login.html">My Account</a></li>
                         <li><a href="wishlist.html">My Wishlist</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
-                        <li>@Html.Partial("_LoginPartial")</li>
-                            @*<li><a href="login.html">Login</a></li>
+                        <li><a href="checkout.html">Checkout</a></li>          
+                        <li><a href="login.html">Login</a></li>
                                @Html.ActionLink("Login", "Login")*@
+
+
+                        <li>@Html.ActionLink("My Account", "MyAccount", "Home")</li>
+                        <li>@Html.ActionLink("My Wishlist", "_Wishlist", "Home")</li>
+                        <li>@Html.ActionLink("Checkout", "_Checkout", "Home")</li>                      
+                        <li>@Html.Partial("_LoginPartial")</li>
 
 </ul>
                         @*@Html.Partial("_LoginPartial")*@
@@ -474,7 +286,7 @@ color:#00dce8;
                                             <div class="p-left">
                                                 <a href="#" class="remove_link"></a>
                                                 <a href="#">
-                                                    <img class="img-responsive" src="images/p1.jpg" alt="Product">
+                                                    <img class="img-responsive" src="/images/p1.jpg" alt="Product">
                                                 </a>
                                             </div>
                                             <div class="p-right">
@@ -487,7 +299,7 @@ color:#00dce8;
                                             <div class="p-left">
                                                 <a href="#" class="remove_link"></a>
                                                 <a href="#">
-                                                    <img class="img-responsive" src="images/p2.jpg" alt="Product">
+                                                    <img class="img-responsive" src="/images/p2.jpg" alt="Product">
                                                 </a>
                                             </div>
                                             <div class="p-right">
@@ -697,27 +509,30 @@ color:#00dce8;
                                         <ul class="dropdown-menu mega_dropdown container-fluid">
                                             <li class="block-container">
                                                 <ul class="block-megamenu-link">
-                                                    <li class="link_container"><a href="images/Hipaa-Consent.pdf" target="_blank">Hipaa Consent</a></li>
-                                                    <li class="link_container"><a href="images/Hipaa-Release-Authorization.pdf" target="_blank"> Hipaa Release Authorization </a></li>
-                                                    <li class="link_container"><a href="images/Immunization-Consent-Form.pdf" target="_blank"> Immunization Consent Form </a></li>
-                                                    <li class="link_container"><a href="images/Npp-Fullpage-Hc-Provider.pdf" target="_blank"> Npp Fullpage Hc-Provider </a></li>
-                                                    <li class="link_container"><a href="images/Registration-Form.pdf" target="_blank"> Registration Form </a></li>
+                                                    <li class="link_container"><a href="/images/Hipaa-Consent.pdf" target="_blank">Hipaa Consent</a></li>
+                                                    <li class="link_container"><a href="/images/Hipaa-Release-Authorization.pdf" target="_blank"> Hipaa Release Authorization </a></li>
+                                                    <li class="link_container"><a href="/images/Immunization-Consent-Form.pdf" target="_blank"> Immunization Consent Form </a></li>
+                                                    <li class="link_container"><a href="/images/Npp-Fullpage-Hc-Provider.pdf" target="_blank"> Npp Fullpage Hc-Provider </a></li>
+                                                    <li class="link_container"><a href="/images/Registration-Form.pdf" target="_blank"> Registration Form </a></li>
                                                 </ul>
                                             </li>
                                         </ul>
                                     </li>
                                     <li class="">
-                                        <a href="about.html"> About Us</a>
-                                    </li>
+                                    @Html.ActionLink("About US", "AboutUS", "AboutUS")</li>
+                                        @*<a href="about.html"> About Us</a>*@
+                                    
 
                                     <li class="">
-                                        <a href="faq.html">  Help / Faq</a>
-
+                                        @*<a href="faq.html">  Help / Faq</a>*@
+                                    @Html.ActionLink("Help/FAQ", "HelpFAQ", "Help")
                                     </li>
+
+                                   
                                     <li class="">
-                                        <a href="contact.html"> Contact us </a>
-
-                                    </li>
+                                        @*<a href="contact.html"> Contact us </a>*@
+                                    @Html.ActionLink("Contact US", "ContactUS", "ContactUS")</li>
+                                    
                                 </ul>
                             </div><!--/.nav-collapse -->
                         </div>
@@ -844,7 +659,7 @@ color:#00dce8;
                     <div class="row">
                         <div class="block-social">
                             <ul class="list-social">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="https://www.facebook.com/savvyitsol99666/?ref=br_rs" target="_blank"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
 
@@ -894,7 +709,7 @@ color:#00dce8;
 <script src="@Url.Content("~/Scripts/jquery.actual.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.autocomplete.min.js")" type="text/javascript"></script>
 @*<script src="@Url.Content("~/Scripts/currency-autocomplete.js")" type="text/javascript"></script>*@
-@*<script src="@Url.Content("~/Scripts/AngularScripts.js")" type="text/javascript"></script>*@
+<script src="@Url.Content("~/Scripts/AngularScripts.js")" type="text/javascript"></script>
     
     <script>
 

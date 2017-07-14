@@ -52,9 +52,9 @@
                             <h5 class="widget-title">Over-The-Counter</h5>
                         </div>
 
-                        <div class="block-inner" ng-controller="SupplierNameCntrl">
-                            <div class="block-filter">
-                                <div class="block-sub-title">Over-The-Counter</div>
+                        <div class="block-inner" >
+                            <div class="block-filter" ng-controller="SupplierNameCntrl">
+                                <div class="block-sub-title" >Supplier Names</div>
                                 <div class="block-filter-inner" style="overflow-y: scroll;height: 200px;">
                                     <ul class="check-box-list" >
 
@@ -129,119 +129,136 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="block-filter">
-                                <div class="block-sub-title">Price</div>
-                                <div class="block-filter-inner">
-                                    <div class="amount-range-price">Range: $50 - $350</div>
-                                    <div data-label-reasult="Range:" data-min="0" data-max="500" data-unit="$" class="slider-range-price" data-value-min="50" data-value-max="350"></div>
-                                </div>
-                            </div>
-                            <div class="block-filter">
-                                <div class="block-sub-title">Color</div>
-                                <div class="block-filter-inner">
-                                    <ul class="check-box-list corlor">
-                                        <li>
-                                            <input type="checkbox" id="corlor1" name="cc">
-                                            <label for="corlor1">
-                                                <span class="button" style=" background:#4d6dbd;"></span>
-                                                Blue<span class="count">(20)</span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <input type="checkbox" id="corlor2" name="cc">
-                                            <label for="corlor2">
-                                                <span class="button" style=" background:#2fbcda;"></span>
-                                                Cyan<span class="count">(1)</span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <input type="checkbox" id="corlor3" name="cc">
-                                            <label for="corlor3">
-                                                <span class="button" style=" background:#ffe00c;"></span>
-                                                Yellow  <span class="count">(31)</span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <input type="checkbox" id="corlor4" name="cc">
-                                            <label for="corlor4">
-                                                <span class="button" style=" background:#72b226;"></span>
-                                                Green  <span class="count">(21)</span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <input type="checkbox" id="corlor5" name="cc">
-                                            <label for="corlor5">
-                                                <span class="button" style=" background:#fb5d5d;"></span>
-                                                Red  <span class="count">(12)</span>
-                                            </label>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="block-filter">
-                                <div class="block-sub-title">Manufacturer</div>
-                                <div class="block-filter-inner">
+                            <div class="block-filter" ng-controller="DrugTypeCntrl">
+                                <div class="block-sub-title" >Drug Types</div>
+                                <div class="block-filter-inner" style="overflow-y: scroll;height: 200px;">
                                     <ul class="check-box-list">
-                                        <li>
-                                            <input type="checkbox" id="m1" name="cc">
-                                            <label for="m1">
+
+                                        <li ng-repeat="x in DrugType.DrugList" style="font-size: 12px;">
+
+                                            <input type="checkbox" id="{{x.DrugTypeID}}" name="cc">
+                                            <label for="{{x.DrugTypeID}}">
                                                 <span class="button"></span>
-                                                Diabetic Test Strips<span class="count">(10)</span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <input type="checkbox" id="m2" name="cc">
-                                            <label for="m2">
-                                                <span class="button"></span>
-                                                Diabetic Test Strips <span class="count">(10)</span>
+                                                {{x.DrugTypeName}} <span class="count">({{x.DrugCount}})</span>
                                             </label>
                                         </li>
                                     </ul>
+
+                                </div>
+                                </div>
+                                <div class="block-filter">
+                                    <div class="block-sub-title">Price</div>
+                                    <div class="block-filter-inner">
+                                        <div class="amount-range-price">Range: $50 - $350</div>
+                                        <div data-label-reasult="Range:" data-min="0" data-max="500" data-unit="$" class="slider-range-price" data-value-min="50" data-value-max="350"></div>
+                                    </div>
+                                </div>
+                                <div class="block-filter">
+                                    <div class="block-sub-title">Color</div>
+                                    <div class="block-filter-inner">
+                                        <ul class="check-box-list corlor">
+                                            <li>
+                                                <input type="checkbox" id="corlor1" name="cc">
+                                                <label for="corlor1">
+                                                    <span class="button" style=" background:#4d6dbd;"></span>
+                                                    Blue<span class="count">(20)</span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="corlor2" name="cc">
+                                                <label for="corlor2">
+                                                    <span class="button" style=" background:#2fbcda;"></span>
+                                                    Cyan<span class="count">(1)</span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="corlor3" name="cc">
+                                                <label for="corlor3">
+                                                    <span class="button" style="background:#ffe00c;"></span>
+                                                    Yellow  <span class="count">(31)</span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="corlor4" name="cc">
+                                                <label for="corlor4">
+                                                    <span class="button" style="background:#72b226;"></span>
+                                                    Green  <span class="count">(21)</span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="corlor5" name="cc">
+                                                <label for="corlor5">
+                                                    <span class="button" style="background:#fb5d5d;"></span>
+                                                    Red  <span class="count">(12)</span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="block-filter">
+                                    <div class="block-sub-title">Manufacturer</div>
+                                    <div class="block-filter-inner">
+                                        <ul class="check-box-list">
+                                            <li>
+                                                <input type="checkbox" id="m1" name="cc">
+                                                <label for="m1">
+                                                    <span class="button"></span>
+                                                    Diabetic Test Strips<span class="count">(10)</span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="m2" name="cc">
+                                                <label for="m2">
+                                                    <span class="button"></span>
+                                                    Diabetic Test Strips <span class="count">(10)</span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="block-filter">
+                                    <div class="block-sub-title">Properties</div>
+                                    <div class="block-filter-inner">
+                                        <ul class="check-box-list">
+                                            <li>
+                                                <input type="checkbox" id="p1" name="cc">
+                                                <label for="p1">
+                                                    <span class="button"></span>
+                                                    MDiabetic Test Strips<span class="count">(10)</span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="p2" name="cc">
+                                                <label for="p2">
+                                                    <span class="button"></span>
+                                                    Diabetic Test Strips <span class="count">(10)</span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="block-filter">
+                                    <div class="block-sub-title">AVAILABILITY</div>
+                                    <div class="block-filter-inner">
+                                        <ul class="check-box-list">
+                                            <li>
+                                                <input type="checkbox" id="a1" name="cc">
+                                                <label for="a1">
+                                                    <span class="button"></span>
+                                                    In stock<span class="count">(10)</span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="a2" name="cc">
+                                                <label for="a2">
+                                                    <span class="button"></span>
+                                                    Not available <span class="count">(10)</span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="block-filter">
-                                <div class="block-sub-title">Properties</div>
-                                <div class="block-filter-inner">
-                                    <ul class="check-box-list">
-                                        <li>
-                                            <input type="checkbox" id="p1" name="cc">
-                                            <label for="p1">
-                                                <span class="button"></span>
-                                                MDiabetic Test Strips<span class="count">(10)</span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <input type="checkbox" id="p2" name="cc">
-                                            <label for="p2">
-                                                <span class="button"></span>
-                                                Diabetic Test Strips <span class="count">(10)</span>
-                                            </label>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="block-filter">
-                                <div class="block-sub-title">AVAILABILITY</div>
-                                <div class="block-filter-inner">
-                                    <ul class="check-box-list">
-                                        <li>
-                                            <input type="checkbox" id="a1" name="cc">
-                                            <label for="a1">
-                                                <span class="button"></span>
-                                                In stock<span class="count">(10)</span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <input type="checkbox" id="a2" name="cc">
-                                            <label for="a2">
-                                                <span class="button"></span>
-                                                Not available <span class="count">(10)</span>
-                                            </label>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <!-- block  top sellers -->
                     <!-- block  top sellers -->
@@ -317,13 +334,14 @@
                                     <div class="inner">
                                         <div class="product-left">
                                             <div class="product-thumb">
-                                                <a class="product-img" href="#"><img ng-src="/DrugImages/{{x.DrugID}}.jpg" style="height:155px; width:250px" class="img-responsive" alt="Product"></a>
+                                                <a class="product-img" href="#"><img ng-src="/DrugImages/{{x.ImageNum}}.jpg" style="height:155px; width:250px" class="img-responsive" alt="Product"></a>
                                                 <a title="Quick View" href="#" class="btn-quick-view">Quick View</a>
                                             </div>
                                         </div>
                                         <div class="product-right">
                                             <div class="product-name" style="width:229px; height:48px">
-                                                <a href="#">{{x.DrugName}}</a>
+                                                @*<a href="http://localhost:64404/Product/ProductDetailsView/">{{x.DrugName}}</a>*@
+                                                <a data-ng-href="@Url.Action("ProductDetailsView","Product")/{{x.DrugID}}">{{x.DrugName}}</a>
                                             </div>
                                             <div class="price-box">
                                                 <span class="product-price">{{x.RegularPrice}}</span>
@@ -333,7 +351,8 @@
                                             <div class="product-button">
                                                 <a class="btn-add-wishlist" title="Add to Wishlist" href="#">Add Wishlist</a>
                                                 <a class="btn-add-comparre" title="Add to Compare" href="#">Add Compare</a>
-                                                <a class="button-radius btn-add-cart" title="Add to Cart" href="#">Buy<span class="icon"></span></a>
+                                                <a class="button-radius btn-add-cart" title="Add to Cart" href="@Url.Action("AddToCart", "Product")">Buy<span class="icon"></span></a>
+                                                 @*<a class="button-radius btn-add-cart" title="Add to Cart" href="@Html.ActionLink("Buy","AddToCart","Product")"><span class="icon"></span></a>*@
                                             </div>
                                         </div>
                                     </div>

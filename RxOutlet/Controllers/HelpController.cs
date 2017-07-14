@@ -13,5 +13,9 @@ namespace RxOutlet.Controllers
         {
             return View();
         }
+        public ActionResult HelpFAQ()
+        {
+            return View();
+        }
     }
 }

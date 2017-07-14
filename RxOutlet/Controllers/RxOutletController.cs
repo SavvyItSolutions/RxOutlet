@@ -16,6 +16,27 @@ namespace RxOutlet.Controllers
     public class RxOutletController : ApiController
     {
 
+
+        [HttpGet]
+        public GetDrugNameResponse GetProductDetails(int objectId)
+        {
+            GetDrugNameResponse resp = new GetDrugNameResponse();
+            IRxOutletService itemService = new RxOutletService();
+            resp = itemService.GetProductDetails(objectId);
+            return resp;
+        }
+
+        [HttpGet]
+        public GetDrugNameResponse GetDrugTypes()
+        {
+
+            GetDrugNameResponse resp = new GetDrugNameResponse();
+            IRxOutletService itemService = new RxOutletService();
+            resp = itemService.GetDrugTypes();
+            return resp;
+        }
+
+
         [HttpGet]
         public GetDrugNameResponse GetSupplierName()
         {
@@ -95,15 +116,15 @@ namespace RxOutlet.Controllers
 
 
 
-        //[HttpGet]
-        //public List<CompleteMenu> GetCompleteMenu()
-        //{
-        //    List<CompleteMenu> resp = new List<CompleteMenu>();
-        //    IRxOutletService itemService = new RxOutletService();
-        //    resp = itemService.GetCompleteMenu();
+        [HttpGet]
+        public List<CompleteMenu> GetCompleteMenu()
+        {
+            List<CompleteMenu> resp = new List<CompleteMenu>();
+            IRxOutletService itemService = new RxOutletService();
+            resp = itemService.GetCompleteMenu();
 
-        //    return resp;
-        //}
+            return resp;
+        }
 
 
         [HttpGet]

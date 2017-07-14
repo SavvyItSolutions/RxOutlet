@@ -13,10 +13,12 @@ namespace RxOutlet.DataAccess.Interfaces
             //IList<GetMenuListResult> GetMenuList();
             //IList<GetSubMenuListResult> GetSubMenuList(int menuID);
             //IList<GetMenuItemListResult> GetMenuItemList(int menuID, int subMenuID);
-            //IList<GetMenuResult> GetCompleteMenu();
+            IList<GetMenuResult> GetCompleteMenu();
             IList<GetDrugListResult> GetDrugList();
             IList<GetSupplierNameResult> GetSupplierName();
         IList<GetDrugNamesSearchResult> GetDrugNamesSearch();
+        IList<GetDrugTypesResult> GetDrugTypes();
+        IList<GetProductDetailsResult> GetProductDetails(int id);
 
 
     }

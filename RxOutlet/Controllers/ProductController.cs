@@ -43,6 +43,10 @@ namespace RxOutlet.Controllers
         {
             return View();
         }
+        public ActionResult AddToCart()
+        {
+            return View();
+        }
         public ActionResult AutoSearchFunctionality()
         {
             return View("AutoSearchFunctionality", "~/Views/Shared/AutoSearch.cshtml");
@@ -52,7 +56,10 @@ namespace RxOutlet.Controllers
             return View("AutoSearchMouseOver", "~/Views/Shared/AutoSearch.cshtml");
         }
 
-
+        public ActionResult ProductDetailsView()
+        {
+            return View();
+        }
     }
     
 }

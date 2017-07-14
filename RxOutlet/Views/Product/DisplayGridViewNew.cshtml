@@ -3,134 +3,7 @@
     ViewBag.Title = "ProductList";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    @*<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>*@
-    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        .products .product-right {
-            position: static;
-        }
-
-        .products .product-container .inner {
-            padding-bottom: 5px;
-        }
-
-        .products .product-container {
-            padding-bottom: 5px;
-        }
-        /* .block-vertical-menu .vertical-head .vertical-title {
-            font-size: 17px;
-        } */
-        .product-name a {
-            font-size: 18px;
-        }
-    </style>
-
-</head>
-<body>
-
-    <script>
-        var search = {
-            SearchText: 'asp',
-            Type: [4, 2, 7],
-            PageStart: 4,
-            PageSize: 10
-        };
-
-
-        var app = angular.
-            module("Drugs", ['ui.bootstrap']).
-            controller("DisplayDrugInfo", ['$log', '$scope', '$http', function ($log, $scope, $http) {
-                $http({
-                    method: 'Get',
-                    url: "http://localhost:64404/api/RxOutlet/Druglist",
-                    data: JSON.stringify(search)
-                }).then(function (response) {
-                    $scope.Drug = response.data;
-
-                    $scope.viewby = 10;
-                    $scope.totalItems = response.data.DrugList.length;
-                    console.log(response.data.DrugList.length);
-                    $scope.currentPage = 4;
-                    $scope.itemsPerPage = $scope.viewby;
-                    $scope.maxSize = 5; //Number of pager buttons to show
-
-                    $scope.setPage = function (pageNo) {
-                        $scope.currentPage = pageNo;
-                    };
-
-                    $scope.pageChanged = function () {
-                        console.log('Page changed to: ' + $scope.currentPage);
-                    };
-
-                    $scope.setItemsPerPage = function (num) {
-                        $scope.itemsPerPage = num;
-                        $scope.currentPage = 1; //reset to first paghe
-                    }
-
-                //    alert(response.data);
-                    //console.log("DrugObject"+response.data);
-                    //console.log("DrugList" + response.data.DrugList);
-                    //console.log("DrugName" + response.data.DrugList[1].DrugName);
-                });
-            }]);
-
-        app.controller("SupplierNameCntrl", ['$log', '$scope', '$http', function ($log, $scope, $http) {
-            $http({
-                method: 'Get',
-                url: "http://localhost:64404/api/RxOutlet/GetSupplierName",
-                data: JSON.stringify(search)
-            }).then(function (response) {
-                $scope.SuppilerName = response.data;
-                alert(response.data.length);
-                console.log("DrugObject" + response.data);
-                console.log("DrugList" + response.data.DrugList);
-
-                //console.log("DrugName" + response.data.DrugList[1].DrugName);
-
-
-
-
-
-
-
-            //    console.log("length" + $scope.SuppilerName.length);
-            //    for (var i = 0; i <= $scope.SuppilerName.length; i++) {
-            //        console.log($scope.items.length);
-            //        if ($scope.selectedName.value === $scope.items[i].name) {
-            //            console.log($scope.items[i].name + "forif" + true);
-            //            break;
-            //        }
-            //        else {
-            //            console.log($scope.items[i].name + "forelse " + false);
-            //            break;
-            //        }
-                //    }
-
-
-            });
-
-
-        }]);
-
-
-
-    </script>
-
-
-
-
-
-    <div class="container" ng-app="Drugs">
+    <div class="container">
         <div class="row">
             <div class="block block-breadcrumbs">
                 <ul>
@@ -253,6 +126,23 @@
                                                 </label>
                                             </li>*@
                                     </ul>
+                                </div>
+                            </div>
+                            <div class="block-filter" ng-controller="DrugTypeCntrl">
+                                <div class="block-sub-title">Drug Types</div>
+                                <div class="block-filter-inner" style="overflow-y: scroll;height: 200px;">
+                                    <ul class="check-box-list">
+
+                                        <li ng-repeat="x in DrugType.DrugList" style="font-size: 12px;">
+
+                                            <input type="checkbox" id="{{x.DrugTypeID}}" name="cc">
+                                            <label for="{{x.DrugTypeID}}">
+                                                <span class="button"></span>
+                                                {{x.DrugTypeName}} <span class="count">({{x.DrugCount}})</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+
                                 </div>
                             </div>
                             <div class="block-filter">
@@ -447,7 +337,7 @@
                                     <div class="inner row">
                                         <div class="product-left col-xs-12 col-sm-5 col-md-4">
                                             <div class="product-thumb">
-                                                <a class="product-img" href="product-detail.html"><img ng-src="/DrugImages/{{x.DrugID}}.jpg" alt="Product"></a>
+                                                <a class="product-img" href="product-detail.html"><img ng-src="/DrugImages/{{x.ImageNum}}.jpg" alt="Product"></a>
                                                 <a title="Quick View" href="#" class="btn-quick-view">Quick View</a>
                                             </div>
                                         </div>
@@ -865,5 +755,3 @@
         </div>
     </div>
 
-</body>
-</html>

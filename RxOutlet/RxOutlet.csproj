@@ -207,6 +207,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AboutUSController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AddToCartController.cs" />
     <Compile Include="Controllers\ContactUSController.cs" />
     <Compile Include="Controllers\HelpController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -312,6 +313,12 @@
     <Content Include="Views\Shared\AutoSearch.cshtml" />
     <Content Include="Views\Product\AutoSearchFunctionality.cshtml" />
     <Content Include="Views\Product\AutoSearchMouseOver.cshtml" />
+    <Content Include="Views\Shared\_Checkout.cshtml" />
+    <Content Include="Views\Shared\_Wishlist.cshtml" />
+    <Content Include="Views\Shared\MyAccount.cshtml" />
+    <Content Include="Views\Product\AddToCart.cshtml" />
+    <Content Include="Views\Product\ProductDetailsView.cshtml" />
+    <Content Include="Views\AddToCart\AddToCartView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

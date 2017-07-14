@@ -13,9 +13,11 @@ namespace RxOutlet.Business
         //RxOutletMenuListRespone GetMenuList();
         //RxOutletSubMenuListResponse GetSubMenuList(int menuID);
         //RxOutLetMenuItemListResponse GetMenuItemList(int menuID, int subMenuID);     
-        //List<CompleteMenu> GetCompleteMenu();
+        List<CompleteMenu> GetCompleteMenu();
         GetDrugNameResponse GetDrugList();
         GetDrugNameResponse GetSupplierName();
         List<DrugSearch> GetDrugNamesSearchService();
+        GetDrugNameResponse GetDrugTypes();
+        GetDrugNameResponse GetProductDetails(int id);
     }
 }
