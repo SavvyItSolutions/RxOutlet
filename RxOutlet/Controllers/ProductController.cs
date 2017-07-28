@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using RxOutlet.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -56,10 +58,40 @@ namespace RxOutlet.Controllers
             return View("AutoSearchMouseOver", "~/Views/Shared/AutoSearch.cshtml");
         }
 
+        //public ActionResult ProductDetailsView()
+        //{
+        //    return View();
+        //}
+
+
+
         public ActionResult ProductDetailsView()
         {
-            return View();
+         
+            AddToCartModel objSubjectHeading = new AddToCartModel();
+            return View(objSubjectHeading);
+           
+        }
+     
+        // Calling on http post (on Submit)
+        [HttpPost]
+       
+        public ActionResult ProductDetailsView(AddToCartModel obj)
+        {
+         
+            AddToCartModel objreg = new AddToCartModel();
+            string result = objreg.InsertCartItems(obj);
+            ViewData["result"] = result;
+            ModelState.Clear();
+         
+      
+
+            return View(obj);
+
+
         }
     }
+
+
     
 }

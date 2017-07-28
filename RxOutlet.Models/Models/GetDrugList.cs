@@ -19,6 +19,8 @@ namespace RxOutlet.Models
         public int? ImageNum { get; set; }
         public int? DrugTypeID { get; set; }
         public string DrugTypeName { get; set; }
+        public int Quantity { get; set; }
+        public string UserName { get; set; }
 
        
     }

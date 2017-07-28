@@ -1,5 +1,6 @@
-﻿
-
+﻿@model RxOutlet.Models.AddToCartModel
+@using (Html.BeginForm())
+{
     <div class="container product-page" ng-controller="ProductDetailsCntrl">
         <div class="row">
             <div class="block block-breadcrumbs">
@@ -26,29 +27,29 @@
                         <div class="product-list-thumb">
                             <ul class="thumbnails kt-owl-carousel" data-margin="10" data-nav="true" data-responsive='{"0":{"items":2},"600":{"items":2},"1000":{"items":3}}'>
                                 <li>
-                                    <a class="selected" href="/images/full.jpg" data-standard="/DrugImages/{{ProductInfo.DrugList[0].ImageNum}}.jpg">
+                                    <a class="selected" href="/DrugImages/{{ProductInfo.DrugList[0].ImageNum}}.jpg" data-standard="/DrugImages/{{ProductInfo.DrugList[0].ImageNum}}.jpg">
                                         <img alt="" />
                                     </a>
                                 </li>
 
-                                 <li>ng-src="/DrugImages/{{x.ImageNum}}.jpg"
-                                         <a class="selected" href="/images/full.jpg" data-standard="/images/standard.jpg">
-                                             <img src="/images/thumb.jpg" alt="" />
+                                 <li>
+                                         <a class="selected" href="/DrugImages/0{{ProductInfo.DrugList[0].ImageNum}}.jpg" data-standard="/DrugImages/0{{ProductInfo.DrugList[0].ImageNum}}.jpg">
+                                             <img ng-src="/DrugImages/0{{ProductInfo.DrugList[0].ImageNum}}.jpg" alt="" />
                                          </a>
                                      </li>
                                     <li>
-                                         <a href="/images/full2.jpg" data-standard="/images/standard2.jpg">
-                                             <img src="/images/thumb2.jpg" alt="" />
+                                         <a href="/DrugImages/1{{ProductInfo.DrugList[0].ImageNum}}.jpg" data-standard="/DrugImages/1{{ProductInfo.DrugList[0].ImageNum}}.jpg">
+                                             <img ng-src="/DrugImages/1{{ProductInfo.DrugList[0].ImageNum}}.jpg" alt="" />
                                          </a>
                                      </li>
                                      <li>
-                                         <a href="/images/full3.jpg" data-standard="/images/standard3.jpg">
-                                             <img src="/images/thumb3.jpg" alt="" />
+                                         <a href="/DrugImages/2{{ProductInfo.DrugList[0].ImageNum}}.jpg" data-standard="/DrugImages/2{{ProductInfo.DrugList[0].ImageNum}}.jpg">
+                                             <img ng-src="/DrugImages/2{{ProductInfo.DrugList[0].ImageNum}}.jpg" alt="" />
                                          </a>
                                      </li>
                                      <li>
-                                         <a href="/images/full4.jpg" data-standard="/images/standard4.jpg">
-                                             <img src="/images/thumb4.jpg" alt="" />
+                                         <a href="/DrugImages/3{{ProductInfo.DrugList[0].ImageNum}}.jpg" data-standard="/DrugImages/3{{ProductInfo.DrugList[0].ImageNum}}.jpg">
+                                             <img ng-src="/DrugImages/3{{ProductInfo.DrugList[0].ImageNum}}.jpg" alt="" />
                                          </a>
                                      </li>
                             </ul>
@@ -59,7 +60,8 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-7">
                             <div class="block-product-info">
-                                <h2 class="product-name"><a href="">{{ProductInfo.DrugList[0].DrugName}}</a></h2>
+                                <h2 class="product-name"><a href="">{{ProductInfo.DrugList[0].DrugName}}
+</a></h2>@Html.TextBoxFor(m => m.DrugID, new { @class = "form-control", ng_value = "DrugID", ng_model = "ProductInfo.DrugList[0].DrugID", style = "display: none;" })
                                 <div class="price-box">
                                     <span class="product-price">{{ProductInfo.DrugList[0].RegularPrice}}</span>
                                     <span class="product-price-old">{{ProductInfo.DrugList[0].RetailPrice}}</span>
@@ -74,58 +76,60 @@
                                 <div class="desc">Top zipper closure, two pockets in the front, Slit patch pocket in the back. Detachable, adjustable shoulder strap. Interior</div>
                                 <div class="variations-box">
 
-                                   
+                                  
+                                        <table class="variations-table">
 
-                                    @*<table class="variations-table">
                                             <tr>
-                                             SupplierName : {{ProductInfo.DrugList[0].SupplierName}}
-
-
-
-
-                                                @*<td class="table-label">Color</td>
+                                                <td class="table-label">Supplier - </td>
                                                 <td class="table-value">
-                                                    <ul class="list-check-box color">
-                                                        <li><a class="selected" href="#"><span style="background:#4d6dbd;">Blue</span></a></li>
-                                                        <li><a href="#"><span style="background:#fb5d5d;">Blue</span></a></li>
-                                                        <li><a href="#"><span style="background:#2fbcda;">Blue</span></a></li>
-                                                        <li><a href="#"><span style="background:#ffe00c;">Blue</span></a></li>
-                                                        <li><a href="#"><span style="background:#72b226;">Blue</span></a></li>
-                                                    </ul>
+                                                 {{ProductInfo.DrugList[0].SupplierName}}  
                                                 </td>
                                             </tr>
                                             <tr>
-                                                 Drug Type : {{ProductInfo.DrugList[0].DrugTypeName}}
-                                                  <td class="table-label">Size</td>
+                                                <td class="table-label">Type - </td>
                                                 <td class="table-value">
-                                                    <ul class="list-check-box">
-                                                        <li><a href="#">XL</a></li>
-                                                        <li><a href="#">X</a></li>
-                                                        <li><a href="#">S</a></li>
-                                                        <li><a href="#">XS</a></li>
-                                                    </ul>
+                                                 {{ProductInfo.DrugList[0].DrugTypeName}}
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td class="table-label">Qty</td>
-                                                <td class="table-value">
-                                                    <div class="box-qty" >
-                                                        <form id='myform' method='POST' action='#'>
-                                                            <input type='button' value='-' class='qtyminus' field='quantity' />
-                                                            <input type='text' name='quantity' value='0' class='qty' />
-                                                            <input type='button' value='+' class='qtyplus' field='quantity' />
+                                          
+                                            @*<tr>
+                                                <td>DrugName :</td>
 
-                                                        </form>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.DrugName, new { @class = "form-control", ng_value = "DrugName", ng_model = "ProductInfo.DrugList[0].DrugName" })
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>DrugType :</td>
+                                            <td>
+                                                @Html.TextBoxFor(m => m.DrugType, new { @class = "form-control", ng_value = "DrugType", ng_model = "ProductInfo.DrugList[0].DrugTypeName" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Supplier :</td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.SupplierName, new { @class = "form-control", ng_value = "SupplierName", ng_model = "ProductInfo.DrugList[0].SupplierName" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.TextBoxFor(m => m.ImageNum, new { @class = "form-control", ng_value = "ImageNum", ng_model = "ProductInfo.DrugList[0].ImageNum", style = "display: none;" })  </td>
+                                </tr>*@
 
-                                                        @*<a href="#" class="quantity-minus">-</a>
-                                                        <input type="text" class="quantity" value="1">
-                                                        <a href="#" class="quantity-plus">+</a>
-                                                    </div>
-                                                    <a href="#" class="button-radius btn-add-cart">Buy<span class="icon"></span></a>
-                                                </td>
-                                            </tr>
-                                        </table>*@
-                                </div>
+                                <tr>
+                                    <td class="table-label">Qty</td>
+                                    <td class="table-value">
+                                        <div class="box-qty">
+                                            <button class="quantity-minus" onclick="minus()">-</button>
+                                            @Html.TextBoxFor(m => m.Quantity, new { @id = "count", @class = "quantity", @value = "1" })
+                                            <button class="quantity-plus" onclick="plus()">+</button>
+                                        </div>
+                                    <td><input id="Submit" type="submit" value="Buy" class="button-radius btn-add-cart" /><span class="icon"></span></td>
+
+                                </tr>
+                                </table>
+
+
+</div>
                                 <div class="box-control-button">
                                     <a class="link-wishlist" href="#">wishlist</a>
                                     <a class="link-compare" href="#">Compare</a>
@@ -363,5 +367,4 @@
             <!-- ./upsell Products -->
         </div>
     </div>
-
-</form>
+}

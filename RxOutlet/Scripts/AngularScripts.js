@@ -90,29 +90,53 @@ app.controller("DrugTypeCntrl", ['$log', '$scope', '$http', function ($log, $sco
 
 }]);
 
+
+
 app.controller("ProductDetailsCntrl", ['$log', '$scope', '$http', function ($log, $scope, $http) {
+    function GetURLParameter(sParam) {
+        var sPageURL = window.location.href;
+        var indexOfLastSlash = sPageURL.lastIndexOf("/");
+
+        if (indexOfLastSlash > 0 && sPageURL.length - 1 != indexOfLastSlash)
+            return sPageURL.substring(indexOfLastSlash + 1);
+        else
+            return 0;
+    }
     $http({
         method: 'Get',
-        url: "http://localhost:64404/api/RxOutlet/GetProductDetails/",
+        url: "http://localhost:64404/api/RxOutlet/GetProductDetails/"+GetURLParameter("0"),
         data: JSON.stringify(search),
-
     }).then(function (response) {
         $scope.ProductInfo = response.data;
         alert(response.data.length);
         console.log("DrugObject" + response.data);
         console.log("DrugList" + response.data.DrugList.ImageNum);
     });
-
-
     $scope.qty = 1;
     $scope.increment = function () {
-        $scope.qty++;
+    $scope.qty++;
     };
     $scope.decrement = function () {
-        $scope.qty--;
+    $scope.qty--;
     };
 }]);
 
+
+app.controller("CartItemsCntrl", ['$log', '$scope', '$http', function ($log, $scope, $http) {
+    
+var usrName = "@HttpContext.Current.User.Identity.Name";
+    
+    $http({
+        method: 'Get',
+        url: "http://localhost:64404/api/RxOutlet/GetCartItems/"+usrName,
+        data: JSON.stringify(search),
+    }).then(function (response) {
+        $scope.CartItems = response.data;
+        alert(response.data.length);
+        console.log("DrugObject" + response.data);
+        console.log("DrugList" + response.data.DrugList);
+    });
+}]);
 
 
 $(document).ready(function () {
@@ -186,3 +210,8 @@ jQuery(document).ready(function () {
         }
     });
 });
+
+
+
+
+    

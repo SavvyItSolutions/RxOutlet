@@ -101,4 +101,15 @@
       <Column Name="RegularPrice" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.GetCartItems" Method="GetCartItems">
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="VarChar(256)" />
+    <ElementType Name="GetCartItemsResult">
+      <Column Name="DrugName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="SupplierName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="DrugType" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ImageNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RegularPrice" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

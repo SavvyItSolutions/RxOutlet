@@ -17,11 +17,25 @@ namespace RxOutlet.DataAccess.DataManager
 
         public MenuDBManager()
           {
-        //    string connection = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-        //    DBContext = new DataAccess.RxOutletDataContext(connection);
+            //string connection = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            //DBContext = new DataAccess.RxOutletDataContext(connection);
 
             string connection = System.Configuration.ConfigurationManager.ConnectionStrings["RxOutlet"].ConnectionString;
             DBContext = new DataAccess.RxOutletDataContext(connection);
+        }
+
+        public IList<GetCartItemsResult> GetCartItems(string UserName)
+        {
+            try
+            {
+                ISingleResult<GetCartItemsResult> result =
+                DBContext.GetCartItems(UserName);
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
 

@@ -12,7 +12,34 @@ namespace RxOutlet.Business
 {
    public class RxOutletService: IRxOutletService
     {
-      
+
+        public GetDrugNameResponse GetCartItems(string UserName)
+        {
+            GetDrugNameResponse DrugListResponse = new GetDrugNameResponse();
+            List<GetDrugList> itemList = new List<GetDrugList>();
+
+            IMenuDBManger menuDBManager = new MenuDBManager();
+            IList<GetCartItemsResult> MainMenuResults = menuDBManager.GetCartItems(UserName).ToList();
+
+            foreach (GetCartItemsResult result in MainMenuResults)
+            {
+                itemList.Add(new GetDrugList
+                {
+
+                    DrugName = result.DrugName,
+                    DrugTypeName = result.DrugType,
+                    ImageNum = Convert.ToInt32(result.ImageNum),                
+                    SupplierName = result.SupplierName,
+                    Quantity = Convert.ToInt32(result.Quantity),
+                    RegularPrice =result.RegularPrice
+
+                });
+            }
+            DrugListResponse.DrugList = itemList;
+            return DrugListResponse;
+        }
+
+
 
 
         public GetDrugNameResponse GetProductDetails(int id)

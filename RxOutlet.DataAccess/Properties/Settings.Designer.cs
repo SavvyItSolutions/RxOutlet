@@ -88,5 +88,16 @@ namespace RxOutlet.DataAccess.Properties {
                 return ((string)(this["RxOutletConnectionString2"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=108.58.151.10;Initial Catalog=RxOutlet;Persist Security Info=True;Use" +
+            "r ID=rxadmin;Password=rxadmin")]
+        public string RxOutletConnectionString3 {
+            get {
+                return ((string)(this["RxOutletConnectionString3"]));
+            }
+        }
     }
 }

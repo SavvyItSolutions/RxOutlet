@@ -32,6 +32,18 @@ namespace RxOutlet
               defaults: new { id = RouteParameter.Optional }
           );
 
+
+            config.Routes.MapHttpRoute(
+
+            name: "DefaultApi5",
+
+            routeTemplate: "api/{controller}/{action}/{objectId}/email/{EmailId}/DeviceId/{DeviceId}",
+
+            defaults: new { objectId = RouteParameter.Optional, custId = RouteParameter.Optional, cardId = RouteParameter.Optional }
+
+        );
+
+
         }
     }
 }
