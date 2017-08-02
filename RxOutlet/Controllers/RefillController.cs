@@ -9,7 +9,7 @@ namespace RxOutlet.Controllers
     public class RefillController : Controller
     {
         // GET: Refill
-        public ActionResult Index()
+        public ActionResult Refill()
         {
             return View();
         }

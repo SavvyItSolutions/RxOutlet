@@ -15,15 +15,15 @@ namespace RxOutlet.Controllers
 {
     public class RxOutletController : ApiController
     {
-        [Authorize]
-        [HttpGet]
-        public GetDrugNameResponse GetCartItems(string objectId)
-        {
-            GetDrugNameResponse resp = new GetDrugNameResponse();
-            IRxOutletService itemService = new RxOutletService();
-            resp = itemService.GetCartItems(objectId);
-            return resp;
-        }
+        //[Authorize]
+        //[HttpGet]
+        //public GetDrugNameResponse GetCartItems(string objectId)
+        //{
+        //    GetDrugNameResponse resp = new GetDrugNameResponse();
+        //    IRxOutletService itemService = new RxOutletService();
+        //    resp = itemService.GetCartItems(objectId);
+        //    return resp;
+        //}
 
         [HttpGet]
         public GetDrugNameResponse GetProductDetails(int objectId)

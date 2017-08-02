@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace RxOutlet.Controllers
 {
     public class ProductController : Controller
@@ -58,17 +59,16 @@ namespace RxOutlet.Controllers
             return View("AutoSearchMouseOver", "~/Views/Shared/AutoSearch.cshtml");
         }
 
-        //public ActionResult ProductDetailsView()
-        //{
-        //    return View();
-        //}
 
 
 
+        [Authorize]
         public ActionResult ProductDetailsView()
         {
-         
-            AddToCartModel objSubjectHeading = new AddToCartModel();
+
+          
+        AddToCartModel objSubjectHeading = new AddToCartModel();
+           
             return View(objSubjectHeading);
            
         }
@@ -83,12 +83,7 @@ namespace RxOutlet.Controllers
             string result = objreg.InsertCartItems(obj);
             ViewData["result"] = result;
             ModelState.Clear();
-         
-      
-
             return View(obj);
-
-
         }
     }
 

@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ELIXIR" Class="RxOutletDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-DDIP9VH\SQLEXPRESS;Initial Catalog=ELIXIR;Integrated Security=True;Persist Security Info=True" SettingsObjectName="RxOutlet.DataAccess.Properties.Settings" SettingsPropertyName="ELIXIRConnectionString1" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="RxOutlet" Class="RxOutletDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=108.58.151.10;Initial Catalog=RxOutlet;Persist Security Info=True;User ID=rxadmin" SettingsObjectName="RxOutlet.DataAccess.Properties.Settings" SettingsPropertyName="RxOutletConnectionString3" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tblMainMenu" Member="tblMainMenus">
     <Type Name="tblMainMenu">
       <Column Name="MenuID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -45,11 +45,38 @@
       <Association Name="Supplier_Druginfo" Member="Druginfos" ThisKey="SupplierID" OtherKey="SupplierID" Type="Druginfo" />
     </Type>
   </Table>
+  <Function Name="dbo.GetDrugList" Method="GetDrugList">
+    <ElementType Name="GetDrugListResult">
+      <Column Name="ImgNum" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="DrugId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DrugName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="RetailPrice" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="RegularPrice" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetDrugTypes" Method="GetDrugTypes">
+    <ElementType Name="GetDrugTypesResult">
+      <Column Name="DrugTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DrugTypeName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="drugcount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
   <Function Name="dbo.GetSupplierName" Method="GetSupplierName">
     <ElementType Name="GetSupplierNameResult">
       <Column Name="SupplierId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Suppliername" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
       <Column Name="drugcount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetProductDetails" Method="GetProductDetails">
+    <Parameter Name="DrugID" Parameter="drugID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetProductDetailsResult">
+      <Column Name="DrugName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="SupplierName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="RetailPrice" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="RegularPrice" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="drugtypename" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ImageNum" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.GetDrugNamesSearch" Method="GetDrugNamesSearch">
@@ -59,13 +86,6 @@
       <Column Name="DrugID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ImageNum" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
       <Column Name="DrugName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.GetDrugTypes" Method="GetDrugTypes">
-    <ElementType Name="GetDrugTypesResult">
-      <Column Name="DrugTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DrugTypeName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
-      <Column Name="drugcount" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.GetMenu" Method="GetMenu">
@@ -79,37 +99,6 @@
       <Column Name="ItemSubMenuID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MenuItemID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MenuItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.GetProductDetails" Method="GetProductDetails">
-    <Parameter Name="DrugID" Parameter="drugID" Type="System.Int32" DbType="Int" />
-    <ElementType Name="GetProductDetailsResult">
-      <Column Name="Drugname" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
-      <Column Name="SupplierName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
-      <Column Name="RetailPrice" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
-      <Column Name="RegularPrice" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
-      <Column Name="drugtypename" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
-      <Column Name="ImageNum" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.GetDrugList" Method="GetDrugList">
-    <ElementType Name="GetDrugListResult">
-      <Column Name="ImgNum" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
-      <Column Name="DrugId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="DrugName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
-      <Column Name="RetailPrice" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
-      <Column Name="RegularPrice" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.GetCartItems" Method="GetCartItems">
-    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="VarChar(256)" />
-    <ElementType Name="GetCartItemsResult">
-      <Column Name="DrugName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
-      <Column Name="SupplierName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
-      <Column Name="DrugType" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
-      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ImageNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RegularPrice" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

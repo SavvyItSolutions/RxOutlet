@@ -61,7 +61,7 @@
                         <div class="col-sm-12 col-md-7">
                             <div class="block-product-info">
                                 <h2 class="product-name"><a href="">{{ProductInfo.DrugList[0].DrugName}}
-</a></h2>@Html.TextBoxFor(m => m.DrugID, new { @class = "form-control", ng_value = "DrugID", ng_model = "ProductInfo.DrugList[0].DrugID", style = "display: none;" })
+</a></h2>@Html.TextBoxFor(m => m.DrugID, new { id="txt", style = "display: none;" })
                                 <div class="price-box">
                                     <span class="product-price">{{ProductInfo.DrugList[0].RegularPrice}}</span>
                                     <span class="product-price-old">{{ProductInfo.DrugList[0].RetailPrice}}</span>
@@ -123,7 +123,7 @@
                                             @Html.TextBoxFor(m => m.Quantity, new { @id = "count", @class = "quantity", @value = "1" })
                                             <button class="quantity-plus" onclick="plus()">+</button>
                                         </div>
-                                    <td><input id="Submit" type="submit" value="Buy" class="button-radius btn-add-cart" /><span class="icon"></span></td>
+                                    <td><input id="Submit" type="submit" value="Buy" class="button-radius btn-add-cart"  onclick="@Url.Action("AddToCartView", "AddToCart")" /><span class="icon"></span></td>
 
                                 </tr>
                                 </table>
@@ -368,3 +368,16 @@
         </div>
     </div>
 }
+<script>
+    function GetURLParameter(sParam) {
+        var sPageURL = window.location.href;
+        var indexOfLastSlash = sPageURL.lastIndexOf("/");
+
+        if (indexOfLastSlash > 0 && sPageURL.length - 1 != indexOfLastSlash)
+            return sPageURL.substring(indexOfLastSlash + 1);
+        else
+            return 0;
+    }
+
+    document.getElementById("txt").value = GetURLParameter("0");
+</script>

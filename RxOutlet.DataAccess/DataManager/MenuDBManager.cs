@@ -17,26 +17,26 @@ namespace RxOutlet.DataAccess.DataManager
 
         public MenuDBManager()
           {
-            //string connection = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            //DBContext = new DataAccess.RxOutletDataContext(connection);
-
-            string connection = System.Configuration.ConfigurationManager.ConnectionStrings["RxOutlet"].ConnectionString;
+            string connection = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             DBContext = new DataAccess.RxOutletDataContext(connection);
+
+            //string connection = System.Configuration.ConfigurationManager.ConnectionStrings["RxOutlet"].ConnectionString;
+            //DBContext = new DataAccess.RxOutletDataContext(connection);
         }
 
-        public IList<GetCartItemsResult> GetCartItems(string UserName)
-        {
-            try
-            {
-                ISingleResult<GetCartItemsResult> result =
-                DBContext.GetCartItems(UserName);
-                return result.ToList();
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
+        //public IList<GetCartItemsResult> GetCartItems(string UserName)
+        //{
+        //    try
+        //    {
+        //        ISingleResult<GetCartItemsResult> result =
+        //        DBContext.GetCartItems(UserName);
+        //        return result.ToList();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return null;
+        //    }
+        //}
 
 
         public IList<GetProductDetailsResult> GetProductDetails(int id)
@@ -149,18 +149,18 @@ namespace RxOutlet.DataAccess.DataManager
 
 
         //public IList<GetMenuResult> GetCompleteMenuList()
-        // {
-        //     try
-        //     {
-        //         ISingleResult<GetMenuResult> result =
-        //         DBContext.GetMenu();
-        //         return result.ToList();
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         return null;
-        //     }
-        // }
+        //{
+        //    try
+        //    {
+        //        ISingleResult<GetMenuResult> result =
+        //        DBContext.GetMenu();
+        //        return result.ToList();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return null;
+        //    }
+        //}
 
 
 

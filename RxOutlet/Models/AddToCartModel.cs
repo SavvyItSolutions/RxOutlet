@@ -19,12 +19,13 @@ namespace RxOutlet.Models
     {
        // public int UserID { get; set; }
         public int DrugID { get; set; }
-        public string UserName { get; set; }
+        public string UserName { get;set; }
         public int Quantity { get; set; }
          
-
+     
         string constr = ConfigurationManager.ConnectionStrings["RxOutlet"].ConnectionString;
         SqlConnection con = new SqlConnection("Data Source=108.58.151.10;Initial Catalog=RxOutlet;Persist Security Info=True;User ID=rxadmin;Password=rxadmin");
+      //  SqlConnection con = new SqlConnection("Data Source=DESKTOP-DDIP9VH\\SQLEXPRESS;Initial Catalog=RxOutlet;Persist Security Info=True;Integrated Security=True");
 
         public string InsertCartItems(AddToCartModel obj)
         {
@@ -35,7 +36,7 @@ namespace RxOutlet.Models
             SqlCommand cmd = new SqlCommand("InsertCartItems", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@UserId", HttpContext.Current.User.Identity.GetUserId());
-            cmd.Parameters.AddWithValue("@DrugID", obj.DrugID);
+            cmd.Parameters.AddWithValue("@DrugID",  obj.DrugID);
             cmd.Parameters.AddWithValue("@Quantity", obj.Quantity);
 
 

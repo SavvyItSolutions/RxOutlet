@@ -19,6 +19,6 @@ namespace RxOutlet.Business
         List<DrugSearch> GetDrugNamesSearchService();
         GetDrugNameResponse GetDrugTypes();
         GetDrugNameResponse GetProductDetails(int id);
-        GetDrugNameResponse GetCartItems(string UserName);
+      //  GetDrugNameResponse GetCartItems(string UserName);
     }
 }
