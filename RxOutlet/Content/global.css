@@ -155,7 +155,7 @@ table, th, td {
   color: #fff;
   width: 28px;
   height: 28px;
-  background-color: #00dce8;
+  background-color: #5a88ca;
   border-radius: 90%;
   text-align: center;
   line-height: 26px;
@@ -383,9 +383,9 @@ img.alignright{
 }
 .block .block-head .block-title-text {
   font-size: 20px;
- /* text-transform: uppercase;*/
+  /*text-transform: uppercase;*/
   line-height: 20px;
-  color: #00a6af;
+  color:#00a6af;
 }
 .block .block-head .block-title-text.text-lg{
   font-weight: 600;
@@ -634,6 +634,7 @@ img.alignright{
 .products img{
   width: 100%;
   height: auto;
+  border-radius: 30%;
 }
 .products .product-container{
   overflow: hidden;
@@ -822,7 +823,7 @@ label{
     z-index: 9999;
     right: 10px;
     bottom: 32px;
-    background: #5a88ca;
+    background: #00dce8;
     border-radius: 50%;
 }
 .scroll_top:before {
