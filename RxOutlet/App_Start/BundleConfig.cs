@@ -9,7 +9,9 @@ namespace RxOutlet
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery.countdown.js",
+                        "~/Scripts/jquery.plugin.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -25,8 +27,8 @@ namespace RxOutlet
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/animate.css",
-                    //  "~/Content/bootstrap.css",
-                      //"~/Content/site.css",
+                     "~/Content/bootstrap.css",
+                      "~/Content/site.css",
                       "~/Content/reset.css",
                       "~/Content/bootstrap.min.css",
                        "~/Content/easyzoom.css",
@@ -42,7 +44,7 @@ namespace RxOutlet
                       "~/Content/style.css",
                       "~/Content/responsive.css",
                         "~/Content/style.css",
-                          "~/Content/style-circle.css",
+                       "~/Content/style-circle.css",
                       "~/Content/AutoSearchStyle.css"));
         }
     }
