@@ -37,7 +37,7 @@ var app = angular.
     controller("DisplayDrugInfo", ['$log', '$scope', '$http', function ($log, $scope, $http) {
         $http({
             method: 'Get',
-            url: "http://localhost:64404/api/RxOutlet/Druglist",
+            url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/Druglist",
             data: JSON.stringify(search)
         }).then(function (response) {
             $scope.Drug = response.data;
@@ -64,7 +64,7 @@ var app = angular.
 app.controller("SupplierNameCntrl", ['$log', '$scope', '$http', function ($log, $scope, $http) {
     $http({
         method: 'Get',
-        url: "http://localhost:64404/api/RxOutlet/GetSupplierName",
+        url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/GetSupplierName",
         data: JSON.stringify(search)
     }).then(function (response) {
         $scope.SuppilerName = response.data;
@@ -78,7 +78,7 @@ app.controller("SupplierNameCntrl", ['$log', '$scope', '$http', function ($log, 
 app.controller("DrugTypeCntrl", ['$log', '$scope', '$http', function ($log, $scope, $http) {
     $http({
         method: 'Get',
-        url: "http://localhost:64404/api/RxOutlet/GetDrugTypes",
+        url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/GetDrugTypes",
         data: JSON.stringify(search),
                 
     }).then(function (response) {
@@ -104,7 +104,7 @@ app.controller("ProductDetailsCntrl", ['$log', '$scope', '$http', function ($log
     }
     $http({
         method: 'Get',
-        url: "http://localhost:64404/api/RxOutlet/GetProductDetails/"+GetURLParameter("0"),
+        url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/GetProductDetails/" + GetURLParameter("0"),
         data: JSON.stringify(search),
     }).then(function (response) {
         $scope.ProductInfo = response.data;
@@ -128,7 +128,7 @@ var usrName = "@HttpContext.Current.User.Identity.Name";
     
     $http({
         method: 'Get',
-        url: "http://localhost:64404/api/RxOutlet/GetCartItems/"+usrName,
+        url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/GetCartItems/" + usrName,
         data: JSON.stringify(search),
     }).then(function (response) {
         $scope.CartItems = response.data;
@@ -142,7 +142,7 @@ var usrName = "@HttpContext.Current.User.Identity.Name";
 $(document).ready(function () {
     $.ajax({
 
-        url: "http://localhost:64404/api/RxOutlet/GetDrugNamesSearch",
+        url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/GetDrugNamesSearch",
         success: function (data) {
             var List = [];
             //alert(data);
