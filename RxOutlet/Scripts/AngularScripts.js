@@ -104,7 +104,7 @@ app.controller("ProductDetailsCntrl", ['$log', '$scope', '$http', function ($log
     }
     $http({
         method: 'Get',
-        url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/GetProductDetails/" + GetURLParameter("0"),
+        url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/GetProductDetails" + GetURLParameter("0"),
         data: JSON.stringify(search),
     }).then(function (response) {
         $scope.ProductInfo = response.data;

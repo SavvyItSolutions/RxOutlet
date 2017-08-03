@@ -47,7 +47,7 @@ namespace RxOutlet.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:64404");
+                client.BaseAddress = new Uri("http://rxoutlet.azurewebsites.net");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 var response = client.GetAsync("api/RxOutlet/MenuList").Result;

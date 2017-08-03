@@ -26,7 +26,7 @@
               controller("PaginationDemoCtrl", ['$log', '$scope', '$http', function ($log, $scope, $http) {
                   $http({
                       method: 'Get',
-                      url: "http://localhost:64404/api/RxOutlet/Druglist",
+                      url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/Druglist",
                         data: JSON.stringify(search)
                   }).then(function (response) {
                       $scope.drug = response.data;

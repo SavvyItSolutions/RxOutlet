@@ -53,7 +53,7 @@
             controller("DisplayDrugInfo", ['$log', '$scope', '$http', function ($log, $scope, $http) {
                 $http({
                     method: 'Get',
-                    url: "http://localhost:64404/api/RxOutlet/Druglist",
+                    url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/Druglist",
                     data: JSON.stringify(search)
                 }).then(function (response) {
                     $scope.Drug = response.data;
@@ -88,7 +88,7 @@
         app.controller("SupplierNameCntrl", ['$log', '$scope', '$http', function ($log, $scope, $http) {
             $http({
                 method: 'Get',
-                url: "http://localhost:64404/api/RxOutlet/GetSupplierName",
+                url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/GetSupplierName",
                 data: JSON.stringify(search)
             }).then(function (response) {
                 $scope.SuppilerName = response.data;
