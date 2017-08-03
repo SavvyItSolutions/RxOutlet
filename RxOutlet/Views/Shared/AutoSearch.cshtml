@@ -103,7 +103,7 @@
               data: JSON.stringify(search)
           }).then(function (response) {
               $scope.SuppilerName = response.data;
-              alert(response.data.length);
+            //  alert(response.data.length);
               console.log("DrugObject" + response.data);
               console.log("DrugList" + response.data.DrugList);
 
@@ -161,7 +161,7 @@
               success: function (data) {
                   $('#SearchDrug').append("<ul class='vertical-menu-list' id='vertical-menu-list'></ul>");
                   var List = [];
-                  alert(data);
+                //  alert(data);
                  
                   for (i = 0; i < data.length; i++)
                   {
@@ -654,7 +654,7 @@
                                     <li class="active"><a href="#">Home</a></li>
 
                                     <li class="">
-                                        <a href="#" class="" data-toggle="dropdown">
+                                        <a href="@Url.Action("Refill","Refill")" class="" data-toggle="dropdown">
 
                                             RX Refills
                                         </a>
@@ -674,7 +674,7 @@
                                                     </li>
 
                                                     <li class="link_container"><a href="#">New Prescription</a></li>
-                                                    <li class="link_container"><a href="#">Reﬁll Prescription</a></li>
+                                                    <li class="link_container"><a href="@Url.Action("Refill","Refill")">Reﬁll Prescription</a></li>
                                                     <li class="link_container"><a href="#">Transfer Prescription</a></li>
 
                                                     <li class="link_container  group_header"><a href="#">Drug Information</a></li>

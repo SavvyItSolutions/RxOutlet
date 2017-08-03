@@ -45,8 +45,8 @@ namespace RxOutlet.Controllers
         private static List<SelectListItem> PopulateSubjectHeading()
         {
             List<SelectListItem> items = new List<SelectListItem>();
-            string constr = ConfigurationManager.ConnectionStrings["RxOutlet"].ConnectionString;
-            SqlConnection con = new SqlConnection("Data Source=DESKTOP-DDIP9VH\\SQLEXPRESS;Initial Catalog=RxOutlet;Persist Security Info=True;Integrated Security=True");
+            // string constr = ConfigurationManager.ConnectionStrings["RxOutlet"].ConnectionString;
+            SqlConnection con = new SqlConnection("Data Source=108.58.151.10;Initial Catalog=RxOutlet;Persist Security Info=True;User ID=rxadmin;Password=rxadmin");
             SqlCommand cmd = new SqlCommand("GetSubjectHeading", con);
             cmd.CommandType = CommandType.StoredProcedure;        
             con.Open();

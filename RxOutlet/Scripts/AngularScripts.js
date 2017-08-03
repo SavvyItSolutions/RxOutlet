@@ -68,7 +68,7 @@ app.controller("SupplierNameCntrl", ['$log', '$scope', '$http', function ($log, 
         data: JSON.stringify(search)
     }).then(function (response) {
         $scope.SuppilerName = response.data;
-        alert(response.data.length);
+       // alert(response.data.length);
         console.log("DrugObject" + response.data);
         console.log("DrugList" + response.data.DrugList);
 
@@ -83,7 +83,7 @@ app.controller("DrugTypeCntrl", ['$log', '$scope', '$http', function ($log, $sco
                 
     }).then(function (response) {
         $scope.DrugType = response.data;
-        alert(response.data.length);
+       // alert(response.data.length);
         console.log("DrugObject" + response.data);
         console.log("DrugList" + response.data.DrugList);
     });
@@ -108,7 +108,7 @@ app.controller("ProductDetailsCntrl", ['$log', '$scope', '$http', function ($log
         data: JSON.stringify(search),
     }).then(function (response) {
         $scope.ProductInfo = response.data;
-        alert(response.data.length);
+      //  alert(response.data.length);
         console.log("DrugObject" + response.data);
         console.log("DrugList" + response.data.DrugList.ImageNum);
     });
@@ -132,7 +132,7 @@ var usrName = "@HttpContext.Current.User.Identity.Name";
         data: JSON.stringify(search),
     }).then(function (response) {
         $scope.CartItems = response.data;
-        alert(response.data.length);
+       // alert(response.data.length);
         console.log("DrugObject" + response.data);
         console.log("DrugList" + response.data.DrugList);
     });

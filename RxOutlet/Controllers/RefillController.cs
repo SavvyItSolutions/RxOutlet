@@ -13,5 +13,16 @@ namespace RxOutlet.Controllers
         {
             return View();
         }
+
+        public ActionResult NewPrescription()
+        {
+            return View();
+        }
+
+
+        public ActionResult TransferPrescription()
+        {
+            return View();
+        }
     }
 }
