@@ -12,7 +12,12 @@ namespace RxOutlet.Business
 {
    public class RxOutletService: IRxOutletService
     {
-
+        public int Registration(RegistrationModel register)
+        {
+            IMenuDBManger menuDBManager = new MenuDBManager();
+            menuDBManager.Registration(register);
+            return 1;
+        }
         //public GetDrugNameResponse GetCartItems(string UserName)
         //{
         //    GetDrugNameResponse DrugListResponse = new GetDrugNameResponse();

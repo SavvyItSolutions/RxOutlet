@@ -21,9 +21,10 @@
             <div class="block block-tabs tab-left">
                 <div class="block-head">
                     <ul class="nav-tab">
-                        <li class="active"><a data-toggle="tab" href="#tab-1">Fill New Prescription</a></li>
-                        <li><a data-toggle="tab" href="#tab-2">Refill Your Prescription</a></li>
-                        <li><a data-toggle="tab" href="#tab-3">Transfer Your Prescription</a></li>
+
+                        <li id="1" @*class="active"*@><a data-toggle="tab" href="#tab-1">Fill New Prescription</a></li>
+                        <li id="2"><a data-toggle="tab" href="#tab-2">Refill Your Prescription</a></li>
+                        <li id="3"><a data-toggle="tab" href="#tab-3">Transfer Your Prescription</a></li>
                     </ul>
                 </div>
                 <div class="block-inner">
@@ -446,4 +447,27 @@
             <!-- ./upsell Products -->
         </div>
     </div>
-  
+  <script>
+    function GetURLParameter(sParam) {
+        var sPageURL = window.location.href;
+        var indexOfLastSlash = sPageURL.lastIndexOf("/");
+
+        if (indexOfLastSlash > 0 && sPageURL.length - 1 != indexOfLastSlash)
+            return sPageURL.substring(indexOfLastSlash + 1);
+        else
+            return 0;
+    }
+
+    //a = document.getElementById(GetURLParameter("0"));
+    //a.setAttribute("href", GetURLParameter("0"));
+
+    document.getElementById(GetURLParameter("0")).classList.add('active');
+    document.getElementById(1+GetURLParameter("0")).href = "#tab-"+GetURLParameter("0")
+    
+
+    //var href = document.location.href;
+    //var filename = href.substr(href.lastIndexOf('/') + 1);
+    //var temp = filename.split(".");
+      // $("#" + temp[0]).addClass("active");
+   
+</script>

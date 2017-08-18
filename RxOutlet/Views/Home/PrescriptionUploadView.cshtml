@@ -1,0 +1,38 @@
+﻿@model RxOutlet.Models.UploadPrescription
+<script>
+    function HandleBrowseClick() {
+        var fileinput = document.getElementById("browse");
+        fileinput.click();
+    }
+   
+    function Handlechange() {
+        var fileinput = document.getElementById("browse");
+        var textinput = document.getElementById("filename");
+
+        textinput.value = fileinput.value;
+    }
+
+
+ 
+</script>
+
+  
+    @using (Html.BeginForm())
+    {
+        
+
+
+        <input type="file" id="browse" name="fileupload" style="display: none" onChange="Handlechange();" />
+        @*@Html.TextBoxFor(x => x.Filepath, new { @class = "form-control input-sm", id = "filename" })*@
+       <input type="text" class="form-control input-sm" id="filename" readonly="true"/>
+        <input type="submit" class="button-radius btn-add-cart" value="Click to select file" id="fakeBrowse" onclick="HandleBrowseClick();" />
+
+
+    }
+
+
+<input type="file" name="file" />
+
+
+
+

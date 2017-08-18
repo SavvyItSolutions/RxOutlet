@@ -19,7 +19,9 @@ namespace RxOutlet.DataAccess.Interfaces
       IList<GetDrugNamesSearchResult> GetDrugNamesSearch();
         IList<GetDrugTypesResult> GetDrugTypes();
         IList<GetProductDetailsResult> GetProductDetails(int id);
-     //   IList<GetCartItemsResult> GetCartItems(string UserName);
+        //   IList<GetCartItemsResult> GetCartItems(string UserName);
+        int Registration(RegistrationModel register);
+
 
 
 

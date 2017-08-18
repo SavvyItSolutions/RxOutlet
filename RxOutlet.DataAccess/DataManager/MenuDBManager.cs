@@ -24,6 +24,22 @@ namespace RxOutlet.DataAccess.DataManager
             //DBContext = new DataAccess.RxOutletDataContext(connection);
         }
 
+        public int Registration(RegistrationModel register)
+        {
+            try
+            {
+                int result = DBContext.Registration(register.Name,
+                                                          register.Email,
+                                                          register.MobileNum,
+                                                          register.Password);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
         //public IList<GetCartItemsResult> GetCartItems(string UserName)
         //{
         //    try

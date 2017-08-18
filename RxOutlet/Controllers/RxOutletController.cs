@@ -15,6 +15,16 @@ namespace RxOutlet.Controllers
 {
     public class RxOutletController : ApiController
     {
+
+
+        [HttpPost]
+        public int Registration(RegistrationModel register)
+        {
+            IRxOutletService rxService = new RxOutletService();
+            return (rxService.Registration(register));
+        }
+
+
         //[Authorize]
         //[HttpGet]
         //public GetDrugNameResponse GetCartItems(string objectId)

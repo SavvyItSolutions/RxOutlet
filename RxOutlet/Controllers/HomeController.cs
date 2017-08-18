@@ -10,7 +10,12 @@ using System.Net;
 using System.Collections;
 using Newtonsoft.Json.Linq;
 using System.Linq;
-
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
+using Microsoft.WindowsAzure.Storage.Auth;
+using System.Web;
+using System.IO;
+using static System.Net.WebRequestMethods;
 
 namespace RxOutlet.Controllers
 {
@@ -34,7 +39,70 @@ namespace RxOutlet.Controllers
             return View();
         }
 
-      
+       
+        //public ActionResult upload(Uploadimage )
+        //{
+        //    if (Request.Files.Count > 0)
+        //    {
+        //        var file = Request.Files[0];
+
+        //        if (file != null && file.ContentLength > 0)
+        //        {
+        //            var fileName = Path.GetFileName(file.FileName);
+        //            var path = Path.Combine(Server.MapPath("~/Images/"), fileName);
+        //            file.SaveAs(path);
+        //        }
+        //    }
+
+        //    return RedirectToAction("PrescriptionUploadView");
+        //}
+
+        //[HttpPost]
+        //public ActionResult PrescriptionUploadView()
+        //{
+        //    if (Request.Files.Count > 0)
+        //    {
+        //        var file = Request.Files[0];
+
+        //        if (file != null && file.ContentLength > 0)
+        //        {
+        //            var fileName = Path.GetFileName(file.FileName);
+        //            var path = Path.Combine(Server.MapPath("~/Images/"), fileName);
+        //            file.SaveAs(path);
+        //        }
+        //    }
+        //    return View();
+        //}
+
+
+
+        [HttpPost]
+        public async Task<ActionResult> PrescriptionUploadView(UploadPrescription obj)
+        {
+            string path = @"G:\prescription.jpeg";
+            //  string path =obj.Filepath;
+           
+           StorageCredentials sc = new StorageCredentials("icsintegration", "+7UyQSwTkIfrL1BvEbw5+GF2Pcqh3Fsmkyj/cEqvMbZlFJ5rBuUgPiRR2yTR75s2Xkw5Hh9scRbIrb68GRCIXA==");
+            CloudStorageAccount storageaccount = new CloudStorageAccount(sc, true);
+            CloudBlobClient blobClient = storageaccount.CreateCloudBlobClient();
+            CloudBlobContainer container = blobClient.GetContainerReference("rxoutlet");
+            await container.CreateIfNotExistsAsync();
+            CloudBlockBlob blob = container.GetBlockBlobReference("Prescription.jpeg");
+            //  LoggingClass.LogInfo("Updated profile picture", screenid);
+            using (var fs = System.IO.File.Open(path, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.None))
+            {
+
+                await blob.UploadFromStreamAsync(fs);
+                //uploadsuccessmail(name,email);
+
+            }
+
+
+            return View();
+        }
+
+
+
 
         public ActionResult PC() //This view is strongly typed against User
         {
