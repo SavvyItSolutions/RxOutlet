@@ -39,7 +39,7 @@ namespace RxOutlet.Controllers
             return View();
         }
 
-       
+
         //public ActionResult upload(Uploadimage )
         //{
         //    if (Request.Files.Count > 0)

@@ -24,6 +24,22 @@ namespace RxOutlet.DataAccess.DataManager
             //DBContext = new DataAccess.RxOutletDataContext(connection);
         }
 
+        public int UploadingPrescription(UploadPrescriptionModel uploadPrescription)
+        {
+            try
+            {
+                int result = DBContext.PrescriptionsUpload(uploadPrescription.Title,
+                                                          uploadPrescription.Description
+                                                        );
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
+
         public int Registration(RegistrationModel register)
         {
             try

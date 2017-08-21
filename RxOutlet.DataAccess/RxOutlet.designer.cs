@@ -165,6 +165,13 @@ namespace RxOutlet.DataAccess
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), email, password, phoneNumber, userName);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="rxadmin.PrescriptionsUpload")]
+		public int PrescriptionsUpload([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Title", DbType="VarChar(256)")] string title, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Description", DbType="VarChar(MAX)")] string description)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), title, description);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblMainMenu")]

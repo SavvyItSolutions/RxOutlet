@@ -12,6 +12,14 @@ namespace RxOutlet.Business
 {
    public class RxOutletService: IRxOutletService
     {
+        public int UploadingPrescription(UploadPrescriptionModel uploadingPrescription)
+        {
+            IMenuDBManger menuDBManager = new MenuDBManager();
+            menuDBManager.UploadingPrescription(uploadingPrescription);
+            return 1;
+        }
+
+        
         public int Registration(RegistrationModel register)
         {
             IMenuDBManger menuDBManager = new MenuDBManager();

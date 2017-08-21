@@ -50,6 +50,7 @@
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\RegistrationModel.cs" />
     <Compile Include="Models\SubMenu.cs" />
+    <Compile Include="Models\UploadPrescriptionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Response\BaseServiceResponse.cs" />
     <Compile Include="Response\DrugSearchResponse.cs" />

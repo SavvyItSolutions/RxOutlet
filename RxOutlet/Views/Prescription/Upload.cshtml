@@ -7,6 +7,10 @@
 <h2>Upload Image</h2>
 <br />
 
+
+<script>
+
+</script>
 @using (Html.BeginForm("Upload", "Prescription", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <fieldset class="form-horizontal">
@@ -15,17 +19,20 @@
             <div class="col-md-10">
                 <input type="file" name="photo" />
             </div>
-        </div>
+        </div>cc
         <div class="form-group">
             &nbsp;
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Submit" class="btn" />
+                <input type="submit" value="Submit" class="btn"  id="btnDel"/>
             </div>
 
         </div>
     </fieldset>
 
 }
+
+
+
 
 
 

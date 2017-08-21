@@ -173,8 +173,7 @@ function minus() {
 
 
 
-
-jQuery(document).ready(function () {
+$(document).ready(function () {
     // This button will increment the value
     $('.qtyplus').click(function (e) {
         // Stop acting like a button
@@ -212,6 +211,78 @@ jQuery(document).ready(function () {
 });
 
 
+$(document).ready(function () {
+   
+    $(".btnSubmit").click(function () {
+        alert("hi");
+        var PrescriptionDeatils = {
+            "title": "Pre1",
+            "description": "desc"
+        };
+
+        $.ajax({
+            type: "POST",
+            url: '../api/rxoutlet/UploadingPrescription',
+            data: JSON.stringify(PrescriptionDeatils),
+            contentType: "application/json;charset=utf-8",
+            sucess: function (data, status, xhr) {
+                alert("The Result is : " + status + ":" + data);
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+    });
+
+});
 
 
-    
+$("#btnDel").click(function () {
+    var PrescriptionDeatils = {
+        "title": "Pre1",
+        "description": "desc"
+    };
+
+    $.ajax({
+        type: "POST",
+        url: '../api/rxoutlet/UploadingPrescription',
+        data: JSON.stringify(PrescriptionDeatils),
+        contentType: "application/json;charset=utf-8",
+        sucess: function (data, status, xhr) {
+            alert("The Result is : " + status + ":" + data);
+        },
+        error: function (xhr) {
+            alert(xhr.responseText);
+        }
+    });
+});
+
+
+var bla = $('#txt_name').val();
+
+//Set
+$('#txt_name').val(bla);
+
+$("#btnRegister").click(function () {
+    var Registration = {
+        "Name": $('#txtName').val(),
+        "Email": $('#txtEmail').val(),
+        "PhoneNumber": $('#txtMobileNum').val(),
+        "Password": $('#txtPassword').val(),
+        "Captcha": $('#txtCaptcha').val()
+    };
+
+    $.ajax({
+        type: "POST",
+        url: '../api/rxoutlet/Registration',
+        data: JSON.stringify(Registration),
+        contentType: "application/json;charset=utf-8",
+        sucess: function (data, status, xhr) {
+            alert("The Result is : " + status + ":" + data);
+        },
+        error: function (xhr) {
+            alert(xhr.responseText);
+        }
+    });
+});
+

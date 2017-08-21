@@ -21,8 +21,10 @@ namespace RxOutlet.Controllers
         public async Task<ActionResult> Upload(HttpPostedFileBase photo)
         {
             var imageUrl = await imageService.UploadImageAsync(photo);
+
             TempData["LatestImage"] = imageUrl.ToString();
             return RedirectToAction("LatestImage");
+           // return RedirectToAction("upload");
         }
 
         public ActionResult LatestImage()

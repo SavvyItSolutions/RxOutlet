@@ -39,7 +39,7 @@ namespace RxOutlet
                 CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(imageName);
                 cloudBlockBlob.Properties.ContentType = imageToUpload.ContentType;
                 await cloudBlockBlob.UploadFromStreamAsync(imageToUpload.InputStream);
-
+               // CloudBlockBlob blob = cloudBlobContainer.GetBlockBlobReference();
                 imageFullPath = cloudBlockBlob.Uri.ToString();
             }
             catch (Exception ex)

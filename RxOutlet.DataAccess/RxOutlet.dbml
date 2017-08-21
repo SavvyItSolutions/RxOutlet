@@ -108,4 +108,9 @@
     <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(256)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="rxadmin.PrescriptionsUpload" Method="PrescriptionsUpload">
+    <Parameter Name="Title" Parameter="title" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="Description" Parameter="description" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

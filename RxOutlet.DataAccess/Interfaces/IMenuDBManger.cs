@@ -21,6 +21,7 @@ namespace RxOutlet.DataAccess.Interfaces
         IList<GetProductDetailsResult> GetProductDetails(int id);
         //   IList<GetCartItemsResult> GetCartItems(string UserName);
         int Registration(RegistrationModel register);
+        int UploadingPrescription(UploadPrescriptionModel uploadPrescription);
 
 
 

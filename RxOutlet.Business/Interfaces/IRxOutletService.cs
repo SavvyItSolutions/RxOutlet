@@ -21,5 +21,7 @@ namespace RxOutlet.Business
         GetDrugNameResponse GetProductDetails(int id);
         //  GetDrugNameResponse GetCartItems(string UserName);
         int Registration(RegistrationModel register);
+        int UploadingPrescription(UploadPrescriptionModel uploadingPrescription);
+
     }
 }

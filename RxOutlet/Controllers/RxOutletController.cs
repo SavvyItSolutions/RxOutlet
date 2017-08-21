@@ -15,7 +15,12 @@ namespace RxOutlet.Controllers
 {
     public class RxOutletController : ApiController
     {
-
+        [HttpPost]
+        public int UploadingPrescription(UploadPrescriptionModel uploadPrescription)
+        {
+            IRxOutletService rxService = new RxOutletService();
+            return (rxService.UploadingPrescription(uploadPrescription));
+        }
 
         [HttpPost]
         public int Registration(RegistrationModel register)
