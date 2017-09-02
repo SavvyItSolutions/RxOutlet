@@ -371,8 +371,8 @@ $("#btnRegister").click(function () {
     };
     $.ajax({
         type: "POST",
-       // url: 'http://rxoutlet.azurewebsites.net/api/RxOutlet/Registration',
-        url: '../api/Account/Registration',
+        url: 'http://rxoutlet.azurewebsites.net/api/RxOutlet/Registration',
+       // url: '../api/Account/Registration',
         data: JSON.stringify(Registration),
         contentType: "application/json;charset=utf-8",
         sucess: function (data, status, xhr) {
@@ -383,7 +383,8 @@ $("#btnRegister").click(function () {
         }
 
     //    error: function (err) {
-    //    alert("error - " + err);
+        //    alert("error - " + err);
+
     //},
     //success: function () {
     //    window.location.href = "http://localhost:64404/Prescription/Upload";
