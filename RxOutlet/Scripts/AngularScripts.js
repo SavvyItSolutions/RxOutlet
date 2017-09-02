@@ -422,8 +422,8 @@ $("#btnLogin").click(function () {
     //});
     $.ajax({
         type: "POST",
-        url: 'http://rxoutlet.azurewebsites.net/api/RxOutlet/Login/',
-        //url: 'http://localhost:64404/api/RxOutlet/Login/',
+       // url: 'http://rxoutlet.azurewebsites.net/api/RxOutlet/Login/',
+        url: 'http://localhost:64404/api/RxOutlet/Login/',
         data: JSON.stringify(Login),
         contentType: "application/json;charset=utf-8",
 
@@ -433,12 +433,12 @@ $("#btnLogin").click(function () {
         },
         success: function () {
             if (Email == 'test@gmail.com' && pswd == 'test') {http://localhost:64404
-                 window.location.href = "http://rxoutlet.azurewebsites.net/Admin/AdminPage";
-                   // window.location.href = "http://localhost:64404/Admin/AdminPage"
+              //   window.location.href = "http://rxoutlet.azurewebsites.net/Admin/AdminPage";
+                   window.location.href = "http://localhost:64404/Admin/AdminPage"
             }
             else
-                  window.location.href = "http://rxoutlet.azurewebsites.net/Prescription/Upload";
-               // window.location.href = "http://localhost:64404/Prescription/Upload";
+                 // window.location.href = "http://rxoutlet.azurewebsites.net/Prescription/Upload";
+                window.location.href = "http://localhost:64404/Prescription/Upload";
 
 
         }
