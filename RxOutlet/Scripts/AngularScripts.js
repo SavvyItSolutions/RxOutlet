@@ -145,7 +145,7 @@ var usrName = "@HttpContext.Current.User.Identity.Name";
 app.controller("PresListCntrl", ['$log', '$scope', '$http', function ($log, $scope, $http) {
     $http({
         method: 'Get',
-        url: "http://localhost:64404//api/RxOutlet/GetPrescriptionList" ,
+        url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/GetPrescriptionList",
         data: JSON.stringify(search),
     }).then(function (response) {
         $scope.PrescriptionList = response.data;
