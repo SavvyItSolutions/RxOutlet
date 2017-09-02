@@ -244,7 +244,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: '../api/rxoutlet/UploadingPrescription',
+            url: 'http://rxoutlet.azurewebsites.net/api/rxoutlet/UploadingPrescription',
             data: JSON.stringify(PrescriptionDeatils),
             contentType: "application/json;charset=utf-8",
             sucess: function (data, status, xhr) {
@@ -371,7 +371,7 @@ $("#btnRegister").click(function () {
     };
     $.ajax({
         type: "POST",
-        url: '../api/RxOutlet/Registration',
+        url: 'http://rxoutlet.azurewebsites.net/api/RxOutlet/Registration',
         //url: '../api/Account/Register',
         data: JSON.stringify(Registration),
         contentType: "application/json;charset=utf-8",
@@ -421,7 +421,7 @@ $("#btnLogin").click(function () {
     //});
     $.ajax({
         type: "POST",
-        url: '../api/RxOutlet/Login/',
+        url: 'http://rxoutlet.azurewebsites.net/api/RxOutlet/Login/',
         data: JSON.stringify(Login),
         contentType: "application/json;charset=utf-8",
 
