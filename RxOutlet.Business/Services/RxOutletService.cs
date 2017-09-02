@@ -12,20 +12,89 @@ namespace RxOutlet.Business
 {
    public class RxOutletService: IRxOutletService
     {
+
+      
+
+        public ConfirmationEmailResponse ConfirmationMail(string UserID)
+        {
+            ConfirmationEmailResponse ConfirmationMailResponse = new ConfirmationEmailResponse();
+            List<ConfirmationEmailModel> EmailList = new List<ConfirmationEmailModel>();
+
+            IMenuDBManger menuDBManager = new MenuDBManager();
+            IList<ConfirmationEmailResult> ConfirmationMailresults = menuDBManager.ConfirmationEmail(UserID).ToList();
+
+            foreach (ConfirmationEmailResult result in ConfirmationMailresults)
+            {
+                EmailList.Add(new ConfirmationEmailModel
+                {
+
+                    Title = result.Title,
+                    Email = result.Email
+                });
+            }
+            ConfirmationMailResponse.ConfirmationEmail = EmailList;
+            return ConfirmationMailResponse;
+        }
+
+        public PrescriptionResponse GetPrescriptionList()
+        {
+            PrescriptionResponse prescriptionResponse = new PrescriptionResponse();
+            List<UploadPrescriptionModel> prescriptionList = new List<UploadPrescriptionModel>();
+
+            IMenuDBManger menuDBManager = new MenuDBManager();
+            IList<GetPrescriptionListResult> PrescriptionListresults = menuDBManager.GetPrescriptionList().ToList();
+
+            foreach (GetPrescriptionListResult result in PrescriptionListresults)
+            {
+                prescriptionList.Add(new UploadPrescriptionModel
+                {
+                    Name=result.Name,
+                    Email=result.Email,
+                    PhoneNumber=result.PhoneNumber,
+                    Title = result.Title,
+                    Description = result.Description,
+                    Filepath = result.imageUrl,
+                    CreatedDate= Convert.ToDateTime(result.CreatedDate)
+                });
+            }
+            prescriptionResponse.GetPrescriptionList = prescriptionList;
+            return prescriptionResponse;
+        }
+
+
+        public PrescriptionResponse GetUserPrescriptionList(string UserID)
+        {
+            PrescriptionResponse prescriptionResponse = new PrescriptionResponse();
+            List<UploadPrescriptionModel> prescriptionList = new List<UploadPrescriptionModel>();
+
+            IMenuDBManger menuDBManager = new MenuDBManager();
+            IList<GetUserPrescriptionListResult> userPrescriptionListresults = menuDBManager.GetUserPrescriptionList(UserID).ToList();
+
+            foreach (GetUserPrescriptionListResult result in userPrescriptionListresults)
+            {
+                prescriptionList.Add(new UploadPrescriptionModel
+                {
+
+                  Title=result.Title,
+                  Description=result.Description,
+                  Filepath=result.imageUrl
+
+                });
+            }
+            prescriptionResponse.GetUserPrescriptionList = prescriptionList;
+            return prescriptionResponse;
+        }
+
         public int UploadingPrescription(UploadPrescriptionModel uploadingPrescription)
         {
             IMenuDBManger menuDBManager = new MenuDBManager();
+
             menuDBManager.UploadingPrescription(uploadingPrescription);
             return 1;
         }
 
-        
-        public int Registration(RegistrationModel register)
-        {
-            IMenuDBManger menuDBManager = new MenuDBManager();
-            menuDBManager.Registration(register);
-            return 1;
-        }
+    
+
         //public GetDrugNameResponse GetCartItems(string UserName)
         //{
         //    GetDrugNameResponse DrugListResponse = new GetDrugNameResponse();
@@ -51,6 +120,10 @@ namespace RxOutlet.Business
         //    DrugListResponse.DrugList = itemList;
         //    return DrugListResponse;
         //}
+
+
+
+
 
 
 

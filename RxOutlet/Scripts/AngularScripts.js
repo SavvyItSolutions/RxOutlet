@@ -122,6 +122,8 @@ app.controller("ProductDetailsCntrl", ['$log', '$scope', '$http', function ($log
 }]);
 
 
+
+
 app.controller("CartItemsCntrl", ['$log', '$scope', '$http', function ($log, $scope, $http) {
     
 var usrName = "@HttpContext.Current.User.Identity.Name";
@@ -137,6 +139,26 @@ var usrName = "@HttpContext.Current.User.Identity.Name";
         console.log("DrugList" + response.data.DrugList);
     });
 }]);
+
+
+
+app.controller("PresListCntrl", ['$log', '$scope', '$http', function ($log, $scope, $http) {
+    $http({
+        method: 'Get',
+        url: "http://localhost:64404//api/RxOutlet/GetPrescriptionList" ,
+        data: JSON.stringify(search),
+    }).then(function (response) {
+        $scope.PrescriptionList = response.data;
+        alert(PrescriptionList.GetPrescriptionList.Title);
+
+        // alert(response.data.length);
+        console.log("DrugObject" + response.data);
+        console.log("DrugList" + response.data.DrugList);
+    });
+}]);
+
+
+
 
 
 $(document).ready(function () {
@@ -237,52 +259,192 @@ $(document).ready(function () {
 });
 
 
-$("#btnDel").click(function () {
-    var PrescriptionDeatils = {
-        "title": "Pre1",
-        "description": "desc"
-    };
 
-    $.ajax({
-        type: "POST",
-        url: '../api/rxoutlet/UploadingPrescription',
-        data: JSON.stringify(PrescriptionDeatils),
-        contentType: "application/json;charset=utf-8",
-        sucess: function (data, status, xhr) {
-            alert("The Result is : " + status + ":" + data);
-        },
-        error: function (xhr) {
-            alert(xhr.responseText);
-        }
-    });
-});
+  
+
+//$("#btnPrescriptionUpload").click(function () {
+//    //e.preventDefault(); // <------------------ stop default behaviour of button
+//    //var element = this;    
+//    //$.ajax({
+//    //    url: "/Prescription/Upload",
+//    //    type: "POST",
+    
+//    //    dataType: "json",
+//    //    traditional: true,
+//    //    contentType: "application/json; charset=utf-8",
+//    //    success: function (data) {
+//    //        if (data.status == "Success") {
+//    //            alert("Done");
+//    //            $(element).closest("form").submit(); //<------------ submit form
+//    //        } else {
+//    //            alert("Error occurs on the Database level!");
+//    //        }
+//    //    },
+//    //    error: function () {
+//    //        alert("An error has occured!!!");
+//    //    }
+//    //});
+
+//    //$.ajax({
+//    //    type: "POST",
+//    //    url:  '../api/rxoutlet/imagePath',
+        
+//    //    contentType: "application/json;charset=utf-8",
+//    //    sucess: function (data,status, xhr) {
+//    //        alert(data);
+//    //    },
+//    //    error: function (xhr) {
+//    //        alert(xhr.responseText);
+//    //    }
+//    //});
 
 
-var bla = $('#txt_name').val();
 
-//Set
-$('#txt_name').val(bla);
+//    //var path;
+    
+//    //var frm = $("#send-contact"),  // our form
+//    //           url = frm.attr("GetImageURL"),  // our post action
+//    //           data = frm.serialize();     // our data to be posted
+
+//    //$.post(url, data, function (data) {
+//    //    // data has our returned Json from our view
+//    // path=   $("#txtPrescriptionDescription").text(data.imageUrl); // just to see it, do what you want
+//    //   // no more loading as we have what we need
+//    //});
+
+
+
+//    var PrescriptionDeatils = {
+//        "title": $('#txtPrescriptionTitle').val(),
+//        "description": $("#txtPrescriptionDescription").val()
+//    };
+   
+//    $.ajax({
+//        type: "POST",
+//        url: '../api/rxoutlet/UploadingPrescription',
+//        data: JSON.stringify(PrescriptionDeatils),
+//        contentType: "application/json;charset=utf-8",
+//        success: function (data) {
+//            if (data.status == "Success") {
+//                alert("Done");
+//                $(element).closest("form").submit(); //<------------ submit form
+//            } else {
+//                alert("Error occurs on the Database level!");
+//            }
+//        },
+//        //sucess: function (data, status, xhr) {
+//        //    alert("The Result is : " + status + ":" + data);
+//        //},
+//        error: function (xhr) {
+//            alert(xhr.responseText);
+//        }
+//    });
+//});
+
 
 $("#btnRegister").click(function () {
+
+
+    //function Encrypt(str) {
+    //    if (!str) str = $('#txtPassword').val();
+    //    str = (str == "undefined" || str == "null") ? "" : str;
+    //    try {
+    //        var key = 146;
+    //        var pos = 0;
+    //        ostr = '';
+    //        while (pos < str.length) {
+    //            ostr = ostr + String.fromCharCode(str.charCodeAt(pos) ^ key);
+    //            pos += 1;
+    //        }
+
+    //        return ostr;
+    //    } catch (ex) {
+    //        return '';
+    //    }
+    //}
+
     var Registration = {
         "Name": $('#txtName').val(),
         "Email": $('#txtEmail').val(),
-        "PhoneNumber": $('#txtMobileNum').val(),
-        "Password": $('#txtPassword').val(),
-        "Captcha": $('#txtCaptcha').val()
+        "MobileNum": $('#txtMobileNum').val(),
+        "Password":$('#txtPassword').val()
     };
-
     $.ajax({
         type: "POST",
-        url: '../api/rxoutlet/Registration',
+        url: '../api/RxOutlet/Registration',
+        //url: '../api/Account/Register',
         data: JSON.stringify(Registration),
         contentType: "application/json;charset=utf-8",
         sucess: function (data, status, xhr) {
-            alert("The Result is : " + status + ":" + data);
+          
         },
         error: function (xhr) {
-            alert(xhr.responseText);
+            alert("Error : "+xhr.responseText);
         }
+
+    //    error: function (err) {
+    //    alert("error - " + err);
+    //},
+    //success: function () {
+    //    window.location.href = "http://localhost:64404/Prescription/Upload";
+    //}
     });
+
+    //$("#txtName").val("");
+    //$("#txtEmail").val("");
+    //$("#txtMobileNum").val("");
+    //$("#txtPassword").val("");sujeeth
+  
+    //$("#txtConfirmPassword").val("");
+    //$("#txtCaptcha").val("");
 });
 
+
+
+$("#btnLogin").click(function () {
+  
+    var Login = {
+        "Email": $('#txtLoginEmail').val(),
+        "Password":$('#txtLoginPwd').val(),
+        "RememberMe":false
+    };
+
+    var Email = $('#txtLoginEmail').val();
+    var pswd=$('#txtLoginPwd').val();
+    //var previousValue = $('#txtLoginPwd').val();
+    //$("#txtLoginPwd").keyup(function (e) {
+    //    var currentValue = $(this).val();
+    //    if (currentValue != previousValue) {
+    //        previousValue = currentValue;
+    //        alert("Value changed!");
+    //    }
+    //});
+    $.ajax({
+        type: "POST",
+        url: '../api/RxOutlet/Login/',
+        data: JSON.stringify(Login),
+        contentType: "application/json;charset=utf-8",
+
+       
+        error: function (err) {
+            alert("error - " + err);
+        },
+        success: function () {
+            if (Email == 'test@gmail.com' && pswd == 'test') {
+                window.location.href = "http://rxoutlet.azurewebsites.net/Admin/AdminPage";
+            }
+            else
+                window.location.href = "http://rxoutlet.azurewebsites.net/Prescription/Upload";
+        }
+
+    });
+
+  
+
+    //$("#txtLoginEmail").val("");
+    //$("#txtLoginPwd").val("");
+    //if ($("txtLoginPwd").val() ='') {
+    //    alert("Not a valid Number");
+    //} else { }
+  
+});

@@ -42,5 +42,8 @@ namespace RxOutlet.Models
         [DataType(DataType.Text)]
         [Display(Name = "Captcha")]
         public string Captcha { get; set; }
+
+
+        
     }
 }

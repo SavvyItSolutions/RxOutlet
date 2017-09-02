@@ -92,10 +92,10 @@ namespace RxOutlet.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
-        [DataType(DataType.Text)]
-        [Display(Name = "Captcha")]
-        public string Captcha { get; set; }
+        //[Required]
+        //[DataType(DataType.Text)]
+        //[Display(Name = "Captcha")]
+        //public string Captcha { get; set; }
 
 
 

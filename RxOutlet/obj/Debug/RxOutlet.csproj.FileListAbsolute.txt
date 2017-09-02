@@ -243,7 +243,9 @@ G:\GitHub Folder\RxOutlet\RxOutlet\bin\Owin.dll
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\RxOutlet.Business.dll
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\RxOutlet.DataAccess.dll
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\RxOutlet.Models.dll
+G:\GitHub Folder\RxOutlet\RxOutlet\bin\SendGrid.dll
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\System.Net.Http.Formatting.dll
+G:\GitHub Folder\RxOutlet\RxOutlet\bin\System.Runtime.WindowsRuntime.dll
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\System.Spatial.dll
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\System.Web.Helpers.dll
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\System.Web.Http.dll
@@ -268,6 +270,8 @@ G:\GitHub Folder\RxOutlet\RxOutlet\bin\Microsoft.CodeDom.Providers.DotNetCompile
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\Microsoft.Data.Edm.xml
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\Microsoft.Data.OData.xml
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\Microsoft.Data.Services.Client.xml
+G:\GitHub Folder\RxOutlet\RxOutlet\bin\Microsoft.Owin.xml
+G:\GitHub Folder\RxOutlet\RxOutlet\bin\Microsoft.Owin.Host.SystemWeb.xml
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\Microsoft.Practices.EnterpriseLibrary.Common.xml
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\Microsoft.Practices.ServiceLocation.pdb
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\Microsoft.Practices.ServiceLocation.xml
@@ -279,6 +283,9 @@ G:\GitHub Folder\RxOutlet\RxOutlet\bin\Microsoft.WindowsAzure.Configuration.xml
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\Microsoft.WindowsAzure.Storage.pdb
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\Microsoft.WindowsAzure.Storage.xml
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\Newtonsoft.Json.xml
+G:\GitHub Folder\RxOutlet\RxOutlet\bin\SendGrid.pdb
+G:\GitHub Folder\RxOutlet\RxOutlet\bin\SendGrid.xml
+G:\GitHub Folder\RxOutlet\RxOutlet\bin\System.Runtime.WindowsRuntime.xml
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\System.Spatial.xml
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\System.Web.Helpers.xml
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\System.Web.Mvc.xml
@@ -296,8 +303,6 @@ G:\GitHub Folder\RxOutlet\RxOutlet\bin\EntityFramework.SqlServer.xml
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\Microsoft.AspNet.Identity.Core.xml
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\Microsoft.AspNet.Identity.Owin.xml
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-G:\GitHub Folder\RxOutlet\RxOutlet\bin\Microsoft.Owin.xml
-G:\GitHub Folder\RxOutlet\RxOutlet\bin\Microsoft.Owin.Host.SystemWeb.xml
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\Microsoft.Owin.Security.xml
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\Microsoft.Owin.Security.Facebook.xml
 G:\GitHub Folder\RxOutlet\RxOutlet\bin\Microsoft.Owin.Security.Cookies.xml

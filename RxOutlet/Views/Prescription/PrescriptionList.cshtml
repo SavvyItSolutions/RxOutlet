@@ -1,0 +1,31 @@
+﻿<table class="cart_summary" ng-controller="PresListCntrl">
+    <thead>
+        <tr>
+            <th class="cart_product">Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Date</th>
+            <th class="cart_product">Title</th>
+            <th>Description</th>
+            <th>Image</th>
+           
+            <th class="action"><i class="fa fa-trash-o"></i></th>
+        </tr>
+    </thead>
+    <tbody ng-repeat="x in PrescriptionList.GetPrescriptionList">
+        <tr>
+
+            <td><span>{{x.Name}}</span></td>
+            <td><span>{{x.Email}}</span></td>
+            <td><span>{{x.PhoneNumber}}</span></td>
+            <td><span>{{x.CreatedDate}}</span></td>
+            <td ><span>{{x.Title}}</span></td>
+            <td ><span>{{x.Description}}</span></td>
+            <td ><a href={{x.Filepath}} target="_blank">Prescription Image</a>
+            </td>
+
+        </tr>
+
+    </tbody>
+
+</table>

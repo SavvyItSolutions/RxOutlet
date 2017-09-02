@@ -45,7 +45,33 @@ namespace RxOutlet
                       "~/Content/responsive.css",
                         "~/Content/style.css",
                        "~/Content/style-circle.css",
-                      "~/Content/AutoSearchStyle.css"));
+                      "~/Content/AutoSearchStyle.css",
+                       "~/Content/ace-ie.min.css",
+                        "~/Content/ace-part2.min.css",
+                         "~/Content/ace-rtl.min.css",
+                          "~/Content/ace-skins.min.css",
+                           "~/Content/ace.min.css",
+    "~/Content/bootstrap-colorpicker.min.css",
+                             "~/Content/bootstrap-datepicker3.min.css",
+                              "~/Content/bootstrap-datetimepicker.min.css",
+                               "~/Content/bootstrap-duallistbox.min.css",
+                                "~/Content/bootstrap-editable.min.css",
+                                 "~/Content/bootstrap-multiselect.min.css",
+                                  "~/Content/bootstrap-timepicker.min.css",
+                                   "~/Content/chosen.min.css",
+                                    "~/Content/datepicker.css",
+                                     "~/Content/daterangepicker.min.css",
+                                     "~/Content/colorbox.min.css",
+                            "~/Content/select2.min.css",
+                             "~/Content/prettify.min.css",
+                              "~/Content/jquery.gritter.min.css",
+                               "~/Content/jquery-ui.min.css",
+                                "~/Content/jquery-ui.custom.min.css",
+                                 "~/Content/fullcalendar.min.css",
+                                  "~/Content/fonts.googleapis.com.css",
+                                   "~/Content/dropzone.min.css"
+  
+                      ));
         }
     }
 }

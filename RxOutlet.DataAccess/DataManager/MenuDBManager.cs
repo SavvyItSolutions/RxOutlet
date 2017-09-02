@@ -7,6 +7,14 @@ using System.Threading.Tasks;
 using RxOutlet.DataAccess.Interfaces;
 using System.Configuration;
 using RxOutlet.Models;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Web;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
+using System.IO;
 
 namespace RxOutlet.DataAccess.DataManager
 {
@@ -15,21 +23,55 @@ namespace RxOutlet.DataAccess.DataManager
         public RxOutletDataContext DBContext;
         public RxOutletDataContext DBContextRxOutlet;
 
+        BlobService objBlobService = new BlobService();
+
+        public string path { get; set; }
+
+        public string imageFullPath;
+
+        public class ApplicationUser : IdentityUser
+        {
+            public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
+            {
+                // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
+                var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+                // Add custom user claims here
+                return userIdentity;
+            }
+        }
+
+        public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+        {
+            public ApplicationDbContext()
+                : base("DefaultConnection", throwIfV1Schema: false)
+            {
+            }
+
+            public static ApplicationDbContext Create()
+            {
+                return new ApplicationDbContext();
+            }
+        }
+
         public MenuDBManager()
-          {
+        {
             string connection = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             DBContext = new DataAccess.RxOutletDataContext(connection);
 
             //string connection = System.Configuration.ConfigurationManager.ConnectionStrings["RxOutlet"].ConnectionString;
             //DBContext = new DataAccess.RxOutletDataContext(connection);
         }
+       
 
-        public int UploadingPrescription(UploadPrescriptionModel uploadPrescription)
+    public  int UploadingPrescription(UploadPrescriptionModel uploadPrescription)
         {
             try
             {
-                int result = DBContext.PrescriptionsUpload(uploadPrescription.Title,
-                                                          uploadPrescription.Description
+                int result = DBContext.PrescriptionsUpload(
+                   uploadPrescription.Title,
+                    uploadPrescription.Description,
+                    uploadPrescription.Filepath ,
+                    uploadPrescription.UserID   
                                                         );
                 return result;
             }
@@ -40,21 +82,49 @@ namespace RxOutlet.DataAccess.DataManager
         }
 
 
-        public int Registration(RegistrationModel register)
+       
+
+        public IList<ConfirmationEmailResult> ConfirmationEmail(string UserID)
         {
             try
             {
-                int result = DBContext.Registration(register.Name,
-                                                          register.Email,
-                                                          register.MobileNum,
-                                                          register.Password);
-                return result;
+                ISingleResult<ConfirmationEmailResult> result =
+                DBContext.ConfirmationEmail(UserID);
+                return result.ToList();
             }
             catch (Exception ex)
             {
-                return 0;
+                return null;
             }
         }
+        public IList<GetPrescriptionListResult> GetPrescriptionList()
+        {
+            try
+            {
+                ISingleResult<GetPrescriptionListResult> result =
+                DBContext.GetPrescriptionList();
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public IList<GetUserPrescriptionListResult> GetUserPrescriptionList(string UserID)
+        {
+            try
+            {
+                ISingleResult<GetUserPrescriptionListResult> result =
+                DBContext.GetUserPrescriptionList(UserID);
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
 
         //public IList<GetCartItemsResult> GetCartItems(string UserName)
         //{
@@ -73,6 +143,8 @@ namespace RxOutlet.DataAccess.DataManager
 
         public IList<GetProductDetailsResult> GetProductDetails(int id)
         {
+
+
             try
             {
                 ISingleResult<GetProductDetailsResult> result =

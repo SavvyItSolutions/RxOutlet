@@ -48,7 +48,7 @@ namespace RxOutlet.DataAccess
     #endregion
 		
 		public RxOutletDataContext() : 
-				base(global::RxOutlet.DataAccess.Properties.Settings.Default.RxOutletConnectionString3, mappingSource)
+				base(global::RxOutlet.DataAccess.Properties.Settings.Default.RxOutletConnectionString4, mappingSource)
 		{
 			OnCreated();
 		}
@@ -166,11 +166,39 @@ namespace RxOutlet.DataAccess
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="rxadmin.PrescriptionsUpload")]
-		public int PrescriptionsUpload([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Title", DbType="VarChar(256)")] string title, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Description", DbType="VarChar(MAX)")] string description)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="rxadmin.Login")]
+		public ISingleResult<LoginResult> Login([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="NVarChar(256)")] string email)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), title, description);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), email);
+			return ((ISingleResult<LoginResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="rxadmin.PrescriptionsUpload")]
+		public int PrescriptionsUpload([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Title", DbType="VarChar(256)")] string title, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Description", DbType="VarChar(MAX)")] string description, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ImageUrl", DbType="VarChar(256)")] string imageUrl, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="NVarChar(128)")] string userID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), title, description, imageUrl, userID);
 			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="rxadmin.GetUserPrescriptionList")]
+		public ISingleResult<GetUserPrescriptionListResult> GetUserPrescriptionList([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="NVarChar(128)")] string userID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID);
+			return ((ISingleResult<GetUserPrescriptionListResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="rxadmin.ConfirmationEmail")]
+		public ISingleResult<ConfirmationEmailResult> ConfirmationEmail([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="NVarChar(128)")] string userID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID);
+			return ((ISingleResult<ConfirmationEmailResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="rxadmin.GetPrescriptionList")]
+		public ISingleResult<GetPrescriptionListResult> GetPrescriptionList()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<GetPrescriptionListResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -1649,6 +1677,308 @@ namespace RxOutlet.DataAccess
 				if ((this._MenuItemName != value))
 				{
 					this._MenuItemName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class LoginResult
+	{
+		
+		private string _Passwordhash;
+		
+		private string _PhoneNumber;
+		
+		private string _UserName;
+		
+		public LoginResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Passwordhash", DbType="NVarChar(MAX)")]
+		public string Passwordhash
+		{
+			get
+			{
+				return this._Passwordhash;
+			}
+			set
+			{
+				if ((this._Passwordhash != value))
+				{
+					this._Passwordhash = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="NVarChar(MAX)")]
+		public string PhoneNumber
+		{
+			get
+			{
+				return this._PhoneNumber;
+			}
+			set
+			{
+				if ((this._PhoneNumber != value))
+				{
+					this._PhoneNumber = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this._UserName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetUserPrescriptionListResult
+	{
+		
+		private string _Title;
+		
+		private string _Description;
+		
+		private string _imageUrl;
+		
+		public GetUserPrescriptionListResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(256) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this._Title = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this._Description = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_imageUrl", DbType="VarChar(256)")]
+		public string imageUrl
+		{
+			get
+			{
+				return this._imageUrl;
+			}
+			set
+			{
+				if ((this._imageUrl != value))
+				{
+					this._imageUrl = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConfirmationEmailResult
+	{
+		
+		private string _Email;
+		
+		private string _Title;
+		
+		public ConfirmationEmailResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(256)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(256) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this._Title = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetPrescriptionListResult
+	{
+		
+		private string _Email;
+		
+		private string _PhoneNumber;
+		
+		private string _Name;
+		
+		private string _Title;
+		
+		private string _Description;
+		
+		private string _imageUrl;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		public GetPrescriptionListResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(256)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="NVarChar(MAX)")]
+		public string PhoneNumber
+		{
+			get
+			{
+				return this._PhoneNumber;
+			}
+			set
+			{
+				if ((this._PhoneNumber != value))
+				{
+					this._PhoneNumber = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(256) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this._Title = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this._Description = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_imageUrl", DbType="VarChar(256)")]
+		public string imageUrl
+		{
+			get
+			{
+				return this._imageUrl;
+			}
+			set
+			{
+				if ((this._imageUrl != value))
+				{
+					this._imageUrl = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this._CreatedDate = value;
 				}
 			}
 		}
