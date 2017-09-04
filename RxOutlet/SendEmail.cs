@@ -1,6 +1,7 @@
 ﻿using SendGrid;
-using System.Configuration;
 using SendGrid.Helpers.Mail;
+using System.Configuration;
+
 using System.Threading.Tasks;
 
 namespace RxOutlet
@@ -16,7 +17,7 @@ namespace RxOutlet
                 PlainTextContent = "Hello " + firstName + "!",
                 HtmlContent = "<strong>Hello " + firstName + "!</strong><br /><br />Confirmation Mail</a><br /><br />Thanks"
             };
-          
+
             myMessage.AddTo(new EmailAddress(email, "RxOutlet Confirmation Mail"));
             var apiKey = ConfigurationManager.AppSettings["Sendgrid_key"];
             var client = new SendGridClient(apiKey);

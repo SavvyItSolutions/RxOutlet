@@ -9,11 +9,7 @@ using System.Configuration;
 using RxOutlet.Models;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using System.Web;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Blob;
 using System.IO;
 
 namespace RxOutlet.DataAccess.DataManager
@@ -23,36 +19,13 @@ namespace RxOutlet.DataAccess.DataManager
         public RxOutletDataContext DBContext;
         public RxOutletDataContext DBContextRxOutlet;
 
-        BlobService objBlobService = new BlobService();
+        
 
         public string path { get; set; }
 
         public string imageFullPath;
 
-        public class ApplicationUser : IdentityUser
-        {
-            public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
-            {
-                // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
-                var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-                // Add custom user claims here
-                return userIdentity;
-            }
-        }
-
-        public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-        {
-            public ApplicationDbContext()
-                : base("DefaultConnection", throwIfV1Schema: false)
-            {
-            }
-
-            public static ApplicationDbContext Create()
-            {
-                return new ApplicationDbContext();
-            }
-        }
-
+       
         public MenuDBManager()
         {
             string connection = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;

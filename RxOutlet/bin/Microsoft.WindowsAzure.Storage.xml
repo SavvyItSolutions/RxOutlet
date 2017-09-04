@@ -10950,6 +10950,78 @@
             to <c>null</c>, then the client library will calculate the MD5 value internally.
             </remarks>
         </member>
+        <member name="M:Microsoft.WindowsAzure.Storage.Blob.CloudBlockBlob.SetStandardBlobTier(Microsoft.WindowsAzure.Storage.Blob.StandardBlobTier,Microsoft.WindowsAzure.Storage.AccessCondition,Microsoft.WindowsAzure.Storage.Blob.BlobRequestOptions,Microsoft.WindowsAzure.Storage.OperationContext)">
+            <summary>
+            Sets the tier of the blob on a standard storage account.
+            </summary>
+            <param name="standardBlobTier">A <see cref="T:Microsoft.WindowsAzure.Storage.Blob.StandardBlobTier"/> representing the tier to set.</param>
+            <param name="accessCondition">An <see cref="T:Microsoft.WindowsAzure.Storage.AccessCondition"/> object that represents the condition that must be met in order for the request to proceed. If <c>null</c>, no condition is used.</param>
+            <param name="options">A <see cref="T:Microsoft.WindowsAzure.Storage.Blob.BlobRequestOptions"/> object that specifies additional options for the request, or <c>null</c>. If <c>null</c>, default options are applied to the request.</param>
+            <param name="operationContext">An <see cref="T:Microsoft.WindowsAzure.Storage.OperationContext"/> object that represents the context for the current operation.</param>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Storage.Blob.CloudBlockBlob.BeginSetStandardBlobTier(Microsoft.WindowsAzure.Storage.Blob.StandardBlobTier,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous operation to set the tier of the blob on a standard storage account.
+            </summary>
+            <param name="standardBlobTier">A <see cref="T:Microsoft.WindowsAzure.Storage.Blob.StandardBlobTier"/> representing the tier to set.</param>
+            <param name="callback">An <see cref="T:System.AsyncCallback"/> delegate that will receive notification when the asynchronous operation completes.</param>
+            <param name="state">A user-defined object that will be passed to the callback delegate.</param>
+            <returns>An <see cref="T:Microsoft.WindowsAzure.Storage.ICancellableAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Storage.Blob.CloudBlockBlob.BeginSetStandardBlobTier(Microsoft.WindowsAzure.Storage.Blob.StandardBlobTier,Microsoft.WindowsAzure.Storage.AccessCondition,Microsoft.WindowsAzure.Storage.Blob.BlobRequestOptions,Microsoft.WindowsAzure.Storage.OperationContext,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous operation to set the tier of the blob on a standard storage account.
+            </summary>
+            <param name="standardBlobTier">A <see cref="T:Microsoft.WindowsAzure.Storage.Blob.StandardBlobTier"/> representing the tier to set.</param>
+            <param name="accessCondition">An <see cref="T:Microsoft.WindowsAzure.Storage.AccessCondition"/> object that represents the condition that must be met in order for the request to proceed. If <c>null</c>, no condition is used.</param>
+            <param name="options">A <see cref="T:Microsoft.WindowsAzure.Storage.Blob.BlobRequestOptions"/> object that specifies additional options for the request, or <c>null</c>.</param>
+            <param name="operationContext">An <see cref="T:Microsoft.WindowsAzure.Storage.OperationContext"/> object that represents the context for the current operation.</param>
+            <param name="callback">An <see cref="T:System.AsyncCallback"/> delegate that will receive notification when the asynchronous operation completes.</param>
+            <param name="state">A user-defined object that will be passed to the callback delegate.</param>
+            <returns>An <see cref="T:Microsoft.WindowsAzure.Storage.ICancellableAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Storage.Blob.CloudBlockBlob.EndSetStandardBlobTier(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to set the tier of the blob on a standard storage account.
+            </summary>
+            <param name="asyncResult">An <see cref="T:System.IAsyncResult"/> that references the pending asynchronous operation.</param>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Storage.Blob.CloudBlockBlob.SetStandardBlobTierAsync(Microsoft.WindowsAzure.Storage.Blob.StandardBlobTier)">
+            <summary>
+            Initiates an asynchronous operation to set the tier of the blob on a standard storage account.
+            </summary>
+            <param name="standardBlobTier">A <see cref="T:Microsoft.WindowsAzure.Storage.Blob.StandardBlobTier"/> representing the tier to set.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that represents the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Storage.Blob.CloudBlockBlob.SetStandardBlobTierAsync(Microsoft.WindowsAzure.Storage.Blob.StandardBlobTier,System.Threading.CancellationToken)">
+            <summary>
+            Initiates an asynchronous operation to set the tier of the blob on a standard storage account.
+            </summary>
+            <param name="standardBlobTier">A <see cref="T:Microsoft.WindowsAzure.Storage.Blob.StandardBlobTier"/> representing the tier to set.</param>
+            <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> to observe while waiting for a task to complete.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that represents the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Storage.Blob.CloudBlockBlob.SetStandardBlobTierAsync(Microsoft.WindowsAzure.Storage.Blob.StandardBlobTier,Microsoft.WindowsAzure.Storage.AccessCondition,Microsoft.WindowsAzure.Storage.Blob.BlobRequestOptions,Microsoft.WindowsAzure.Storage.OperationContext)">
+            <summary>
+            Initiates an asynchronous operation to set the tier of the blob on a standard storage account.
+            </summary>
+            <param name="standardBlobTier">A <see cref="T:Microsoft.WindowsAzure.Storage.Blob.StandardBlobTier"/> representing the tier to set.</param>
+            <param name="accessCondition">An <see cref="T:Microsoft.WindowsAzure.Storage.AccessCondition"/> object that represents the condition that must be met in order for the request to proceed. If <c>null</c>, no condition is used.</param>
+            <param name="options">A <see cref="T:Microsoft.WindowsAzure.Storage.Blob.BlobRequestOptions"/> object that specifies additional options for the request.</param>
+            <param name="operationContext">An <see cref="T:Microsoft.WindowsAzure.Storage.OperationContext"/> object that represents the context for the current operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that represents the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Storage.Blob.CloudBlockBlob.SetStandardBlobTierAsync(Microsoft.WindowsAzure.Storage.Blob.StandardBlobTier,Microsoft.WindowsAzure.Storage.AccessCondition,Microsoft.WindowsAzure.Storage.Blob.BlobRequestOptions,Microsoft.WindowsAzure.Storage.OperationContext,System.Threading.CancellationToken)">
+            <summary>
+            Initiates an asynchronous operation to set the tier of the blob on a standard storage account.
+            </summary>
+            <param name="standardBlobTier">A <see cref="T:Microsoft.WindowsAzure.Storage.Blob.StandardBlobTier"/> representing the tier to set.</param>
+            <param name="accessCondition">An <see cref="T:Microsoft.WindowsAzure.Storage.AccessCondition"/> object that represents the condition that must be met in order for the request to proceed. If <c>null</c>, no condition is used.</param>
+            <param name="options">A <see cref="T:Microsoft.WindowsAzure.Storage.Blob.BlobRequestOptions"/> object that specifies additional options for the request.</param>
+            <param name="operationContext">An <see cref="T:Microsoft.WindowsAzure.Storage.OperationContext"/> object that represents the context for the current operation.</param>
+            <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> to observe while waiting for a task to complete.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that represents the asynchronous operation.</returns>
+        </member>
         <member name="M:Microsoft.WindowsAzure.Storage.Blob.CloudBlockBlob.StartCopy(Microsoft.WindowsAzure.Storage.File.CloudFile,Microsoft.WindowsAzure.Storage.AccessCondition,Microsoft.WindowsAzure.Storage.AccessCondition,Microsoft.WindowsAzure.Storage.Blob.BlobRequestOptions,Microsoft.WindowsAzure.Storage.OperationContext)">
             <summary>
             Begins an operation to start copying an Azure file's contents, properties, and metadata to this block blob.
@@ -11363,6 +11435,15 @@
             <param name="options">A <see cref="T:Microsoft.WindowsAzure.Storage.Blob.BlobRequestOptions"/> object that specifies additional options for the request.</param>
             <returns>A <see cref="T:Microsoft.WindowsAzure.Storage.Core.Executor.RESTCommand`1"/> that creates the snapshot.</returns>
             <remarks>If the <c>metadata</c> parameter is <c>null</c> then no metadata is associated with the request.</remarks>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Storage.Blob.CloudBlockBlob.SetStandardBlobTierImpl(Microsoft.WindowsAzure.Storage.Blob.StandardBlobTier,Microsoft.WindowsAzure.Storage.AccessCondition,Microsoft.WindowsAzure.Storage.Blob.BlobRequestOptions)">
+            <summary>
+            Implementation method for the SetBlobTier methods.
+            </summary>
+            <param name="standardBlobTier">A <see cref="T:Microsoft.WindowsAzure.Storage.Blob.StandardBlobTier"/> representing the tier to set.</param>
+            <param name="accessCondition">An <see cref="T:Microsoft.WindowsAzure.Storage.AccessCondition"/> object that represents the condition that must be met in order for the request to proceed. If <c>null</c>, no condition is used.</param>
+            <param name="options">A <see cref="T:Microsoft.WindowsAzure.Storage.Blob.BlobRequestOptions"/> object that specifies additional options for the request.</param>
+            <returns>A <see cref="T:Microsoft.WindowsAzure.Storage.Core.Executor.RESTCommand`1"/> that sets the blob tier.</returns>
         </member>
         <member name="M:Microsoft.WindowsAzure.Storage.Blob.CloudBlockBlob.ContinueOpenWriteOnFailure(Microsoft.WindowsAzure.Storage.StorageException,Microsoft.WindowsAzure.Storage.AccessCondition)">
             <summary>
@@ -13432,13 +13513,21 @@
             <param name="header">The header to check</param>
             <returns><c>true</c> if header equals true or <c>false</c> if not.</returns>
         </member>
-        <member name="M:Microsoft.WindowsAzure.Storage.Blob.Protocol.BlobHttpResponseParsers.GetBlobTier(Microsoft.WindowsAzure.Storage.Blob.BlobType,System.String,System.Nullable{Microsoft.WindowsAzure.Storage.Blob.PremiumPageBlobTier}@)">
+        <member name="M:Microsoft.WindowsAzure.Storage.Blob.Protocol.BlobHttpResponseParsers.GetBlobTier(Microsoft.WindowsAzure.Storage.Blob.BlobType,System.String,System.Nullable{Microsoft.WindowsAzure.Storage.Blob.StandardBlobTier}@,System.Nullable{Microsoft.WindowsAzure.Storage.Blob.PremiumPageBlobTier}@)">
             <summary>
             Determines the tier of the blob.
             </summary>
             <param name="blobType">A <see cref="T:Microsoft.WindowsAzure.Storage.Blob.BlobType"/> indicating the type of blob.</param>
             <param name="blobTierString">The blob tier as a string</param>
-            <param name="pageBlobTier">A nullable <see cref="T:Microsoft.WindowsAzure.Storage.Blob.PremiumPageBlobTier"/>. This value will be populated if the blob type is unspecified or is a page blob.</param>
+            <param name="standardBlobTier">A nullable <see cref="T:Microsoft.WindowsAzure.Storage.Blob.StandardBlobTier"/>. This value will be populated if the blob type is unspecified or is a block blob.</param>
+            <param name="premiumPageBlobTier">A nullable <see cref="!:PageBlobTier"/>. This value will be populated if the blob type is unspecified or is a page blob.</param>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Storage.Blob.Protocol.BlobHttpResponseParsers.GetRehydrationStatus(System.String)">
+            <summary>
+            Determines the rehydration status of the blob.
+            </summary>
+            <param name="rehydrationStatus">The rehydration status as a string.</param>
+            <returns>A <see cref="T:Microsoft.WindowsAzure.Storage.Blob.RehydrationStatus"/> representing the rehydration status of the blob.</returns>
         </member>
         <member name="T:Microsoft.WindowsAzure.Storage.Blob.Protocol.BlobHttpWebRequestFactory">
             <summary>
@@ -14124,7 +14213,7 @@
             </summary>
             <param name="uri">A <see cref="T:System.Uri"/> specifying the absolute URI to the blob.</param>
             <param name="timeout">The server timeout interval, in seconds.</param>
-            <param name="premiumPageBlobTier">The blob tier to set as a string.</param>
+            <param name="blobTier">The blob tier to set as a string.</param>
             <param name="useVersionHeader">A boolean value indicating whether to set the <i>x-ms-version</i> HTTP header.</param>
             <param name="operationContext">An <see cref="T:Microsoft.WindowsAzure.Storage.OperationContext"/> object that represents the context for the current operation.</param>
             <returns>A <see cref="T:System.Net.HttpWebRequest"/> object.</returns>
@@ -27978,6 +28067,9 @@
             </summary>
             <value>A string containing the client request ID.</value>
         </member>
+        <member name="P:Microsoft.WindowsAzure.Storage.OperationContext.CustomUserAgent">
+            <remarks>This value will be overridden if the UserAgent value is modified via SendingRequestEvent (per instance or global).</remarks>
+        </member>
         <member name="P:Microsoft.WindowsAzure.Storage.OperationContext.DefaultLogLevel">
             <summary>
             Gets or sets the default logging level to be used for subsequently created instances of the <see cref="T:Microsoft.WindowsAzure.Storage.OperationContext"/> class.
@@ -30860,12 +30952,21 @@
             </summary>
             <value>A bool representing if the blob is an incremental copy.</value>
         </member>
-        <member name="P:Microsoft.WindowsAzure.Storage.Blob.BlobProperties.PremiumPageBlobTier">
+        <member name="P:Microsoft.WindowsAzure.Storage.Blob.BlobProperties.StandardBlobTier">
             <summary>
-            Gets a value indicating the tier of the premium page blob.
+            Gets a value indicating the tier of the block blob.
             </summary>
-            <value>A <see cref="P:Microsoft.WindowsAzure.Storage.Blob.BlobProperties.PremiumPageBlobTier"/> object that indicates the page blob tier.</value>
+            <value>A <see cref="P:Microsoft.WindowsAzure.Storage.Blob.BlobProperties.StandardBlobTier"/> object that indicates the block blob tier.</value>
         </member>
+        <member name="P:Microsoft.WindowsAzure.Storage.Blob.BlobProperties.RehydrationStatus">
+            <summary>
+            Gets a value indicating that the blob is being rehdrated and the tier of the blob once
+            the rehydration from archive has completed.
+            </summary>
+            <value>A <see cref="P:Microsoft.WindowsAzure.Storage.Blob.BlobProperties.RehydrationStatus"/> representing the rehydration status of the blob.</value>
+            <remarks>Only applicable for block blobs in this version of the library.</remarks>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:Microsoft.WindowsAzure.Storage.Blob.BlobProperties.PremiumPageBlobTier" -->
         <member name="P:Microsoft.WindowsAzure.Storage.Blob.BlobProperties.BlobTierInferred">
             <summary>
             Gets a value indicating if the tier of the premium page blob has been inferred.
@@ -31431,6 +31532,54 @@
             </summary>
             <value><c>true</c> if the block has been committed; otherwise, <c>false</c>.</value>
         </member>
+        <member name="T:Microsoft.WindowsAzure.Storage.Blob.PageDiffRange">
+            <summary>
+            Represents a range of pages in a page blob.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAzure.Storage.Blob.PageRange">
+            <summary>
+            Represents a range of pages in a page blob.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Storage.Blob.PageRange.#ctor(System.Int64,System.Int64)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.WindowsAzure.Storage.Blob.PageRange"/> class.
+            </summary>
+            <param name="start">The starting offset.</param>
+            <param name="end">The ending offset.</param>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Storage.Blob.PageRange.ToString">
+            <summary>
+            Returns the content of the page range as a string.
+            </summary>
+            <returns>The content of the page range.</returns>
+        </member>
+        <member name="P:Microsoft.WindowsAzure.Storage.Blob.PageRange.StartOffset">
+            <summary>
+            Gets the starting offset of the page range.
+            </summary>
+            <value>The starting offset.</value>
+        </member>
+        <member name="P:Microsoft.WindowsAzure.Storage.Blob.PageRange.EndOffset">
+            <summary>
+            Gets the ending offset of the page range.
+            </summary>
+            <value>The ending offset.</value>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Storage.Blob.PageDiffRange.#ctor(System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.WindowsAzure.Storage.Blob.PageDiffRange"/> class.
+            </summary>
+            <param name="start">The starting offset.</param>
+            <param name="end">The ending offset.</param>
+            <param name="isCleared">True if the page range is a cleared range, false otherwise.</param>
+        </member>
+        <member name="P:Microsoft.WindowsAzure.Storage.Blob.PageDiffRange.IsClearedPageRange">
+            <summary>
+            True if the page range is a cleared range, false otherwise.
+            </summary>
+        </member>
         <member name="T:Microsoft.WindowsAzure.Storage.Blob.PremiumPageBlobTier">
             <summary>
             The tier of the page blob.
@@ -31483,57 +31632,30 @@
             P60 Tier
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAzure.Storage.Blob.PageDiffRange">
-            <summary>
-            Represents a range of pages in a page blob.
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAzure.Storage.Blob.PageRange">
-            <summary>
-            Represents a range of pages in a page blob.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAzure.Storage.Blob.PageRange.#ctor(System.Int64,System.Int64)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.WindowsAzure.Storage.Blob.PageRange"/> class.
-            </summary>
-            <param name="start">The starting offset.</param>
-            <param name="end">The ending offset.</param>
-        </member>
-        <member name="M:Microsoft.WindowsAzure.Storage.Blob.PageRange.ToString">
-            <summary>
-            Returns the content of the page range as a string.
-            </summary>
-            <returns>The content of the page range.</returns>
-        </member>
-        <member name="P:Microsoft.WindowsAzure.Storage.Blob.PageRange.StartOffset">
-            <summary>
-            Gets the starting offset of the page range.
-            </summary>
-            <value>The starting offset.</value>
-        </member>
-        <member name="P:Microsoft.WindowsAzure.Storage.Blob.PageRange.EndOffset">
-            <summary>
-            Gets the ending offset of the page range.
-            </summary>
-            <value>The ending offset.</value>
-        </member>
-        <member name="M:Microsoft.WindowsAzure.Storage.Blob.PageDiffRange.#ctor(System.Int64,System.Int64,System.Boolean)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.WindowsAzure.Storage.Blob.PageDiffRange"/> class.
-            </summary>
-            <param name="start">The starting offset.</param>
-            <param name="end">The ending offset.</param>
-            <param name="isCleared">True if the page range is a cleared range, false otherwise.</param>
-        </member>
-        <member name="P:Microsoft.WindowsAzure.Storage.Blob.PageDiffRange.IsClearedPageRange">
-            <summary>
-            True if the page range is a cleared range, false otherwise.
-            </summary>
-        </member>
         <member name="T:Microsoft.WindowsAzure.Storage.Core.ReadLengthLimitingStream">
             <summary>
             Stream that will be used to limit read operations on a wrapped stream.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAzure.Storage.Blob.RehydrationStatus">
+            <summary>
+            The rehydration status for a blob that is currently archived.
+            </summary>
+            <remarks>Only applicable to block blobs for this version.</remarks>
+        </member>
+        <member name="F:Microsoft.WindowsAzure.Storage.Blob.RehydrationStatus.Unknown">
+            <summary>
+            The rehydration status is unknown.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAzure.Storage.Blob.RehydrationStatus.PendingToHot">
+            <summary>
+            The blob is being rehydrated to hot storage.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAzure.Storage.Blob.RehydrationStatus.PendingToCool">
+            <summary>
+            The blob is being rehydrated to cool storage.
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAzure.Storage.Blob.SequenceNumberAction">
@@ -31794,6 +31916,31 @@
             Gets or sets the permissions for a shared access signature associated with this shared access policy.
             </summary>
             <value>A <see cref="T:Microsoft.WindowsAzure.Storage.Blob.SharedAccessBlobPermissions"/> object.</value>
+        </member>
+        <member name="T:Microsoft.WindowsAzure.Storage.Blob.StandardBlobTier">
+            <summary>
+            The tier of the block blob on a standard storage account.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAzure.Storage.Blob.StandardBlobTier.Unknown">
+            <summary>
+            The tier is not recognized by this version of the library
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAzure.Storage.Blob.StandardBlobTier.Hot">
+            <summary>
+            Hot Storage
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAzure.Storage.Blob.StandardBlobTier.Cool">
+            <summary>
+            Cool Storage
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAzure.Storage.Blob.StandardBlobTier.Archive">
+            <summary>
+            Archive Storage
+            </summary>
         </member>
         <member name="T:Microsoft.WindowsAzure.Storage.Blob.SubStream">
             <summary>
@@ -36725,6 +36872,16 @@
             Constant for a failed copy.
             </summary>
         </member>
+        <member name="F:Microsoft.WindowsAzure.Storage.Shared.Protocol.Constants.RehydratePendingToHot">
+            <summary>
+            Constant for rehydrating an archived blob to hot storage.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAzure.Storage.Shared.Protocol.Constants.RehydratePendingToCool">
+            <summary>
+            Constant for rehydrating an archived blob to cool storage.
+            </summary>
+        </member>
         <member name="F:Microsoft.WindowsAzure.Storage.Shared.Protocol.Constants.GeoUnavailableValue">
             <summary>
             Constant for unavailable geo-replication status.
@@ -36743,6 +36900,11 @@
         <member name="F:Microsoft.WindowsAzure.Storage.Shared.Protocol.Constants.AccessTierElement">
             <summary>
             Constant for the blob tier.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAzure.Storage.Shared.Protocol.Constants.ArchiveStatusElement">
+            <summary>
+            Constant for the archive status.
             </summary>
         </member>
         <member name="F:Microsoft.WindowsAzure.Storage.Shared.Protocol.Constants.BlobTypeElement">
@@ -37213,6 +37375,11 @@
         <member name="F:Microsoft.WindowsAzure.Storage.Shared.Protocol.Constants.HeaderConstants.AccessTierHeader">
             <summary>
             Header for the blob tier.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAzure.Storage.Shared.Protocol.Constants.HeaderConstants.ArchiveStatusHeader">
+            <summary>
+            Header for the archive status.
             </summary>
         </member>
         <member name="F:Microsoft.WindowsAzure.Storage.Shared.Protocol.Constants.HeaderConstants.AccessTierInferredHeader">
