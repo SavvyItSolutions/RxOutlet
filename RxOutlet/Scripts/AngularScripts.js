@@ -349,8 +349,8 @@ $("#btnLogin").click(function () {
     //});
     $.ajax({
         type: "POST",
-       url: 'http://rxoutlet.azurewebsites.net/api/RxOutlet/Login/',
-        // url: 'http://localhost:64404/api/RxOutlet/Login/',
+      // url: 'http://rxoutlet.azurewebsites.net/api/RxOutlet/Login/',
+      url: 'http://localhost:64404/api/RxOutlet/Login/',
         data: JSON.stringify(Login),
         contentType: "application/json;charset=utf-8",
 
@@ -360,12 +360,12 @@ $("#btnLogin").click(function () {
         },
         success: function () {
             if (Email == 'test@gmail.com' && pswd == 'test') {
-               window.location.href = "http://rxoutlet.azurewebsites.net/Admin/AdminPage";
-                //  window.location.href = "http://localhost:64404/Admin/AdminPage"
+             //  window.location.href = "http://rxoutlet.azurewebsites.net/Admin/AdminPage";
+                  window.location.href = "http://localhost:64404/Admin/AdminPage"
             }
             else
-                window.location.href = "http://rxoutlet.azurewebsites.net/Prescription/Upload";
-                //  window.location.href = "http://localhost:64404/Prescription/Upload";
+               // window.location.href = "http://rxoutlet.azurewebsites.net/Prescription/Upload";
+               window.location.href = "http://localhost:64404/Prescription/Upload";
 
 
         }
@@ -383,13 +383,13 @@ $("#btnLogin").click(function () {
 });
 
 
-app.service("service", function ($http) {
-    //Function to call get genre web api call  
-    this.GetEmployee = function () {
-        var req = $http.get('http://localhost:64404/api/RxOutlet/GetPrescriptionList');
-        return req;
-    }
-});
+//app.service("service", function ($http) {
+//    //Function to call get genre web api call  
+//    this.GetEmployee = function () {
+//        var req = $http.get('http://localhost:64404/api/RxOutlet/GetPrescriptionList');
+//        return req;
+//    }
+//});
 
 
 
