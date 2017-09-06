@@ -194,11 +194,11 @@ namespace RxOutlet.DataAccess
 			return ((ISingleResult<ConfirmationEmailResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="rxadmin.GetPrescriptionList")]
-		public ISingleResult<GetPrescriptionListResult> GetPrescriptionList()
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="rxadmin.PrescriptionList")]
+		public ISingleResult<PrescriptionListResult> PrescriptionList()
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<GetPrescriptionListResult>)(result.ReturnValue));
+			return ((ISingleResult<PrescriptionListResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -1850,7 +1850,7 @@ namespace RxOutlet.DataAccess
 		}
 	}
 	
-	public partial class GetPrescriptionListResult
+	public partial class PrescriptionListResult
 	{
 		
 		private string _Email;
@@ -1865,9 +1865,9 @@ namespace RxOutlet.DataAccess
 		
 		private string _imageUrl;
 		
-		private System.Nullable<System.DateTime> _CreatedDate;
+		private string _CreatedDate;
 		
-		public GetPrescriptionListResult()
+		public PrescriptionListResult()
 		{
 		}
 		
@@ -1967,8 +1967,8 @@ namespace RxOutlet.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> CreatedDate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="VarChar(10)")]
+		public string CreatedDate
 		{
 			get
 			{

@@ -70,12 +70,27 @@ namespace RxOutlet.DataAccess.DataManager
                 return null;
             }
         }
-        public IList<GetPrescriptionListResult> GetPrescriptionList()
+        //public IList<PrescriptionListResult> GetPrescriptionList()
+        //{
+        //    try
+        //    {
+        //        ISingleResult<PrescriptionListResult> result =
+        //        DBContext.GetPrescriptionList();
+        //        return result.ToList();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return null;
+        //    }
+        //}
+
+
+        public IList<PrescriptionListResult> GetPrescriptionList()
         {
             try
             {
-                ISingleResult<GetPrescriptionListResult> result =
-                DBContext.GetPrescriptionList();
+                ISingleResult<PrescriptionListResult> result =
+                DBContext.PrescriptionList();
                 return result.ToList();
             }
             catch (Exception ex)

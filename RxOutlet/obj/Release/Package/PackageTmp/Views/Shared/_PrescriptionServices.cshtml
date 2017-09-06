@@ -1,0 +1,276 @@
+﻿
+<!DOCTYPE html>
+
+@model IEnumerable<RxOutlet.Models.RxOutletMenuListRespone>
+
+@{
+    ViewBag.Title = "Menu1";
+}
+
+
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+  
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            $.ajax({
+                url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/GetCompleteMenu",
+
+                success: function (data) {
+                    //alert(data);
+
+                    var List = [];
+              
+
+                    for (i = 0; i < data.length; i++) {
+                        List.push(data[i].MainMenuName)
+                    }
+                    $("#Prescription").autocomplete({
+                        source: List,
+
+                    });
+
+                },
+               // error: function (msg) { alert("error"); alert(msg); }
+            });
+        });
+
+    </script>
+
+
+
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="">
+                <div class="block block-tabs">
+                    <div class="block-head">
+                        <div class="block-title">
+                            <div class="block-title-text text-lg"> Prescription Services </div>
+                        </div>
+                        <ul class="nav-tab">
+                            <li class="active"><a data-toggle="tab" href="#tab-1" aria-expanded="false"> New Prescription </a></li>
+                            <li class=""><a data-toggle="tab" href="#tab-2" aria-expanded="false"> Refill Prescription</a></li>
+                            <li class=""><a data-toggle="tab" href="#tab-3" aria-expanded="false"> Transfer Prescription</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="block-inner">
+                        <div class="tab-container">
+                            <div id="tab-1" class="tab-panel active">
+                                <div class="row">
+                                    <!-- item -->
+                                    <div class="col-md-4 text-center vira-card">
+                                        <div class="vira-card-header">
+                                            <div class="card-icon">
+                                                <span class="fa fa-cart-plus" aria-hidden="true"></span>
+                                            </div>
+                                        </div>
+
+
+                                        <h3>Order Your Medication</h3>
+                                        <p>Add medications to your shopping cart and checkout to complete your purchase.</p>
+                                    </div>
+                                    <!-- end: -->             <!-- item -->
+                                    <div class="col-md-4 text-center vira-card">
+                                        <div class="vira-card-header">
+                                            <div class="card-icon">
+                                                <span class="fa fa-newspaper-o" aria-hidden="true"></span>
+                                            </div>
+                                        </div>
+
+                                        <h3>Send Us Your Prescription</h3>
+                                        <p>Have your prescriber send us your Rx by e-prescription, fax: 1-888-870-2808 or phone: 800-748-7001.</p>
+                                    </div>
+                                    <!-- end: -->             <!-- item -->
+                                    <div class="col-md-4 text-center vira-card">
+                                        <div class="vira-card-header">
+                                            <div class="card-icon">
+                                                <span class="fa fa-shopping-bag" aria-hidden="true"></span>
+                                            </div>
+                                        </div>
+
+                                        <h3>Receive Your Medications</h3>
+                                        <p>We conveniently ship your medications to your home, according to your prescriber’s instructions.</p>
+                                    </div>
+                                    <!-- end: -->
+                                    <!-- item -->
+                                    <!-- end:-->
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div style="padding:20px;">
+                                            <form class="form-search" action="product.html">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control search-query" placeholder="Search..." style="padding-left: 3%;" /> <span class="input-group-btn">
+                                                        <button type="submit" class="btn btn-info">Start Search</button>
+                                                    </span>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            </div>
+                            <div id="tab-2" class="tab-panel">
+                                <div class="row">
+                                    <!-- item -->
+                                    <div class="col-md-4 text-center vira-card">
+                                        <div class="vira-card-header">
+                                            <div class="card-icon">
+                                                <span class="fa fa-sign-in" aria-hidden="true"></span>
+                                            </div>
+                                        </div>
+
+                                        <h3>Login to your Account</h3>
+                                        <p>Login to your account.</p>
+                                    </div>
+                                    <!-- end: -->             <!-- item -->
+                                    <div class="col-md-4 text-center vira-card">
+                                        <div class="vira-card-header">
+                                            <div class="card-icon">
+                                                <span class="fa fa-newspaper-o" aria-hidden="true"></span>
+                                            </div>
+                                        </div>
+
+                                        <h3>Go to Active Prescriptions</h3>
+                                        <p>For the Rx you want refilled, click “Actions” then “Add to Cart”. Proceed to checkout to complete your purchase.</p>
+                                    </div>
+                                    <!-- end: -->             <!-- item -->
+                                    <div class="col-md-4 text-center vira-card">
+                                        <div class="vira-card-header">
+                                            <div class="card-icon">
+                                                <span class="fa fa-shopping-bag" aria-hidden="true"></span>
+                                            </div>
+                                        </div>
+
+                                        <h3>Receive Your Medications</h3>
+                                        <p>We conveniently ship your medications to your home, according to your prescriber’s instructions.</p>
+                                    </div>
+                                    <!-- end: -->             <!-- item -->
+                                    <!-- end:-->
+                                </div>
+
+
+
+
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <form id="signin" class="navbar-form" role="form">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                                <input id="email" type="email" class="form-control" name="email" value="" placeholder="Email Address">
+                                            </div>
+
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                                <input id="password" type="password" class="form-control" name="password" value="" placeholder="Password">
+                                            </div>
+
+                                            <button type="submit" class="btn btn-info">Login</button>
+                                        </form>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+                            </div>
+
+                            <div id="tab-3" class="tab-panel">
+                                <div class="row">
+                                    <!-- item -->
+                                    <div class="col-md-4 text-center vira-card">
+                                        <div class="vira-card-header">
+                                            <div class="card-icon">
+                                                <span class="fa fa-cart-plus" aria-hidden="true"></span>
+                                            </div>
+                                        </div>
+
+                                        <h3>Order Your Medication</h3>
+                                        <p>Add medications to your shopping cart and checkout to complete your purchase.</p>
+                                    </div>
+                                    <!-- end: -->             <!-- item -->
+                                    <div class="col-md-4 text-center vira-card">
+                                        <div class="vira-card-header">
+                                            <div class="card-icon">
+                                                <span class="fa fa-newspaper-o" aria-hidden="true"></span>
+                                            </div>
+                                        </div>
+
+                                        <h3>Select "Transfer" At Checkout</h3>
+                                        <p>In step 2 of Checkout, select ”transfer“ for any medication that needs to be transferred.</p>
+                                    </div>
+                                    <!-- end: -->             <!-- item -->
+                                    <div class="col-md-4 text-center vira-card">
+                                        <div class="vira-card-header">
+                                            <div class="card-icon">
+                                                <span class="fa fa-shopping-bag" aria-hidden="true"></span>
+                                            </div>
+                                        </div>
+
+                                        <h3>Complete your Order</h3>
+                                        <p>We’ll contact your pharmacy to transfer your prescription. Once verified, we will conveniently ship your order to your home.</p>
+                                    </div>
+                                    <!-- end: -->             <!-- item -->
+                                    <!-- end:-->
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div style="padding:20px;">
+                                            <form class="form-search" action="product.html">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control search-query" placeholder="Search..." style="padding-left: 3%;" /> <span class="input-group-btn">
+                                                        <button type="submit" class="btn btn-info">Start Search</button>
+                                                    </span>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

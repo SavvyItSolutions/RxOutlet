@@ -55,6 +55,8 @@ namespace RxOutlet.Controllers
         {
 
             IRxOutletService rxService = new RxOutletService();
+            SendEmail obj = new SendEmail();
+            obj.SendOneEmail("soujanyareddy.gade@gmail.com");
             return rxService.UploadingPrescription(uploadPrescription);
 
         }
@@ -65,7 +67,13 @@ namespace RxOutlet.Controllers
         {
 
             IRxOutletService rxService = new RxOutletService();
+         
+
+
+          
+
             return rxService.ConfirmationMail(objectId);
+
 
         }
 

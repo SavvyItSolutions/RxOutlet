@@ -158,14 +158,14 @@
 
 
 
-<div class="col-md-6">
+@*<div class="col-md-6">
     <section id="socialLoginForm">
         @Html.Partial("_RegisterPartial", new RegisterViewModel { Email=ViewBag.Email,Password=ViewBag.Password,ConfirmPassword=ViewBag.ConfirmPassword })
     </section>
-</div>
+</div>*@
 
 
-<div class="col-md-6">
+<div class="col-md-12">
     <section id="socialLoginForm">
         @Html.Partial("_LogonPartial", new LoginViewModel {Email=ViewBag.Email,Password=ViewBag.Password})
     </section>

@@ -1,0 +1,316 @@
+﻿@model RxOutlet.Models.ContactUsModel
+
+@{
+    ViewBag.Title = "ContactUS";
+}
+
+<h2>ContactUS</h2>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/responsive.css" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet" />
+
+    <title> RX USA OUTLET </title>
+    <style>
+        .products .product-right {
+            position: static;
+        }
+
+        .products .product-container .inner {
+            padding-bottom: 5px;
+        }
+
+        .products .product-container {
+            padding-bottom: 5px;
+        }
+        /* .block-vertical-menu .vertical-head .vertical-title {
+            font-size: 17px;
+        } */
+        .product-name a {
+            font-size: 18px;
+        }
+        /*.block-head {
+        background:#5a88ca !important;
+        color:#ffffff;
+        }*/
+        .title:after {
+            content: '';
+            height: 5px;
+            border: 1px solid #eaeaea;
+            width: auto;
+            min-width: 100%;
+            display: inline-block;
+            border-radius: 2px;
+        }
+
+        .title .text {
+            position: absolute;
+            height: 30px;
+            background: #fff;
+            line-height: 35px;
+            font-weight: bold;
+            padding-right: 30px;
+        }
+
+        #fw-container {
+            width: 100% !important;
+        }
+
+        form.form-search:before {
+            display: block;
+            width: 14px;
+            height: 14px;
+            content: "\e003";
+            font-family: 'Glyphicons Halflings';
+            background-position: -48px 0;
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            opacity: .5;
+            z-index: 1000;
+        }
+
+        form.form-search {
+            position: relative;
+        }
+
+        .vira-card .vira-card-header {
+            margin-bottom: 45px;
+        }
+
+            .vira-card .vira-card-header .card-icon {
+                border: 1px solid #00dce8;
+                border-radius: 100%;
+                display: inline-block;
+                height: 120px;
+                width: 120px;
+                line-height: 120px;
+                position: relative;
+            }
+
+                .vira-card .vira-card-header .card-icon:after {
+                    transition: all 0.3s ease-in-out;
+                }
+
+                .vira-card .vira-card-header .card-icon:after {
+                    content: '';
+                    height: 100px;
+                    width: 100px;
+                    background-color: #00dce8;
+                    border-radius: 100%;
+                    position: absolute;
+                    top: 9px;
+                    left: 9px;
+                }
+
+                .vira-card .vira-card-header .card-icon .fa {
+                    margin-top: 45px;
+                    font-size: 30px;
+                }
+
+                .vira-card .vira-card-header .card-icon span {
+                    color: #fff;
+                    font-size: 45px;
+                    position: relative;
+                    z-index: 1;
+                }
+
+        .vira-card:hover .vira-card-header .card-icon:after {
+            height: 120px;
+            width: 120px;
+            top: -1px;
+            left: -1px;
+        }
+    </style>
+
+</head>
+<body>
+
+    @*@Html.Partial("_LoginModalpopUp")*@
+
+
+        @*<div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+
+             <button class="btn btn-primary btn-sm pull-right" data-target="#loginmodal" data-toggle="modal">Login</button>
+
+                    <div class="modal" id="loginmodal" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button class="close" data-dissmiss="modal">&times;</button>
+                                    <h4 class="modal-title">Login</h4>
+                                </div>
+
+                                <div class="modal-body">
+
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="inputusername">User Name </label>
+                                            <input class="form-control" placeholder="Login UserName" type="text" id="inputusername" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputPassword">Password </label>
+                                            <input class="form-control" placeholder="Login Password" type="text" id="inputpassword" />
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary">Login</button>
+                                    <button class="btn btn-primary" data-dissmiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+
+
+
+
+
+                <div class="block block-breadcrumbs">
+                    <ul>
+                        <li class="home">
+                            <a href="#"><i class="fa fa-home"></i></a>
+                            <span></span>
+                        </li>
+                        <li>Contact US</li>
+                    </ul>
+                </div>
+                <div class="main-page">
+                    <h1 class="page-title">Contact Us</h1>
+                    <div class="page-content contact-page">
+                        <div id="message-box-conact"></div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h4>CONTACT FORM</h4>
+
+                                <div>
+                                    @using (Html.BeginForm())
+                                    {
+                                        <table>
+                                        
+                                            <tr>
+                                                <td>SubjectHeading</td>
+                                              
+                                                <td>
+                                                    @Html.DropDownList("ddlVendor", Model.SubjectHeading, "Select Manufacurer")
+                                                    @*@Html.DropDownListFor(m => m.SubjectHeading, Model.SubjectHeading, "Please select")*@
+                                                    @*@Html.DropDownListFor(m => m.SubjectHeadingID, (IEnumerable<SelectListItem>)ViewBag., new { @class = "form-control" })*@
+                                                </td>
+
+                                               
+                                            </tr>
+                                            <tr>
+                                                <td>Email ID</td>
+                                                <td>@Html.TextBoxFor(x => x.Email)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>OrderReference</td>
+                                                <td>@Html.TextBoxFor(x => x.OrderReference)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Message</td>
+                                                <td>@Html.TextAreaFor(x => x.Message)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Status</td>
+                                                <td>@Html.TextBoxFor(x => x.Status)</td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td><input id="Submit" type="submit" value="submit" /></td>
+                                            </tr>
+                                        </table>
+                                    }
+
+
+                                </div>
+
+                              
+                               @*<div>
+                                    <p>
+                                        <label>Subject Heading</label>
+                                        <select id="subject">
+                                            <option value="Customer service">Customer service</option>
+                                            <option value="Webmaster"> Customer service</option>
+                                        </select>
+                                    </p>
+                                    <p>
+                                        <label>Email address</label>
+                                        <input id="address" type="text">
+                                    </p>
+                                    <p>
+                                        <label>Order reference</label>
+                                        <input id="order_reference" type="text">
+                                    </p>
+                                    <p>
+                                        <label>Message</label>
+                                        <textarea id="message" rows="5"></textarea>
+                                    </p>
+                                    <p>
+                                        <button class="button" id="btn-send-contact">Submit</button>
+                                    </p>
+                                </div>*@
+                            </div>
+                            <div class="col-sm-6">
+                                <h4> ADDRESS INFOMATION</h4>
+                                <div>
+                                    <p>Lorem ipsum dolor sit amet onsectetuer adipiscing elit. Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor dapibus eget. Mauris tincidunt aliquam lectus sed vestibulum. Vestibulum bibendum suscipit mattis.</p>
+                                    <ul>
+                                        <li>Praesent nec tincidunt turpis.</li>
+                                        <li>Aliquam et nisi risus.&nbsp;Cras ut varius ante.</li>
+                                        <li>Ut congue gravida dolor, vitae viverra dolor.</li>
+                                    </ul>
+                                    <br>
+                                    <ul class="store_info">
+                                        <li><i class="fa fa-home"></i> 1063 Freelon Street San Francisco, CA 95108</li>
+                                        <li><i class="fa fa-phone"></i><span>+ 012.333.44444</span></li>
+                                        <li><i class="fa fa-phone"></i><span>+ 012.333.44444</span></li>
+                                        <li><i class="fa fa-envelope"></i>Email: <span><a href="">support@rxoutletinc.com</a></span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-sm-12">
+
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24409.05184895716!2d-74.06416054204185!3d40.117073281651884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c22b767148f615%3A0x817541b9470d0119!2sManasquan%2C+NJ%2C+USA!5e0!3m2!1sen!2sin!4v1491467088794" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+       
+</body>
+
+</html>
+
+
+

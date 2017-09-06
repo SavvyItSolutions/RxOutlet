@@ -1,0 +1,930 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @*<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">*@
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title RX Outlet</title>
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    @Styles.Render("~/bundles/jquery")
+
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    @Scripts.Render("~/bundles/modernizr")
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <script>
+
+      $(function () {
+
+          $("#dialog-modal").dialog({
+              autoOpen: false,
+              modal: true,// to make background html page disable when popup get opened.
+              width: 400,
+              height: 400,
+
+              show: {
+                  effect: "shake",
+                  duration: 100
+              },
+              hide: {
+                  effect: "explode",
+                  duration: 1000
+              }
+          });
+          $("#modal-opener").click(function () {
+              $("#dialog-modal").dialog("open");
+
+          });
+
+      });
+
+
+      var search = {
+          SearchText: 'asp',
+          Type: [4, 2, 7],
+          PageStart: 4,
+          PageSize: 10
+      };
+
+
+      var app = angular.
+          module("Drugs", ['ui.bootstrap']).
+          controller("DisplayDrugInfo", ['$log', '$scope', '$http', function ($log, $scope, $http) {
+              $http({
+                  method: 'Get',
+                  url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/Druglist",
+                  data: JSON.stringify(search)
+              }).then(function (response) {
+                  $scope.Drug = response.data;
+
+                  $scope.viewby = 10;
+                  $scope.totalItems = response.data.DrugList.length;
+                  console.log(response.data.DrugList.length);
+                  $scope.currentPage = 4;
+                  $scope.itemsPerPage = $scope.viewby;
+                  $scope.maxSize = 5; //Number of pager buttons to show
+
+                  $scope.setPage = function (pageNo) {
+                      $scope.currentPage = pageNo;
+                  };
+
+                  $scope.pageChanged = function () {
+                      console.log('Page changed to: ' + $scope.currentPage);
+                  };
+
+                  $scope.setItemsPerPage = function (num) {
+                      $scope.itemsPerPage = num;
+                      $scope.currentPage = 1; //reset to first paghe
+                  }
+
+                  //    alert(response.data);
+                  //console.log("DrugObject"+response.data);
+                  //console.log("DrugList" + response.data.DrugList);
+                  //console.log("DrugName" + response.data.DrugList[1].DrugName);
+              });
+          }]);
+
+
+      app.controller("SupplierNameCntrl", ['$log', '$scope', '$http', function ($log, $scope, $http) {
+          $http({
+              method: 'Get',
+              url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/GetSupplierName",
+              data: JSON.stringify(search)
+          }).then(function (response) {
+              $scope.SuppilerName = response.data;
+            //  alert(response.data.length);
+              console.log("DrugObject" + response.data);
+              console.log("DrugList" + response.data.DrugList);
+
+              //console.log("DrugName" + response.data.DrugList[1].DrugName);
+              //    console.log("length" + $scope.SuppilerName.length);
+              //    for (var i = 0; i <= $scope.SuppilerName.length; i++) {
+              //        console.log($scope.items.length);
+              //        if ($scope.selectedName.value === $scope.items[i].name) {
+              //            console.log($scope.items[i].name + "forif" + true);
+              //            break;
+              //        }
+              //        else {
+              //            console.log($scope.items[i].name + "forelse " + false);
+              //            break;
+              //        }
+              //    }
+
+
+          });
+
+
+      }]);
+
+
+      //app.controller("SearchDrugCntrl", ['$log', '$scope', '$http', function ($log, $scope, $http) {
+      //    $http({
+      //        method: 'Get',
+        //        url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/GetDrugNamesSearch",
+      //        data: JSON.stringify(search)
+      //    }).then(function (response) {
+      //        $scope.SearchDrug = response.data;
+      //        alert(response.data.length);
+      //        console.log("DrugSearchObject" + response.data);
+      //        console.log("DrugSearchList" + response.data.DrugList);
+      //    });
+      //}]);
+
+
+      //$(document).ready(function () {
+      //    $.ajax({
+        //        url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/GetDrugNamesSearch",
+      //        success: function (data) {
+
+      //            alert(data);
+
+      //        },
+      //        error: function (msg) { alert("error"); alert(msg); }
+      //    });
+      //});
+
+      $(document).ready(function () {
+          $.ajax({
+
+              url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/GetDrugNamesSearch",
+              success: function (data) {
+                  $('#SearchDrug').append("<ul class='vertical-menu-list' id='vertical-menu-list'></ul>");
+                  var List = [];
+                //  alert(data);
+                 
+                  for (i = 0; i < data.length; i++)
+                  {
+
+                      //List.push(data[i].SupplierName)
+                      //$('#autocomplete').autocomplete({
+                      //    lookup: List
+                      //});
+
+                      $('#vertical-menu-list').append(
+                           "<li class='vertical-menu" + data[i].SupplierID + "'>" +
+                           "<a class='parent' href=#>" + data[i].SupplierName + "</a>" +
+                          "<div class='vertical-dropdown-menu' style='width: 901px;'>" +
+                        "<div class='vertical-groups col-sm-12'>" +
+                        "<div class='inner' id='menuItem" + data[i].SupplierID + "'> </div>");
+                        //"<div class='row' id='subMenu" + data[i].SupplierID + "'>" +
+                        //"</div> </div></li>");
+
+                      //for (j = 0; j < data[i].DrugNamesList.length; j++) {
+                     
+                      //        $('#subMenu' + data[i].SupplierID).append(
+                      //            "<div class='col-sm-3'> <div class='block-content-vertical-menu border'>" +
+                      //            "<h3 class='head'>" + data[i].SupplierName + "</h3> <div class='inner' id='menuItem" + data[i].DrugNamesList[j].DrugID + "'> </div> </div> </div> ");
+                    
+
+                          for (k = 0; k < data[i].DrugNamesList.length; k++) {
+                              $('#menuItem' + data[i].SupplierID).append(
+                             "<li> <a href=#> " +
+                             "<span class='text'>" + data[i].DrugNamesList[k].DrugName + "</span>" +
+                             " </a>  <img class='img-responsive img-thumbnail' src='/DrugImages/" + data[i].DrugNamesList[k].ImageNum + ".jpg' alt=''>");
+                             
+                          }
+                          // data[0].DrugNamesList.length
+                          // data[0].DrugNamesList[0].DrugName
+                          // data[0].DrugNamesList[0].ImageNum
+                    //  }
+
+                  }
+
+                  //$('#autocomplete').autocomplete({
+                  //    lookup: List
+                  //});
+                  //console.log("SupplierName" + data[10].SupplierName);
+                  //console.log("SupplierCount" + data.length);
+
+              },
+            //  error: function (msg) { alert("error"); alert(msg); }
+          });
+      });
+
+      ///  Auto Search Functionality with Drug Names start
+
+      //$(document).ready(function () {
+      //    $.ajax({
+
+        //        url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/Druglist",
+      //        success: function (data) {
+      //            var List = [];
+      //            //alert(data);
+      //            for (i = 0; i < data.DrugList.length; i++) {
+      //                List.push(data.DrugList[i].DrugName)
+      //            }
+      //            $('#autocomplete').autocomplete({
+      //                lookup: List
+      //                //,onSelect: function (suggestion) {
+      //                //    alert(suggestion.DrugList);
+      //                //    var thehtml = '<strong>Currency Name:</strong> ' + suggestion.DrugList + ' <br> <strong>Symbol:</strong> ' + suggestion.data;
+      //                //    $('#outputcontent').html(thehtml);
+      //                //}
+      //            });
+      //            //$("#myText").autocomplete({
+      //            //    source: List,
+      //            //});
+      //        },
+      //        error: function (msg) { alert("error"); alert(msg); }
+      //    });
+      //});
+
+      ///  Auto Search Functionality with Drug Names END
+    </script>
+
+    <style>
+        .products .product-right {
+            position: static;
+        }
+
+        .products .product-container .inner {
+            padding-bottom: 5px;
+        }
+
+        .products .product-container {
+            padding-bottom: 5px;
+        }
+        /* .block-vertical-menu .vertical-head .vertical-title {
+            font-size: 17px;
+        } */
+        .product-name a {
+            font-size: 18px;
+        }
+
+
+
+
+
+        .list-unstyled li {
+            padding: 10px 15px;
+        }
+
+        .list-unstyled {
+            border-right: 1px solid #00dce8;
+        }
+
+        .autosearch {
+            height: auto;
+            z-index: 2038;
+            box-shadow: 0 1px 6px 0 rgba(0,0,0,0.4);
+            background-color: #fcfcfc;
+        }
+
+        .portfolio-item p a {
+            color: #00dce8;
+        }
+    </style>
+
+
+</head>
+<body ng-app="Drugs">
+
+    <!-- header -->
+    <header id="header">
+        <!-- Top bar -->
+        <div class="top-bar">
+            <div class="container">
+                <div class="row">
+                    <ul class="top-bar-link top-bar-link-left">
+                        <li><i class="fa fa-phone"></i> Call us: 099 88 77 66 55</li>
+                        <li><i class="fa fa-exchange"></i> 30 Days Exchange Policy</li>
+                    </ul>
+                    <ul class="top-bar-link top-bar-link-right dot">
+                        <li><a href="login.html">My Account</a></li>
+                        <li><a href="wishlist.html">My Wishlist</a></li>
+                        <li><a href="checkout.html">Checkout</a></li>
+                        <li>@Html.Partial("_LoginPartial")</li>
+                        @*<li><a href="login.html">Login</a></li>
+                            @Html.ActionLink("Login", "Login")*@
+
+                    </ul>
+                    @*@Html.Partial("_LoginPartial")*@
+
+                </div>
+            </div>
+        </div>
+        <!-- Top bar -->
+        <div class="container">
+            <!-- box header -->.
+            <div class="row">
+
+                <!--   AUTO SEARCH FUNCTIONALITY    -->
+
+
+                <div class="box-header" ng-controller="DisplayDrugInfo">
+
+                    <div class="col-sm-2 col-md-2 col-lg-2"></div>
+
+
+                    <div class="block-wrap-search col-md-8">
+                        <div class="input-group">
+                            <div class="input-group-btn search-panel">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <span id="search_concept">All</span> <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#contains">Example 1</a></li>
+                                    <li><a href="#its_equal">Example 2</a></li>
+                                    <li><a href="#greather_than">Example 3</a></li>
+                                    <li><a href="#less_than">Example 4</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#all">All</a></li>
+                                </ul>
+                            </div>
+                            <input type="hidden" name="search_param" value="all" id="search_param">
+
+                            <input type="text" class="form-control" name="DrugList" id="LoadMainMenu" ng-model="Drugname">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><span class="fa fa-search"></span></button>
+                            </span>
+                        </div>
+
+                        @*ng-if="Drugname!=null && Drugname!=''"*@
+
+                        <div class="autosearch" ng-if="Drugname!=null && Drugname!=''" style="position:absolute;z-index:999; background:#ffffff; border:1px solid #f5f5f5; padding:1%;width:96%;">
+                            <div class="row">
+
+                               
+                          
+                                  
+                                  <ul class="list-unstyled">
+
+                                        <li ng-repeat="x in Drug.DrugList"> <a href="#"> {{x.DrugName}} </a> </li>
+
+                                            @*<li> <a href="#"> Similac Expert Care Alimentum Ready to Feed  </a> </li>
+                                          <li><a href="#"> Nature's Way Alive! Women's Energy  </a> </li>
+                                          <li><a href="#"> Nature's Way Alive! Children's  </a> </li>
+                                          <li><a href="#"> DDC DNA Diagnostics Center </a> </li>
+                                          <li><a href="#"> Caffeine in drug information </a> </li>
+                                          <li><a href="#"> irin - Regular/Extra Strength </a> </li>
+                                          <li><a href="#"> Nature's Way Alive! Children's  </a> </li>
+                                          <li><a href="#"> DDC DNA Diagnostics Center </a> </li>
+                                          <li><a href="#"> Caffeine in drug information </a> </li>
+                                          <li><a href="#"> irin - Regular/Extra Strength </a> </li>*@
+                                    </ul>
+
+
+
+                                </div>
+
+
+                           
+                                    @*<div class="row">
+                                        <div class="col-sm-4 col-md-4 col-lg-3">
+                                            <!-- block category -->
+                                            <div class="block block-vertical-menu">
+                                                <!--<div class="vertical-head">
+                            <h5 class="vertical-title text-center"> Product Categories</h5>
+                        </div>-->
+                                                <div class="vertical-menu-content" id="SearchDrug">
+
+                                                </div>
+                                            </div>
+                                            <!-- ./block category -->
+                                            <!-- block  top sellers -->
+                                            <!-- block  top sellers -->
+                                        </div>
+                                    </div>*@
+                              
+                          
+
+
+
+                                <div class="col-sm-6 col-md-6 col-lg-6">
+
+                                    <div class="">
+
+                                        <!-- Page Header -->
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <h4 class="">
+                                                    <small>Top results for</small> <strong> "Aspercreme"	 </strong>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <!-- /.row -->
+                                        <!-- Projects Row -->
+                                        <div class="row">
+                                            <div class="col-md-6 portfolio-item" ng-controller="DisplayDrugInfo">
+                                                <a href="#">
+                                                    <img class="img-responsive img-thumbnail" src="/images/sr1.jpg" alt="">
+
+                                                </a>
+
+                                                <p>  <a href="#"> Blue Diamond Almonds Honey Roasted </a>  </p>
+                                            </div>
+                                            <div class="col-md-6 portfolio-item">
+                                                <a href="#">
+                                                    <img class="img-responsive img-thumbnail" src="/images/sr2.jpg" alt="">
+                                                </a>
+
+                                                <p>  <a href="#"> Aspercreme Maximum Strength  </a>  </p>
+                                            </div>
+                                        </div>
+                                        <!-- /.row -->
+                                        <!-- Projects Row -->
+                                        <div class="row">
+                                            <div class="col-md-6 portfolio-item">
+                                                <a href="#">
+                                                    <img class="img-responsive img-thumbnail" src="/images/sr3.jpg" alt="">
+                                                </a>
+
+                                                <p>  <a href="#"> Blue Diamond Almonds Honey Roasted  </a>  </p>
+                                            </div>
+                                            <div class="col-md-6 portfolio-item">
+                                                <a href="#">
+                                                    <img class="img-responsive img-thumbnail" src="/images/sr4.jpg" alt="">
+                                                </a>
+
+                                                <p>  <a href="#">  Aspercreme Maximum Strength  </a>  </p>
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Projects Row -->
+                                        <div class="row">
+                                            <div class="col-md-6 portfolio-item">
+                                                <a href="#">
+                                                    <img class="img-responsive img-thumbnail" src="/images/sr1.jpg" alt="">
+                                                </a>
+
+                                                <p>  <a href="#"> Blue Diamond Almonds Honey Roasted  </a>  </p>
+                                            </div>
+                                            <div class="col-md-6 portfolio-item">
+                                                <a href="#">
+                                                    <img class="img-responsive img-thumbnail" src="/images/sr2.jpg" alt="">
+                                                </a>
+
+                                                <p> <a href="#"> Aspercreme Maximum Strength  </a>  </p>
+                                            </div>
+
+                                        </div>
+                                        <!-- /.row -->
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="block-wrap-cart col-sm-2 col-md-2 col-lg-2">
+                        <div class="iner-block-cart box-radius">
+                            <a href="cart.html">
+                                <span class="total">$459.00</span>
+                            </a>
+                        </div>
+                        <div class="block-mini-cart">
+                            <div class="mini-cart-content">
+                                <h5 class="mini-cart-head">2 Items in my cart</h5>
+                                <div class="mini-cart-list">
+                                    <ul>
+                                        <li class="product-info">
+                                            <div class="p-left">
+                                                <a href="#" class="remove_link"></a>
+                                                <a href="#">
+                                                    <img class="img-responsive" src="/images/p1.jpg" alt="Product">
+                                                </a>
+                                            </div>
+                                            <div class="p-right">
+                                                <p class="p-name">Donec Ac Tempus</p>
+                                                <p class="product-price">$139.98</p>
+                                                <p>Qty: 1</p>
+                                            </div>
+                                        </li>
+                                        <li class="product-info">
+                                            <div class="p-left">
+                                                <a href="#" class="remove_link"></a>
+                                                <a href="#">
+                                                    <img class="img-responsive" src="/images/p2.jpg" alt="Product">
+                                                </a>
+                                            </div>
+                                            <div class="p-right">
+                                                <p class="p-name">Donec Ac Tempus</p>
+                                                <p class="product-price">$139.98</p>
+                                                <p>Qty: 1</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="toal-cart">
+                                    <span>Total</span>
+                                    <span class="toal-price pull-right">$279.96</span>
+                                </div>
+                                <div class="cart-buttons">
+                                    <a href="checkout.html" class="button-radius btn-check-out">Checkout<span class="icon"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                @*<div class="box-header">
+                        <div class="col-sm-12 col-md-12 col-lg-3"></div>
+                        <div class="block-wrap-search col-sm-6 col-md-6 col-lg-5">
+                            <div class="advanced-search box-radius">
+                                <form class="form-inline">
+                                    <div class="form-group search-category">
+                                        <select id="category-select" class="search-category-select">
+                                            <option value="1">All Categories</option>
+                                            <option value="2"> Category 1</option>
+                                            <option value="3">category 2</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group search-input">
+                                        <input type="text" id="myText" placeholder="What are you looking for?">
+                                    </div>
+                                    <button type="submit" class="btn-search">
+                                    <i class="fa fa-search"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="wrap-block-cl col-sm-3 col-md-3 col-lg-2">
+
+                        </div>
+                        <div class="block-wrap-cart col-sm-3 col-md-3 col-lg-2">
+                            <div class="iner-block-cart box-radius">
+                                <a href="cart.html">
+                                    <span class="total">$459.00</span>
+                                </a>
+                            </div>
+                            <div class="block-mini-cart">
+                                <div class="mini-cart-content">
+                                    <h5 class="mini-cart-head">2 Items in my cart</h5>
+                                    <div class="mini-cart-list">
+                                        <ul>
+                                            <li class="product-info">
+                                                <div class="p-left">
+                                                    <a href="#" class="remove_link"></a>
+                                                    <a href="#">
+                                                        <img class="img-responsive" src="/images/p1.jpg" alt="Product">
+                                                    </a>
+                                                </div>
+                                                <div class="p-right">
+                                                    <p class="p-name">Donec Ac Tempus</p>
+                                                    <p class="product-price">$139.98</p>
+                                                    <p>Qty: 1</p>
+                                                </div>
+                                            </li>
+                                            <li class="product-info">
+                                                <div class="p-left">
+                                                    <a href="#" class="remove_link"></a>
+                                                    <a href="#">
+                                                        <img class="img-responsive" src="/images/p2.jpg" alt="Product">
+                                                    </a>
+                                                </div>
+                                                <div class="p-right">
+                                                    <p class="p-name">Donec Ac Tempus</p>
+                                                    <p class="product-price">$139.98</p>
+                                                    <p>Qty: 1</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="toal-cart">
+                                        <span>Total</span>
+                                        <span class="toal-price pull-right">$279.96</span>
+                                    </div>
+                                    <div class="cart-buttons">
+                                        <a href="checkout.html" class="button-radius btn-check-out">Checkout<span class="icon"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+
+            </div>
+            <!-- ./box header -->
+            <!-- main header -->
+            <div class="row">
+                <div class="main-header">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="logo">
+                                <a href="index.html">
+                                    <img src="/images/logo.png" alt="Logo" style="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 main-header-banner">
+                            <div class="herader-banner">
+                                <ul class="list-banner">
+                                    <li><div class="banner1"><a href="#"><img src="/images/banner1.png" alt="Banner"></a></div></li>
+                                    <li><div class="banner1"><a href="#"><img src="/images/banner2.png" alt="Banner"></a></div></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ./main header -->
+        </div>
+        <!-- main menu-->
+        <div class="main-menu">
+            <div class="container">
+                <div class="row">
+                    <nav class="navbar" id="main-menu">
+                        <div class="container-fluid">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                                <a class="navbar-brand" href="#">MENU</a>
+                            </div>
+                            <div id="navbar" class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav">
+                                    <li class="active"><a href="#">Home</a></li>
+
+                                    <li class="">
+                                        <a href="@Url.Action("Refill","Refill")" class="" data-toggle="dropdown">
+
+                                            RX Refills
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle">
+
+                                            Pharmacy
+                                        </a>
+                                        <ul class="dropdown-menu mega_dropdown" role="menu" style="width: 900px;">
+                                            <li class="block-container col-sm-3 border">
+                                                <ul class="block-megamenu-link">
+                                                    <li class="link_container group_header">
+                                                        <a href="#">Prescription Services</a>
+                                                    </li>
+
+                                                    <li class="link_container"><a href="#">New Prescription</a></li>
+                                                    <li class="link_container"><a href="@Url.Action("Refill","Refill")">Reﬁll Prescription</a></li>
+                                                    <li class="link_container"><a href="#">Transfer Prescription</a></li>
+
+                                                    <li class="link_container  group_header"><a href="#">Drug Information</a></li>
+                                                    <li class="link_container"><a href="#">Drug Interaction center</a></li>
+                                                    <li class="link_container"><a href="#">Pill Identifier</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="block-container col-sm-3 border">
+                                                <ul class="block-megamenu-link">
+                                                    <li class="link_container group_header">
+                                                        <a href="#">Health Information</a>
+                                                    </li>
+
+                                                    <li class="link_container"><a href="#">WebMD</a></li>
+                                                    <li class="link_container"><a href="#"> Merck </a></li>
+
+
+                                                </ul>
+                                            </li>
+                                            <li class="block-container col-sm-6 border">
+                                                <ul class="block-megamenu-link">
+                                                    <li class="link_container group_header">
+                                                        <a href="#">View/Print prescription history </a>
+                                                        </a>
+                                                    </li>
+                                                    <li class="link_container"><a href="#">Immunization </a></li>
+
+                                                </ul>
+                                            </li>
+
+                                        </ul>
+
+
+
+
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                                            Forms
+                                        </a>
+                                        <ul class="dropdown-menu mega_dropdown container-fluid">
+                                            <li class="block-container">
+                                                <ul class="block-megamenu-link">
+                                                    <li class="link_container"><a href="/images/Hipaa-Consent.pdf" target="_blank">Hipaa Consent</a></li>
+                                                    <li class="link_container"><a href="/images/Hipaa-Release-Authorization.pdf" target="_blank"> Hipaa Release Authorization </a></li>
+                                                    <li class="link_container"><a href="/images/Immunization-Consent-Form.pdf" target="_blank"> Immunization Consent Form </a></li>
+                                                    <li class="link_container"><a href="/images/Npp-Fullpage-Hc-Provider.pdf" target="_blank"> Npp Fullpage Hc-Provider </a></li>
+                                                    <li class="link_container"><a href="/images/Registration-Form.pdf" target="_blank"> Registration Form </a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="">
+                                        <a href="about.html"> About Us</a>
+                                    </li>
+
+                                    <li class="">
+                                        <a href="faq.html">  Help / Faq</a>
+
+                                    </li>
+                                    <li class="">
+                                        <a href="contact.html"> Contact us </a>
+
+                                    </li>
+                                </ul>
+                            </div><!--/.nav-collapse -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- ./main menu-->
+    </header>
+    <!-- ./header -->
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+              <div class="container">
+                  <div class="navbar-header">
+                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                      </button>
+
+
+
+                   @Html.ActionLink("RxOutlet", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+                  <div class="navbar-collapse collapse">
+                      <ul class="nav navbar-nav">
+                          <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                          <li>@Html.ActionLink("RX REFILLS", "About", "Home")</li>
+                          <li>@Html.ActionLink("PHARMACY", "Contact", "Home")</li>
+                          <li>@Html.ActionLink("FORMS", "Index", "Home")</li>
+                          <li>@Html.ActionLink("ABOUT US", "About", "Home")</li>
+                          <li>@Html.ActionLink("HELP/FAQs", "Contact", "Home")</li>
+                          <li>@Html.ActionLink("CONTACT US", "Contact", "Home")</li>
+                      </ul>
+                      @Html.Partial("_LoginPartial")
+                  </div>
+              </div>
+          </div>*@
+
+
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+
+
+
+        <!-- footer -->
+        <footer id="footer">
+            <div class="footer-top">
+
+            </div>
+
+            <div class="footer-middle">
+                <div class="container">
+                    <div class="row">
+                        <div class="row">
+
+
+                            <div class="col-md-3 col-sm-4 block-link-wapper">
+                                <div class="block-link">
+                                    <ul class="list-link">
+                                        <li class="head"><a href="#">Information</a></li>
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="#">Band of Trust</a></li>
+                                        <li><a href="#">ShopClues History</a></li>
+                                        <li><a href="#">News</a></li>
+                                        <li><a href="#">In the Press</a></li>
+                                        <li><a href="#">Awards New</a></li>
+                                        <li><a href="#">Careers</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-4 block-link-wapper">
+                                <div class="block-link">
+                                    <ul>
+                                        <li class="head"><a href="#">Contact Us</a></li>
+                                        <li><a href="#">Customer Support</a></li>
+                                        <li><a href="#">Merchant Support</a></li>
+                                        <li><a href="#">Merchant Inquiries</a></li>
+                                        <li><a href="#">Product Reviews</a></li>
+                                        <li><a href="#">Brand Inquiries</a></li>
+                                        <li><a href="#">Bulk Orders</a></li>
+                                        <li><a href="#">Contact Us</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-4 block-link-wapper">
+                                <div class="block-link">
+                                    <ul class="list-link">
+                                        <li class="head"><a href="#">help</a></li>
+                                        <li><a href="#">See all Help</a></li>
+                                        <li><a href="#">My Account</a></li>
+                                        <li><a href="#">FAQs</a></li>
+                                    </ul>
+                                    <ul>
+                                        <li class="head"><a href="#">OTHER SERVICES</a></li>
+                                        <li><a href="#">Market America Gear</a></li>
+                                        <li><a href="#">Apply for Market</a></li>
+                                        <li><a href="#">America Credit Card</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-4 block-link-wapper">
+                                <div class="block-link">
+                                    <ul class="list-link flag">
+                                        <li class="head"><a href="#" SHOPPING</a></li>
+                                        <li><a href="#"><img src="/images/flag1.png" alt="flang">Customer Support</a></li>
+                                        <script type="text/javascript" src="https://feed.mikle.com/js/fw-loader.js" data-fw-param="19041/"></script>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-social">
+                <div class="container">
+                    <div class="row">
+                        <div class="block-social">
+                            <ul class="list-social">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+
+                            </ul>
+                        </div>
+                        <div class="block-payment">
+                            <ul class="list-logo">
+                                <li><a href="#"><img src="/images/payment1.png" alt="Payment Logo"></a></li>
+                                <li><a href="#"><img src="/images/payment2.png" alt="Payment Logo"></a></li>
+                                <li><a href="#"><img src="/images/payment3.png" alt="Payment Logo"></a></li>
+                                <li><a href="#"><img src="/images/payment4.png" alt="Payment Logo"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="block-coppyright">
+                            © 2017 RX OUTLET INC. All Rights Reserved.
+                        </div>
+                        <div class="block-shop-phone">
+                            Shop by phone <strong>1-899-353-2268</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Sliding div starts here -->
+        <!-- Sliding div ends here -->
+        <!-- ./footer -->
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @*<script src="@Url.Content("~/Scripts/jquery-1.11.2.min.js")" type="text/javascript"></script>*@
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.bxslider.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/owl.carousel.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.plugin.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.countdown.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/script.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.actual.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.autocomplete.min.js")" type="text/javascript"></script>
+    @*<script src="@Url.Content("~/Scripts/currency-autocomplete.js")" type="text/javascript"></script>*@
+    @*<script src="@Url.Content("~/Scripts/AngularScripts.js")" type="text/javascript"></script>*@
+
+    <script>
+
+	$(document).ready(function(e){
+    $('.search-panel .dropdown-menu').find('a').click(function(e) {
+    	e.preventDefault();
+		var param = $(this).attr("href").replace("#","");
+		var concept = $(this).text();
+		$('.search-panel span#search_concept').text(concept);
+		$('.input-group #search_param').val(param);
+	});
+});
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1040 @@
+﻿@model IEnumerable<RxOutlet.Models.RxOutletMenuListRespone>
+
+@{
+     ViewBag.Title = "Menu";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script type="text/javascript">
+     
+
+       $(document).ready(function () {
+            $.ajax({           
+                url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/GetCompleteMenu",
+                success: function (data) {
+               
+                   // document.getElementById("demo").innerHTML = Object.values(data.MenuList["0"].MenuName);
+                //    alert(data);
+ 
+
+                 
+                    $('#LoadMainMenu').append("<ul class='vertical-menu-list' id='vertical-menu-list'></ul>");
+                    $('#LoadsubMenu').append("<div class='row' id='subMenu1'");
+                    $('#LoadMenuItem').append("<div class='inner' id='menuItem'");
+                  //  alert(data);
+                  
+                 //   alert(data[0].SubMenuList.length);
+
+                    //New Code
+
+                    for (i = 0; i < data.length; i++) {
+
+                       
+
+                       if (data[i].SubMenuList.length == 1) {
+                            $('#vertical-menu-list').append(
+                        "<li class='vertical-menu" + data[i].MainMenuID + "'>" +
+                        "<a class='parent' href=#>" + data[i].MainMenuName + "</a></li>");
+                        }
+
+                       else if (data[i].SubMenuList.length != 1) {
+                           $('#vertical-menu-list').append(
+                            "<li class='vertical-menu" + data[i].MainMenuID + "'>" +
+                            "<a class='parent' href=#>" + data[i].MainMenuName + "</a>" +
+                           "<div class='vertical-dropdown-menu' style='width: 901px;'>" +
+                         "<div class='vertical-groups col-sm-12'>" +
+                         "<div class='row' id='subMenu" + data[i].MainMenuID + "'>" +
+                         "</div> </div></li>");
+                      
+                           for (j = 0; j < data[i].SubMenuList.length; j++) {
+                               if (data[i].SubMenuList[j].SubMenuName != "")
+                                   $('#subMenu' + data[i].MainMenuID).append(
+                                       "<div class='col-sm-3'> <div class='block-content-vertical-menu border'>" +
+                                       "<h3 class='head'>" + data[i].SubMenuList[j].SubMenuName + "</h3> <div class='inner' id='menuItem" + data[i].SubMenuList[j].SubMenuID + "'> </div> </div> </div> ");
+                               else
+                                   break;
+
+                               for (k = 0; k < data[i].SubMenuList[j].menuItemList.length; k++) {
+                                   $('#menuItem' + data[i].SubMenuList[j].SubMenuID).append(
+                                  "<li> <a href=#> " +
+                                  "<span class='text'>" + data[i].SubMenuList[j].menuItemList[k].ItemName + "</span>" +
+                                  " </a> </li>");
+                               }
+                           }
+
+                        }
+                    }
+
+
+
+                    
+                  //New Code Ends
+
+
+
+
+
+
+                    //for (i = 0; i < data.length; i++)
+                    //{
+                    //    $("#cList").append("<li id='MainMenu" + data[i].MainMenuID + "'> <a href='#'><span class='text'>" +
+                    //    data[i].MainMenuName + "</span>    </a> </li>");
+
+                    //    for (j = 0; j < data[i].SubMenuList.length; j++)
+                    //    {
+                    //        if (data[i].SubMenuList[j].SubMenuName != "")
+                    //        {
+
+                    //        $("<ul>").append("<li> <a href='#'><span class='text'>" +
+                    //            data[i].SubMenuList[j].SubMenuName + "</span>    </a> </li>");
+                    //        }
+                    //        else 
+                    //            break;
+                    //        for(k=0;k<data[i].SubMenuList[j].menuItemList.length;k++)
+                    //        {
+
+                    //            if(data[i].SubMenuList[j].menuItemList[k].ItemName != "")
+                    //                $("#cList3").append("<li> <a href='#'><span class='text'>" +
+                    //                 data[i].SubMenuList[j].menuItemList[k].ItemName + "</span>    </a> </li>");
+
+                    //            else
+                    //                break;
+
+                    //        }
+
+                    //                }
+
+                    //}
+                                
+        
+                    },
+               // error: function (msg) { alert("error"); alert(msg); }
+            });
+        });
+
+    </script>
+
+
+
+
+</head>
+<body>
+  
+
+  @*  <div id="dialog" title="Basic dialog">
+
+    @using RxOutlet.Models
+    @model LoginViewModel
+    @{
+        ViewBag.Title = "Log in";
+    }
+
+    <h2>@ViewBag.Title.</h2>
+    <div class="row">
+        <div class="col-md-8">
+            <section id="loginForm">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+                    @Html.AntiForgeryToken()
+                    <h4>Use a local account to log in.</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                @Html.LabelFor(m => m.RememberMe)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Log in" class="btn btn-default" />
+                        </div>
+                    </div>
+                    @*<p>
+                            @Html.ActionLink("Register as a new user", "Register")
+                        </p>*@
+                        @* Enable this once you have account confirmation enabled for password reset functionality
+                        *@  @*<p>
+                                @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                            </p>*@
+                    @*}
+    </section>
+
+
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+    </div>*@
+
+
+</body>
+    </html>
+
+
+
+
+
+
+<div class="container">
+  
+    <div class="row">
+        <div class="row">
+            <div class="col-sm-4 col-md-4 col-lg-3">
+                <!-- block category -->
+                <div class="block block-vertical-menu">
+                    <div class="vertical-head">
+                        <h5 class="vertical-title text-center" > Product Categories</h5>
+                    </div>
+                    <div class="vertical-menu-content" id="LoadMainMenu">
+                        
+                           @*<ul class="vertical-menu-list" >
+                <li class="vertical-menu1">
+                    <a class="parent" href="#">OTC (Non-prescriptions)</a>
+                    <div class="vertical-dropdown-menu" style="width: 901px;">
+                        <div class="vertical-groups col-sm-12">
+                            <div class="row" id="LoadsubMenu">
+                                <div class="col-sm-3">
+                                    <div class="block-content-vertical-menu border">
+                                        <h3 class="head">Allergy & Sinus</h3>
+                                        <div class="inner" id="LoadMenuItem">
+                                            <ul class="vertical-menu-link" id="LoadMenuItem">
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text"> Fexofenadine</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Diphenhydramine</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text"> Loratadine</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Decongestants</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text"> Cetirizine HCL	</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Diet 	</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Sugar Substitutes	</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text"> Supplements</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Weight Loss	</span>
+
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="block-content-vertical-menu border">
+                                        <h3 class="head">Digestive Health</h3>
+                                        <div class="inner">
+                                            <ul class="vertical-menu-link">
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text"> Heartburn Relief</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Antidiarrheal</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Gas Relief</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Laxatives</span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">General OTC</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Cough, Cold & Flu</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text"> Ointments</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Eye Care</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Sleep Aids</span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Stop Smoking</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Travel Sickness	</span>
+
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="block-content-vertical-menu border">
+                                        <h3 class="head">Hair Care</h3>
+                                        <div class="inner">
+                                            <ul class="vertical-menu-link">
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Hair Supplements</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text"> Minoxidil</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text"> Conditioner</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Pet Supplies</span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Flea & Tick</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Diabetic Supplies</span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Vitamins</span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">More Pet Supplies</span>
+
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="block-content-vertical-menu border">
+
+                                        <h3 class="head">Pain & Fever</h3>
+                                        <div class="inner">
+                                            <ul class="vertical-menu-link">
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text"> Ibuprofen</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text"> Naproxen</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Aspirin</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text"> Acetaminophen</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Personal Care</span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Deodorants</span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Sexual Health</span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Shaving</span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Skin Care</span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Women's Health</span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Specials</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Summer Savings</span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text"> Specials</span>
+
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="vertical-menu2">
+                    <a class="parent" href="#">Diabetic Supplies </a>
+                    <div class="vertical-dropdown-menu" style="width: 901px;">
+                        <div class="vertical-groups">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="block-content-vertical-menu border">
+                                        <h3 class="head">Test Strips</h3>
+                                        <div class="inner">
+                                            <ul class="vertical-menu-link">
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Accu-Chek</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Bayer</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">FreeStyle</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">OneTouch</span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Glucose Meters</span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Accu-Chek</span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Bayer</span>
+
+                                                    </a>
+                                                </li>
+
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">FreeStyle</span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">OneTouch</span>
+
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="block-content-vertical-menu border">
+                                        <h3 class="head">Insulin Syringes</h3>
+                                        <div class="inner">
+
+
+                                            <ul class="vertical-menu-link">
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Insulin Pen Needles</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Vet Syringes</span>
+
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="block-content-vertical-menu border">
+                                        <h3 class="head">
+                                            Supplies
+                                        </h3>
+                                        <div class="inner">
+
+
+                                            <ul class="vertical-menu-link">
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">
+                                                            Alcohol Prep Pads
+                                                        </span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">
+                                                            Control Solution
+                                                        </span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">
+                                                            Insulin
+                                                        </span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">
+                                                            Lancets & Devices
+
+                                                        </span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">
+                                                            OTC
+                                                        </span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">
+                                                            Urinalysis Strips
+                                                        </span>
+
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="block-content-vertical-menu border">
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="vertical-menu3">
+                    <a class="parent" href="#">Vitamins </a>
+                    <div class="vertical-dropdown-menu" style="width: 901px;">
+                        <div class="vertical-groups">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="block-content-vertical-menu border">
+                                        <h3 class="head">CATEGORIES</h3>
+                                        <div class="inner">
+
+                                            <ul class="vertical-menu-link">
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Multivitamins</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Letter Vitamins A-K</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Herbs</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Calcium & Minerals</span>
+
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="block-content-vertical-menu border">
+                                        <h3 class="head">CATEGORIES</h3>
+                                        <div class="inner">
+
+
+                                            <ul class="vertical-menu-link">
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Supplements</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Fish Oil, Omegas & EFAs</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Probiotics</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Children's Vitamins & Supplements</span>
+
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="block-content-vertical-menu border">
+                                        <h3 class="head">CATEGORIES</h3>
+                                        <div class="inner">
+
+
+                                            <ul class="vertical-menu-link">
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Homeopathic Remedies</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Sexual Wellness Supplements</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Pill Organization	</span>
+
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="vertical-menu4"><a href="#">Sports Aid </a></li>
+
+                <li class="vertical-menu5">
+                    <a href="#">Pet Rx Drugs </a>
+                    <div class="vertical-dropdown-menu" style="width: 901px;">
+                        <div class="vertical-groups">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="block-content-vertical-menu border">
+                                        <h3 class="head">Pets</h3>
+                                        <div class="inner">
+
+
+                                            <ul class="vertical-menu-link">
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Flea & Tick</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Frontline</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Advantage</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Revolution</span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Rx Drugs for Pets</span>
+
+                                                    </a>
+                                                </li>
+
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Human Rx for Pets</span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Joint Health</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Rimadyl</span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">CoSequin</span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Glycoflex</span>
+
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="block-content-vertical-menu border">
+                                        <h3 class="head">Skin & Coat</h3>
+                                        <div class="inner">
+
+
+                                            <ul class="vertical-menu-link">
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Epi-Soothe</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Keratolux</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Heartworms</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Heartgard</span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Interceptor</span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Iverhart</span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Vitamins</span>
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Cosequin</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Marin</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Denamarin</span>
+
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="block-content-vertical-menu border">
+                                        <h3 class="head">Diabetes</h3>
+                                        <div class="inner">
+
+
+                                            <ul class="vertical-menu-link">
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Glucose Testing</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">U-40 Syringes</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="text">Insulin</span>
+
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="block-content-vertical-menu border">
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </li>
+                <li class="vertical-menu6">
+                    <a href="#">DME Products</a>
+                </li>
+
+            </ul>*@
+                        </div>
+                </div>
+                <!-- ./block category -->
+                <!-- block  top sellers -->
+                <!-- block  top sellers -->
+            </div>
+
+            <div class="col-sm-8 col-md-8 col-lg-9">
+                <!-- Home slide -->
+                <div class="block block-slider">
+                    <ul class="home-slider kt-bxslider">
+                        <li><img src="/images/slide2.jpg" alt="Slider"></li>
+                        <li><img src="/images/slide3.jpg" alt="Slider"></li>
+                        <li><img src="/images/slide1.jpg" alt="Slider"></li>
+                        <li><img src="/images/slide4.jpg" alt="Slider"></li>
+                    </ul>
+                </div>
+                <!-- ./Home slide -->
+                <div class="row">
+                    <div class="col-md-12 col-lg-4">
+                        <!-- block-shop-features -->
+                        <!-- ./block-shop-features-->
+                    </div>
+                    <div class="col-md-12 col-lg-8">
+                        <!-- block-offers -->
+                        <!-- block-offers -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

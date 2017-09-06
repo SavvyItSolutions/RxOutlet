@@ -1,0 +1,436 @@
+﻿@model RxOutlet.Models.UploadPrescription
+
+@{
+    ViewBag.Title = "Upload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<br />
+@ViewBag.FilePath
+
+
+<script>
+
+</script>
+<div class="row">
+    <!-- Product tab -->
+    <div class="block block-tabs tab-left">
+        <div class="block-head">
+            <ul class="nav-tab">
+                <li class="active"><a data-toggle="tab" href="#tab-1">Fill New Prescription</a></li>
+                <li><a data-toggle="tab" href="#tab-2">Refill Your Prescription</a></li>
+                <li><a data-toggle="tab" href="#tab-3">Transfer Your Prescription</a></li>
+            </ul>
+        </div>
+        <div class="block-inner">
+            <div class="tab-container">
+                <div id="tab-1" class="tab-panel active">
+
+
+                    @using (Html.BeginForm("Upload", "Prescription", FormMethod.Post, new { enctype = "multipart/form-data", name = "send-contact", id = "send-contact" }))
+                    {
+
+
+                        <fieldset class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="Title">Prescription ID :</label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="Title">Title :</label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", id = "txtPrescriptionTitle" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="Description">Description :</label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.Description, new { @class = "form-control", id = "txtPrescriptionDescription", @Value = @ViewData["Name"] })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="Title">Physician Name :</label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="Title">Physician Address :</label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="Title">Physician Number :</label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="Photo">Photo</label>
+                                <div class="col-md-10">
+                                    <input type="file" name="photo" />
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                &nbsp;
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Upload" class="btn" id="btnPrescriptionUpload" />
+                                </div>
+
+
+                            </div>
+                        </fieldset>
+
+                    }
+ 
+
+                </div>
+                <div id="tab-2" class="tab-panel">
+                    <p>Please Reffil your prescription either by entering Prescription ID(s) or by selecting from your previous prescriptions. </p>
+                    @using (Html.BeginForm("upload", "Prescription", FormMethod.Post, new { enctype = "multipart/form-data", name = "send-contact", id = "send-contact" }))
+                    {
+
+
+                        <fieldset class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="Title">Prescription ID(s) :</label>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="submit" value="Refill" class="btn" id="btnPrescriptionUpload" />
+
+                                </div>
+                            </div>
+
+                           
+                           
+                        </fieldset>
+
+                    }
+
+
+                    <h3 class="text-center">(or)</h3>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+
+
+                           
+                            <div class="table-header">
+                              My Prescriptions <input type="submit" value="Refill" class="btn alignright"  />
+ 
+                            </div>
+
+                            <!-- div.table-responsive -->
+                            <!-- div.dataTables_borderWrap -->
+                            <div>
+                                <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">
+                                   <table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="dynamic-table_info">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="center sorting_disabled" rowspan="1" colspan="1" aria-label="">
+                                                    <label class="pos-rel">
+                                                        <input type="checkbox" class="ace">
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" aria-label=" Date activate to sort column ascending"> Date</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" aria-label=" Precription ID activate to sort column ascending"> Precription ID</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" aria-label=" Name
+                                                    activate to sort column ascending">Name</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" aria-label=" ID
+                                                    activate to sort column ascending">ID</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" aria-label=" Link
+                                                    activate to sort column ascending">Link</th>
+                                               
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                            <tr role="row" class="odd">
+                                                <td class="center">
+                                                    <label class="pos-rel">
+                                                        <input type="checkbox" class="ace">
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </td>
+
+                                                <td>  08/27/2017 </td>
+                                                <td> ID 1234 </td>
+                                                <td> Jhon Deo</td>
+                                                <td> 12345 </td>
+                                                <td> <a class="blue" href="#">
+    <i class="ace-icon fa fa-search-plus bigger-130"></i>
+</a> </td>
+
+
+
+                                             
+                                            </tr>
+                                            <tr role="row" class="even">
+                                                <td class="center">
+                                                    <label class="pos-rel">
+                                                        <input type="checkbox" class="ace">
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </td>
+
+                                                <td>  08/27/2017 </td>
+                                                <td> ID 1234 </td>
+                                                <td> Jhon Deo</td>
+                                                <td> 12345 </td>
+                                                <td>
+                                                    <a class="blue" href="#">
+                                                        <i class="ace-icon fa fa-search-plus bigger-130"></i>
+                                                    </a>
+                                                </td>
+
+
+
+                                             
+
+                                            </tr>
+                                            <tr role="row" class="odd">
+                                                <td class="center">
+                                                    <label class="pos-rel">
+                                                        <input type="checkbox" class="ace">
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </td>
+
+                                                <td>  08/27/2017 </td>
+                                                <td> ID 1234 </td>
+                                                <td> Jhon Deo</td>
+                                                <td> 12345 </td>
+                                                <td>
+                                                    <a class="blue" href="#">
+                                                        <i class="ace-icon fa fa-search-plus bigger-130"></i>
+                                                    </a>
+                                                </td>
+
+
+
+                                           
+
+                                            </tr>
+                                            <tr role="row" class="even">
+                                                <td class="center">
+                                                    <label class="pos-rel">
+                                                        <input type="checkbox" class="ace">
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </td>
+
+                                                <td>  08/27/2017 </td>
+                                                <td> ID 1234 </td>
+                                                <td> Jhon Deo</td>
+                                                <td> 12345 </td>
+                                                <td>
+                                                    <a class="blue" href="#">
+                                                        <i class="ace-icon fa fa-search-plus bigger-130"></i>
+                                                    </a>
+                                                </td>
+
+
+
+
+                                            </tr>
+                                            <tr role="row" class="odd">
+                                                <td class="center">
+                                                    <label class="pos-rel">
+                                                        <input type="checkbox" class="ace">
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </td>
+
+                                                <td>  08/27/2017 </td>
+                                                <td> ID 1234 </td>
+                                                <td> Jhon Deo</td>
+                                                <td> 12345 </td>
+                                                <td>
+                                                    <a class="blue" href="#">
+                                                        <i class="ace-icon fa fa-search-plus bigger-130"></i>
+                                                    </a>
+                                                </td>
+
+
+
+                                               
+                                            </tr>
+                                            <tr role="row" class="even">
+                                                <td class="center">
+                                                    <label class="pos-rel">
+                                                        <input type="checkbox" class="ace">
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </td>
+
+                                                <td>  08/27/2017 </td>
+                                                <td> ID 1234 </td>
+                                                <td> Jhon Deo</td>
+                                                <td> 12345 </td>
+                                                <td>
+                                                    <a class="blue" href="#">
+                                                        <i class="ace-icon fa fa-search-plus bigger-130"></i>
+                                                    </a>
+                                                </td>
+
+
+
+                                            </tr>
+                                            <tr role="row" class="odd">
+                                                <td class="center">
+                                                    <label class="pos-rel">
+                                                        <input type="checkbox" class="ace">
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </td>
+
+                                                <td>  08/27/2017 </td>
+                                                <td> ID 1234 </td>
+                                                <td> Jhon Deo</td>
+                                                <td> 12345 </td>
+                                                <td>
+                                                    <a class="blue" href="#">
+                                                        <i class="ace-icon fa fa-search-plus bigger-130"></i>
+                                                    </a>
+                                                </td>
+
+
+
+                                               
+
+                                            </tr>
+                                            <tr role="row" class="even">
+                                                <td class="center">
+                                                    <label class="pos-rel">
+                                                        <input type="checkbox" class="ace">
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </td>
+
+                                                <td>  08/27/2017 </td>
+                                                <td> ID 1234 </td>
+                                                <td> Jhon Deo</td>
+                                                <td> 12345 </td>
+                                                <td>
+                                                    <a class="blue" href="#">
+                                                        <i class="ace-icon fa fa-search-plus bigger-130"></i>
+                                                    </a>
+                                                </td>
+
+
+
+
+                                            </tr>
+                                            <tr role="row" class="odd">
+                                                <td class="center">
+                                                    <label class="pos-rel">
+                                                        <input type="checkbox" class="ace">
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </td>
+
+                                                <td>  08/27/2017 </td>
+                                                <td> ID 1234 </td>
+                                                <td> Jhon Deo</td>
+                                                <td> 12345 </td>
+                                                <td>
+                                                    <a class="blue" href="#">
+                                                        <i class="ace-icon fa fa-search-plus bigger-130"></i>
+                                                    </a>
+                                                </td>
+
+
+
+
+                                            </tr>
+                                            <tr role="row" class="even">
+                                                <td class="center">
+                                                    <label class="pos-rel">
+                                                        <input type="checkbox" class="ace">
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </td>
+
+                                                <td>  08/27/2017 </td>
+                                                <td> ID 1234 </td>
+                                                <td> Jhon Deo</td>
+                                                <td> 12345 </td>
+                                                <td>
+                                                    <a class="blue" href="#">
+                                                        <i class="ace-icon fa fa-search-plus bigger-130"></i>
+                                                    </a>
+                                                </td>
+
+
+
+                                                
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="row">
+                                    <div class="col-xs-6">
+                                    <div class="dataTables_info" id="dynamic-table_info" role="status" aria-live="polite">Showing 1 to 10 of 10 entries</div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                    <div class="dataTables_paginate paging_simple_numbers" id="dynamic-table_paginate"><ul class="pagination">
+                                        <li class="paginate_button previous disabled" aria-controls="dynamic-table" tabindex="0" id="dynamic-table_previous">
+                                        <a href="#">Previous</a></li><li class="paginate_button active" aria-controls="dynamic-table" tabindex="0"><a href="#">1</a></li><li class="paginate_button next disabled" aria-controls="dynamic-table" tabindex="0" id="dynamic-table_next"><a href="#">Next</a></li></ul></div></div></div>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <input type="submit" value="Refill" class="btn alignright"   />
+                                        </div>
+                                    </div>
+                                    </div>
+                            </div>
+                           
+                              
+
+                         
+                        </div>
+                    </div>
+
+                </div>
+                <div id="tab-3" class="tab-panel">
+                 <h3>Contact the Store...</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+
+
+
+
+
+
+

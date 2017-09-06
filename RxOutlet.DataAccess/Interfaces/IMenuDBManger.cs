@@ -25,7 +25,7 @@ namespace RxOutlet.DataAccess.Interfaces
         //IList<LoginResult> Login(string email);
 
         IList<GetUserPrescriptionListResult> GetUserPrescriptionList(string UserID);
-        IList<GetPrescriptionListResult> GetPrescriptionList();
+        IList<PrescriptionListResult> GetPrescriptionList();
         IList<ConfirmationEmailResult> ConfirmationEmail(string UserID);
 
 

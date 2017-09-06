@@ -24,6 +24,31 @@ $(document).ready(function ()    {
 
 
 
+
+$("#dialog-modal").dialog({
+    autoOpen: false,
+    modal: true,// to make background html page disable when popup get opened.
+    width: 400,
+    height: 400,
+
+    show: {
+        effect: "shake",
+        duration: 100
+    },
+    hide: {
+        effect: "explode",
+        duration: 1000
+    }
+});
+$("#modal-opener").click(function () {
+    $("#dialog-modal").dialog("open");
+
+});
+
+
+
+
+
 var search = {
     SearchText: 'asp',
     Type: [4, 2, 7],
@@ -32,8 +57,9 @@ var search = {
 };
 
 
+
 var app = angular.
-    module("Drugs", ['ui.bootstrap']).
+    module("Drugs", ['ui.bootstrap','ui.grid', 'ui.grid.pagination']).
     controller("DisplayDrugInfo", ['$log', '$scope', '$http', function ($log, $scope, $http) {
         $http({
             method: 'Get',
@@ -146,10 +172,11 @@ app.controller("PresListCntrl", ['$log', '$scope', '$http', function ($log, $sco
     $http({
         method: 'Get',
         url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/GetPrescriptionList",
+        //  url: "http://localhost:64404/api/RxOutlet/GetPrescriptionList",
         data: JSON.stringify(search),
     }).then(function (response) {
         $scope.PrescriptionList = response.data;
-        alert(PrescriptionList.GetPrescriptionList.Title);
+      //  alert(PrescriptionList.GetPrescriptionList.Title);
 
         // alert(response.data.length);
         console.log("DrugObject" + response.data);
@@ -245,6 +272,7 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: 'http://rxoutlet.azurewebsites.net/api/rxoutlet/UploadingPrescription',
+            // url: 'http://localhost:64404/api/rxoutlet/UploadingPrescription',
             data: JSON.stringify(PrescriptionDeatils),
             contentType: "application/json;charset=utf-8",
             sucess: function (data, status, xhr) {
@@ -260,109 +288,8 @@ $(document).ready(function () {
 
 
 
-  
-
-//$("#btnPrescriptionUpload").click(function () {
-//    //e.preventDefault(); // <------------------ stop default behaviour of button
-//    //var element = this;    
-//    //$.ajax({
-//    //    url: "/Prescription/Upload",
-//    //    type: "POST",
-    
-//    //    dataType: "json",
-//    //    traditional: true,
-//    //    contentType: "application/json; charset=utf-8",
-//    //    success: function (data) {
-//    //        if (data.status == "Success") {
-//    //            alert("Done");
-//    //            $(element).closest("form").submit(); //<------------ submit form
-//    //        } else {
-//    //            alert("Error occurs on the Database level!");
-//    //        }
-//    //    },
-//    //    error: function () {
-//    //        alert("An error has occured!!!");
-//    //    }
-//    //});
-
-//    //$.ajax({
-//    //    type: "POST",
-//    //    url:  '../api/rxoutlet/imagePath',
-        
-//    //    contentType: "application/json;charset=utf-8",
-//    //    sucess: function (data,status, xhr) {
-//    //        alert(data);
-//    //    },
-//    //    error: function (xhr) {
-//    //        alert(xhr.responseText);
-//    //    }
-//    //});
-
-
-
-//    //var path;
-    
-//    //var frm = $("#send-contact"),  // our form
-//    //           url = frm.attr("GetImageURL"),  // our post action
-//    //           data = frm.serialize();     // our data to be posted
-
-//    //$.post(url, data, function (data) {
-//    //    // data has our returned Json from our view
-//    // path=   $("#txtPrescriptionDescription").text(data.imageUrl); // just to see it, do what you want
-//    //   // no more loading as we have what we need
-//    //});
-
-
-
-//    var PrescriptionDeatils = {
-//        "title": $('#txtPrescriptionTitle').val(),
-//        "description": $("#txtPrescriptionDescription").val()
-//    };
-   
-//    $.ajax({
-//        type: "POST",
-//        url: '../api/rxoutlet/UploadingPrescription',
-//        data: JSON.stringify(PrescriptionDeatils),
-//        contentType: "application/json;charset=utf-8",
-//        success: function (data) {
-//            if (data.status == "Success") {
-//                alert("Done");
-//                $(element).closest("form").submit(); //<------------ submit form
-//            } else {
-//                alert("Error occurs on the Database level!");
-//            }
-//        },
-//        //sucess: function (data, status, xhr) {
-//        //    alert("The Result is : " + status + ":" + data);
-//        //},
-//        error: function (xhr) {
-//            alert(xhr.responseText);
-//        }
-//    });
-//});
-
 
 $("#btnRegister").click(function () {
-
-
-    //function Encrypt(str) {
-    //    if (!str) str = $('#txtPassword').val();
-    //    str = (str == "undefined" || str == "null") ? "" : str;
-    //    try {
-    //        var key = 146;
-    //        var pos = 0;
-    //        ostr = '';
-    //        while (pos < str.length) {
-    //            ostr = ostr + String.fromCharCode(str.charCodeAt(pos) ^ key);
-    //            pos += 1;
-    //        }
-
-    //        return ostr;
-    //    } catch (ex) {
-    //        return '';
-    //    }
-    //}
-
     var Registration = {
         "Name": $('#txtName').val(),
         "Email": $('#txtEmail').val(),
@@ -422,8 +349,8 @@ $("#btnLogin").click(function () {
     //});
     $.ajax({
         type: "POST",
-       // url: 'http://rxoutlet.azurewebsites.net/api/RxOutlet/Login/',
-        url: 'http://localhost:64404/api/RxOutlet/Login/',
+       url: 'http://rxoutlet.azurewebsites.net/api/RxOutlet/Login/',
+        // url: 'http://localhost:64404/api/RxOutlet/Login/',
         data: JSON.stringify(Login),
         contentType: "application/json;charset=utf-8",
 
@@ -433,12 +360,12 @@ $("#btnLogin").click(function () {
         },
         success: function () {
             if (Email == 'test@gmail.com' && pswd == 'test') {http://localhost:64404
-              //   window.location.href = "http://rxoutlet.azurewebsites.net/Admin/AdminPage";
-                   window.location.href = "http://localhost:64404/Admin/AdminPage"
+               window.location.href = "http://rxoutlet.azurewebsites.net/Admin/AdminPage";
+                //  window.location.href = "http://localhost:64404/Admin/AdminPage"
             }
             else
-                 // window.location.href = "http://rxoutlet.azurewebsites.net/Prescription/Upload";
-                window.location.href = "http://localhost:64404/Prescription/Upload";
+                window.location.href = "http://rxoutlet.azurewebsites.net/Prescription/Upload";
+                //  window.location.href = "http://localhost:64404/Prescription/Upload";
 
 
         }
@@ -454,3 +381,66 @@ $("#btnLogin").click(function () {
     //} else { }
   
 });
+
+
+app.service("service", function ($http) {
+    //Function to call get genre web api call  
+    this.GetEmployee = function () {
+        var req = $http.get('http://localhost:64404/api/RxOutlet/GetPrescriptionList');
+        return req;
+    }
+});
+
+app.controller("DataController", function ($scope, service, $filter, $window) {
+    GetEmployee();
+
+    function GetEmployee() {
+        debugger
+        service.GetEmployee().then(function (result) {
+            $scope.Employees = result.data;
+            console.log($scope.Employees);
+        }, function (error) {
+            $window.alert('Oops! Something went wrong while fetching genre data.');
+        })
+    }
+    //Used to bind ui-grid    
+    $scope.selectedItem = null;
+    $scope.gridOptions = {
+        enableRowSelection: true,
+        paginationPageSizes: [5, 10, 20, 30, 40],
+        paginationPageSize: 10,
+        enableSorting: true,
+        columnDefs: [{
+            name: 'photo',
+            enableSorting: false,
+            field: 'PhotoPath',
+            cellTemplate: "<img width=\"50px\" ng-src=\"{{grid.getCellValue(row, col)}}\" lazy-src>"
+        }, {
+            name: 'First Name',
+            field: 'FirstName',
+            headerCellClass: 'tablesorter-header-inner'
+        }, {
+            name: 'Last Name',
+            field: 'LastName',
+            headerCellClass: 'tablesorter-header-inner'
+        }, {
+            name: 'Title',
+            field: 'Title',
+            headerCellClass: 'tablesorter-header-inner'
+        }, {
+            name: 'City',
+            field: 'City',
+            headerCellClass: 'tablesorter-header-inner'
+        }, {
+            name: 'Country',
+            field: 'Country',
+            headerCellClass: 'tablesorter-header-inner'
+        }, {
+            name: 'Notes',
+            field: 'Notes',
+            headerCellClass: 'tablesorter-header-inner'
+        }],
+        data: 'Employees'
+    };
+});
+

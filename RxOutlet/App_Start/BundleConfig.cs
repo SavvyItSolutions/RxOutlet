@@ -8,6 +8,16 @@ namespace RxOutlet
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+           
+
+            bundles.Add(new ScriptBundle("~/bundles/uigrid").Include(
+            "~/Scripts/ui-grid.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+            "~/Scripts/angular.min.js"
+           ));
+
+
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/jquery.countdown.js",
@@ -69,8 +79,9 @@ namespace RxOutlet
                                 "~/Content/jquery-ui.custom.min.css",
                                  "~/Content/fullcalendar.min.css",
                                   "~/Content/fonts.googleapis.com.css",
-                                   "~/Content/dropzone.min.css"
-  
+                                   "~/Content/dropzone.min.css",
+                                   "~/Content/ui-grid.css"
+
                       ));
         }
     }

@@ -42,9 +42,9 @@ namespace RxOutlet.Business
             List<UploadPrescriptionModel> prescriptionList = new List<UploadPrescriptionModel>();
 
             IMenuDBManger menuDBManager = new MenuDBManager();
-            IList<GetPrescriptionListResult> PrescriptionListresults = menuDBManager.GetPrescriptionList().ToList();
+            IList<PrescriptionListResult> PrescriptionListresults = menuDBManager.GetPrescriptionList().ToList();
 
-            foreach (GetPrescriptionListResult result in PrescriptionListresults)
+            foreach (PrescriptionListResult result in PrescriptionListresults)
             {
                 prescriptionList.Add(new UploadPrescriptionModel
                 {
@@ -54,7 +54,7 @@ namespace RxOutlet.Business
                     Title = result.Title,
                     Description = result.Description,
                     Filepath = result.imageUrl,
-                    CreatedDate= Convert.ToDateTime(result.CreatedDate)
+                    CreatedDate= (result.CreatedDate)
                 });
             }
             prescriptionResponse.GetPrescriptionList = prescriptionList;

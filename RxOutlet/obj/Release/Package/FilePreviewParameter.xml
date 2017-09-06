@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="RxOutlet" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^G:\\GitHub\ Folder\\RxOutlet\\RxOutlet\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^G:\\GitHub\ Folder\\RxOutlet\\RxOutlet\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=108.58.151.10;Initial Catalog=RxOutlet;Persist Security Info=True;User ID=rxadmin;Password=rxadmin" tags="">
+    <parameterEntry kind="XmlFile" scope="G:\\GitHub\ Folder\\RxOutlet\\RxOutlet\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="RxOutlet-Web.config Connection String" description="" value="Data Source=108.58.151.10;Initial Catalog=RxOutlet;Persist Security Info=True;User ID=rxadmin;Password=rxadmin" tags="">
+    <parameterEntry kind="XmlFile" scope="G:\\GitHub\ Folder\\RxOutlet\\RxOutlet\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='RxOutlet']/@connectionString" />
+  </parameter>
+</parameters>

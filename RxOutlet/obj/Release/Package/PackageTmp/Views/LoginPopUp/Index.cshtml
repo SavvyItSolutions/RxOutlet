@@ -1,0 +1,35 @@
+﻿@using RxOutlet.Models
+@model LoginViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+
+
+
+<button id="modal-opener">Open Dialog</button>
+
+<div id="dialog-modal" title="Basic Dialog modal">
+
+
+    @Html.Partial("_LogonPartial", new LoginViewModel { Email = "", Password = "" })
+
+    @*@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { id = "ID" }))
+    {
+        <div>
+          
+               
+       
+                
+            
+        </div>
+    }*@
+</div>

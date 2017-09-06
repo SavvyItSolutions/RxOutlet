@@ -1,6 +1,24 @@
 ﻿
+@{
 
-    <table class="cart_summary">
+    ViewBag.Title = "Index";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Employee</h2>
+
+<div  ng-controller="DataController">
+
+    <div ui-grid="gridOptions" ui-grid-pagination ui-grid-selection class="grid" ui-grid-auto-resize>
+    </div>
+
+</div>   
+
+
+
+
+    @*<table class="cart_summary">
         <thead>
             <tr>
                 <th class="cart_product">Title</th>
@@ -11,7 +29,7 @@
         </thead>
         <tbody>
             <tr>
-
+                +
 
                 <td class="cart_avail"><span class="label label-success">In stock</span></td>
                 <td class="price"><span>61,19 €</span></td>
@@ -23,4 +41,4 @@
            
         </tbody>
      
-    </table>
+    </table>*@

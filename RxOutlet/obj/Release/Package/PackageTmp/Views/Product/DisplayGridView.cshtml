@@ -1,0 +1,151 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    @*<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>*@
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .products .product-right {
+            position: static;
+        }
+
+        .products .product-container .inner {
+            padding-bottom: 5px;
+        }
+
+        .products .product-container {
+            padding-bottom: 5px;
+        }
+        /* .block-vertical-menu .vertical-head .vertical-title {
+            font-size: 17px;
+        } */
+        .product-name a {
+            font-size: 18px;
+        }
+    </style>
+
+</head>
+<body ng-app="Drugs" >
+
+    <script>
+        var search = {
+            SearchText: 'asp',
+            Type: [4, 2, 7],
+            PageStart: 4,
+            PageSize: 10
+        };
+
+
+        var app = angular.
+            module("Drugs", ['ui.bootstrap']).
+            controller("DisplayDrugInfo", ['$log', '$scope', '$http', function ($log, $scope, $http) {
+                $http({
+                    method: 'Get',
+                    url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/Druglist",
+                    data: JSON.stringify(search)
+                }).then(function (response) {
+                    $scope.Drug = response.data;
+
+                    $scope.viewby = 10;
+                    $scope.totalItems = response.data.DrugList.length;
+                    console.log(response.data.DrugList.length);
+                    $scope.currentPage = 4;
+                    $scope.itemsPerPage = $scope.viewby;
+                    $scope.maxSize = 5; //Number of pager buttons to show
+
+                    $scope.setPage = function (pageNo) {
+                        $scope.currentPage = pageNo;
+                    };
+
+                    $scope.pageChanged = function () {
+                        console.log('Page changed to: ' + $scope.currentPage);
+                    };
+
+                    $scope.setItemsPerPage = function (num) {
+                        $scope.itemsPerPage = num;
+                        $scope.currentPage = 1; //reset to first paghe
+                    }
+
+                //    alert(response.data);
+                    //console.log("DrugObject"+response.data);
+                    //console.log("DrugList" + response.data.DrugList);
+                    //console.log("DrugName" + response.data.DrugList[1].DrugName);
+                });
+            }]);
+
+        app.controller("SupplierNameCntrl", ['$log', '$scope', '$http', function ($log, $scope, $http) {
+            $http({
+                method: 'Get',
+                url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/GetSupplierName",
+                data: JSON.stringify(search)
+            }).then(function (response) {
+                $scope.SuppilerName = response.data;
+                //alert(response.data.length);
+                console.log("DrugObject" + response.data);
+                console.log("DrugList" + response.data.DrugList);
+
+               });
+
+
+        }]);
+
+
+
+    </script>
+
+    <div class="category-products" ng-controller="DisplayDrugInfo">
+        <ul class="products list">
+            @*<li class="product">*@
+            <li ng-repeat="x in Drug.DrugList" class="product">
+
+                <div class="product-container">
+                    <div class="inner row">
+                        <div class="product-left col-xs-12 col-sm-5 col-md-4">
+                            <div class="product-thumb">
+                                <a class="product-img" href="product-detail.html"><img ng-src="/DrugImages/{{x.ImageNum}}.jpg" alt="Product"></a>
+                                <a title="Quick View" href="#" class="btn-quick-view">Quick View</a>
+                            </div>
+                        </div>
+                        <div class="product-right col-xs-12 col-sm-7 col-md-8">
+                            <div class="product-name">
+                                <a href="product-detail.html">{{x.DrugName}}</a>
+                            </div>
+                            <div class="price-box">
+                                <span class="product-price">{{x.RegularPrice}}</span>
+                                <span class="product-price-old">{{x.RetailPrice}}</span>
+                            </div>
+                            <div class="product-star">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                            </div>
+                            <div class="desc">
+                                Top zipper closure, two pockets in the front, Slit patch pocket in the back. Detachable, adjustable shoulder strap. Interior: built-in padded compartment for a 14” laptop, zipper
+                            </div>
+                            <div class="product-button">
+                                <a class="btn-add-wishlist" title="Add to Wishlist" href="#">Add Wishlist</a>
+                                <a class="btn-add-comparre" title="Add to Compare" href="#">Add Compare</a>
+                                <a class="button-radius btn-add-cart" title="Add to Cart" href="#">Buy<span class="icon"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

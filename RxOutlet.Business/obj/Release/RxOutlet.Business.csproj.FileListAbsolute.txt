@@ -1,0 +1,9 @@
+G:\GitHub Folder\RxOutlet\RxOutlet.Business\bin\Release\RxOutlet.Business.dll
+G:\GitHub Folder\RxOutlet\RxOutlet.Business\bin\Release\RxOutlet.Business.pdb
+G:\GitHub Folder\RxOutlet\RxOutlet.Business\bin\Release\RxOutlet.DataAccess.dll
+G:\GitHub Folder\RxOutlet\RxOutlet.Business\bin\Release\RxOutlet.Models.dll
+G:\GitHub Folder\RxOutlet\RxOutlet.Business\bin\Release\RxOutlet.DataAccess.pdb
+G:\GitHub Folder\RxOutlet\RxOutlet.Business\bin\Release\RxOutlet.Models.pdb
+G:\GitHub Folder\RxOutlet\RxOutlet.Business\obj\Release\RxOutlet.Business.csprojResolveAssemblyReference.cache
+G:\GitHub Folder\RxOutlet\RxOutlet.Business\obj\Release\RxOutlet.Business.dll
+G:\GitHub Folder\RxOutlet\RxOutlet.Business\obj\Release\RxOutlet.Business.pdb

@@ -8,14 +8,18 @@ namespace RxOutlet
 {
     public class SendEmail
     {
-        public Task SendOneEmail(string email, string firstName, string PrescriptionTitle)
+
+       // public Task SendOneEmail(string email, string firstName, string PrescriptionTitle)
+        
+
+        public Task SendOneEmail(string email)
         {
             var myMessage = new SendGridMessage()
             {
                 From = new EmailAddress("savvyitsol@gmail.com", "RxOutlet"),
                 Subject = " Confirmation Mail for Uploading Prescription",
-                PlainTextContent = "Hello " + firstName + "!",
-                HtmlContent = "<strong>Hello " + firstName + "!</strong><br /><br />Confirmation Mail</a><br /><br />Thanks"
+                PlainTextContent = "Hello " ,
+                HtmlContent = "</strong><br /><br />Confirmation Mail</a><br /><br />Thanks"
             };
 
             myMessage.AddTo(new EmailAddress(email, "RxOutlet Confirmation Mail"));

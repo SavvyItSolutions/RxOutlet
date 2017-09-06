@@ -86,7 +86,7 @@ namespace RxOutlet.Controllers
             if (PrescriptionDetailsResponse.IsSuccessStatusCode)
                 {
 
-                HttpResponseMessage ConfirmationMailResponse = await client.PostAsJsonAsync(ConfirmationMailURL, model.UserID);
+             //   HttpResponseMessage ConfirmationMailResponse = await client.PostAsJsonAsync(ConfirmationMailURL, model.UserID);
 
                 return View("LatestImage");
 
