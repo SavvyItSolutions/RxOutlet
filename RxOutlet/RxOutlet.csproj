@@ -301,6 +301,7 @@
   <ItemGroup>
     <Content Include="Content\ace-ie.min.css" />
     <Content Include="Content\ace-part2.min.css" />
+    <Content Include="Content\ace-rtl.min.css" />
     <Content Include="Content\ace-skins.min.css" />
     <Content Include="Content\ace.min.css" />
     <Content Include="Content\animate.css" />

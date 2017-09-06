@@ -69,7 +69,7 @@ var app = angular.
             $scope.Drug = response.data;
             $scope.viewby = 10;
             $scope.totalItems = response.data.DrugList.length;
-            console.log(response.data.DrugList.length);
+         //   console.log(response.data.DrugList.length);
             $scope.currentPage = 4;
             $scope.itemsPerPage = $scope.viewby;
             $scope.maxSize = 5; //Number of pager buttons to show
@@ -359,7 +359,7 @@ $("#btnLogin").click(function () {
             alert("error - " + err);
         },
         success: function () {
-            if (Email == 'test@gmail.com' && pswd == 'test') {http://localhost:64404
+            if (Email == 'test@gmail.com' && pswd == 'test') {
                window.location.href = "http://rxoutlet.azurewebsites.net/Admin/AdminPage";
                 //  window.location.href = "http://localhost:64404/Admin/AdminPage"
             }
@@ -391,56 +391,58 @@ app.service("service", function ($http) {
     }
 });
 
-app.controller("DataController", function ($scope, service, $filter, $window) {
-    GetEmployee();
 
-    function GetEmployee() {
-        debugger
-        service.GetEmployee().then(function (result) {
-            $scope.Employees = result.data;
-            console.log($scope.Employees);
-        }, function (error) {
-            $window.alert('Oops! Something went wrong while fetching genre data.');
-        })
-    }
-    //Used to bind ui-grid    
-    $scope.selectedItem = null;
-    $scope.gridOptions = {
-        enableRowSelection: true,
-        paginationPageSizes: [5, 10, 20, 30, 40],
-        paginationPageSize: 10,
-        enableSorting: true,
-        columnDefs: [{
-            name: 'photo',
-            enableSorting: false,
-            field: 'PhotoPath',
-            cellTemplate: "<img width=\"50px\" ng-src=\"{{grid.getCellValue(row, col)}}\" lazy-src>"
-        }, {
-            name: 'First Name',
-            field: 'FirstName',
-            headerCellClass: 'tablesorter-header-inner'
-        }, {
-            name: 'Last Name',
-            field: 'LastName',
-            headerCellClass: 'tablesorter-header-inner'
-        }, {
-            name: 'Title',
-            field: 'Title',
-            headerCellClass: 'tablesorter-header-inner'
-        }, {
-            name: 'City',
-            field: 'City',
-            headerCellClass: 'tablesorter-header-inner'
-        }, {
-            name: 'Country',
-            field: 'Country',
-            headerCellClass: 'tablesorter-header-inner'
-        }, {
-            name: 'Notes',
-            field: 'Notes',
-            headerCellClass: 'tablesorter-header-inner'
-        }],
-        data: 'Employees'
-    };
-});
+
+//app.controller("DataController", function ($scope, service, $filter, $window) {
+//    GetEmployee();
+
+//    function GetEmployee() {
+//        debugger
+//        service.GetEmployee().then(function (result) {
+//            $scope.Employees = result.data;
+//            console.log($scope.Employees);
+//        }, function (error) {
+//            $window.alert('Oops! Something went wrong while fetching genre data.');
+//        })
+//    }
+//    //Used to bind ui-grid    
+//    $scope.selectedItem = null;
+//    $scope.gridOptions = {
+//        enableRowSelection: true,
+//        paginationPageSizes: [5, 10, 20, 30, 40],
+//        paginationPageSize: 10,
+//        enableSorting: true,
+//        columnDefs: [{
+//            name: 'photo',
+//            enableSorting: false,
+//            field: 'PhotoPath',
+//            cellTemplate: "<img width=\"50px\" ng-src=\"{{grid.getCellValue(row, col)}}\" lazy-src>"
+//        }, {
+//            name: 'First Name',
+//            field: 'FirstName',
+//            headerCellClass: 'tablesorter-header-inner'
+//        }, {
+//            name: 'Last Name',
+//            field: 'LastName',
+//            headerCellClass: 'tablesorter-header-inner'
+//        }, {
+//            name: 'Title',
+//            field: 'Title',
+//            headerCellClass: 'tablesorter-header-inner'
+//        }, {
+//            name: 'City',
+//            field: 'City',
+//            headerCellClass: 'tablesorter-header-inner'
+//        }, {
+//            name: 'Country',
+//            field: 'Country',
+//            headerCellClass: 'tablesorter-header-inner'
+//        }, {
+//            name: 'Notes',
+//            field: 'Notes',
+//            headerCellClass: 'tablesorter-header-inner'
+//        }],
+//        data: 'Employees'
+//    };
+//});
 
