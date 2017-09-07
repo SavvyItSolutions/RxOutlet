@@ -42,9 +42,9 @@ namespace RxOutlet.Business
             List<UploadPrescriptionModel> prescriptionList = new List<UploadPrescriptionModel>();
 
             IMenuDBManger menuDBManager = new MenuDBManager();
-            IList<PrescriptionListResult> PrescriptionListresults = menuDBManager.GetPrescriptionList().ToList();
+            IList<PrescriptionListResult> PrescriptionListresultsObj = menuDBManager.GetPrescriptionList();
 
-            foreach (PrescriptionListResult result in PrescriptionListresults)
+            foreach (PrescriptionListResult result in PrescriptionListresultsObj)
             {
                 prescriptionList.Add(new UploadPrescriptionModel
                 {
