@@ -171,8 +171,8 @@ var usrName = "@HttpContext.Current.User.Identity.Name";
 app.controller("PresListCntrl", ['$log', '$scope', '$http', function ($log, $scope, $http) {
     $http({
         method: 'Get',
-        url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/GetPrescriptionList",
-        //  url: "http://localhost:64404/api/RxOutlet/GetPrescriptionList",
+        //url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/GetPrescriptionList",
+         url: "http://localhost:64404/api/RxOutlet/GetPrescriptionList",
         data: JSON.stringify(search),
     }).then(function (response) {
         $scope.PrescriptionList = response.data;
@@ -271,8 +271,8 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: 'http://rxoutlet.azurewebsites.net/api/rxoutlet/UploadingPrescription',
-            // url: 'http://localhost:64404/api/rxoutlet/UploadingPrescription',
+           // url: 'http://rxoutlet.azurewebsites.net/api/rxoutlet/UploadingPrescription',
+             url: 'http://localhost:64404/api/rxoutlet/UploadingPrescription',
             data: JSON.stringify(PrescriptionDeatils),
             contentType: "application/json;charset=utf-8",
             sucess: function (data, status, xhr) {
@@ -298,8 +298,8 @@ $("#btnRegister").click(function () {
     };
     $.ajax({
         type: "POST",
-        url: 'http://rxoutlet.azurewebsites.net/api/RxOutlet/Registration',
-       // url: '../api/Account/Registration',
+       // url: 'http://rxoutlet.azurewebsites.net/api/RxOutlet/Registration',
+       url: '../api/RxOutlet/Registration',
         data: JSON.stringify(Registration),
         contentType: "application/json;charset=utf-8",
         sucess: function (data, status, xhr) {
@@ -307,15 +307,26 @@ $("#btnRegister").click(function () {
         },
         error: function (xhr) {
             alert("Error : "+xhr.responseText);
-        }
+        },
 
     //    error: function (err) {
         //    alert("error - " + err);
 
     //},
-    //success: function () {
-    //    window.location.href = "http://localhost:64404/Prescription/Upload";
-    //}
+        success: function () {
+           // var divID = document.getElementById('AuthorizeEmail');
+
+          
+            document.getElementById("AuthorizeEmail").innerHTML=  "Thank you for Signing Up. We have sent an email to your authorized email address, xxx.<br>"
+                    "Please activate the account by clicking the link in the email and login below."
+             
+                //divID.innerHTML = 'Show clock';
+            
+            show(document.getElementById('AuthorizeEmail'));
+        window.location.href = "http://localhost:64404/Account/Login";
+
+       
+    }
     });
 
     //$("#txtName").val("");
@@ -330,11 +341,11 @@ $("#btnRegister").click(function () {
 
 
 $("#btnLogin").click(function () {
-  
+    var isChecked = document.getElementById("chkbxRememberMe").checked;
     var Login = {
         "Email": $('#txtLoginEmail').val(),
         "Password":$('#txtLoginPwd').val(),
-        "RememberMe":false
+        "RememberMe": isChecked
     };
 
     var Email = $('#txtLoginEmail').val();

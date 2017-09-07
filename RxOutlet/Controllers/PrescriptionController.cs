@@ -23,7 +23,7 @@ namespace RxOutlet.Controllers
         string PrescriptionDetailsURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/UploadingPrescription";
         string ConfirmationMailURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/ConfirmationMail";
 
-        string UserPrescriptionListURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/GetUserPrescriptionList/";
+      //  string UserPrescriptionListURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/GetUserPrescriptionList/";
 
 
 
@@ -110,19 +110,19 @@ namespace RxOutlet.Controllers
             return View();
         }
 
-        public async Task<ActionResult> UserPrescriptionList()
+        public ActionResult UserPrescriptionList()
         {
            string UserID = User.Identity.GetUserId();
-            string url = UserPrescriptionListURL + UserID;
-            HttpResponseMessage responseMessage = await client.GetAsync(url);
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+          //  string url = UserPrescriptionListURL + UserID;
+         //   HttpResponseMessage responseMessage = await client.GetAsync(url);
+            //if (responseMessage.IsSuccessStatusCode)
+            //{
+            //    var responseData = responseMessage.Content.ReadAsStringAsync().Result;
 
-                var Employees = JsonConvert.DeserializeObject<List<UploadPrescriptionModel>>(responseData);
+            //    var Employees = JsonConvert.DeserializeObject<List<UploadPrescriptionModel>>(responseData);
 
-                return View("UserPrescriptionList");
-            }
+            //    return View("UserPrescriptionList");
+            //}
             return View("Error");
         }
 

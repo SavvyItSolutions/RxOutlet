@@ -24,18 +24,48 @@ namespace RxOutlet.Controllers
 {
     public class RxOutletController : ApiController
     {
-
+        //public RxOutletController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        //{
+        //    UserManager = userManager;
+        //    SignInManager = signInManager;
+        //}
         private ApplicationSignInManager _signInManager;
+        private ApplicationUserManager _userManager;
 
-
-        [HttpGet]
-        public PrescriptionResponse GetPrescriptionList()
+        public ApplicationSignInManager SignInManager
         {
-            PrescriptionResponse resp = new PrescriptionResponse();
-            IRxOutletService rxoutletService = new RxOutletService();
-            resp = rxoutletService.GetPrescriptionList();
-            return resp;
+            get
+            {
+                return _signInManager ?? System.Web.HttpContext.Current.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            private set
+            {
+                _signInManager = value;
+            }
         }
+
+        //public ApplicationUserManager UserManager
+        //{
+        //    get
+        //    {
+        //        return _userManager ?? System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+        //    }
+        //    private set
+        //    {
+        //        _userManager = value;
+        //    }
+        //}
+
+
+
+        //[HttpGet]
+        //public PrescriptionResponse GetPrescriptionList()
+        //{
+        //    PrescriptionResponse resp = new PrescriptionResponse();
+        //    IRxOutletService rxoutletService = new RxOutletService();
+        //    resp = rxoutletService.GetPrescriptionList();
+        //    return resp;
+        //}
 
 
 
@@ -62,20 +92,23 @@ namespace RxOutlet.Controllers
         }
 
 
-        [HttpGet]
-        public ConfirmationEmailResponse ConfirmationMail(string objectId)
-        {
-
-            IRxOutletService rxService = new RxOutletService();
-         
 
 
+        //[HttpGet]
+        //public ConfirmationEmailResponse ConfirmationMail(string objectId)
+        //{
+
+        //    IRxOutletService rxService = new RxOutletService();
+
+
+        //    SendEmail objsendmail = new SendEmail();
+        //    objsendmail.SendOneEmail("");
           
+            
+        //    return rxService.ConfirmationMail(objectId);
 
-            return rxService.ConfirmationMail(objectId);
 
-
-        }
+        //}
 
 
 
@@ -94,27 +127,22 @@ namespace RxOutlet.Controllers
             return 1;
         }
 
-        //private ActionResult RedirectToLocal(string returnUrl)
+        //[HttpGet]
+        //public async Task<ConfirmationEmailResponse> ConfirmEmail(string userId, string code)
         //{
-        //    if (Url.IsLocalUrl(returnUrl))
+        //    ConfirmationEmailResponse objMailResponse = new ConfirmationEmailResponse();
+        //    if (userId == null || code == null)
         //    {
-        //        return Redirect(returnUrl);
+                
         //    }
-        //    return RedirectToAction("Index", "Home");
+        //    var result = await UserManager.ConfirmEmailAsync(userId, code);
+        //    //  return View(result.Succeeded ? "ConfirmEmail" : "Error");
+
+        //    return objMailResponse;
         //}
 
 
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return _signInManager ?? System.Web.HttpContext.Current.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set
-            {
-                _signInManager = value;
-            }
-        }
+      
 
         [HttpPost]
         public async Task<LoginResponse> Login(LoginModel model)
