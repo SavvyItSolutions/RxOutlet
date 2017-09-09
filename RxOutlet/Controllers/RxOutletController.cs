@@ -58,14 +58,14 @@ namespace RxOutlet.Controllers
 
 
 
-        //[HttpGet]
-        //public PrescriptionResponse GetPrescriptionList()
-        //{
-        //    PrescriptionResponse resp = new PrescriptionResponse();
-        //    IRxOutletService rxoutletService = new RxOutletService();
-        //    resp = rxoutletService.GetPrescriptionList();
-        //    return resp;
-        //}
+        [HttpGet]
+        public PrescriptionResponse GetPrescriptionList()
+        {
+            PrescriptionResponse resp = new PrescriptionResponse();
+            IRxOutletService rxoutletService = new RxOutletService();
+            resp = rxoutletService.GetPrescriptionList();
+            return resp;
+        }
 
 
 

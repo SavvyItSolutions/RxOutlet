@@ -59,7 +59,7 @@ var search = {
 
 
 var app = angular.
-    module("Drugs", ['ui.bootstrap','ui.grid', 'ui.grid.pagination']).
+    module("Drugs", ['ui.bootstrap','ui.grid', 'ui.grid.pagination','ui.grid.selection']).
     controller("DisplayDrugInfo", ['$log', '$scope', '$http', function ($log, $scope, $http) {
         $http({
             method: 'Get',
@@ -171,8 +171,8 @@ var usrName = "@HttpContext.Current.User.Identity.Name";
 app.controller("PresListCntrl", ['$log', '$scope', '$http', function ($log, $scope, $http) {
     $http({
         method: 'Get',
-        //url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/GetPrescriptionList",
-         url: "http://localhost:64404/api/RxOutlet/GetPrescriptionList",
+        url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/GetPrescriptionList",
+        // url: "http://localhost:64404/api/RxOutlet/GetPrescriptionList",
         data: JSON.stringify(search),
     }).then(function (response) {
         $scope.PrescriptionList = response.data;
@@ -271,8 +271,8 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-           // url: 'http://rxoutlet.azurewebsites.net/api/rxoutlet/UploadingPrescription',
-             url: 'http://localhost:64404/api/rxoutlet/UploadingPrescription',
+            url: 'http://rxoutlet.azurewebsites.net/api/rxoutlet/UploadingPrescription',
+            // url: 'http://localhost:64404/api/rxoutlet/UploadingPrescription',
             data: JSON.stringify(PrescriptionDeatils),
             contentType: "application/json;charset=utf-8",
             sucess: function (data, status, xhr) {
@@ -290,6 +290,7 @@ $(document).ready(function () {
 
 
 $("#btnRegister").click(function () {
+
     var Registration = {
         "Name": $('#txtName').val(),
         "Email": $('#txtEmail').val(),
@@ -298,35 +299,27 @@ $("#btnRegister").click(function () {
     };
     $.ajax({
         type: "POST",
-       // url: 'http://rxoutlet.azurewebsites.net/api/RxOutlet/Registration',
-       url: '../api/RxOutlet/Registration',
+        url: 'http://rxoutlet.azurewebsites.net/api/RxOutlet/Registration',
+      // url: '../api/RxOutlet/Registration',
         data: JSON.stringify(Registration),
         contentType: "application/json;charset=utf-8",
         sucess: function (data, status, xhr) {
-          
+            //Id.value = "Thank you for Signing Up. We have sent an email to your authorized email address, xxx.<br>"
+            //"Please activate the account by clicking the link in the email and login below.";
+          //  window.location.href = "http://localhost:64404/Account/Login";
+            window.location.href =   "http://rxoutlet.azurewebsites.net/Account/Login";
+
+            $('#p1').show();
+
+
+  
+         
         },
         error: function (xhr) {
             alert("Error : "+xhr.responseText);
-        },
+        }
 
-    //    error: function (err) {
-        //    alert("error - " + err);
-
-    //},
-        success: function () {
-           // var divID = document.getElementById('AuthorizeEmail');
-
-          
-            document.getElementById("AuthorizeEmail").innerHTML=  "Thank you for Signing Up. We have sent an email to your authorized email address, xxx.<br>"
-                    "Please activate the account by clicking the link in the email and login below."
-             
-                //divID.innerHTML = 'Show clock';
-            
-            show(document.getElementById('AuthorizeEmail'));
-        window.location.href = "http://localhost:64404/Account/Login";
-
-       
-    }
+   
     });
 
     //$("#txtName").val("");
@@ -360,8 +353,8 @@ $("#btnLogin").click(function () {
     //});
     $.ajax({
         type: "POST",
-      // url: 'http://rxoutlet.azurewebsites.net/api/RxOutlet/Login/',
-      url: 'http://localhost:64404/api/RxOutlet/Login/',
+       url: 'http://rxoutlet.azurewebsites.net/api/RxOutlet/Login/',
+    //  url: 'http://localhost:64404/api/RxOutlet/Login/',
         data: JSON.stringify(Login),
         contentType: "application/json;charset=utf-8",
 
@@ -371,12 +364,12 @@ $("#btnLogin").click(function () {
         },
         success: function () {
             if (Email == 'test@gmail.com' && pswd == 'test') {
-             //  window.location.href = "http://rxoutlet.azurewebsites.net/Admin/AdminPage";
-                  window.location.href = "http://localhost:64404/Admin/AdminPage"
+               window.location.href = "http://rxoutlet.azurewebsites.net/Admin/AdminPage";
+                //  window.location.href = "http://localhost:64404/Admin/AdminPage"
             }
             else
-               // window.location.href = "http://rxoutlet.azurewebsites.net/Prescription/Upload";
-               window.location.href = "http://localhost:64404/Prescription/Upload";
+                window.location.href = "http://rxoutlet.azurewebsites.net/Prescription/Upload";
+            //   window.location.href = "http://localhost:64404/Prescription/Upload";
 
 
         }
@@ -403,6 +396,16 @@ $("#btnLogin").click(function () {
 //});
 
 
+
+app.service("employeeservice", function ($http) {
+    //Function to call get genre web api call  
+    this.GetEmployee = function () {
+        var req = $http.get('api/EmployeesAPI');
+        return req;
+    }
+});
+
+//http://www.c-sharpcorner.com/article/filtering-in-ui-grid-with-angularjs-and-webapi/
 
 //app.controller("DataController", function ($scope, service, $filter, $window) {
 //    GetEmployee();

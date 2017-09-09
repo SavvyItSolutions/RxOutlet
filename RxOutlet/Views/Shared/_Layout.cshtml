@@ -354,10 +354,11 @@ color:#00dce8;
                         <li><a href="login.html">Login</a></li>
                                @Html.ActionLink("Login", "Login")*@
 
-                        <li>@Html.ActionLink("Product List", "Product", "Product")</li>
+                        @*<li>@Html.ActionLink("Product List", "Product", "Product")</li>*@
                         <li>@Html.ActionLink("My Account", "MyAccount", "Home")</li>
-                        <li>@Html.ActionLink("My Wishlist", "_Wishlist", "Home")</li>
-                        <li>@Html.ActionLink("Checkout", "_Checkout", "Home")</li>                      
+                        <li>@Html.ActionLink("Sign Up", "Register", "Account")</li>
+                        @*<li>@Html.ActionLink("My Wishlist", "_Wishlist", "Home")</li>
+                        <li>@Html.ActionLink("Checkout", "_Checkout", "Home")</li>*@                      
                         <li>@Html.Partial("_LoginPartial")</li>
                       
 
