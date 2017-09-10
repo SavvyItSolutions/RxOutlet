@@ -114,17 +114,23 @@ namespace RxOutlet.Controllers
 
 
         [HttpPost]
-        public async Task<int> Registration(RegistrationModel model)
+        public async Task<RegistrationResponseModel> Registration(RegistrationModel model)
         {
+            RegistrationResponseModel respModel;
             try
-            {
+            {                
                 var user = new ApplicationUser { Name = model.Name, UserName = model.Email, Email = model.Email, PhoneNumber = model.MobileNum };
                 var result = await System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().CreateAsync(user, model.Password);
-              
+                respModel = new RegistrationResponseModel(result.Succeeded, result.Errors.ToList());
+                
             }
             catch (Exception ex)
-            { }
-            return 1;
+            {
+                var x = new List<string>();
+                x.Add(ex.Message);
+                respModel = new RegistrationResponseModel(false, x);
+            }
+            return respModel;
         }
 
         //[HttpGet]
