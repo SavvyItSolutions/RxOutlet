@@ -53,8 +53,8 @@ namespace RxOutlet.Business
                     PhoneNumber=result.PhoneNumber,
                     Title = result.Title,
                     Description = result.Description,
-                    Filepath = result.imageUrl,
-                    CreatedDate= (result.CreatedDate)
+                    Filepath = result.imageUrl
+                    //CreatedDate= (result.CreatedDate)
                 });
             }
             prescriptionResponse.GetPrescriptionList = prescriptionList;
