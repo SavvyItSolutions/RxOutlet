@@ -1,59 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="RxOutlet">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 9.125" name="RxOutlet">
   <DataContextMoniker Name="/RxOutletDataContext" />
   <nestedChildShapes>
-    <classShape Id="1a4462b3-2301-4a1b-9f1d-218f5779ff35" absoluteBounds="3, 0.5, 2, 1.1939925130208333">
+    <classShape Id="1a4462b3-2301-4a1b-9f1d-218f5779ff35" absoluteBounds="0.75, 2.25, 2, 1.1939925130208335">
       <DataClassMoniker Name="/RxOutletDataContext/tblMainMenu" />
       <nestedChildShapes>
-        <elementListCompartment Id="4bef6173-b7b2-4490-92dc-40b2c5ca9a46" absoluteBounds="3.015, 0.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="4bef6173-b7b2-4490-92dc-40b2c5ca9a46" absoluteBounds="0.76500000059604645, 2.7100000008940697, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="b4afa64a-36a0-4214-9e23-c7f2f1b91f57" absoluteBounds="3.25, 2.75, 2, 1.5785953776041666">
+    <classShape Id="b4afa64a-36a0-4214-9e23-c7f2f1b91f57" absoluteBounds="6.25, 3.25, 2, 1.5785953776041666">
       <DataClassMoniker Name="/RxOutletDataContext/tblMenuItem" />
       <nestedChildShapes>
-        <elementListCompartment Id="debc7e25-8d64-4533-bcd5-394604b07d9f" absoluteBounds="3.265, 3.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="debc7e25-8d64-4533-bcd5-394604b07d9f" absoluteBounds="6.2650000005960464, 3.7100000008940697, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.125 : 1.69399251302083); (4.125 : 2.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 2.74999950020489); (7.25 : 2.74999950020489); (7.25 : 3.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/RxOutletDataContext/tblMainMenu/tblMainMenu_tblMenuItem" />
       <nodes>
         <classShapeMoniker Id="1a4462b3-2301-4a1b-9f1d-218f5779ff35" />
         <classShapeMoniker Id="b4afa64a-36a0-4214-9e23-c7f2f1b91f57" />
       </nodes>
     </associationConnector>
-    <classShape Id="b0e8471a-dd89-4b8b-922f-ea24904828c5" absoluteBounds="1.375, 4.5, 2, 1.3862939453125">
+    <classShape Id="b0e8471a-dd89-4b8b-922f-ea24904828c5" absoluteBounds="3.5, 4.5, 2, 1.3862939453125005">
       <DataClassMoniker Name="/RxOutletDataContext/tblSubMenus" />
       <nestedChildShapes>
-        <elementListCompartment Id="88333182-11d8-4768-95d3-c0437325c6ee" absoluteBounds="1.3900000000000001, 4.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="88333182-11d8-4768-95d3-c0437325c6ee" absoluteBounds="3.5150000005960464, 4.96000000089407, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.375 : 5.19314697265625); (4.3125005 : 5.19314697265625); (4.3125005 : 4.32859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 4.66429768864686); (6.25 : 4.66429768864686)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/RxOutletDataContext/tblSubMenus/tblSubMenus_tblMenuItem" />
       <nodes>
         <classShapeMoniker Id="b0e8471a-dd89-4b8b-922f-ea24904828c5" />
         <classShapeMoniker Id="b4afa64a-36a0-4214-9e23-c7f2f1b91f57" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(3.09375 : 1.69399251302083); (3.09375 : 4.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(1.75 : 3.44399251302083); (1.75 : 5.19314697265625); (3.5 : 5.19314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/RxOutletDataContext/tblMainMenu/tblMainMenu_tblSubMenus" />
       <nodes>
         <classShapeMoniker Id="1a4462b3-2301-4a1b-9f1d-218f5779ff35" />
         <classShapeMoniker Id="b0e8471a-dd89-4b8b-922f-ea24904828c5" />
       </nodes>
     </associationConnector>
-    <classShape Id="5e48fc91-495c-40b9-9d53-051379161cba" absoluteBounds="0.5, 0.5, 2, 1.9631982421875">
+    <classShape Id="5e48fc91-495c-40b9-9d53-051379161cba" absoluteBounds="3.5, 6.875, 2, 1.9631982421874987">
       <DataClassMoniker Name="/RxOutletDataContext/Druginfo" />
       <nestedChildShapes>
-        <elementListCompartment Id="832e9bd5-406d-4538-a759-248283dc791a" absoluteBounds="0.515, 0.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="832e9bd5-406d-4538-a759-248283dc791a" absoluteBounds="3.5150000005960464, 7.33500000089407, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="d95ee5c5-0f40-4945-b8ab-ffd9ae03aece" absoluteBounds="0.5, 3.125, 2, 1.1939925130208333">
+    <classShape Id="d95ee5c5-0f40-4945-b8ab-ffd9ae03aece" absoluteBounds="0.75, 7.25, 2, 1.1939925130208344">
       <DataClassMoniker Name="/RxOutletDataContext/Supplier" />
       <nestedChildShapes>
-        <elementListCompartment Id="13029a51-eee2-40a4-b30d-d79ecd849772" absoluteBounds="0.515, 3.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="13029a51-eee2-40a4-b30d-d79ecd849772" absoluteBounds="0.76500000059604645, 7.71000000089407, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.5 : 3.125); (1.5 : 2.4631982421875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 7.84699625651042); (3.5 : 7.84699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/RxOutletDataContext/Supplier/Supplier_Druginfo" />
       <nodes>
         <classShapeMoniker Id="d95ee5c5-0f40-4945-b8ab-ffd9ae03aece" />

@@ -1853,6 +1853,7 @@ namespace RxOutlet.DataAccess
 	public partial class PrescriptionListResult
 	{
 		
+
 		private string _Email;
 		
 		private string _PhoneNumber;
