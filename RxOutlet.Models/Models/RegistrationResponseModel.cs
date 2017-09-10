@@ -13,6 +13,7 @@ namespace RxOutlet.Models
 
         public RegistrationResponseModel(bool _success, List<string> _error)
         {
+
             Error = _error;
             Success = _success;
         }
