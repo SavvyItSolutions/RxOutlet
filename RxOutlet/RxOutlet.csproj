@@ -296,7 +296,6 @@
     <Compile Include="Models\UploadPrescription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SendEmail.cs" />
-    <Compile Include="ServiceWrapper.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
