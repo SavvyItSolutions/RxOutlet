@@ -149,13 +149,15 @@
       <Column Name="CreatedDate" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.InsertActivationCode" Method="InsertActivationCode">
-    <Parameter Name="ActivationCode" Parameter="activationCode" Type="System.String" DbType="VarChar(MAX)" />
-    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(256)" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.UpdateVerificationMail" Method="UpdateVerificationMail">
     <Parameter Name="ActivationCode" Parameter="activationCode" Type="System.String" DbType="VarChar(MAX)" />
     <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.InsertActivationCode" Method="InsertActivationCode">
+    <Parameter Name="ActivationCode" Parameter="activationCode" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(256)" />
+    <ElementType Name="InsertActivationCodeResult">
+      <Column Name="" Member="Column1" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
   </Function>
 </Database>

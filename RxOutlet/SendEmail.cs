@@ -33,9 +33,9 @@ namespace RxOutlet
             var myMessage = new SendGridMessage()
             {
                 From = new EmailAddress("savvyitsol@gmail.com", "RxOutlet"),
-                Subject = " Confirmation Mail for Uploading Prescription",
+                Subject = " Confirmation Mail for Registration",
                 PlainTextContent = "Hello " + FirstName + "!",
-                HtmlContent = " < strong > Hello "+ FirstName + "!</ strong >< br />< br /> We're glad to have you onboard with WineOutlet! Please click the following link to activate your account<br /><a href =" + "http://localhost:64404/VerificationPage.html?ActivationCode=" + ActivationCode + ">Click here to activate your account.</a><br /><br />Thanks"
+                HtmlContent = "<strong> Hello "+ FirstName + "!</strong ><br /><br /> We're glad to have you onboard with RxOutlet! Please click the following link to activate your account<br /><a href =" + "http://rxoutlet.azurewebsites.net/VerificationPage.html?ActivationCode=" + ActivationCode + ">Click here to activate your account.</a><br /><br />Thanks"
             };
             myMessage.AddTo(new EmailAddress(email, "RxOutlet Confirmation Mail"));
             var apiKey = ConfigurationManager.AppSettings["Sendgrid_key"];

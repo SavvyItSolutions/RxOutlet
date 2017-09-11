@@ -126,8 +126,8 @@ namespace RxOutlet.Controllers
                 if(result.Succeeded == true)
                 {
                     string activationCode = Guid.NewGuid().ToString();
-                    int InsertResult = RxOutletSvc.InsertActivationCode(activationCode, model.Email);
-                    if(InsertResult == 1)
+                    string InsertResult = RxOutletSvc.InsertActivationCode(activationCode, model.Email);
+                    if(InsertResult != string.Empty)
                     {
                         SendEmail se = new SendEmail();
                         var EmailResult = se.SendOneEmail(activationCode, model.Email, model.Name);

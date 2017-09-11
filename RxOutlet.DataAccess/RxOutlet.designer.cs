@@ -201,18 +201,18 @@ namespace RxOutlet.DataAccess
 			return ((ISingleResult<PrescriptionListResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertActivationCode")]
-		public int InsertActivationCode([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ActivationCode", DbType="VarChar(MAX)")] string activationCode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="NVarChar(256)")] string email)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), activationCode, email);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.UpdateVerificationMail")]
 		public int UpdateVerificationMail([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ActivationCode", DbType="VarChar(MAX)")] string activationCode)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), activationCode);
 			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertActivationCode")]
+		public ISingleResult<InsertActivationCodeResult> InsertActivationCode([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ActivationCode", DbType="VarChar(MAX)")] string activationCode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="NVarChar(256)")] string email)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), activationCode, email);
+			return ((ISingleResult<InsertActivationCodeResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -1993,6 +1993,32 @@ namespace RxOutlet.DataAccess
 				if ((this._CreatedDate != value))
 				{
 					this._CreatedDate = value;
+				}
+			}
+		}
+	}
+	
+	public partial class InsertActivationCodeResult
+	{
+		
+		private string _Column1;
+		
+		public InsertActivationCodeResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="VarChar(MAX)")]
+		public string Column1
+		{
+			get
+			{
+				return this._Column1;
+			}
+			set
+			{
+				if ((this._Column1 != value))
+				{
+					this._Column1 = value;
 				}
 			}
 		}

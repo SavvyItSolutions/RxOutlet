@@ -280,16 +280,16 @@ namespace RxOutlet.DataAccess.DataManager
             return result.ToList();
         }
 
-        public int InsertActivationCode(string ActivationCode, string Email)
-        {
+        public IList<InsertActivationCodeResult> InsertActivationCode(string ActivationCode, string Email)
+        {            
             try
             {
-                int result = DBContext.InsertActivationCode(ActivationCode, Email);
-                return result;
+                ISingleResult<InsertActivationCodeResult> result = DBContext.InsertActivationCode(ActivationCode, Email);
+                return result.ToList();
             }
             catch(Exception ex)
             {
-                return 0;
+                return null;
             }
         }
 

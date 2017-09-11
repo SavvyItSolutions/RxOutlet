@@ -441,12 +441,15 @@ namespace RxOutlet.Business
             return lstObj;
         }
 
-        public int InsertActivationCode(string ActivationCode, string Email)
+        public string InsertActivationCode(string ActivationCode, string Email)
         {
-            int result = 0;
+            string retObj = string.Empty;
+            IList<InsertActivationCodeResult> result = new List<InsertActivationCodeResult>();
             IMenuDBManger menuDBManager = new MenuDBManager();
             result = menuDBManager.InsertActivationCode(ActivationCode, Email);
-            return result;
+            foreach (InsertActivationCodeResult i in result)
+                retObj = i.Column1;
+            return retObj;
         }
 
         public int UpdateVerificationEmail(string ActivationCode)

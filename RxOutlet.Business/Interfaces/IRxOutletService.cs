@@ -27,7 +27,7 @@ namespace RxOutlet.Business
         PrescriptionResponse GetUserPrescriptionList(string UserID);
         PrescriptionResponse GetPrescriptionList();
         ConfirmationEmailResponse ConfirmationMail(string UserID);
-        int InsertActivationCode(string ActivationCode, string Email);
+        string InsertActivationCode(string ActivationCode, string Email);
         int UpdateVerificationEmail(string ActivationCode);
     }
 }
