@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Rx Outlet Verification</title>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //var byName = $.getUrlVar('ActivationCode');
+            var first = getUrlVars()["ActivationCode"];
+            $.ajax({
+                type: 'GET',
+                url: "api/RxOutlet/UpdateVerifiedEmail/" + first,
+                dataType: 'json',
+                success: function (data) {
+                    document.getElementById('lblSuccess').innerHTML = data;
+                }
+            });
+            function getUrlVars() {
+                var vars = [], hash;
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for (var i = 0; i < hashes.length; i++) {
+                    hash = hashes[i].split('=');
+                    vars.push(hash[0]);
+                    vars[hash[0]] = hash[1];
+                }
+                return vars;
+            }
+        });
+    </script>
+
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta property="og:title" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:site_name" content="">
+    <meta property="og:description" content="">
+    <!-- Styles -->
+    <link rel="stylesheet" href="Content/font-awesome.min.css">
+    <link rel="stylesheet" href="Content/animate.css">
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900|Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="Content/bootstrap.min.css">
+    <link rel="stylesheet" href="Content/main.css">
+    <script src="Scripts/modernizr-2.7.1.js"></script>
+
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6">
+                    <a href="index.html"><img src="images/logo.png" class="img-responsive" height="70" width="150" alt="Logo"></a>
+                </div>
+                <div class="col-xs-6 signin text-right navbar-nav">
+                    <a href="http://rxoutlet.azurewebsites.net/Account/Login">Sign in</a>
+                </div>
+            </div>
+
+            <div class="row header-info">
+                <div class="col-sm-10 col-sm-offset-1 text-center">
+                    <h1 class="wow fadeIn" color="Black">Thank you.<br>Your email id verified successfully.</h1>
+                    <br />
+
+                    <br />
+
+                    <div class="row" align="center">
+                        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+                            <div class="row">
+                                <div class="col-xs-6 text-right wow fadeInUp" data-wow-delay="1s">
+                                    <a href="#" class="btn btn-secondary btn-lg scroll"><img src="images/appstore.jpg" class="img-responsive" height="50" width="150"></a>
+                                </div>
+                                <div class="col-xs-6 text-right wow fadeInUp" data-wow-delay="1.4s">
+                                    <a href="#" class="btn btn-secondary btn-lg scroll"><img src="images/playstore.png" class="img-responsive" height="50" width="150"></a>
+                                </div>
+                            </div><!--End Button Row-->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <footer>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm-8 margin-20">
+                    <ul class="list-inline social">
+                        <li>Follow us on</li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-4 text-right">
+                    <p><small>Copyright &copy; 2017. All rights reserved.</p>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <!-- Javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="Scripts/jquery-1.11.0.min.js"><\/script>')</script>
+    <script src="Scripts/wow.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/main.js"></script>
+
+</body>
+</html>

@@ -200,6 +200,20 @@ namespace RxOutlet.DataAccess
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<PrescriptionListResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertActivationCode")]
+		public int InsertActivationCode([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ActivationCode", DbType="VarChar(MAX)")] string activationCode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="NVarChar(256)")] string email)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), activationCode, email);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.UpdateVerificationMail")]
+		public int UpdateVerificationMail([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ActivationCode", DbType="VarChar(MAX)")] string activationCode)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), activationCode);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblMainMenu")]
@@ -1853,7 +1867,6 @@ namespace RxOutlet.DataAccess
 	public partial class PrescriptionListResult
 	{
 		
-
 		private string _Email;
 		
 		private string _PhoneNumber;

@@ -18,7 +18,7 @@ namespace RxOutlet.Models
         }
 
         public string Name { get; set; }
-
+        public string ActivationCode { get; set; }
 
     }
 

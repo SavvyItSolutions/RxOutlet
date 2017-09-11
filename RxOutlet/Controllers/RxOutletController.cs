@@ -118,11 +118,21 @@ namespace RxOutlet.Controllers
         {
             RegistrationResponseModel respModel;
             try
-            {                
+            {
+                IRxOutletService RxOutletSvc = new RxOutletService();
                 var user = new ApplicationUser { Name = model.Name, UserName = model.Email, Email = model.Email, PhoneNumber = model.MobileNum };
                 var result = await System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().CreateAsync(user, model.Password);
                 respModel = new RegistrationResponseModel(result.Succeeded, result.Errors.ToList());
-                
+                if(result.Succeeded == true)
+                {
+                    string activationCode = Guid.NewGuid().ToString();
+                    int InsertResult = RxOutletSvc.InsertActivationCode(activationCode, model.Email);
+                    if(InsertResult == 1)
+                    {
+                        SendEmail se = new SendEmail();
+                        var EmailResult = se.SendOneEmail(activationCode, model.Email, model.Name);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -132,6 +142,8 @@ namespace RxOutlet.Controllers
             }
             return respModel;
         }
+
+
 
         //[HttpGet]
         //public async Task<ConfirmationEmailResponse> ConfirmEmail(string userId, string code)
@@ -151,7 +163,7 @@ namespace RxOutlet.Controllers
       
 
         [HttpPost]
-        public async Task<LoginResponse> Login(LoginModel model)
+        public async Task<SignInStatus> Login(LoginModel model)
         {
             string email = model.Email;
 
@@ -175,7 +187,7 @@ namespace RxOutlet.Controllers
             //        return View(model);
             //}
 
-            return resp;
+            return result;
         }
 
 
@@ -352,7 +364,13 @@ namespace RxOutlet.Controllers
             return resp;
         }
 
-
+        [HttpGet]
+        public int UpdateVerifiedEmail(string objectId)
+        {
+            IRxOutletService RxOutletSvc = new RxOutletService();
+            int resp = RxOutletSvc.UpdateVerificationEmail(objectId);            
+            return resp;
+        }
 
     }
 }

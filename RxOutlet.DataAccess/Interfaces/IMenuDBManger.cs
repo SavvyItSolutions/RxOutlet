@@ -27,8 +27,8 @@ namespace RxOutlet.DataAccess.Interfaces
         IList<GetUserPrescriptionListResult> GetUserPrescriptionList(string UserID);
         IList<PrescriptionListResult> GetPrescriptionList();
         IList<ConfirmationEmailResult> ConfirmationEmail(string UserID);
-
-
+        int InsertActivationCode(string ActivationCode, string Email);
+        int UpdateVerificationMail(string ActivationCode);
     }
 
 }

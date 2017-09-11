@@ -288,9 +288,7 @@ namespace RxOutlet.Business
         //    menuItemListResponse.MenuItemList = itemList;
         //    return menuItemListResponse;
         //}
-
-
-
+        
         public List<CompleteMenu> GetCompleteMenu()
         {
             IMenuDBManger menuDbManager = new MenuDBManager();
@@ -380,14 +378,7 @@ namespace RxOutlet.Business
             }
             return lstObj;
         }
-
-
-
-
-
-
-
-
+        
         public List<DrugSearch> GetDrugNamesSearchService()
         {
             IMenuDBManger menuDbManager = new MenuDBManager();
@@ -450,8 +441,20 @@ namespace RxOutlet.Business
             return lstObj;
         }
 
+        public int InsertActivationCode(string ActivationCode, string Email)
+        {
+            int result = 0;
+            IMenuDBManger menuDBManager = new MenuDBManager();
+            result = menuDBManager.InsertActivationCode(ActivationCode, Email);
+            return result;
+        }
 
-
-
+        public int UpdateVerificationEmail(string ActivationCode)
+        {
+            int result = 0;
+            IMenuDBManger menuDBManager = new MenuDBManager();
+            result = menuDBManager.UpdateVerificationMail(ActivationCode);
+            return result;
+        }
     }
 }
