@@ -9,7 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using RxOutlet.Models;
-
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace RxOutlet.Controllers
 {
@@ -19,8 +20,31 @@ namespace RxOutlet.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        HttpClient client;
+
+        HttpClient ConfirmationEmailClient;
+        //The URL of the WEB API Service
+          string RegistrationURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/UploadingPrescription";
+
+       // string RegistrationURL = "http://localhost:64404/api/Rxoutlet/Registration";
+
+
+     //   string loginURL = "http://localhost:64404/api/Rxoutlet/Login";
+        string loginURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/Login";
+
         public AccountController()
         {
+            client = new HttpClient();
+            client.BaseAddress = new Uri(RegistrationURL);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            client = new HttpClient();
+            client.BaseAddress = new Uri(loginURL);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -64,33 +88,48 @@ namespace RxOutlet.Controllers
 
         //
         // POST: /Account/Login
-        //[HttpPost]
-        //[AllowAnonymous]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View(model);
-        //    }
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        {
 
-        //    // This doesn't count login failures towards account lockout
-        //    // To enable password failures to trigger account lockout, change to shouldLockout: true
-        //    var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
-        //    switch (result)
-        //    {
-        //        case SignInStatus.Success:
-        //            return RedirectToLocal(returnUrl);
-        //        case SignInStatus.LockedOut:
-        //            return View("Lockout");
-        //        case SignInStatus.RequiresVerification:
-        //            return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-        //        case SignInStatus.Failure:
-        //        default:
-        //            ModelState.AddModelError("", "Invalid login attempt.");
-        //            return View(model);
-        //    }
-        //}
+            HttpResponseMessage PrescriptionDetailsResponse = await client.PostAsJsonAsync(loginURL, model);
+
+            if (PrescriptionDetailsResponse.IsSuccessStatusCode)
+            {
+                TempData["Status"] = "Login Failed";
+                return View("upload", "Prescription");
+            }
+            else
+            {
+                TempData["Status"] = "Login Failed";
+                return View();
+            }
+                
+
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(model);
+            //}
+
+            // This doesn't count login failures towards account lockout
+            // To enable password failures to trigger account lockout, change to shouldLockout: true
+            //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
+            //switch (result)
+            //{
+            //    case SignInStatus.Success:
+            //        return RedirectToLocal(returnUrl);
+            //    case SignInStatus.LockedOut:
+            //        return View("Lockout");
+            //    case SignInStatus.RequiresVerification:
+            //        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+            //    case SignInStatus.Failure:
+            //    default:
+            //        ModelState.AddModelError("", "Invalid login attempt.");
+            //        return View(model);
+            //}
+        }
 
         //
         // GET: /Account/VerifyCode
@@ -146,36 +185,48 @@ namespace RxOutlet.Controllers
 
 
 
-       // POST: /Account/Register
-       //[HttpPost]
-       //[AllowAnonymous]
-       //[ValidateAntiForgeryToken]
-     
-       // public async Task<ActionResult> Register(RegisterViewModel model)
-       // {
-       //     if (ModelState.IsValid)
-       //     {
-       //         var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.MobileNum };
-       //         var result = await UserManager.CreateAsync(user, model.Password);
-       //         if (result.Succeeded)
-       //         {
-       //             await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+      //  POST: /Account/Register
+       [HttpPost]
+       [AllowAnonymous]
+       [ValidateAntiForgeryToken]
 
-       //             // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-       //             // Send an email with this link
-       //             // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-       //             // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-       //             // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+         public async Task<ActionResult> Register(RegisterViewModel model)
+        {
 
-       //             //  return RedirectToAction("PrescriptionUploadView", "Home");
-       //             return RedirectToAction("Index", "Home");
-       //         }
-       //         AddErrors(result);
-       //     }
+            HttpResponseMessage PrescriptionDetailsResponse = await client.PostAsJsonAsync(RegistrationURL, model);
 
-       //     // If we got this far, something failed, redisplay form
-       //     return View(model);
-       // }
+            if (PrescriptionDetailsResponse.IsSuccessStatusCode)
+            {
+                TempData["ConfirmationEmail"] = "Thank you for Signing Up. We have sent an email to your authorized email address, xxx.Please activate the account by clicking the link in the email and login below";
+                return RedirectToAction("Login");
+            }
+            return View("Register");
+
+
+
+            //if (ModelState.IsValid)
+            //{
+            //    var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.MobileNum };
+            //    var result = await UserManager.CreateAsync(user, model.Password);
+            //    if (result.Succeeded)
+            //    {
+            //        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+            //        // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+            //        // Send an email with this link
+            //        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            //        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+            //        // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+            //        //  return RedirectToAction("PrescriptionUploadView", "Home");
+            //        return RedirectToAction("Index", "Home");
+            //    }
+            //    AddErrors(result);
+            //}
+
+            //// If we got this far, something failed, redisplay form
+            //return View(model);
+        }
 
 
 

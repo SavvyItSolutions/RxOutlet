@@ -85,6 +85,23 @@ namespace RxOutlet.Business
             return prescriptionResponse;
         }
 
+
+        public int UploadingPrescriptionNew(UploadPrescriptionModel uploadingPrescription)
+        {
+            IMenuDBManger menuDBManager = new MenuDBManager();
+
+            menuDBManager.UploadingPrescriptionNew(uploadingPrescription);
+
+
+
+
+            return 1 ;
+
+        }
+
+
+
+
         public int UploadingPrescription(UploadPrescriptionModel uploadingPrescription)
         {
             IMenuDBManger menuDBManager = new MenuDBManager();

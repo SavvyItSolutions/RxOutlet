@@ -19,15 +19,19 @@ namespace RxOutlet.Models
         public string Filepath { get; set; }
         public string UserID { get; set; }
         public string CreatedDate { get; set; }
-        
+
         //public string imageFullPath=null;
 
         //public HttpPostedFileBase ImageUrl { get; set; }
 
+        public string ImageUrl { get; set; }
+        public string PhysicianName { get; set; }
+        public string PhysicianNumber { get; set; }
+        public string MedicationFor { get; set; }
 
 
-      
-        
+
+
     }
-   
+
 }

@@ -214,6 +214,13 @@ namespace RxOutlet.DataAccess
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), activationCode, email);
 			return ((ISingleResult<InsertActivationCodeResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="rxadmin.UploadingPrescriptionNew")]
+		public int UploadingPrescriptionNew([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ImageUrl", DbType="VarChar(256)")] string imageUrl, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="NVarChar(128)")] string userID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PhysicianName", DbType="VarChar(256)")] string physicianName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PhysicianNumber", DbType="VarChar(MAX)")] string physicianNumber, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MedicationFor", DbType="VarChar(256)")] string medicationFor)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), imageUrl, userID, physicianName, physicianNumber, medicationFor);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblMainMenu")]

@@ -14,9 +14,10 @@
             <h1 class="page-title text-center" style="color:#4557b8;"> Login to RX Outlet</h1>
 
             <div class="page-content">
-                <p class="text-center" style="color:green; " id="p1">
-                    @*Thank you for Signing Up. We have sent an email to your authorized email address, xxx.<br>
-                        Please activate the account by clicking the link in the email and login below.*@
+                <p class="text-center" style="color:green; ">
+                    @TempData["ConfirmationEmail"]
+                    @TempData["Status"]
+
                 </p>
                 <div class="row">
                     <div class="col-sm-4">

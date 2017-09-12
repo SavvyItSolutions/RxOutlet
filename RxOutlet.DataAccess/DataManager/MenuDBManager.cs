@@ -34,9 +34,28 @@ namespace RxOutlet.DataAccess.DataManager
             //string connection = System.Configuration.ConfigurationManager.ConnectionStrings["RxOutlet"].ConnectionString;
             //DBContext = new DataAccess.RxOutletDataContext(connection);
         }
-       
 
-    public  int UploadingPrescription(UploadPrescriptionModel uploadPrescription)
+        public int UploadingPrescriptionNew(UploadPrescriptionModel uploadPrescription)
+        {
+            try
+            {
+                int result = DBContext.UploadingPrescriptionNew(
+                     uploadPrescription.Filepath,
+                     uploadPrescription.UserID,
+                   uploadPrescription.PhysicianName,
+                    uploadPrescription.PhysicianNumber,
+                    uploadPrescription.MedicationFor
+                    );
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
+
+        public  int UploadingPrescription(UploadPrescriptionModel uploadPrescription)
         {
             try
             {

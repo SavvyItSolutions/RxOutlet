@@ -1,4 +1,4 @@
-﻿@model RxOutlet.Models.UploadPrescription
+﻿@model RxOutlet.Models.UploadPrescriptionModel
 
 @{
     ViewBag.Title = "Upload";
@@ -7,7 +7,6 @@
 
 
 <br />
-@ViewBag.FilePath
 
 
     <div class="row">
@@ -42,7 +41,7 @@
                                     <div class="form-group text-center">
                                        
 
-                                            <input type="file" class="btn btn-info btn-cons">
+                                            <input type="file"  name="photo" class="btn btn-info btn-cons">
                                        
 
                                         </div>
@@ -68,7 +67,8 @@
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label" for="name">Physician Name :</label>
                                                 <div class="col-md-8">
-                                                    <input id="name" name="name" type="text" placeholder="" class="form-control">
+                                                    @Html.TextBoxFor(m => m.PhysicianName, new { @class = "form-control", id = "txtPhysicianName" })
+                                                    @*<input id="name" name="name" type="text" placeholder="" class="form-control">*@
                                                 </div>
                                             </div>
                                             <br />
@@ -76,7 +76,8 @@
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label" for="email"> Physician Number:</label>
                                                 <div class="col-md-8">
-                                                    <input id="" name="" type="text" placeholder="" class="form-control">
+                                                    @Html.TextBoxFor(m => m.PhysicianNumber, new { @class = "form-control", id = "txtPhysicianNumber" })
+                                                    @*<input id="" name="" type="text" placeholder="" class="form-control">*@
                                                 </div>
                                             </div>
                                             <br/>
@@ -84,7 +85,10 @@
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label" for="message"> Medication for:</label>
                                                 <div class="col-md-8">
-                                                    <textarea class="form-control" id="message" name="message" placeholder="" rows="5"></textarea>
+                                                    @Html.TextAreaFor(m => m.MedicationFor, new { cols = "20", rows = "5", @class = "form-control", id = "txtMedicationFor" })
+
+
+                                                    @*<textarea class="form-control" id="message" name="message" placeholder="" rows="5"></textarea>*@
                                                 </div>
                                             </div>
                                            

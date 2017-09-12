@@ -78,6 +78,16 @@ namespace RxOutlet.Controllers
             return resp;
         }
 
+        [HttpPost]
+        public int UploadingPrescriptionNew(UploadPrescriptionModel uploadPrescription)
+        {
+
+            IRxOutletService rxService = new RxOutletService();
+            //SendEmail obj = new SendEmail();
+            //obj.SendOneEmail("soujanyareddy.gade@gmail.com");
+            return rxService.UploadingPrescriptionNew(uploadPrescription);
+
+        }
 
 
         [HttpPost]

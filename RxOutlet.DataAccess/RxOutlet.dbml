@@ -160,4 +160,12 @@
       <Column Name="" Member="Column1" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="rxadmin.UploadingPrescriptionNew" Method="UploadingPrescriptionNew">
+    <Parameter Name="ImageUrl" Parameter="imageUrl" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="UserID" Parameter="userID" Type="System.String" DbType="NVarChar(128)" />
+    <Parameter Name="PhysicianName" Parameter="physicianName" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="PhysicianNumber" Parameter="physicianNumber" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="MedicationFor" Parameter="medicationFor" Type="System.String" DbType="VarChar(256)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

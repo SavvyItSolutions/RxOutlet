@@ -810,6 +810,7 @@
     <Content Include="Scripts\jquery-1.11.3.min.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Scripts\jquery-additional-methods.min.js" />
     <Content Include="Scripts\jquery-typeahead.js" />
     <Content Include="Scripts\jquery-ui.custom.min.js" />

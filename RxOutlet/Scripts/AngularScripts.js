@@ -343,36 +343,27 @@ $("#btnLogin").click(function () {
 
     var Email = $('#txtLoginEmail').val();
     var pswd=$('#txtLoginPwd').val();
-    //var previousValue = $('#txtLoginPwd').val();
-    //$("#txtLoginPwd").keyup(function (e) {
-    //    var currentValue = $(this).val();
-    //    if (currentValue != previousValue) {
-    //        previousValue = currentValue;
-    //        alert("Value changed!");
-    //    }
-    //});
+ 
     $.ajax({
         type: "POST",
        url: 'http://rxoutlet.azurewebsites.net/api/RxOutlet/Login/',
     //  url: 'http://localhost:64404/api/RxOutlet/Login/',
         data: JSON.stringify(Login),
         contentType: "application/json;charset=utf-8",
-
-       
-        error: function (err) {
-            alert("error - " + err);
-        },
-        success: function () {
+        success: function (data, status, xhr) {
             if (Email == 'test@gmail.com' && pswd == 'test') {
-               window.location.href = "http://rxoutlet.azurewebsites.net/Admin/AdminPage";
-                //  window.location.href = "http://localhost:64404/Admin/AdminPage"
+                window.location.href = "http://rxoutlet.azurewebsites.net/Admin/AdminPage";
+              //  window.location.href = "http://localhost:64404/Admin/AdminPage"
             }
             else
                 window.location.href = "http://rxoutlet.azurewebsites.net/Prescription/Upload";
-            //   window.location.href = "http://localhost:64404/Prescription/Upload";
+            //    window.location.href = "http://localhost:64404/Prescription/Upload";
 
-
-        }
+        },
+        error: function (err) {
+            alert("error - " + err);
+        },
+      
 
     });
 
