@@ -86,16 +86,21 @@ namespace RxOutlet.Business
         }
 
 
-        public int UploadingPrescriptionNew(UploadPrescriptionModel uploadingPrescription)
+        public List<UploadPrescriptionModel> UploadingPrescriptionNew(UploadPrescriptionModel uploadingPrescription)
         {
+            List<UploadPrescriptionModel> retObj = new List<UploadPrescriptionModel>();
+            IList<UploadingPrescriptionNewResult> resultObj = new List<UploadingPrescriptionNewResult>();
             IMenuDBManger menuDBManager = new MenuDBManager();
-
-            menuDBManager.UploadingPrescriptionNew(uploadingPrescription);
-
-
-
-
-            return 1 ;
+            resultObj = menuDBManager.UploadingPrescriptionNew(uploadingPrescription);
+            foreach(UploadingPrescriptionNewResult obj in resultObj)
+            {
+                retObj.Add(new UploadPrescriptionModel
+                {
+                    Name = obj.name,
+                    Email = obj.email
+                });
+            }
+            return retObj ;
 
         }
 

@@ -84,8 +84,7 @@ namespace RxOutlet.Controllers
             else
                 model.Filepath = "";
 
-            model.UserID = "01cedd1f-ec43-4344-adbe-5e882e79f87b";
-            //model.UserID = User.Identity.GetUserId();
+            model.UserID = User.Identity.GetUserId();
 
             HttpResponseMessage PrescriptionDetailsResponse = await client.PostAsJsonAsync(PrescriptionDetailsURL, model);
           

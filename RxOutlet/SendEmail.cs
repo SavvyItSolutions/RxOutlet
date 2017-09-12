@@ -43,5 +43,20 @@ namespace RxOutlet
             var response = client.SendEmailAsync(myMessage);
             return response;
         }
+        public Task SendOneEmail(string email, string FirstName)
+        {
+            var myMessage = new SendGridMessage()
+            {
+                From = new EmailAddress("savvyitsol@gmail.com", "RxOutlet"),
+                Subject = "Thank You Mail",
+                PlainTextContent = "Hello " + FirstName + "!",
+                HtmlContent = "<strong> Hello " + FirstName + "!</strong ><br /><br /> Thanks for sharing the information with us.</a>"
+            };
+            myMessage.AddTo(new EmailAddress(email, "RxOutlet Confirmation Mail"));
+            var apiKey = ConfigurationManager.AppSettings["Sendgrid_key"];
+            var client = new SendGridClient(apiKey);
+            var response = client.SendEmailAsync(myMessage);
+            return response;
+        }
     }
 }

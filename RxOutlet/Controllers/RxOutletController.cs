@@ -81,12 +81,19 @@ namespace RxOutlet.Controllers
         [HttpPost]
         public int UploadingPrescriptionNew(UploadPrescriptionModel uploadPrescription)
         {
-
+            int resp = 0;
+            List<UploadPrescriptionModel> LstPrescriptionModel = new List<UploadPrescriptionModel>();
             IRxOutletService rxService = new RxOutletService();
             //SendEmail obj = new SendEmail();
             //obj.SendOneEmail("soujanyareddy.gade@gmail.com");
-            return rxService.UploadingPrescriptionNew(uploadPrescription);
-
+            LstPrescriptionModel =  rxService.UploadingPrescriptionNew(uploadPrescription);
+            if(LstPrescriptionModel.Count > 0)
+            {
+                resp = 1;
+                SendEmail se = new SendEmail();
+                se.SendOneEmail(LstPrescriptionModel[0].Email,LstPrescriptionModel[0].Name);
+            }
+            return resp;
         }
 
 
@@ -124,7 +131,7 @@ namespace RxOutlet.Controllers
 
 
         [HttpPost]
-        public async Task<RegistrationResponseModel> Registration(RegistrationModel model)
+        public async Task<RegistrationResponseModel> SignUp(RegistrationModel model)
         {
             RegistrationResponseModel respModel;
             try

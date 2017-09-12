@@ -30,7 +30,7 @@ namespace RxOutlet.DataAccess.Interfaces
         IList<InsertActivationCodeResult> InsertActivationCode(string ActivationCode, string Email);
         int UpdateVerificationMail(string ActivationCode);
 
-        int UploadingPrescriptionNew(UploadPrescriptionModel uploadPrescription);
+        IList<UploadingPrescriptionNewResult> UploadingPrescriptionNew(UploadPrescriptionModel uploadPrescription);
     }
 
 }

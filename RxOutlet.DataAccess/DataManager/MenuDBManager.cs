@@ -35,22 +35,23 @@ namespace RxOutlet.DataAccess.DataManager
             //DBContext = new DataAccess.RxOutletDataContext(connection);
         }
 
-        public int UploadingPrescriptionNew(UploadPrescriptionModel uploadPrescription)
+        public IList<UploadingPrescriptionNewResult> UploadingPrescriptionNew(UploadPrescriptionModel uploadPrescription)
         {
             try
             {
-                int result = DBContext.UploadingPrescriptionNew(
+                ISingleResult<UploadingPrescriptionNewResult> result = 
+                 DBContext.UploadingPrescriptionNew(
                      uploadPrescription.Filepath,
                      uploadPrescription.UserID,
                    uploadPrescription.PhysicianName,
                     uploadPrescription.PhysicianNumber,
                     uploadPrescription.MedicationFor
                     );
-                return result;
+                return result.ToList(); 
             }
             catch (Exception ex)
             {
-                return 0;
+                return null;
             }
         }
 

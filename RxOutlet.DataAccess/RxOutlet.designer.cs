@@ -216,10 +216,10 @@ namespace RxOutlet.DataAccess
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="rxadmin.UploadingPrescriptionNew")]
-		public int UploadingPrescriptionNew([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ImageUrl", DbType="VarChar(256)")] string imageUrl, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="NVarChar(128)")] string userID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PhysicianName", DbType="VarChar(256)")] string physicianName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PhysicianNumber", DbType="VarChar(MAX)")] string physicianNumber, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MedicationFor", DbType="VarChar(256)")] string medicationFor)
+		public ISingleResult<UploadingPrescriptionNewResult> UploadingPrescriptionNew([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ImageUrl", DbType="VarChar(256)")] string imageUrl, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="NVarChar(128)")] string userID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PhysicianName", DbType="VarChar(256)")] string physicianName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PhysicianNumber", DbType="VarChar(256)")] string physicianNumber, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MedicationFor", DbType="VarChar(256)")] string medicationFor)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), imageUrl, userID, physicianName, physicianNumber, medicationFor);
-			return ((int)(result.ReturnValue));
+			return ((ISingleResult<UploadingPrescriptionNewResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -2026,6 +2026,50 @@ namespace RxOutlet.DataAccess
 				if ((this._Column1 != value))
 				{
 					this._Column1 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class UploadingPrescriptionNewResult
+	{
+		
+		private string _email;
+		
+		private string _name;
+		
+		public UploadingPrescriptionNewResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email", DbType="NVarChar(256)")]
+		public string email
+		{
+			get
+			{
+				return this._email;
+			}
+			set
+			{
+				if ((this._email != value))
+				{
+					this._email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(50)")]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this._name = value;
 				}
 			}
 		}

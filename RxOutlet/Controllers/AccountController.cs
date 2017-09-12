@@ -24,12 +24,12 @@ namespace RxOutlet.Controllers
 
         HttpClient ConfirmationEmailClient;
         //The URL of the WEB API Service
-          string RegistrationURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/UploadingPrescription";
+         string RegistrationURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/SignUp";
 
-       // string RegistrationURL = "http://localhost:64404/api/Rxoutlet/Registration";
+        //string RegistrationURL = "http://localhost:64404/api/Rxoutlet/SignUp";
 
 
-     //   string loginURL = "http://localhost:64404/api/Rxoutlet/Login";
+       //string loginURL = "http://localhost:64404/api/Rxoutlet/Login";
         string loginURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/Login";
 
         public AccountController()
@@ -99,7 +99,7 @@ namespace RxOutlet.Controllers
             if (PrescriptionDetailsResponse.IsSuccessStatusCode)
             {
                 TempData["Status"] = "Login Failed";
-                return View("upload", "Prescription");
+                return RedirectToAction("upload", "Prescription");
             }
             else
             {

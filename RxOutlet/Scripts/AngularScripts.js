@@ -299,8 +299,8 @@ $("#btnRegister").click(function () {
     };
     $.ajax({
         type: "POST",
-        url: 'http://rxoutlet.azurewebsites.net/api/RxOutlet/Registration',
-      // url: '../api/RxOutlet/Registration',
+        url: 'http://rxoutlet.azurewebsites.net/api/RxOutlet/SignUp',
+      // url: '../api/RxOutlet/SignUp',
         data: JSON.stringify(Registration),
         contentType: "application/json;charset=utf-8",
         sucess: function (data, status, xhr) {

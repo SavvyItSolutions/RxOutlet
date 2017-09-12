@@ -30,6 +30,6 @@ namespace RxOutlet.Business
         string InsertActivationCode(string ActivationCode, string Email);
         int UpdateVerificationEmail(string ActivationCode);
 
-        int UploadingPrescriptionNew(UploadPrescriptionModel uploadingPrescription);
+        List<UploadPrescriptionModel> UploadingPrescriptionNew(UploadPrescriptionModel uploadingPrescription);
     }
 }
