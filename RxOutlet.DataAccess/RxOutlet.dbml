@@ -169,6 +169,7 @@
     <ElementType Name="UploadingPrescriptionNewResult">
       <Column Name="email" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
       <Column Name="name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PrescriptionOrderID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

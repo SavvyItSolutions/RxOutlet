@@ -24,13 +24,13 @@ namespace RxOutlet.Controllers
 
         HttpClient ConfirmationEmailClient;
         //The URL of the WEB API Service
-         string RegistrationURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/SignUp";
+      //   string RegistrationURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/SignUp";
 
-        //string RegistrationURL = "http://localhost:64404/api/Rxoutlet/SignUp";
+        string RegistrationURL = "http://localhost:64404/api/Rxoutlet/SignUp";
 
 
-       //string loginURL = "http://localhost:64404/api/Rxoutlet/Login";
-        string loginURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/Login";
+       string loginURL = "http://localhost:64404/api/Rxoutlet/Login";
+       // string loginURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/Login";
 
         public AccountController()
         {
@@ -86,34 +86,45 @@ namespace RxOutlet.Controllers
             return View();
         }
 
-        //
-        // POST: /Account/Login
-        [HttpPost]
+      
+
+
+
+    // POST: /Account/Login
+    [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+           
 
             HttpResponseMessage PrescriptionDetailsResponse = await client.PostAsJsonAsync(loginURL, model);
 
-            if (PrescriptionDetailsResponse.IsSuccessStatusCode)
+            bool returnValue = true;
+            returnValue=await PrescriptionDetailsResponse.Content.ReadAsAsync<bool>();
+
+
+           
+
+
+            if (returnValue==false)
             {
-                TempData["Status"] = "Login Failed";
-                return RedirectToAction("upload", "Prescription");
+              
+                return RedirectToAction("upload","Prescription");
             }
             else
             {
-                TempData["Status"] = "Login Failed";
+                TempData["Status"] = "Invalid Login";
                 return View();
             }
-                
+
 
             //if (!ModelState.IsValid)
             //{
             //    return View(model);
             //}
 
-            // This doesn't count login failures towards account lockout
+            //This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
             //switch (result)
@@ -197,11 +208,12 @@ namespace RxOutlet.Controllers
 
             if (PrescriptionDetailsResponse.IsSuccessStatusCode)
             {
-                TempData["ConfirmationEmail"] = "Thank you for Signing Up. We have sent an email to your authorized email address, xxx.Please activate the account by clicking the link in the email and login below";
+                TempData["ConfirmationEmail"] = "Thank you for Signing Up. We have sent an email to your authorized email address.Please activate the account by clicking the link in the email and login below";
                 return RedirectToAction("Login");
             }
             return View("Register");
 
+      
 
 
             //if (ModelState.IsValid)

@@ -333,41 +333,65 @@ $("#btnRegister").click(function () {
 
 
 
-$("#btnLogin").click(function () {
-    var isChecked = document.getElementById("chkbxRememberMe").checked;
-    var Login = {
-        "Email": $('#txtLoginEmail').val(),
-        "Password":$('#txtLoginPwd').val(),
-        "RememberMe": isChecked
-    };
 
-    var Email = $('#txtLoginEmail').val();
-    var pswd=$('#txtLoginPwd').val();
- 
-    $.ajax({
-        type: "POST",
-       url: 'http://rxoutlet.azurewebsites.net/api/RxOutlet/Login/',
-    //  url: 'http://localhost:64404/api/RxOutlet/Login/',
-        data: JSON.stringify(Login),
-        contentType: "application/json;charset=utf-8",
-        success: function (data, status, xhr) {
-            if (Email == 'test@gmail.com' && pswd == 'test') {
-                window.location.href = "http://rxoutlet.azurewebsites.net/Admin/AdminPage";
-              //  window.location.href = "http://localhost:64404/Admin/AdminPage"
-            }
-            else
-                window.location.href = "http://rxoutlet.azurewebsites.net/Prescription/Upload";
-            //    window.location.href = "http://localhost:64404/Prescription/Upload";
+          
 
-        },
-        error: function (err) {
-            alert("error - " + err);
-        },
+     
+  
       
 
-    });
+
+
+
+
+
+//$("#btnLogin").click(function () {
+//    var isChecked = document.getElementById("chkbxRememberMe").checked;
+//    var Login = {
+//        "Email": $('#txtLoginEmail').val(),
+//        "Password":$('#txtLoginPwd').val(),
+//        "RememberMe": isChecked
+//    }; 
+//    $.ajax({
+//        type: "POST",
+//      // url: 'http://rxoutlet.azurewebsites.net/api/RxOutlet/Login/',
+//      url: 'http://localhost:64404/api/RxOutlet/Login/',
+//      data: JSON.stringify(Login),
+    
+//      contentType: "application/json;charset=utf-8",
+//      dataType: "json",
+//      success: function (data) {
+        
+
+//      },
+//      error: function () {
+//          alert('error');
+
+//      }
+
+//      //error: function (  textStatus, errorThrown)  {
+         
+//      //    alert('inValid Login');
+//      //},
+//      //  success: function (data) {
+//      //      alert('Valid Login');
+//      //      //window.location.href = "http://localhost:64404/Prescription/Upload";
+//      //  },
+       
+       
+//        //error: function(xhr, textStatus, errorThrown) {
+//        //    alert('Invalid Login');
+//        //    window.location.href = "http://localhost:64404/Account/Login";
+//        //}
+//    });
 
   
+
+
+
+
+
+
 
     //$("#txtLoginEmail").val("");
     //$("#txtLoginPwd").val("");
@@ -375,7 +399,12 @@ $("#btnLogin").click(function () {
     //    alert("Not a valid Number");
     //} else { }
   
-});
+//});
+
+
+
+
+
 
 
 //app.service("service", function ($http) {
@@ -388,13 +417,13 @@ $("#btnLogin").click(function () {
 
 
 
-app.service("employeeservice", function ($http) {
-    //Function to call get genre web api call  
-    this.GetEmployee = function () {
-        var req = $http.get('api/EmployeesAPI');
-        return req;
-    }
-});
+//app.service("employeeservice", function ($http) {
+//    //Function to call get genre web api call  
+//    this.GetEmployee = function () {
+//        var req = $http.get('api/EmployeesAPI');
+//        return req;
+//    }
+//});
 
 //http://www.c-sharpcorner.com/article/filtering-in-ui-grid-with-angularjs-and-webapi/
 
@@ -451,3 +480,38 @@ app.service("employeeservice", function ($http) {
 //    };
 //});
 
+//$("#btnLogin").click(function () {
+//    var isChecked = document.getElementById("chkbxRememberMe").checked;
+//    var Login = {
+//        "Email": $('#txtLoginEmail').val(),
+//        "Password":$('#txtLoginPwd').val(),
+//        "RememberMe": isChecked
+//    };
+//    var Email=$('#txtLoginEmail').val();
+//    var pswd = $('#txtLoginPwd').val();
+//    $.ajax({
+//        type: 'POST',
+//        url: 'http://localhost:64404/api/RxOutlet/Login/',
+//        contentType: 'application/json; charset=utf-8',
+//        data: JSON.stringify(Login),
+//        dataType: 'text json',
+
+//        success: function () {
+          
+//                if (Email == 'test@gmail.com' && pswd == 'test') {
+//                    http://localhost:64404
+//                     //   window.location.href = "http://rxoutlet.azurewebsites.net/Admin/AdminPage";
+//                     window.location.href = "http://localhost:64404/Admin/AdminPage"
+//                }
+//                else
+                    
+//              //  window.location.href = "http://rxoutlet.azurewebsites.net/Prescription/Upload";
+//                 window.location.href = "http://localhost:64404/Prescription/Upload";
+            
+//        },
+//        error: function(xhr, textStatus, errorThrown) {
+//                    alert('Invalid Login');
+//                    window.location.href = "http://localhost:64404/Account/Login";
+//                }
+//    });
+//});

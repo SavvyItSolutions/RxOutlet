@@ -2038,6 +2038,8 @@ namespace RxOutlet.DataAccess
 		
 		private string _name;
 		
+		private int _PrescriptionOrderID;
+		
 		public UploadingPrescriptionNewResult()
 		{
 		}
@@ -2070,6 +2072,22 @@ namespace RxOutlet.DataAccess
 				if ((this._name != value))
 				{
 					this._name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrescriptionOrderID", DbType="Int NOT NULL")]
+		public int PrescriptionOrderID
+		{
+			get
+			{
+				return this._PrescriptionOrderID;
+			}
+			set
+			{
+				if ((this._PrescriptionOrderID != value))
+				{
+					this._PrescriptionOrderID = value;
 				}
 			}
 		}

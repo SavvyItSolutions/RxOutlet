@@ -91,7 +91,7 @@ namespace RxOutlet.Controllers
             {
                 resp = 1;
                 SendEmail se = new SendEmail();
-                se.SendOneEmail(LstPrescriptionModel[0].Email,LstPrescriptionModel[0].Name);
+                se.SendOneEmail(LstPrescriptionModel[0].Email,LstPrescriptionModel[0].Name,LstPrescriptionModel[0].TransactionPrescriptionID);
             }
             return resp;
         }
@@ -168,7 +168,7 @@ namespace RxOutlet.Controllers
         //    ConfirmationEmailResponse objMailResponse = new ConfirmationEmailResponse();
         //    if (userId == null || code == null)
         //    {
-                
+
         //    }
         //    var result = await UserManager.ConfirmEmailAsync(userId, code);
         //    //  return View(result.Succeeded ? "ConfirmEmail" : "Error");
@@ -177,7 +177,8 @@ namespace RxOutlet.Controllers
         //}
 
 
-      
+
+        
 
         [HttpPost]
         public async Task<SignInStatus> Login(LoginModel model)
@@ -185,9 +186,13 @@ namespace RxOutlet.Controllers
             string email = model.Email;
 
             LoginResponse resp = new LoginResponse();
-          
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
-          
+            string name = User.Identity.Name;
+            var result = SignInStatus.Failure;
+               result=  await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
+            var statur = HttpContext.Current.User.Identity.IsAuthenticated;
+        
+
+
             //cant navigate view from api controller 
 
             //switch (result)
@@ -204,7 +209,11 @@ namespace RxOutlet.Controllers
             //        return View(model);
             //}
 
-            return result;
+                return result;
+            
+
+
+           
         }
 
 

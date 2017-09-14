@@ -97,7 +97,8 @@ namespace RxOutlet.Business
                 retObj.Add(new UploadPrescriptionModel
                 {
                     Name = obj.name,
-                    Email = obj.email
+                    Email = obj.email,
+                    TransactionPrescriptionID=obj.PrescriptionOrderID
                 });
             }
             return retObj ;
