@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using RxOutlet.Models;
+using System.Web;
 
 namespace RxOutlet
 {
@@ -22,6 +23,8 @@ namespace RxOutlet
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
             // Configure the sign in cookie
+
+            //// ---- Original Code Starting
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
@@ -34,8 +37,12 @@ namespace RxOutlet
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
-            });            
-            app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
+            });
+            //// ---- Original Code Ending
+
+          
+
+        app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
             app.UseTwoFactorSignInCookie(DefaultAuthenticationTypes.TwoFactorCookie, TimeSpan.FromMinutes(5));
@@ -64,5 +71,7 @@ namespace RxOutlet
             //    ClientSecret = ""
             //});
         }
+
+   
     }
 }

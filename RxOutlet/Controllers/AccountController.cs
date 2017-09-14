@@ -26,11 +26,10 @@ namespace RxOutlet.Controllers
         HttpClient ConfirmationEmailClient;
         //The URL of the WEB API Service
         string RegistrationURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/SignUp";
+        //   string RegistrationURL = "http://localhost:64404/api/Rxoutlet/SignUp";
 
-        //string RegistrationURL = "http://localhost:64404/api/Rxoutlet/SignUp";
 
-
-        //string loginURL = "http://localhost:64404/api/Rxoutlet/Login";
+     //  string loginURL = "http://localhost:64404/api/Rxoutlet/Login";
         string loginURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/Login";
 
         public AccountController()
@@ -105,7 +104,7 @@ namespace RxOutlet.Controllers
             returnValue = await PrescriptionDetailsResponse.Content.ReadAsAsync<bool>();
 
             if (returnValue == true)
-            {
+            { 
                 FormsAuthentication.SetAuthCookie(model.Email, false);
                 return RedirectToAction("upload", "Prescription");
             }
@@ -116,28 +115,47 @@ namespace RxOutlet.Controllers
             }
 
 
-            //if (!ModelState.IsValid)
-            //{
-            //    return View(model);
-            //}
 
-            //This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
-            //switch (result)
-            //{
-            //    case SignInStatus.Success:
-            //        return RedirectToLocal(returnUrl);
-            //    case SignInStatus.LockedOut:
-            //        return View("Lockout");
-            //    case SignInStatus.RequiresVerification:
-            //        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-            //    case SignInStatus.Failure:
-            //    default:
-            //        ModelState.AddModelError("", "Invalid login attempt.");
-            //        return View(model);
-            //}
-        }
+            
+                //if (User.Identity.IsAuthenticated)//this is get always false
+                //{
+                //    string user = User.Identity.Name;//here i need username
+                //}
+
+                //if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+                //{
+                //    return RedirectToLocal(returnUrl);
+                //}
+
+                // If we got this far, something failed, redisplay form
+                //ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                //return View(model);
+
+
+
+
+                //if (!ModelState.IsValid)
+                //{
+                //    return View(model);
+                //}
+
+                //This doesn't count login failures towards account lockout
+                // To enable password failures to trigger account lockout, change to shouldLockout: true
+                //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
+                //switch (result)
+                //{
+                //    case SignInStatus.Success:
+                //        return RedirectToLocal(returnUrl);
+                //    case SignInStatus.LockedOut:
+                //        return View("Lockout");
+                //    case SignInStatus.RequiresVerification:
+                //        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                //    case SignInStatus.Failure:
+                //    default:
+                //        ModelState.AddModelError("", "Invalid login attempt.");
+                //        return View(model);
+                //}
+            }
 
         //
         // GET: /Account/VerifyCode
