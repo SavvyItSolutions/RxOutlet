@@ -19,6 +19,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System.Diagnostics;
+using System.Web.Security;
 
 namespace RxOutlet.Controllers
 {
@@ -181,15 +182,17 @@ namespace RxOutlet.Controllers
         
 
         [HttpPost]
-        public async Task<SignInStatus> Login(LoginModel model)
+        public async Task<int> Login(LoginModel model)
         {
             string email = model.Email;
-
+            int retObj = 0;
             LoginResponse resp = new LoginResponse();
             string name = User.Identity.Name;
             var result = SignInStatus.Failure;
                result=  await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
-            var statur = HttpContext.Current.User.Identity.IsAuthenticated;
+            if (result == SignInStatus.Success)
+                retObj = 1;
+           // var statur = HttpContext.Current.User.Identity.IsAuthenticated;
         
 
 
@@ -209,7 +212,7 @@ namespace RxOutlet.Controllers
             //        return View(model);
             //}
 
-                return result;
+                return retObj;
             
 
 

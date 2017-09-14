@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using RxOutlet.Models;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Web.Security;
 
 namespace RxOutlet.Controllers
 {
@@ -24,13 +25,13 @@ namespace RxOutlet.Controllers
 
         HttpClient ConfirmationEmailClient;
         //The URL of the WEB API Service
-      //   string RegistrationURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/SignUp";
+        string RegistrationURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/SignUp";
 
-        string RegistrationURL = "http://localhost:64404/api/Rxoutlet/SignUp";
+        //string RegistrationURL = "http://localhost:64404/api/Rxoutlet/SignUp";
 
 
-       string loginURL = "http://localhost:64404/api/Rxoutlet/Login";
-       // string loginURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/Login";
+        //string loginURL = "http://localhost:64404/api/Rxoutlet/Login";
+        string loginURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/Login";
 
         public AccountController()
         {
@@ -47,7 +48,7 @@ namespace RxOutlet.Controllers
 
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -59,9 +60,9 @@ namespace RxOutlet.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -86,31 +87,27 @@ namespace RxOutlet.Controllers
             return View();
         }
 
-      
 
 
 
-    // POST: /Account/Login
-    [HttpPost]
+
+        // POST: /Account/Login
+        [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-           
+
 
             HttpResponseMessage PrescriptionDetailsResponse = await client.PostAsJsonAsync(loginURL, model);
 
             bool returnValue = true;
-            returnValue=await PrescriptionDetailsResponse.Content.ReadAsAsync<bool>();
+            returnValue = await PrescriptionDetailsResponse.Content.ReadAsAsync<bool>();
 
-
-           
-
-
-            if (returnValue==false)
+            if (returnValue == true)
             {
-              
-                return RedirectToAction("upload","Prescription");
+                FormsAuthentication.SetAuthCookie(model.Email, false);
+                return RedirectToAction("upload", "Prescription");
             }
             else
             {
@@ -171,7 +168,7 @@ namespace RxOutlet.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -196,12 +193,12 @@ namespace RxOutlet.Controllers
 
 
 
-      //  POST: /Account/Register
-       [HttpPost]
-       [AllowAnonymous]
-       [ValidateAntiForgeryToken]
+        //  POST: /Account/Register
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
 
-         public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model)
         {
 
             HttpResponseMessage PrescriptionDetailsResponse = await client.PostAsJsonAsync(RegistrationURL, model);
@@ -213,7 +210,7 @@ namespace RxOutlet.Controllers
             }
             return View("Register");
 
-      
+
 
 
             //if (ModelState.IsValid)
@@ -462,7 +459,8 @@ namespace RxOutlet.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            //AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
 
