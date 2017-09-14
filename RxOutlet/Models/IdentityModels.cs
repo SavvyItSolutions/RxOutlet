@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Web;
 
 namespace RxOutlet.Models
 {
@@ -14,13 +15,22 @@ namespace RxOutlet.Models
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
-          return userIdentity;
+            return userIdentity;
         }
 
         public string Name { get; set; }
         public string ActivationCode { get; set; }
+     public bool isauth {
+
+
+            get { return isauth; }
+            set { isauth= HttpContext.Current.User.Identity.IsAuthenticated; }
+        }
 
     }
+       
+
+    
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

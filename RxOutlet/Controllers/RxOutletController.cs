@@ -189,6 +189,10 @@ namespace RxOutlet.Controllers
             string name = User.Identity.Name;
             var result = SignInStatus.Failure;
                result=  await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
+
+
+
+           
             var statur = HttpContext.Current.User.Identity.IsAuthenticated;
         
 
