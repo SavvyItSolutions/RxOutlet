@@ -20,12 +20,8 @@ namespace RxOutlet.Models
 
         public string Name { get; set; }
         public string ActivationCode { get; set; }
-     public bool isauth {
+  
 
-
-            get { return isauth; }
-            set { isauth= HttpContext.Current.User.Identity.IsAuthenticated; }
-        }
 
     }
        

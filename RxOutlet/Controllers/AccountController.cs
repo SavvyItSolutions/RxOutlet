@@ -26,11 +26,10 @@ namespace RxOutlet.Controllers
         HttpClient ConfirmationEmailClient;
         //The URL of the WEB API Service
         string RegistrationURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/SignUp";
-        //   string RegistrationURL = "http://localhost:64404/api/Rxoutlet/SignUp";
+         //  string RegistrationURL = "http://localhost:64404/api/Rxoutlet/SignUp";
 
 
-     //  string loginURL = "http://localhost:64404/api/Rxoutlet/Login";
-        string loginURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/Login";
+   
 
         public AccountController()
         {
@@ -38,12 +37,6 @@ namespace RxOutlet.Controllers
             client.BaseAddress = new Uri(RegistrationURL);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            client = new HttpClient();
-            client.BaseAddress = new Uri(loginURL);
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
 
         }
 
@@ -96,66 +89,70 @@ namespace RxOutlet.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            //var userid = System.Web.HttpContext.Current.User.Identity.GetUserId();
 
 
-            HttpResponseMessage PrescriptionDetailsResponse = await client.PostAsJsonAsync(loginURL, model);
+            //        HttpResponseMessage PrescriptionDetailsResponse = await client.PostAsJsonAsync(loginURL, model);
 
-            bool returnValue = true;
-            returnValue = await PrescriptionDetailsResponse.Content.ReadAsAsync<bool>();
+            //        bool returnValue = true;
+            //        returnValue = await PrescriptionDetailsResponse.Content.ReadAsAsync<bool>();
 
-            if (returnValue == true)
-            { 
-                FormsAuthentication.SetAuthCookie(model.Email, false);
-                return RedirectToAction("upload", "Prescription");
-            }
-            else
+            //        if (returnValue == true)
+            //        { 
+            //            FormsAuthentication.SetAuthCookie(model.Email, false);
+            //            return RedirectToAction("upload", "Prescription");
+            //        }
+            //        else
+            //        {
+            //            TempData["Status"] = "Invalid Login";
+            //            return View();
+            //        }
+
+
+
+
+            //if (User.Identity.IsAuthenticated)//this is get always false
+            //{
+            //    string user = User.Identity.Name;//here i need username
+            //}
+
+            //if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            //{
+            //    return RedirectToLocal(returnUrl);
+            //}
+
+            // If we got this far, something failed, redisplay form
+            //ModelState.AddModelError("", "The user name or password provided is incorrect.");
+            //return View(model);
+
+
+
+
+            if (!ModelState.IsValid)
             {
-                TempData["Status"] = "Invalid Login";
-                return View();
+                return View(model);
             }
 
-
-
-            
-                //if (User.Identity.IsAuthenticated)//this is get always false
-                //{
-                //    string user = User.Identity.Name;//here i need username
-                //}
-
-                //if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
-                //{
-                //    return RedirectToLocal(returnUrl);
-                //}
-
-                // If we got this far, something failed, redisplay form
-                //ModelState.AddModelError("", "The user name or password provided is incorrect.");
-                //return View(model);
-
-
-
-
-                //if (!ModelState.IsValid)
-                //{
-                //    return View(model);
-                //}
-
-                //This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, change to shouldLockout: true
-                //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
-                //switch (result)
-                //{
-                //    case SignInStatus.Success:
-                //        return RedirectToLocal(returnUrl);
-                //    case SignInStatus.LockedOut:
-                //        return View("Lockout");
-                //    case SignInStatus.RequiresVerification:
-                //        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                //    case SignInStatus.Failure:
-                //    default:
-                //        ModelState.AddModelError("", "Invalid login attempt.");
-                //        return View(model);
-                //}
+            //This doesn't count login failures towards account lockout
+            //     To enable password failures to trigger account lockout, change to shouldLockout: true
+                var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
+            switch (result)
+            {
+                case SignInStatus.Success:
+                    return RedirectToAction("upload", "Prescription");
+                //return RedirectToLocal(returnUrl);
+                case SignInStatus.LockedOut:
+                    return View("Lockout");
+                case SignInStatus.RequiresVerification:
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                case SignInStatus.Failure:
+                    TempData["Status"] = "Invalid Login";
+                           return View();
+                default:
+                    ModelState.AddModelError("", "Invalid login attempt.");
+                    return View(model);
             }
+        }
 
         //
         // GET: /Account/VerifyCode
@@ -477,8 +474,8 @@ namespace RxOutlet.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            //AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            FormsAuthentication.SignOut();
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+         //   FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
 

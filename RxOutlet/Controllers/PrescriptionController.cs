@@ -9,19 +9,28 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity;
+using System.Security.Claims;
+using Microsoft.Owin.Security.OAuth;
 
 namespace RxOutlet.Controllers
 {
     public class PrescriptionController : Controller
     {
-    
+
+      
+
+       
+
+
 
         HttpClient client;
 
         HttpClient ConfirmationEmailClient;
         //The URL of the WEB API Service
-        // string PrescriptionDetailsURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/UploadingPrescription";
-        string PrescriptionDetailsURL = "http://localhost:64404/api/Rxoutlet/UploadingPrescriptionNew";
+         string PrescriptionDetailsURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/UploadingPrescription";
+      //  string PrescriptionDetailsURL = "http://localhost:64404/api/Rxoutlet/UploadingPrescriptionNew";
         string ConfirmationMailURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/ConfirmationMail";
 
       //  string UserPrescriptionListURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/GetUserPrescriptionList/";
@@ -40,6 +49,10 @@ namespace RxOutlet.Controllers
             ConfirmationEmailClient.BaseAddress = new Uri(ConfirmationMailURL);
             ConfirmationEmailClient.DefaultRequestHeaders.Accept.Clear();
             ConfirmationEmailClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+          
+
+
 
         }
 
@@ -60,29 +73,20 @@ namespace RxOutlet.Controllers
             return View();
         }
 
-        
 
+        [Authorize]
         //The Post method
         [HttpPost]
         public async Task<ActionResult> Upload(HttpPostedFileBase photo, UploadPrescriptionModel model)
         {
-            //HttpResponseMessage responseMessage = await client.GetAsync(url);
-            //if (responseMessage.IsSuccessStatusCode)
-            //{
-            //    var responseData = responseMessage.Content.ReadAsStringAsync().Result;
-
-            //    var Employees = JsonConvert.DeserializeObject<List<EmployeeInfo>>(responseData);
-
-            //    return View(Employees);
-            //}
-            //return View("Error");
-
+            
 
 
             if (photo != null)
                 model.Filepath = imageService.UploadImageAsync(photo);
             else
                 model.Filepath = "";
+
 
             model.UserID = User.Identity.GetUserId();
 

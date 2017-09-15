@@ -20,6 +20,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System.Diagnostics;
 using System.Web.Security;
+using System.Security.Claims;
 
 namespace RxOutlet.Controllers
 {
@@ -44,6 +45,21 @@ namespace RxOutlet.Controllers
                 _signInManager = value;
             }
         }
+
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
+
+
 
         //public ApplicationUserManager UserManager
         //{
@@ -85,6 +101,34 @@ namespace RxOutlet.Controllers
             int resp = 0;
             List<UploadPrescriptionModel> LstPrescriptionModel = new List<UploadPrescriptionModel>();
             IRxOutletService rxService = new RxOutletService();
+
+
+            var user = UserManager.FindById(User.Identity.GetUserId());
+
+          //  var id = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+            var userid = System.Web.HttpContext.Current.User.Identity.GetUserId();
+
+            ApplicationUser users = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(User.Identity.GetUserId());
+
+            FormsAuthentication.SetAuthCookie(uploadPrescription.Email, false);
+
+
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            if (claimsIdentity != null)
+            {
+                // the principal identity is a claims identity.
+                // now we need to find the NameIdentifier claim
+                var userIdClaim = claimsIdentity.Claims
+                    .FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+
+                if (userIdClaim != null)
+                {
+                    var userIdValue = userIdClaim.Value;
+                }
+            }
+
+
             //SendEmail obj = new SendEmail();
             //obj.SendOneEmail("soujanyareddy.gade@gmail.com");
             LstPrescriptionModel =  rxService.UploadingPrescriptionNew(uploadPrescription);
@@ -192,8 +236,8 @@ namespace RxOutlet.Controllers
                result=  await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
             if (result == SignInStatus.Success)
                 retObj = 1;
-           // var statur = HttpContext.Current.User.Identity.IsAuthenticated;
-        
+         
+
 
 
             //cant navigate view from api controller 
