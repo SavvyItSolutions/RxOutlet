@@ -138,18 +138,28 @@ namespace RxOutlet.Controllers
 
 
         [HttpPost]
-        public async Task<int> Login(LoginModel model)
+        public async Task<LoginResponse> Login(LoginModel model)
         {
-            string email = model.Email;
-            int retObj = 0;
-            LoginResponse resp = new LoginResponse();
-            string name = User.Identity.Name;
-            var result = SignInStatus.Failure;
-               result=  await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
-            if (result == SignInStatus.Success)
-                retObj = 1;
 
-                return retObj;          
+            LoginResponse retObj = null;
+            try
+            {
+                string email = model.Email;
+                string name = User.Identity.Name;
+                var result = SignInStatus.Failure;
+                result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
+                if (result == SignInStatus.Success)
+                {
+                    var userid = await UserManager.FindByNameAsync(model.Email);
+                    retObj = new LoginResponse(userid.EmailConfirmed, userid.Id);
+                    // retObj = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                retObj = new LoginResponse(false, "");
+            }
+            return retObj;
         }
 
       

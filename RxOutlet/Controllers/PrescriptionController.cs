@@ -23,7 +23,7 @@ namespace RxOutlet.Controllers
         HttpClient ConfirmationEmailClient;
         //The URL of the WEB API Service
          string PrescriptionDetailsURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/UploadingPrescriptionNew";
-        //string PrescriptionDetailsURL = "http://localhost:64404/api/Rxoutlet/UploadingPrescriptionNew";
+      //  string PrescriptionDetailsURL = "http://localhost:64404/api/Rxoutlet/UploadingPrescriptionNew";
         string ConfirmationMailURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/ConfirmationMail";
 
       //  string UserPrescriptionListURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/GetUserPrescriptionList/";

@@ -25,16 +25,23 @@ namespace RxOutlet.Controllers
 
         HttpClient ConfirmationEmailClient;
         //The URL of the WEB API Service
-        string RegistrationURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/SignUp";
-      //     string RegistrationURL = "http://localhost:64404/api/Rxoutlet/SignUp";
+        // string RegistrationURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/SignUp";
+           string RegistrationURL = "http://localhost:64404/api/Rxoutlet/SignUp";
+
+          string VerifiedEmailURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/UpdateVerifiedEmail";
+       /// string VerifiedEmailURL = "http://localhost:64404/api/Rxoutlet/UpdateVerifiedEmail";
 
 
-   
 
         public AccountController()
         {
             client = new HttpClient();
             client.BaseAddress = new Uri(RegistrationURL);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            client = new HttpClient();
+            client.BaseAddress = new Uri(VerifiedEmailURL);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -79,6 +86,20 @@ namespace RxOutlet.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public async Task<ActionResult> VerificationCode(string ActivationCode)
+        {
+            ActivationCode = Request.QueryString["ActivationCode"];
+            HttpResponseMessage PrescriptionDetailsResponse = await client.GetAsync(VerifiedEmailURL+"/"+ActivationCode);
+            if (!PrescriptionDetailsResponse.IsSuccessStatusCode)
+            {
+                TempData["VerifactionMessage"] = "Email need to be Verified.";
+
+            }
+    
+            return View("Login");
+
+        }
 
 
 

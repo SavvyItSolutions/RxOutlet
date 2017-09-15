@@ -8,6 +8,15 @@ namespace RxOutlet.Models
 {
   public  class LoginResponse
     {
-        public IList<LoginModel> login { get; set; }
+        public bool IsMailConfirmed { get; set; }
+        public string UserID { get; set; }
+
+        public LoginResponse(bool _ismailconfirmed, string _userId)
+        {
+
+            IsMailConfirmed = _ismailconfirmed;
+            UserID = _userId;
+        }
+
     }
 }

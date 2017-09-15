@@ -36,6 +36,7 @@ namespace RxOutlet
                 Subject = " Confirmation Mail for Registration",
                 PlainTextContent = "Hello " + FirstName + "!",
                 HtmlContent = "<strong> Hello "+ FirstName + "!</strong ><br /><br /> We're glad to have you onboard with RxOutlet! Please click the following link to activate your account<br /><a href =" + "http://rxoutlet.azurewebsites.net/VerificationPage.html?ActivationCode=" + ActivationCode + ">Click here to activate your account.</a><br /><br />Thanks"
+                //http://localhost:64404/Account/VerificationCode
             };
             myMessage.AddTo(new EmailAddress(email, "RxOutlet Confirmation Mail"));
             var apiKey = ConfigurationManager.AppSettings["Sendgrid_key"];
