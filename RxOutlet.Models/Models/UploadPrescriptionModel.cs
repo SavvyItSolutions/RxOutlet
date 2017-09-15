@@ -11,6 +11,9 @@ namespace RxOutlet.Models
 {
    public class UploadPrescriptionModel
     {
+
+
+
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string Name { get; set; }
@@ -20,9 +23,11 @@ namespace RxOutlet.Models
         public string UserID { get; set; }
         public string CreatedDate { get; set; }
 
+
         //public string imageFullPath=null;
 
         //public HttpPostedFileBase ImageUrl { get; set; }
+
 
         public int TransactionPrescriptionID { get; set; }
         public string ImageUrl { get; set; }
