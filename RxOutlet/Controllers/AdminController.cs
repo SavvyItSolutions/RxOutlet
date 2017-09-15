@@ -14,14 +14,6 @@ namespace RxOutlet.Controllers
             return View("AdminPage");
         }
 
-        //public ActionResult PendingPrescriptions()
-        //{
-        //    return View("PendingPrescriptions", "~/Views/Shared/_AdminLayout.cshtml");
-        //}
-
-        //public ActionResult ReadyToPickup()
-        //{
-        //    return View("ReadyToPickup", "~/Views/Shared/_AdminLayout.cshtml");
-        //}
+   
     }
 }

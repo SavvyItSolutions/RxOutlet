@@ -89,41 +89,8 @@ namespace RxOutlet.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            //var userid = System.Web.HttpContext.Current.User.Identity.GetUserId();
+          
 
-
-            //        HttpResponseMessage PrescriptionDetailsResponse = await client.PostAsJsonAsync(loginURL, model);
-
-            //        bool returnValue = true;
-            //        returnValue = await PrescriptionDetailsResponse.Content.ReadAsAsync<bool>();
-
-            //        if (returnValue == true)
-            //        { 
-            //            FormsAuthentication.SetAuthCookie(model.Email, false);
-            //            return RedirectToAction("upload", "Prescription");
-            //        }
-            //        else
-            //        {
-            //            TempData["Status"] = "Invalid Login";
-            //            return View();
-            //        }
-
-
-
-
-            //if (User.Identity.IsAuthenticated)//this is get always false
-            //{
-            //    string user = User.Identity.Name;//here i need username
-            //}
-
-            //if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
-            //{
-            //    return RedirectToLocal(returnUrl);
-            //}
-
-            // If we got this far, something failed, redisplay form
-            //ModelState.AddModelError("", "The user name or password provided is incorrect.");
-            //return View(model);
 
 
 
@@ -140,7 +107,6 @@ namespace RxOutlet.Controllers
             {
                 case SignInStatus.Success:
                     return RedirectToAction("upload", "Prescription");
-                //return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -224,32 +190,6 @@ namespace RxOutlet.Controllers
                 return RedirectToAction("Login");
             }
             return View("Register");
-
-
-
-
-            //if (ModelState.IsValid)
-            //{
-            //    var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.MobileNum };
-            //    var result = await UserManager.CreateAsync(user, model.Password);
-            //    if (result.Succeeded)
-            //    {
-            //        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-            //        // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-            //        // Send an email with this link
-            //        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-            //        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-            //        // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-            //        //  return RedirectToAction("PrescriptionUploadView", "Home");
-            //        return RedirectToAction("Index", "Home");
-            //    }
-            //    AddErrors(result);
-            //}
-
-            //// If we got this far, something failed, redisplay form
-            //return View(model);
         }
 
 

@@ -50,7 +50,7 @@ namespace RxOutlet
                 From = new EmailAddress("savvyitsol@gmail.com", "RxOutlet"),
                 Subject = "Thank You Mail",
                 PlainTextContent = "Hello " + FirstName + "!",
-                HtmlContent = "<strong> Hello " + FirstName + "!</strong ><br /><br /> Thanks for sharing the information with us.</a> Your TTransaction Prescription ID is" + PrescriptionID
+                HtmlContent = "<strong> Hello " + FirstName + "!</strong ><br /><br /> Thanks for sharing the information with us.</a> Your Transaction Prescription ID is TransactionID_" + PrescriptionID
             };
             myMessage.AddTo(new EmailAddress(email, "RxOutlet Confirmation Mail"));
             var apiKey = ConfigurationManager.AppSettings["Sendgrid_key"];

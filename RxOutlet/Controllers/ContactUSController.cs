@@ -27,11 +27,6 @@ namespace RxOutlet.Controllers
         public ActionResult ContactUS(ContactUsModel obj)
         {
 
-            // obj.SubjectHeadingID=Convert.ToInt32(Request.Form["ddlVendor"]);
-            //int strDDLValue = Convert.ToInt32(Request.Form["ddlVendor"]);
-            //List<SelectListItem> dd = PopulateSubjectHeading();
-            //obj.SubjectHeadingID = dd[strDDLValue].Text.ToString();
-
             int strDDLValue = Convert.ToInt32(Request.Form["ddlVendor"]);
             List<SelectListItem> dd = PopulateSubjectHeading();
             obj.SubjectHeadingID = Convert.ToInt32(dd[strDDLValue].Value);
@@ -71,42 +66,5 @@ namespace RxOutlet.Controllers
 
 
 
-        //[HttpPost]
-        //public ActionResult ContactUS(ContactUsModel contactus)
-        //{
-        //    try
-        //    {
-        //        string constr = ConfigurationManager.ConnectionStrings["RxOutlet"].ConnectionString;
-        //    using (SqlConnection con = new SqlConnection(constr))
-        //    {
-
-
-
-        //        string query = " insert into ContactUS(ContactUsID, SubjectHeading, Email, OrderReference, Message, Status) values(1,'dfsd','dfd','fsdf','sdfg','dsff')";
-        //        //query += " SELECT SCOPE_IDENTITY()";
-        //        using (SqlCommand cmd = new SqlCommand(query))
-        //        {
-        //            cmd.Connection = con;
-        //            con.Open();
-        //            //    cmd.Parameters.AddWithValue("@ContactUSID", 1);
-        //            //    cmd.Parameters.AddWithValue("@SubjectHeading", contactus.SubjectHeading);
-        //            //cmd.Parameters.AddWithValue("@Email", contactus.Email);
-        //            //cmd.Parameters.AddWithValue("@OrderReference", contactus.OrderReference);
-        //            //cmd.Parameters.AddWithValue("@Message", contactus.Message);
-        //            //cmd.Parameters.AddWithValue("@Status", contactus.Status);
-
-        //            con.Close();
-        //        }
-        //    }
-
-
-        //}
-        //    catch (Exception ex)
-
-        //    {
-
-        //    }
-        //    return View(contactus);
-
-        //}
+      
 

@@ -10,7 +10,7 @@ using System.Net.Http.Headers;
 using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.AspNet.Identity;
+
 using System.Security.Claims;
 using Microsoft.Owin.Security.OAuth;
 
@@ -18,18 +18,11 @@ namespace RxOutlet.Controllers
 {
     public class PrescriptionController : Controller
     {
-
-      
-
-       
-
-
-
         HttpClient client;
 
         HttpClient ConfirmationEmailClient;
         //The URL of the WEB API Service
-         string PrescriptionDetailsURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/UploadingPrescription";
+         string PrescriptionDetailsURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/UploadingPrescriptionNew";
       //  string PrescriptionDetailsURL = "http://localhost:64404/api/Rxoutlet/UploadingPrescriptionNew";
         string ConfirmationMailURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/ConfirmationMail";
 
@@ -49,10 +42,6 @@ namespace RxOutlet.Controllers
             ConfirmationEmailClient.BaseAddress = new Uri(ConfirmationMailURL);
             ConfirmationEmailClient.DefaultRequestHeaders.Accept.Clear();
             ConfirmationEmailClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-          
-
-
 
         }
 
@@ -108,30 +97,12 @@ namespace RxOutlet.Controllers
 
         public ActionResult LatestImage(UploadPrescriptionModel model)
         {
-            //var latestImage = ;
-            //if (TempData["LatestImage"] != null)
-            //{
-            //    ViewBag.LatestImage = Convert.ToString(TempData["LatestImage"]);
-            //}
-
-
-           
             return View();
         }
 
         public ActionResult UserPrescriptionList()
         {
            string UserID = User.Identity.GetUserId();
-          //  string url = UserPrescriptionListURL + UserID;
-         //   HttpResponseMessage responseMessage = await client.GetAsync(url);
-            //if (responseMessage.IsSuccessStatusCode)
-            //{
-            //    var responseData = responseMessage.Content.ReadAsStringAsync().Result;
-
-            //    var Employees = JsonConvert.DeserializeObject<List<UploadPrescriptionModel>>(responseData);
-
-            //    return View("UserPrescriptionList");
-            //}
             return View("Error");
         }
 

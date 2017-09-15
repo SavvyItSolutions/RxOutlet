@@ -26,11 +26,7 @@ namespace RxOutlet.Controllers
 {
     public class RxOutletController : ApiController
     {
-        //public RxOutletController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
-        //{
-        //    UserManager = userManager;
-        //    SignInManager = signInManager;
-        //}
+      
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -60,21 +56,6 @@ namespace RxOutlet.Controllers
         }
 
 
-
-        //public ApplicationUserManager UserManager
-        //{
-        //    get
-        //    {
-        //        return _userManager ?? System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
-        //    }
-        //    private set
-        //    {
-        //        _userManager = value;
-        //    }
-        //}
-
-
-
         [HttpGet]
         public PrescriptionResponse GetPrescriptionList()
         {
@@ -102,35 +83,6 @@ namespace RxOutlet.Controllers
             List<UploadPrescriptionModel> LstPrescriptionModel = new List<UploadPrescriptionModel>();
             IRxOutletService rxService = new RxOutletService();
 
-
-            var user = UserManager.FindById(User.Identity.GetUserId());
-
-          //  var id = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-
-            var userid = System.Web.HttpContext.Current.User.Identity.GetUserId();
-
-            ApplicationUser users = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(User.Identity.GetUserId());
-
-            FormsAuthentication.SetAuthCookie(uploadPrescription.Email, false);
-
-
-            var claimsIdentity = User.Identity as ClaimsIdentity;
-            if (claimsIdentity != null)
-            {
-                // the principal identity is a claims identity.
-                // now we need to find the NameIdentifier claim
-                var userIdClaim = claimsIdentity.Claims
-                    .FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
-
-                if (userIdClaim != null)
-                {
-                    var userIdValue = userIdClaim.Value;
-                }
-            }
-
-
-            //SendEmail obj = new SendEmail();
-            //obj.SendOneEmail("soujanyareddy.gade@gmail.com");
             LstPrescriptionModel =  rxService.UploadingPrescriptionNew(uploadPrescription);
             if(LstPrescriptionModel.Count > 0)
             {
@@ -152,27 +104,6 @@ namespace RxOutlet.Controllers
             return rxService.UploadingPrescription(uploadPrescription);
 
         }
-
-
-
-
-        //[HttpGet]
-        //public ConfirmationEmailResponse ConfirmationMail(string objectId)
-        //{
-
-        //    IRxOutletService rxService = new RxOutletService();
-
-
-        //    SendEmail objsendmail = new SendEmail();
-        //    objsendmail.SendOneEmail("");
-          
-            
-        //    return rxService.ConfirmationMail(objectId);
-
-
-        //}
-
-
 
 
         [HttpPost]
@@ -206,25 +137,6 @@ namespace RxOutlet.Controllers
         }
 
 
-
-        //[HttpGet]
-        //public async Task<ConfirmationEmailResponse> ConfirmEmail(string userId, string code)
-        //{
-        //    ConfirmationEmailResponse objMailResponse = new ConfirmationEmailResponse();
-        //    if (userId == null || code == null)
-        //    {
-
-        //    }
-        //    var result = await UserManager.ConfirmEmailAsync(userId, code);
-        //    //  return View(result.Succeeded ? "ConfirmEmail" : "Error");
-
-        //    return objMailResponse;
-        //}
-
-
-
-        
-
         [HttpPost]
         public async Task<int> Login(LoginModel model)
         {
@@ -236,87 +148,11 @@ namespace RxOutlet.Controllers
                result=  await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
             if (result == SignInStatus.Success)
                 retObj = 1;
-         
 
-
-
-            //cant navigate view from api controller 
-
-            //switch (result)
-            //{
-            //    case SignInStatus.Success:
-            //        return RedirectToLocal(returnUrl);
-            //    case SignInStatus.LockedOut:
-            //        return View("Lockout");
-            //    case SignInStatus.RequiresVerification:
-            //        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-            //    case SignInStatus.Failure:
-            //    default:
-            //        ModelState.AddModelError("", "Invalid login attempt.");
-            //        return View(model);
-            //}
-
-                return retObj;
-            
-
-
-           
+                return retObj;          
         }
 
-
-
-        //[Authorize]
-        //[HttpGet]
-        //public CustomerResponse AuthenticateUser(string objectId, string EmailId, string DeviceId)
-        //{
-        //    DateTime start = DateTime.Now;
-        //    Trace.TraceInformation("Started service AuthenticateUser");
-        //    string response = null;
-        //    CustomerResponse resp = new CustomerResponse();
-        //    IItemService itemService = new ItemService();
-        //    resp = itemService.AuthenticateUser(objectId, EmailId, DeviceId);
-        //    if (resp.customer.CustomerID == 0)//&& resp.customer.IsMailSent == 0)
-        //        resp.ErrorDescription = "We do not have your email address in our records. Please update it by contacting the store.";
-        //    if (resp.customer.CustomerID != 0 && resp.customer.IsMailSent == 0)
-        //    {
-        //        if (resp.customer.Email != "" && resp.customer.Email != null)
-        //            resp.ErrorDescription = "Hi " + resp.customer.FirstName + " " + resp.customer.LastName + ", \nWe are sending a verification email to " + resp.customer.Email + " . To proceed press continue. To change your emailAddress click on Update.";
-        //        else
-        //            resp.ErrorDescription = "Hi " + resp.customer.FirstName + resp.customer.LastName + ", \nIt seems we do not have your email address! Please update it so we can send you a verification link that will activate your account.";
-        //        string activationCode = Guid.NewGuid().ToString();
-        //        response = itemService.InsertActivationCode(activationCode, resp.customer.Email);
-        //        if (response != null && response != "")
-        //        {
-        //            resp.customer.IsMailSent = 1;
-        //            SendEmail se = new SendEmail();
-        //            var result = se.SendOneEmail(response, resp.customer.Email, resp.customer.FirstName);
-        //            //if (resp.customer.Email == "mohana.indukuri@gmail.com")
-        //            //{
-        //            SMSCAPI sms = new SMSCAPI();
-        //            sms.SendSMS("savvyitsolutions", "71900446", "1" + resp.customer.PhoneNumber, "https://hangoutz.azurewebsites.net/VerificationPage.html?ActivationCode=" + response + " Click here to activate your winehangouts account");
-        //            //}
-        //        }
-        //        else
-        //            resp.customer.IsMailSent = 0;
-        //    }
-        //    DateTime end = DateTime.Now;
-        //    TimeSpan tm = end - start;
-        //    Trace.TraceInformation("Time taken to AuthenticateUser =" + tm);
-        //    return resp;
-        //}
-
-
-
-        //[Authorize]
-        //[HttpGet]
-        //public GetDrugNameResponse GetCartItems(string objectId)
-        //{
-        //    GetDrugNameResponse resp = new GetDrugNameResponse();
-        //    IRxOutletService itemService = new RxOutletService();
-        //    resp = itemService.GetCartItems(objectId);
-        //    return resp;
-        //}
-
+      
         [HttpGet]
         public GetDrugNameResponse GetProductDetails(int objectId)
         {
@@ -340,7 +176,6 @@ namespace RxOutlet.Controllers
         [HttpGet]
         public GetDrugNameResponse GetSupplierName()
         {
-
             GetDrugNameResponse resp = new GetDrugNameResponse();
             IRxOutletService itemService = new RxOutletService();
             resp = itemService.GetSupplierName();
@@ -379,43 +214,7 @@ namespace RxOutlet.Controllers
                 Type = new List<int>();
             }
         }
-        //[HttpGet]
-        //public RxOutletMenuListRespone MenuList()
-        //{
-
-        //    RxOutletMenuListRespone resp = new RxOutletMenuListRespone();
-        //    IRxOutletService itemService = new RxOutletService();
-        //     resp = itemService.GetMenuList();
-        //    return resp;
-        //}
-
-
-        //[HttpGet]
-        //public RxOutletSubMenuListResponse SubMenuList(int objectId)
-        //{
-        //    RxOutletSubMenuListResponse resp = new RxOutletSubMenuListResponse();
-        //    IRxOutletService itemService = new RxOutletService();
-        //    resp = itemService.GetSubMenuList(objectId);
-        //    return resp;
-
-        //}
-
-
-        //[HttpGet]
-        //public RxOutLetMenuItemListResponse MenuItemList(int objectId, int userid)
-        //{
-        //    RxOutLetMenuItemListResponse resp = new RxOutLetMenuItemListResponse();
-        //    IRxOutletService itemService = new RxOutletService();
-        //    resp = itemService.GetMenuItemList(objectId, userid);
-
-        //    return resp;
-
-        //}
-
-
-
-
-
+     
         [HttpGet]
         public List<CompleteMenu> GetCompleteMenu()
         {
