@@ -26,7 +26,7 @@ namespace RxOutlet.Controllers
         HttpClient ConfirmationEmailClient;
         //The URL of the WEB API Service
         string RegistrationURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/SignUp";
-         //  string RegistrationURL = "http://localhost:64404/api/Rxoutlet/SignUp";
+      //     string RegistrationURL = "http://localhost:64404/api/Rxoutlet/SignUp";
 
 
    
@@ -89,15 +89,23 @@ namespace RxOutlet.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-          
 
+                if (ModelState.IsValid)
+                {
 
-
-
-
-            if (!ModelState.IsValid)
-            {
-                return View(model);
+                var user = await UserManager.FindByNameAsync(model.Email);
+                if (user == null)
+                {
+                    ModelState.AddModelError("", "Invalid login attempt.");
+                    return View(model);
+                }
+                //Add this to check if the email was confirmed.
+                if (!await UserManager.IsEmailConfirmedAsync(user.Id))
+                {
+                    ModelState.AddModelError("", "You need to confirm your email.");
+                    return View(model);
+                }
+            
             }
 
             //This doesn't count login failures towards account lockout
@@ -200,6 +208,7 @@ namespace RxOutlet.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
+
             if (userId == null || code == null)
             {
                 return View("Error");
