@@ -94,7 +94,7 @@ namespace RxOutlet.Controllers
         }
 
         [HttpPost]
-        public int ByteArray(byte[] array,string userid)
+        public int ByteArray(byte[] array)
         {
 
             IRxOutletService rxService = new RxOutletService();
