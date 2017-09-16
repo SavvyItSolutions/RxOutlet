@@ -200,6 +200,57 @@ namespace RxOutlet.Controllers
         }
 
         [HttpPost]
+        public int ByteArray(byte[] array)
+        {
+            int resp = 0;
+            List<UploadPrescriptionModel> LstPrescriptionModel = new List<UploadPrescriptionModel>();
+            IRxOutletService rxService = new RxOutletService();
+            string imageFullPath = null;
+            try
+            {
+                CloudStorageAccount cloudStorageAccount = ConnectionString.GetConnectionString();
+                CloudBlobClient cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
+                CloudBlobContainer cloudBlobContainer = cloudBlobClient.GetContainerReference("rxoutlet");
+
+                if (cloudBlobContainer.CreateIfNotExists())
+                {
+                    cloudBlobContainer.SetPermissionsAsync(
+                       new BlobContainerPermissions
+                       {
+                           PublicAccess = BlobContainerPublicAccessType.Blob
+                       }
+                       );
+                }
+                string imageName = Guid.NewGuid().ToString() + "-" +".jpg";
+
+                CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(imageName);
+                cloudBlockBlob.Properties.ContentType = "image/jpg";
+                cloudBlockBlob.UploadFromByteArray(array, 0, 1);
+
+
+                imageFullPath = cloudBlockBlob.Uri.ToString();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            UploadPrescriptionModel objuploadPrescription = new UploadPrescriptionModel();
+            objuploadPrescription.Filepath = imageFullPath;
+            objuploadPrescription.UserID = array.Length.ToString();
+            LstPrescriptionModel = rxService.UploadingPrescriptionNew(objuploadPrescription);
+            if (LstPrescriptionModel.Count > 0)
+            {
+                resp = 1;
+                SendEmail se = new SendEmail();
+                se.SendOneEmail(LstPrescriptionModel[0].Email, LstPrescriptionModel[0].Name, LstPrescriptionModel[0].TransactionPrescriptionID);
+            }
+            return resp;
+            //return imageFullPath;
+
+
+        }
+
+        [HttpPost]
         public int UploadingPrescription(UploadPrescriptionModel uploadPrescription)
         {
 
