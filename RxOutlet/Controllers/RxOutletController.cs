@@ -126,8 +126,8 @@ namespace RxOutlet.Controllers
                 string imageName = Guid.NewGuid().ToString() + "-" + FileExtension;
 
                 CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(imageName);
-                // cloudBlockBlob.Properties.ContentType = .ContentType;
-                cloudBlockBlob.UploadFromByteArray(array, 0, 1);
+                cloudBlockBlob.Properties.ContentType = "image/jpg";
+                cloudBlockBlob.UploadFromByteArray(array, 0, array.Length);
 
 
                 imageFullPath = cloudBlockBlob.Uri.ToString();
@@ -138,6 +138,8 @@ namespace RxOutlet.Controllers
             }
             UploadPrescriptionModel objuploadPrescription = new UploadPrescriptionModel();
             objuploadPrescription.Filepath = imageFullPath;
+            objuploadPrescription.UserID = byt.userid;
+
             LstPrescriptionModel = rxService.UploadingPrescriptionNew(objuploadPrescription);
             if (LstPrescriptionModel.Count > 0)
             {
