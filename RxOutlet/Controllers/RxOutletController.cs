@@ -154,10 +154,14 @@ namespace RxOutlet.Controllers
                     retObj = new LoginResponse(userid.EmailConfirmed, userid.Id);
                     // retObj = 1;
                 }
+                else
+                {
+                    retObj = new LoginResponse(false, "Login Failed");
+                }
             }
             catch (Exception ex)
             {
-                retObj = new LoginResponse(false, "");
+                retObj = new LoginResponse(false, ex.Message);
             }
             return retObj;
         }
