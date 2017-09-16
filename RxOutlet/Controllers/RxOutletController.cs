@@ -96,6 +96,62 @@ namespace RxOutlet.Controllers
             return resp;
         }
 
+        public class ByteInputModel
+        {
+            public byte[] array; public string userid; public string FileExtension;
+        }
+
+        [HttpPost]
+        public int ByteArray(ByteInputModel byt)
+        {
+            byte[] array = byt.array; string userid = byt.userid;
+            string FileExtension = byt.FileExtension;
+
+            int resp = 0;
+            List<UploadPrescriptionModel> LstPrescriptionModel = new List<UploadPrescriptionModel>();
+            IRxOutletService rxService = new RxOutletService();
+            string imageFullPath = null;
+            try
+            {
+                CloudStorageAccount cloudStorageAccount = ConnectionString.GetConnectionString();
+                CloudBlobClient cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
+                CloudBlobContainer cloudBlobContainer = cloudBlobClient.GetContainerReference("rxoutlet");
+
+                if (cloudBlobContainer.CreateIfNotExists())
+                {
+                    cloudBlobContainer.SetPermissionsAsync(
+                       new BlobContainerPermissions
+                       {
+                           PublicAccess = BlobContainerPublicAccessType.Blob
+                       }
+                       );
+                }
+                string imageName = Guid.NewGuid().ToString() + "-" + FileExtension;
+
+                CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(imageName);
+                // cloudBlockBlob.Properties.ContentType = .ContentType;
+                cloudBlockBlob.UploadFromByteArray(array, 0, 1);
+
+
+                imageFullPath = cloudBlockBlob.Uri.ToString();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            UploadPrescriptionModel objuploadPrescription = new UploadPrescriptionModel();
+            objuploadPrescription.Filepath = imageFullPath;
+            LstPrescriptionModel = rxService.UploadingPrescriptionNew(objuploadPrescription);
+            if (LstPrescriptionModel.Count > 0)
+            {
+                resp = 1;
+                SendEmail se = new SendEmail();
+                se.SendOneEmail(LstPrescriptionModel[0].Email, LstPrescriptionModel[0].Name, LstPrescriptionModel[0].TransactionPrescriptionID);
+            }
+            return resp;
+
+        }
+
         [HttpPost]
         public int ByteArray(byte[] array, string userid,string FileExtension)
         {
