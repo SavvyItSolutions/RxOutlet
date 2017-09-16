@@ -151,17 +151,17 @@ namespace RxOutlet.Controllers
                 if (result == SignInStatus.Success)
                 {
                     var userid = await UserManager.FindByNameAsync(model.Email);
-                    retObj = new LoginResponse(userid.EmailConfirmed, userid.Id);
+                    retObj = new LoginResponse(userid.EmailConfirmed, userid.Id, true, "");
                     // retObj = 1;
                 }
                 else
                 {
-                    retObj = new LoginResponse(false, "Login Failed");
+                    retObj = new LoginResponse(false, "", false, "Login Failed");
                 }
             }
             catch (Exception ex)
             {
-                retObj = new LoginResponse(false, ex.Message);
+                retObj = new LoginResponse(false, "", false, ex.Message);
             }
             return retObj;
         }

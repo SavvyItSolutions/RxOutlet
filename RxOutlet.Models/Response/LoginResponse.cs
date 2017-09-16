@@ -10,12 +10,16 @@ namespace RxOutlet.Models
     {
         public bool IsMailConfirmed { get; set; }
         public string UserID { get; set; }
+        public bool Success { get; set; }
+        public string ErrorMessage { get; set; }
 
-        public LoginResponse(bool _ismailconfirmed, string _userId)
+        public LoginResponse(bool _ismailconfirmed, string _userId, bool _success, string _errorMessage)
         {
 
             IsMailConfirmed = _ismailconfirmed;
             UserID = _userId;
+            Success = _success;
+            ErrorMessage = _errorMessage;
         }
 
     }
