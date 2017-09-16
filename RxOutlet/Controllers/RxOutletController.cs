@@ -99,7 +99,7 @@ namespace RxOutlet.Controllers
       
 
         [HttpPost]
-        public int ByteArray(ByteArrayModel byt)
+        public int ByteArray_New(ByteArrayModel byt)
         {
             byte[] array = byt.array; string userid = byt.userid;
             string FileExtension = byt.FileExtension;
