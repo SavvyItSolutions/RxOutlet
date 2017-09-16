@@ -96,13 +96,10 @@ namespace RxOutlet.Controllers
             return resp;
         }
 
-        public class ByteInputModel
-        {
-            public byte[] array; public string userid; public string FileExtension;
-        }
+      
 
         [HttpPost]
-        public int ByteArray(ByteInputModel byt)
+        public int ByteArray(ByteArrayModel byt)
         {
             byte[] array = byt.array; string userid = byt.userid;
             string FileExtension = byt.FileExtension;

@@ -61,6 +61,7 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\ByteArrayModel.cs" />
     <Compile Include="Models\CompleteMenu.cs" />
     <Compile Include="Models\ConfirmationEmailModel.cs" />
     <Compile Include="Models\DrugNames.cs" />
