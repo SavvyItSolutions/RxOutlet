@@ -101,33 +101,7 @@ namespace RxOutlet
             }
 
 
-            //    try
-            //    {
-            //        //  create Azure Storage
-            //        CloudStorageAccount storageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=universalappazurestorage;AccountKey=<your key>");
 
-            //        //  create a blob client.
-            //        CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
-
-            //        //  create a container 
-            //        CloudBlobContainer container = blobClient.GetContainerReference("containerone");
-
-            //        //  create a block blob
-            //        CloudBlockBlob blockBlob = container.GetBlockBlobReference("filename");
-
-            //        //  create a local file
-            //          StorageFile file = await ApplicationData.Current.LocalFolder.CreateFileAsync("filename_from_azure", CreationCollisionOption.ReplaceExisting);
-
-            //        //  download from Azure Storage
-            //       await blockBlob.DownloadToFileAsync(file);
-
-            //        return 1;
-            //    }
-            //    catch
-            //    {
-            //        //  return error
-            //        return 0;
-            //    }
         }
 
         public void DownloadBlobImage()
@@ -136,8 +110,6 @@ namespace RxOutlet
             CloudStorageAccount cloudStorageAccount = ConnectionString.GetConnectionString();
             CloudBlobClient cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
             CloudBlobContainer cloudBlobContainer = cloudBlobClient.GetContainerReference("rxoutlet");
-
-            // Retrieve reference to a blob named "photo1.jpg".
             CloudBlockBlob blockBlob = cloudBlobContainer.GetBlockBlobReference("0819a6a7-52a6-4e4a-9531-b7381521c0c6-.jpeg");
 
             // Save blob contents to a file.

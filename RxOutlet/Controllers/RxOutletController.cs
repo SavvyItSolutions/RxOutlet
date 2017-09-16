@@ -174,7 +174,7 @@ namespace RxOutlet.Controllers
                 string imageName = Guid.NewGuid().ToString() + "-" + FileExtension;
 
                 CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(imageName);
-               // cloudBlockBlob.Properties.ContentType = .ContentType;
+                cloudBlockBlob.Properties.ContentType = "image/jpg"; 
                 cloudBlockBlob.UploadFromByteArray(array,0,1);
 
 
