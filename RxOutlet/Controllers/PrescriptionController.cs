@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 using System.Security.Claims;
 using Microsoft.Owin.Security.OAuth;
+using RxOutlet.Business;
 
 namespace RxOutlet.Controllers
 {
@@ -84,16 +85,20 @@ namespace RxOutlet.Controllers
 
             model.UserID = User.Identity.GetUserId();
 
-            HttpResponseMessage PrescriptionDetailsResponse = await client.PostAsJsonAsync(PrescriptionDetailsURL, model);
+            IRxOutletService RxOutletSvc = new RxOutletService();
+
+            RxOutletSvc.UploadingPrescriptionNew(model);
+
+          //  HttpResponseMessage PrescriptionDetailsResponse = await client.PostAsJsonAsync(PrescriptionDetailsURL, model);
           
-            if (PrescriptionDetailsResponse.IsSuccessStatusCode)
-                {
+            //if (PrescriptionDetailsResponse.IsSuccessStatusCode)
+            //    {
 
-             //   HttpResponseMessage ConfirmationMailResponse = await client.PostAsJsonAsync(ConfirmationMailURL, model.UserID);
+            // //   HttpResponseMessage ConfirmationMailResponse = await client.PostAsJsonAsync(ConfirmationMailURL, model.UserID);
 
-                return View("LatestImage");
+            //    return View("LatestImage");
 
-                }   
+            //    }   
                   return View("Upload");
 
 

@@ -93,6 +93,17 @@ namespace RxOutlet.Controllers
             return resp;
         }
 
+        [HttpPost]
+        public int ByteArray(byte[] array,string userid)
+        {
+
+            IRxOutletService rxService = new RxOutletService();
+
+
+
+
+            return array.Length;
+        }
 
         [HttpPost]
         public int UploadingPrescription(UploadPrescriptionModel uploadPrescription)
