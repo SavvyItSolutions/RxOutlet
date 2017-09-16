@@ -225,7 +225,7 @@ namespace RxOutlet.Controllers
 
                 CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(imageName);
                 cloudBlockBlob.Properties.ContentType = "image/jpg";
-                cloudBlockBlob.UploadFromByteArray(array, 0, 1);
+                cloudBlockBlob.UploadFromByteArray(array, 0, array.Length);
 
 
                 imageFullPath = cloudBlockBlob.Uri.ToString();
