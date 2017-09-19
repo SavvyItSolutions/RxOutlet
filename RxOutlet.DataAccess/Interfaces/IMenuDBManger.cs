@@ -31,6 +31,8 @@ namespace RxOutlet.DataAccess.Interfaces
         int UpdateVerificationMail(string ActivationCode);
 
         IList<UploadingPrescriptionNewResult> UploadingPrescriptionNew(UploadPrescriptionModel uploadPrescription);
+       // int TransferPrescription(TransferPrescriptionModel transferPrescription);
+        IList<TransferPrescriptionResult> TransferPrescription(TransferPrescriptionModel transferPrescription);
     }
 
 }

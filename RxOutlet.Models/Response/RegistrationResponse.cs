@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RxOutlet.Models.Response
 {
-    public class RegistrationResponse
+    public class RegistrationResponse:BaseServiceResponse
     {
         public IList<RegistrationModel> DrugSearch { get; set; }
     }

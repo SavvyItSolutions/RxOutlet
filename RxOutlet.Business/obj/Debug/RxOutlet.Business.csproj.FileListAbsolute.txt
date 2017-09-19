@@ -45,3 +45,8 @@ D:\Sample\RxOutlet\RxOutlet.Business\bin\Debug\RxOutlet.Models.pdb
 D:\Sample\RxOutlet\RxOutlet.Business\obj\Debug\RxOutlet.Business.csprojResolveAssemblyReference.cache
 D:\Sample\RxOutlet\RxOutlet.Business\obj\Debug\RxOutlet.Business.dll
 D:\Sample\RxOutlet\RxOutlet.Business\obj\Debug\RxOutlet.Business.pdb
+G:\GitHub Folder\RxOutlet\RxOutlet.Business\bin\Debug\Newtonsoft.Json.dll
+G:\GitHub Folder\RxOutlet\RxOutlet.Business\bin\Debug\SendGrid.dll
+G:\GitHub Folder\RxOutlet\RxOutlet.Business\bin\Debug\Newtonsoft.Json.xml
+G:\GitHub Folder\RxOutlet\RxOutlet.Business\bin\Debug\SendGrid.pdb
+G:\GitHub Folder\RxOutlet\RxOutlet.Business\bin\Debug\SendGrid.xml

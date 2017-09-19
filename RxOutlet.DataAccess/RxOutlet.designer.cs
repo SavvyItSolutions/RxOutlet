@@ -216,10 +216,17 @@ namespace RxOutlet.DataAccess
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="rxadmin.UploadingPrescriptionNew")]
-		public ISingleResult<UploadingPrescriptionNewResult> UploadingPrescriptionNew([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ImageUrl", DbType="VarChar(256)")] string imageUrl, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="NVarChar(128)")] string userID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PhysicianName", DbType="VarChar(256)")] string physicianName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PhysicianNumber", DbType="VarChar(256)")] string physicianNumber, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MedicationFor", DbType="VarChar(256)")] string medicationFor)
+		public ISingleResult<UploadingPrescriptionNewResult> UploadingPrescriptionNew([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TransactionID", DbType="VarChar(256)")] string transactionID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ImageUrl", DbType="VarChar(256)")] string imageUrl, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="NVarChar(128)")] string userID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PhysicianName", DbType="VarChar(256)")] string physicianName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PhysicianNumber", DbType="VarChar(256)")] string physicianNumber, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MedicationFor", DbType="VarChar(256)")] string medicationFor)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), imageUrl, userID, physicianName, physicianNumber, medicationFor);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), transactionID, imageUrl, userID, physicianName, physicianNumber, medicationFor);
 			return ((ISingleResult<UploadingPrescriptionNewResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="rxadmin.TransferPrescription")]
+		public ISingleResult<TransferPrescriptionResult> TransferPrescription([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TransferPrescriptionID", DbType="VarChar(256)")] string transferPrescriptionID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PharmacyName", DbType="VarChar(256)")] string pharmacyName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PharmacyNumaber", DbType="VarChar(256)")] string pharmacyNumaber, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PharmacyFax", DbType="VarChar(256)")] string pharmacyFax, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MedicationFor", DbType="VarChar(256)")] string medicationFor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RxNumber", DbType="VarChar(256)")] string rxNumber, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="NVarChar(128)")] string userID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), transferPrescriptionID, pharmacyName, pharmacyNumaber, pharmacyFax, medicationFor, rxNumber, userID);
+			return ((ISingleResult<TransferPrescriptionResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -2038,7 +2045,7 @@ namespace RxOutlet.DataAccess
 		
 		private string _name;
 		
-		private int _PrescriptionOrderID;
+		private string _TransactionID;
 		
 		public UploadingPrescriptionNewResult()
 		{
@@ -2076,18 +2083,80 @@ namespace RxOutlet.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrescriptionOrderID", DbType="Int NOT NULL")]
-		public int PrescriptionOrderID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TransactionID", DbType="VarChar(256) NOT NULL", CanBeNull=false)]
+		public string TransactionID
 		{
 			get
 			{
-				return this._PrescriptionOrderID;
+				return this._TransactionID;
 			}
 			set
 			{
-				if ((this._PrescriptionOrderID != value))
+				if ((this._TransactionID != value))
 				{
-					this._PrescriptionOrderID = value;
+					this._TransactionID = value;
+				}
+			}
+		}
+	}
+	
+	public partial class TransferPrescriptionResult
+	{
+		
+		private string _email;
+		
+		private string _name;
+		
+		private string _TransferPrescriptionID;
+		
+		public TransferPrescriptionResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email", DbType="NVarChar(256)")]
+		public string email
+		{
+			get
+			{
+				return this._email;
+			}
+			set
+			{
+				if ((this._email != value))
+				{
+					this._email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(50)")]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this._name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TransferPrescriptionID", DbType="VarChar(256) NOT NULL", CanBeNull=false)]
+		public string TransferPrescriptionID
+		{
+			get
+			{
+				return this._TransferPrescriptionID;
+			}
+			set
+			{
+				if ((this._TransferPrescriptionID != value))
+				{
+					this._TransferPrescriptionID = value;
 				}
 			}
 		}

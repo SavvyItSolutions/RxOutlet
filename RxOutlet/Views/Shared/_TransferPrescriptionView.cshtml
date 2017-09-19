@@ -1,0 +1,89 @@
+﻿@model RxOutlet.Models.TransferPrescriptionModel
+
+<h3 class="checkout-sep">PRESCRIPTION TRANSFER INFORMATION   </h3>
+
+@using (Html.BeginForm("_TransferPrescriptionView", "TransferPrescription")) {
+<div class="box-border">
+    <p class="text-justify">
+        Please complete this section only if you are transferring your prescription(s) from your current pharmacy to RxOutlet. Your prescriptions
+        must be transferred from you current pharmacy to RxOutlet Pharmacy in order to participate in the Patient Assistance Program.
+        Prescription(s) must be written for a 90 day supply.
+    </p>
+
+
+
+
+
+    <div class="form-group">
+
+        <div class="col-sm-12">
+            <label for="checking">Would you like us to transfer the attached prescriptions from your current pharmacy to RXOutlet Pharmacy? </label>
+            <input type="checkbox" name="checking" value="Yes">yes
+            <input type="checkbox" name="checking" value="No">No
+
+        </div>
+
+    </div>
+    <br />
+    <div class="form-group">
+
+
+
+        <label for="confirm" class="col-sm-2">  Name:</label>
+        <div class="col-sm-2">
+            @*<input type="text" name="confirm" id="confirm" class="form-control">*@
+            @Html.TextBoxFor(m => m.PharmacyName, new { @class = "form-control" })
+
+
+        </div>
+
+        <label for="last_name_1" class="col-sm-2">Phone: </label>
+        <div class="col-sm-2">
+            @*<input type="text" name="last_name_1" id="last_name_1" class="form-control">*@
+            @Html.TextBoxFor(m => m.PharmacyNumaber, new { @class = "form-control" })
+
+
+        </div><!--/ [col] -->
+
+
+        <label for="last_name_1" class="col-sm-2"> Fax: </label>
+        <div class="col-sm-2">
+            @*<input type="text" name="last_name_1" id="last_name_1" class="form-control">*@
+            @Html.TextBoxFor(m => m.PharmacyFax, new { @class = "form-control" })
+
+
+        </div><!--/ [col] -->
+
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label for="last_name_1" class="col-sm-2">Medication For: </label>
+        <div class="col-sm-2">
+            @*<input type="text" name="last_name_1" id="last_name_1" class="form-control">*@
+            @Html.TextBoxFor(m => m.MedicationFor, new { @class = "form-control" })
+
+
+        </div><!--/ [col] -->
+
+        <label for="last_name_1" class="col-sm-2">RxNumber: </label>
+        <div class="col-sm-2">
+            @*<input type="text" name="last_name_1" id="last_name_1" class="form-control">*@
+            @Html.TextBoxFor(m => m.RxNumber, new { @class = "form-control" })
+        </div><!--/ [col] -->
+        <a href="#modal-table" role="button" class="green" data-toggle="modal">More</a>
+    
+
+
+
+
+    </div>
+    <br />
+    <div class="form-group">
+        <div class="col-md-12 text-center">
+            <input type="submit" value="Transfer" class="btn btn-primary" id="" />
+        </div>
+    </div>
+
+</div>
+}

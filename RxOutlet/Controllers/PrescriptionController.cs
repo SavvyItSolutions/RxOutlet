@@ -72,36 +72,32 @@ namespace RxOutlet.Controllers
         [Authorize]
         //The Post method
         [HttpPost]
-        public async Task<ActionResult> Upload(HttpPostedFileBase photo, UploadPrescriptionModel model)
+        public ActionResult Upload(HttpPostedFileBase photo, UploadPrescriptionModel model)
         {
             
-
-
             if (photo != null)
                 model.Filepath = imageService.UploadImageAsync(photo);
             else
                 model.Filepath = "";
 
-
             model.UserID = User.Identity.GetUserId();
 
             IRxOutletService RxOutletSvc = new RxOutletService();
+                  RxOutletSvc.UploadingPrescriptionNew(model);
 
-            RxOutletSvc.UploadingPrescriptionNew(model);
+            
+            //HttpResponseMessage PrescriptionDetailsResponse = await client.PostAsJsonAsync(PrescriptionDetailsURL, model);
 
-          //  HttpResponseMessage PrescriptionDetailsResponse = await client.PostAsJsonAsync(PrescriptionDetailsURL, model);
-          
             //if (PrescriptionDetailsResponse.IsSuccessStatusCode)
-            //    {
+            //{
 
-            // //   HttpResponseMessage ConfirmationMailResponse = await client.PostAsJsonAsync(ConfirmationMailURL, model.UserID);
+            //       HttpResponseMessage ConfirmationMailResponse = await client.PostAsJsonAsync(ConfirmationMailURL, model.UserID);
 
             //    return View("LatestImage");
 
-            //    }   
-                  return View("Upload");
+            //}
 
-
+            return View("LatestImage");
 
         }
 

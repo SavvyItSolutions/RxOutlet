@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RxOutlet.Models
 {
-   public class ConfirmationEmailResponse
+   public class ConfirmationEmailResponse:BaseServiceResponse
     {
         public IList<ConfirmationEmailModel> ConfirmationEmail { get; set; }
     }

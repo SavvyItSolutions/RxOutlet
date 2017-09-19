@@ -72,8 +72,8 @@
     <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\RegistrationModel.cs" />
-    <Compile Include="Models\RegistrationResponseModel.cs" />
     <Compile Include="Models\SubMenu.cs" />
+    <Compile Include="Models\TransferPrescriptionModel.cs" />
     <Compile Include="Models\UploadPrescriptionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Response\BaseServiceResponse.cs" />
@@ -84,6 +84,7 @@
     <Compile Include="Response\MenuDetailsResponse.cs" />
     <Compile Include="Response\PrescriptionResponse.cs" />
     <Compile Include="Response\RegistrationResponse.cs" />
+    <Compile Include="Response\RegistrationResponseModel.cs" />
     <Compile Include="Response\RxOutletMenuItemListResponse.cs" />
     <Compile Include="Response\RxOutletMenuListResponse.cs" />
     <Compile Include="Response\RxOutletMenuResponse.cs" />

@@ -10,99 +10,181 @@ using RxOutlet.Models;
 
 namespace RxOutlet.Business
 {
-   public class RxOutletService: IRxOutletService
+    public class RxOutletService : IRxOutletService
     {
 
-      
+
 
         public ConfirmationEmailResponse ConfirmationMail(string UserID)
         {
             ConfirmationEmailResponse ConfirmationMailResponse = new ConfirmationEmailResponse();
-            List<ConfirmationEmailModel> EmailList = new List<ConfirmationEmailModel>();
 
-            IMenuDBManger menuDBManager = new MenuDBManager();
-            IList<ConfirmationEmailResult> ConfirmationMailresults = menuDBManager.ConfirmationEmail(UserID).ToList();
-
-            foreach (ConfirmationEmailResult result in ConfirmationMailresults)
+            try
             {
-                EmailList.Add(new ConfirmationEmailModel
-                {
 
-                    Title = result.Title,
-                    Email = result.Email
-                });
+                List<ConfirmationEmailModel> EmailList = new List<ConfirmationEmailModel>();
+
+                IMenuDBManger menuDBManager = new MenuDBManager();
+                IList<ConfirmationEmailResult> ConfirmationMailresults = menuDBManager.ConfirmationEmail(UserID).ToList();
+
+                foreach (ConfirmationEmailResult result in ConfirmationMailresults)
+                {
+                    EmailList.Add(new ConfirmationEmailModel
+                    {
+
+                        Title = result.Title,
+                        Email = result.Email
+                    });
+                }
+                ConfirmationMailResponse.ConfirmationEmail = EmailList;
             }
-            ConfirmationMailResponse.ConfirmationEmail = EmailList;
+
+            catch (Exception ex) { }
+
             return ConfirmationMailResponse;
         }
 
         public PrescriptionResponse GetPrescriptionList()
         {
             PrescriptionResponse prescriptionResponse = new PrescriptionResponse();
-            List<UploadPrescriptionModel> prescriptionList = new List<UploadPrescriptionModel>();
-
-            IMenuDBManger menuDBManager = new MenuDBManager();
-            IList<PrescriptionListResult> PrescriptionListresultsObj = menuDBManager.GetPrescriptionList();
-
-            foreach (PrescriptionListResult result in PrescriptionListresultsObj)
+            try
             {
-                prescriptionList.Add(new UploadPrescriptionModel
+                List<UploadPrescriptionModel> prescriptionList = new List<UploadPrescriptionModel>();
+
+                IMenuDBManger menuDBManager = new MenuDBManager();
+                IList<PrescriptionListResult> PrescriptionListresultsObj = menuDBManager.GetPrescriptionList();
+
+                foreach (PrescriptionListResult result in PrescriptionListresultsObj)
                 {
-                    Name=result.Name,
-                    Email=result.Email,
-                    PhoneNumber=result.PhoneNumber,
-                    Title = result.Title,
-                    Description = result.Description,
-                    Filepath = result.imageUrl
-                    //CreatedDate= (result.CreatedDate)
-                });
+                    prescriptionList.Add(new UploadPrescriptionModel
+                    {
+                        Name = result.Name,
+                        Email = result.Email,
+                        PhoneNumber = result.PhoneNumber,
+                        Title = result.Title,
+                        Description = result.Description,
+                        Filepath = result.imageUrl
+                        //CreatedDate= (result.CreatedDate)
+                    });
+                }
+                prescriptionResponse.GetPrescriptionList = prescriptionList;
             }
-            prescriptionResponse.GetPrescriptionList = prescriptionList;
+            catch (Exception ex) { }
+
             return prescriptionResponse;
         }
 
 
         public PrescriptionResponse GetUserPrescriptionList(string UserID)
         {
+
             PrescriptionResponse prescriptionResponse = new PrescriptionResponse();
-            List<UploadPrescriptionModel> prescriptionList = new List<UploadPrescriptionModel>();
-
-            IMenuDBManger menuDBManager = new MenuDBManager();
-            IList<GetUserPrescriptionListResult> userPrescriptionListresults = menuDBManager.GetUserPrescriptionList(UserID).ToList();
-
-            foreach (GetUserPrescriptionListResult result in userPrescriptionListresults)
+            try
             {
-                prescriptionList.Add(new UploadPrescriptionModel
+                List<UploadPrescriptionModel> prescriptionList = new List<UploadPrescriptionModel>();
+
+                IMenuDBManger menuDBManager = new MenuDBManager();
+                IList<GetUserPrescriptionListResult> userPrescriptionListresults = menuDBManager.GetUserPrescriptionList(UserID).ToList();
+
+                foreach (GetUserPrescriptionListResult result in userPrescriptionListresults)
                 {
+                    prescriptionList.Add(new UploadPrescriptionModel
+                    {
 
-                  Title=result.Title,
-                  Description=result.Description,
-                  Filepath=result.imageUrl
+                        Title = result.Title,
+                        Description = result.Description,
+                        Filepath = result.imageUrl
 
-                });
+                    });
+                }
+                prescriptionResponse.GetUserPrescriptionList = prescriptionList;
             }
-            prescriptionResponse.GetUserPrescriptionList = prescriptionList;
+            catch (Exception ex) { }
             return prescriptionResponse;
         }
+
+
+        public List<TransferPrescriptionModel> TransferPrescription(TransferPrescriptionModel transferPrescription)
+        {
+            List<TransferPrescriptionModel> retObj = new List<TransferPrescriptionModel>();
+            try
+            {
+                IList<TransferPrescriptionResult> resultObj = new List<TransferPrescriptionResult>();
+                IMenuDBManger menuDBManager = new MenuDBManager();
+
+                resultObj = menuDBManager.TransferPrescription(transferPrescription);
+                foreach (TransferPrescriptionResult obj in resultObj)
+                {
+                    retObj.Add(new TransferPrescriptionModel
+                    {
+                        Name = obj.name,
+                        Email = obj.email,
+                        TransferPrescriptionID = obj.TransferPrescriptionID
+                    });
+                }
+
+                if (retObj.Count > 0)
+                {
+                    SendEmail se = new SendEmail();
+                    List<string> maildetails = new List<string>();
+                    maildetails.Add(retObj[0].Email);
+                    maildetails.Add(retObj[0].Name);
+                    maildetails.Add(retObj[0].TransferPrescriptionID);
+                    //subject
+                    maildetails.Add("Confirmation Mail for Transfer Prescription");
+                    //Mail HTMLContent
+                    maildetails.Add("Thank you for Transfering your Prescription. Your Transfer Prescription ID -" + retObj[0].TransferPrescriptionID);
+                    //message
+                    maildetails.Add("RxOutlet Transfer Prescription Mail");
+                    se.SendOneEmail(maildetails);
+                }
+            }
+            catch (Exception ex) { }
+            return retObj;
+
+        }
+
 
 
         public List<UploadPrescriptionModel> UploadingPrescriptionNew(UploadPrescriptionModel uploadingPrescription)
         {
             List<UploadPrescriptionModel> retObj = new List<UploadPrescriptionModel>();
-            IList<UploadingPrescriptionNewResult> resultObj = new List<UploadingPrescriptionNewResult>();
-            IMenuDBManger menuDBManager = new MenuDBManager();
-
-            resultObj = menuDBManager.UploadingPrescriptionNew(uploadingPrescription);
-            foreach(UploadingPrescriptionNewResult obj in resultObj)
+            try
             {
-                retObj.Add(new UploadPrescriptionModel
+                IList<UploadingPrescriptionNewResult> resultObj = new List<UploadingPrescriptionNewResult>();
+                IMenuDBManger menuDBManager = new MenuDBManager();
+
+                resultObj = menuDBManager.UploadingPrescriptionNew(uploadingPrescription);
+                foreach (UploadingPrescriptionNewResult obj in resultObj)
                 {
-                    Name = obj.name,
-                    Email = obj.email,
-                    TransactionPrescriptionID=obj.PrescriptionOrderID
-                });
+                    retObj.Add(new UploadPrescriptionModel
+                    {
+                        Name = obj.name,
+                        Email = obj.email,
+                        TransactionID = obj.TransactionID
+                    });
+                }
+
+
+                if (retObj.Count > 0)
+                {
+                    SendEmail se = new SendEmail();
+                    List<string> maildetails = new List<string>();
+                    maildetails.Add(retObj[0].Email);
+                    maildetails.Add(retObj[0].Name);
+                    maildetails.Add(retObj[0].TransactionID);
+                    //subject
+                    maildetails.Add("Confirmation Mail for Filling New Prescription");
+                    //Mail HTMLContent
+                    maildetails.Add("Thank you for Filling your Prescription. Your Transaction ID -" + retObj[0].TransactionID);
+                    //message
+                    maildetails.Add("RxOutlet Fill New Prescription Mail");
+                    se.SendOneEmail(maildetails);
+                }
+
             }
-            return retObj ;
+            catch (Exception ex) { }
+            return retObj;
 
         }
 
@@ -111,13 +193,17 @@ namespace RxOutlet.Business
 
         public int UploadingPrescription(UploadPrescriptionModel uploadingPrescription)
         {
-            IMenuDBManger menuDBManager = new MenuDBManager();
+            try
+            {
+                IMenuDBManger menuDBManager = new MenuDBManager();
 
-            menuDBManager.UploadingPrescription(uploadingPrescription);
+                menuDBManager.UploadingPrescription(uploadingPrescription);
+            }
+            catch (Exception ex) { }
             return 1;
         }
 
-    
+
 
         //public GetDrugNameResponse GetCartItems(string UserName)
         //{
@@ -155,26 +241,30 @@ namespace RxOutlet.Business
         public GetDrugNameResponse GetProductDetails(int id)
         {
             GetDrugNameResponse DrugListResponse = new GetDrugNameResponse();
-            List<GetDrugList> itemList = new List<GetDrugList>();
-
-            IMenuDBManger menuDBManager = new MenuDBManager();
-            IList<GetProductDetailsResult> MainMenuResults = menuDBManager.GetProductDetails(id).ToList();
-
-            foreach (GetProductDetailsResult result in MainMenuResults)
+            try
             {
-                itemList.Add(new GetDrugList
-                {
+                List<GetDrugList> itemList = new List<GetDrugList>();
 
-                    DrugName = result.DrugName,
-                    DrugTypeName = result.drugtypename,
-                    ImageNum = Convert.ToInt32( result.ImageNum),
-                    RegularPrice = result.RegularPrice,
-                    RetailPrice = result.RetailPrice,
-                    SupplierName = result.SupplierName
-                   
-                });
+                IMenuDBManger menuDBManager = new MenuDBManager();
+                IList<GetProductDetailsResult> MainMenuResults = menuDBManager.GetProductDetails(id).ToList();
+
+                foreach (GetProductDetailsResult result in MainMenuResults)
+                {
+                    itemList.Add(new GetDrugList
+                    {
+
+                        DrugName = result.DrugName,
+                        DrugTypeName = result.drugtypename,
+                        ImageNum = Convert.ToInt32(result.ImageNum),
+                        RegularPrice = result.RegularPrice,
+                        RetailPrice = result.RetailPrice,
+                        SupplierName = result.SupplierName
+
+                    });
+                }
+                DrugListResponse.DrugList = itemList;
             }
-            DrugListResponse.DrugList = itemList;
+            catch (Exception ex) { }
             return DrugListResponse;
         }
 
@@ -183,43 +273,52 @@ namespace RxOutlet.Business
         public GetDrugNameResponse GetDrugTypes()
         {
             GetDrugNameResponse DrugListResponse = new GetDrugNameResponse();
-            List<GetDrugList> itemList = new List<GetDrugList>();
-
-            IMenuDBManger menuDBManager = new MenuDBManager();
-            IList<GetDrugTypesResult> MainMenuResults = menuDBManager.GetDrugTypes();
-
-            foreach (GetDrugTypesResult result in MainMenuResults)
+            try
             {
-                itemList.Add(new GetDrugList
+                List<GetDrugList> itemList = new List<GetDrugList>();
+
+                IMenuDBManger menuDBManager = new MenuDBManager();
+                IList<GetDrugTypesResult> MainMenuResults = menuDBManager.GetDrugTypes();
+
+                foreach (GetDrugTypesResult result in MainMenuResults)
                 {
-                    DrugTypeID = result.DrugTypeID,
-                    DrugTypeName = result.DrugTypeName,
-                    DrugCount = result.drugcount
-                });
+                    itemList.Add(new GetDrugList
+                    {
+                        DrugTypeID = result.DrugTypeID,
+                        DrugTypeName = result.DrugTypeName,
+                        DrugCount = result.drugcount
+                    });
+                }
+                DrugListResponse.DrugList = itemList;
             }
-            DrugListResponse.DrugList = itemList;
+            catch (Exception ex) { }
             return DrugListResponse;
         }
 
 
         public GetDrugNameResponse GetSupplierName()
         {
-           GetDrugNameResponse DrugListResponse = new GetDrugNameResponse();
-            List<GetDrugList> itemList = new List<GetDrugList>();
-
-            IMenuDBManger menuDBManager = new MenuDBManager();
-            IList<GetSupplierNameResult> MainMenuResults = menuDBManager.GetSupplierName();
-
-            foreach (GetSupplierNameResult result in MainMenuResults)
+            GetDrugNameResponse DrugListResponse = new GetDrugNameResponse();
+            try
             {
-                itemList.Add(new GetDrugList
+
+                List<GetDrugList> itemList = new List<GetDrugList>();
+
+                IMenuDBManger menuDBManager = new MenuDBManager();
+                IList<GetSupplierNameResult> MainMenuResults = menuDBManager.GetSupplierName();
+
+                foreach (GetSupplierNameResult result in MainMenuResults)
                 {
-                    SupplierID=result.SupplierId,
-                    SupplierName=result.Suppliername,
-                    DrugCount=result.drugcount
-                });
+                    itemList.Add(new GetDrugList
+                    {
+                        SupplierID = result.SupplierId,
+                        SupplierName = result.Suppliername,
+                        DrugCount = result.drugcount
+                    });
+                }
+                DrugListResponse.DrugList = itemList;
             }
-            DrugListResponse.DrugList = itemList;
+            catch (Exception ex) { }
             return DrugListResponse;
         }
 
@@ -227,23 +326,28 @@ namespace RxOutlet.Business
         public GetDrugNameResponse GetDrugList()
         {
             GetDrugNameResponse DrugListResponse = new GetDrugNameResponse();
-            List<GetDrugList> itemList = new List<GetDrugList>();
-
-            IMenuDBManger menuDBManager = new MenuDBManager();
-            IList<GetDrugListResult> MainMenuResults = menuDBManager.GetDrugList();
-
-            foreach (GetDrugListResult result in MainMenuResults)
+            try
             {
-                itemList.Add(new GetDrugList
-                {   DrugID=Convert.ToInt32( result.DrugId),
-                    ImageNum=Convert.ToInt32(result.ImgNum),
-                    DrugName = result.DrugName,
-                    RetailPrice= result.RetailPrice,
-                    RegularPrice=result.RegularPrice
-                   
-                });
+                List<GetDrugList> itemList = new List<GetDrugList>();
+
+                IMenuDBManger menuDBManager = new MenuDBManager();
+                IList<GetDrugListResult> MainMenuResults = menuDBManager.GetDrugList();
+
+                foreach (GetDrugListResult result in MainMenuResults)
+                {
+                    itemList.Add(new GetDrugList
+                    {
+                        DrugID = Convert.ToInt32(result.DrugId),
+                        ImageNum = Convert.ToInt32(result.ImgNum),
+                        DrugName = result.DrugName,
+                        RetailPrice = result.RetailPrice,
+                        RegularPrice = result.RegularPrice
+
+                    });
+                }
+                DrugListResponse.DrugList = itemList;
             }
-            DrugListResponse.DrugList = itemList;
+            catch (Exception ex) { }
             return DrugListResponse;
         }
 
@@ -312,175 +416,194 @@ namespace RxOutlet.Business
         //    menuItemListResponse.MenuItemList = itemList;
         //    return menuItemListResponse;
         //}
-        
+
         public List<CompleteMenu> GetCompleteMenu()
         {
-            IMenuDBManger menuDbManager = new MenuDBManager();
-            IList<GetMenuResult> menuResult = menuDbManager.GetCompleteMenu();
-            CompleteMenu menuObj = new CompleteMenu();
-            SubMenu subObj = new SubMenu();
-            MenuItem itemObj = new MenuItem();
             List<CompleteMenu> lstObj = new List<CompleteMenu>();
-            //List<SubMenu> SubMenuLst = new List<SubMenu>();
-            //List<MenuItem> LstItem = new List<MenuItem>();
-            for (int i = 0; i < menuResult.Count; i++)
+            try
             {
-                CompleteMenu testObj = lstObj.Find(x => x.MainMenuID == menuResult[i].MainMenuID);
-                if (testObj == null)
+
+                IMenuDBManger menuDbManager = new MenuDBManager();
+                IList<GetMenuResult> menuResult = menuDbManager.GetCompleteMenu();
+                CompleteMenu menuObj = new CompleteMenu();
+                SubMenu subObj = new SubMenu();
+                MenuItem itemObj = new MenuItem();
+
+                //List<SubMenu> SubMenuLst = new List<SubMenu>();
+                //List<MenuItem> LstItem = new List<MenuItem>();
+                for (int i = 0; i < menuResult.Count; i++)
                 {
-                    menuObj = new CompleteMenu();
-                    menuObj.MainMenuID = Convert.ToInt32(menuResult[i].MainMenuID);
-                    menuObj.MainMenuName = menuResult[i].MainMenuName.ToString();
-                    int SubMenuCount = 0;
-                    for (int j = 0; j < menuResult.Count; j++)
+                    CompleteMenu testObj = lstObj.Find(x => x.MainMenuID == menuResult[i].MainMenuID);
+                    if (testObj == null)
                     {
-                        SubMenu testSub = null;
-                        if (menuObj.SubMenuList != null)
-                            testSub = menuObj.SubMenuList.Find(x => x.SubMenuID == menuResult[j].SubMenuID);
-                        if (testSub == null)
+                        menuObj = new CompleteMenu();
+                        menuObj.MainMenuID = Convert.ToInt32(menuResult[i].MainMenuID);
+                        menuObj.MainMenuName = menuResult[i].MainMenuName.ToString();
+                        int SubMenuCount = 0;
+                        for (int j = 0; j < menuResult.Count; j++)
                         {
-                            if (menuResult[j].SubMainMenuID == menuObj.MainMenuID)
+                            SubMenu testSub = null;
+                            if (menuObj.SubMenuList != null)
+                                testSub = menuObj.SubMenuList.Find(x => x.SubMenuID == menuResult[j].SubMenuID);
+                            if (testSub == null)
                             {
-                                subObj = new SubMenu();
-                                subObj.SubMainMenuId = Convert.ToInt32(menuResult[j].SubMainMenuID);
-                                subObj.SubMenuID = Convert.ToInt32(menuResult[j].SubMenuID);
-                                subObj.SubMenuName = menuResult[j].SubMenuName.ToString();
-                                SubMenuCount++;
-                                int itemCount = 0;
-                                for (int k = 0; k < menuResult.Count; k++)
+                                if (menuResult[j].SubMainMenuID == menuObj.MainMenuID)
                                 {
-                                    if (menuResult[k].ItemSubMenuID == subObj.SubMenuID)
+                                    subObj = new SubMenu();
+                                    subObj.SubMainMenuId = Convert.ToInt32(menuResult[j].SubMainMenuID);
+                                    subObj.SubMenuID = Convert.ToInt32(menuResult[j].SubMenuID);
+                                    subObj.SubMenuName = menuResult[j].SubMenuName.ToString();
+                                    SubMenuCount++;
+                                    int itemCount = 0;
+                                    for (int k = 0; k < menuResult.Count; k++)
                                     {
-                                        itemCount++;
+                                        if (menuResult[k].ItemSubMenuID == subObj.SubMenuID)
+                                        {
+                                            itemCount++;
+                                            itemObj = new MenuItem();
+                                            itemObj.ItemMainMenuId = Convert.ToInt32(menuResult[k].ItemMainMenuID);
+                                            itemObj.ItemSubMenuId = Convert.ToInt32(menuResult[k].SubMenuID);
+                                            itemObj.ItemId = Convert.ToInt32(menuResult[k].MenuItemID);
+                                            itemObj.ItemName = menuResult[k].MenuItemName.ToString();
+                                            if (subObj.menuItemList == null)
+                                                subObj.menuItemList = new List<MenuItem>();
+                                            subObj.menuItemList.Add(itemObj);
+                                        }
+                                    }
+                                    if (itemCount == 0)
+                                    {
                                         itemObj = new MenuItem();
-                                        itemObj.ItemMainMenuId = Convert.ToInt32(menuResult[k].ItemMainMenuID);
-                                        itemObj.ItemSubMenuId = Convert.ToInt32(menuResult[k].SubMenuID);
-                                        itemObj.ItemId = Convert.ToInt32(menuResult[k].MenuItemID);
-                                        itemObj.ItemName = menuResult[k].MenuItemName.ToString();
+                                        itemObj.ItemMainMenuId = 0;
+                                        itemObj.ItemSubMenuId = 0;
+                                        itemObj.ItemId = 0;
+                                        itemObj.ItemName = "";
                                         if (subObj.menuItemList == null)
                                             subObj.menuItemList = new List<MenuItem>();
                                         subObj.menuItemList.Add(itemObj);
                                     }
+                                    if (menuObj.SubMenuList == null)
+                                        menuObj.SubMenuList = new List<SubMenu>();
+                                    menuObj.SubMenuList.Add(subObj);
                                 }
-                                if (itemCount == 0)
-                                {
-                                    itemObj = new MenuItem();
-                                    itemObj.ItemMainMenuId = 0;
-                                    itemObj.ItemSubMenuId = 0;
-                                    itemObj.ItemId = 0;
-                                    itemObj.ItemName = "";
-                                    if (subObj.menuItemList == null)
-                                        subObj.menuItemList = new List<MenuItem>();
-                                    subObj.menuItemList.Add(itemObj);
-                                }
-                                if (menuObj.SubMenuList == null)
-                                    menuObj.SubMenuList = new List<SubMenu>();
-                                menuObj.SubMenuList.Add(subObj);
                             }
                         }
+                        if (SubMenuCount == 0)
+                        {
+                            subObj = new SubMenu();
+                            subObj.SubMainMenuId = 0;
+                            subObj.SubMenuID = 0;
+                            subObj.SubMenuName = "";
+                            itemObj = new MenuItem();
+                            itemObj.ItemMainMenuId = 0;
+                            itemObj.ItemSubMenuId = 0;
+                            itemObj.ItemId = 0;
+                            itemObj.ItemName = "";
+                            if (subObj.menuItemList == null)
+                                subObj.menuItemList = new List<MenuItem>();
+                            subObj.menuItemList.Add(itemObj);
+                            if (menuObj.SubMenuList == null)
+                                menuObj.SubMenuList = new List<SubMenu>();
+                            menuObj.SubMenuList.Add(subObj);
+                        }
+                        lstObj.Add(menuObj);
                     }
-                    if (SubMenuCount == 0)
-                    {
-                        subObj = new SubMenu();
-                        subObj.SubMainMenuId = 0;
-                        subObj.SubMenuID = 0;
-                        subObj.SubMenuName = "";
-                        itemObj = new MenuItem();
-                        itemObj.ItemMainMenuId = 0;
-                        itemObj.ItemSubMenuId = 0;
-                        itemObj.ItemId = 0;
-                        itemObj.ItemName = "";
-                        if (subObj.menuItemList == null)
-                            subObj.menuItemList = new List<MenuItem>();
-                        subObj.menuItemList.Add(itemObj);
-                        if (menuObj.SubMenuList == null)
-                            menuObj.SubMenuList = new List<SubMenu>();
-                        menuObj.SubMenuList.Add(subObj);
-                    }
-                    lstObj.Add(menuObj);
                 }
             }
+            catch (Exception ex) { }
             return lstObj;
         }
-        
+
         public List<DrugSearch> GetDrugNamesSearchService()
         {
-            IMenuDBManger menuDbManager = new MenuDBManager();
-            IList<GetDrugNamesSearchResult> DrugResult = menuDbManager.GetDrugNamesSearch();
-            DrugSearch druglistObj = new DrugSearch();
-            DrugNames drugNamesobj = new DrugNames();
-            Druginfo drugObj = new Druginfo();
-            Supplier supplierObj = new Supplier();
             List<DrugSearch> lstObj = new List<DrugSearch>();
-
-
-          
-            for (int i = 0; i < DrugResult.Count; i++)
+            try
             {
-                DrugSearch testObj = lstObj.Find(x => x.SupplierID == DrugResult[i].SupplierID);
-                if (testObj == null)
+                IMenuDBManger menuDbManager = new MenuDBManager();
+                IList<GetDrugNamesSearchResult> DrugResult = menuDbManager.GetDrugNamesSearch();
+                DrugSearch druglistObj = new DrugSearch();
+                DrugNames drugNamesobj = new DrugNames();
+                Druginfo drugObj = new Druginfo();
+                Supplier supplierObj = new Supplier();
+
+
+
+
+                for (int i = 0; i < DrugResult.Count; i++)
                 {
-                    druglistObj = new DrugSearch();
-                    druglistObj.SupplierID = Convert.ToInt32(DrugResult[i].SupplierID);
-                    druglistObj.SupplierName = DrugResult[i].SupplierName.ToString();
-                    int DrugNameCount = 0;
-                    for (int j = 0; j < DrugResult.Count; j++)
+                    DrugSearch testObj = lstObj.Find(x => x.SupplierID == DrugResult[i].SupplierID);
+                    if (testObj == null)
                     {
-                        DrugNames testSub = null;
-                        if (druglistObj.DrugNamesList != null)
-                            testSub = druglistObj.DrugNamesList.Find(x => x.DrugID == DrugResult[j].DrugID);
-                        if (testSub == null)
+                        druglistObj = new DrugSearch();
+                        druglistObj.SupplierID = Convert.ToInt32(DrugResult[i].SupplierID);
+                        druglistObj.SupplierName = DrugResult[i].SupplierName.ToString();
+                        int DrugNameCount = 0;
+                        for (int j = 0; j < DrugResult.Count; j++)
                         {
-                            if (DrugResult[j].SupplierID == druglistObj.SupplierID)
+                            DrugNames testSub = null;
+                            if (druglistObj.DrugNamesList != null)
+                                testSub = druglistObj.DrugNamesList.Find(x => x.DrugID == DrugResult[j].DrugID);
+                            if (testSub == null)
                             {
-                                drugNamesobj = new DrugNames();
-                                drugNamesobj.SupplierID = Convert.ToInt32(DrugResult[j].SupplierID);
-                                drugNamesobj.DrugID = Convert.ToInt32(DrugResult[j].DrugID);
-                                drugNamesobj.DrugName = DrugResult[j].DrugName.ToString();
-                                drugNamesobj.ImageNum = Convert.ToInt32(DrugResult[j].ImageNum);
-                                DrugNameCount++;
-                               
-                                if (druglistObj.DrugNamesList == null)
-                                    druglistObj.DrugNamesList = new List<DrugNames>();
-                                druglistObj.DrugNamesList.Add(drugNamesobj);
+                                if (DrugResult[j].SupplierID == druglistObj.SupplierID)
+                                {
+                                    drugNamesobj = new DrugNames();
+                                    drugNamesobj.SupplierID = Convert.ToInt32(DrugResult[j].SupplierID);
+                                    drugNamesobj.DrugID = Convert.ToInt32(DrugResult[j].DrugID);
+                                    drugNamesobj.DrugName = DrugResult[j].DrugName.ToString();
+                                    drugNamesobj.ImageNum = Convert.ToInt32(DrugResult[j].ImageNum);
+                                    DrugNameCount++;
+
+                                    if (druglistObj.DrugNamesList == null)
+                                        druglistObj.DrugNamesList = new List<DrugNames>();
+                                    druglistObj.DrugNamesList.Add(drugNamesobj);
+                                }
                             }
                         }
+                        if (DrugNameCount == 0)
+                        {
+                            drugNamesobj = new DrugNames();
+                            drugNamesobj.SupplierID = 0;
+                            drugNamesobj.DrugID = 0;
+                            drugNamesobj.ImageNum = 0;
+                            drugNamesobj.DrugName = "";
+
+
+                            if (druglistObj.DrugNamesList == null)
+                                druglistObj.DrugNamesList = new List<DrugNames>();
+                            druglistObj.DrugNamesList.Add(drugNamesobj);
+                        }
+                        lstObj.Add(druglistObj);
                     }
-                    if (DrugNameCount == 0)
-                    {
-                        drugNamesobj = new DrugNames();
-                        drugNamesobj.SupplierID = 0;
-                        drugNamesobj.DrugID = 0;
-                        drugNamesobj.ImageNum = 0;
-                        drugNamesobj.DrugName = "";
-                      
-                       
-                        if (druglistObj.DrugNamesList == null)
-                            druglistObj.DrugNamesList = new List<DrugNames>();
-                        druglistObj.DrugNamesList.Add(drugNamesobj);
-                    }
-                    lstObj.Add(druglistObj);
                 }
             }
+            catch (Exception ex) { }
             return lstObj;
         }
 
         public string InsertActivationCode(string ActivationCode, string Email)
         {
             string retObj = string.Empty;
-            IList<InsertActivationCodeResult> result = new List<InsertActivationCodeResult>();
-            IMenuDBManger menuDBManager = new MenuDBManager();
-            result = menuDBManager.InsertActivationCode(ActivationCode, Email);
-            foreach (InsertActivationCodeResult i in result)
-                retObj = i.Column1;
+            try
+            {
+                IList<InsertActivationCodeResult> result = new List<InsertActivationCodeResult>();
+                IMenuDBManger menuDBManager = new MenuDBManager();
+                result = menuDBManager.InsertActivationCode(ActivationCode, Email);
+                foreach (InsertActivationCodeResult i in result)
+                    retObj = i.Column1;
+            }
+            catch (Exception ex) { }
             return retObj;
         }
 
         public int UpdateVerificationEmail(string ActivationCode)
         {
             int result = 0;
-            IMenuDBManger menuDBManager = new MenuDBManager();
-            result = menuDBManager.UpdateVerificationMail(ActivationCode);
+            try
+            {
+                IMenuDBManger menuDBManager = new MenuDBManager();
+                result = menuDBManager.UpdateVerificationMail(ActivationCode);
+            }
+            catch (Exception ex) { }
             return result;
         }
     }

@@ -28,7 +28,7 @@ namespace RxOutlet.Models
         //public HttpPostedFileBase ImageUrl { get; set; }
 
 
-        public int TransactionPrescriptionID { get; set; }
+        public string TransactionID { get; set; }
         public string ImageUrl { get; set; }
         public string PhysicianName { get; set; }
         public string PhysicianNumber { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RxOutlet.Models
 {
-   public class PrescriptionResponse
+   public class PrescriptionResponse:BaseServiceResponse
     {
         public IList<UploadPrescriptionModel> GetUserPrescriptionList { get; set; }
         public IList<UploadPrescriptionModel> GetPrescriptionList { get; set; }

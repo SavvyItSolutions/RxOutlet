@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RxOutlet.Models
 {
-   public  class RxOutletMenuResponse
+   public  class RxOutletMenuResponse:BaseServiceResponse
     {
 
 

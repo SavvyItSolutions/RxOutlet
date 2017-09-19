@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RxOutlet.Models
 {
-  public  class LoginResponse
+  public  class LoginResponse:BaseServiceResponse
     {
         public bool IsMailConfirmed { get; set; }
         public string UserID { get; set; }

@@ -61,10 +61,14 @@ namespace RxOutlet.Controllers
 
         [HttpGet]
         public PrescriptionResponse GetPrescriptionList()
-        {
+        {          
             PrescriptionResponse resp = new PrescriptionResponse();
-            IRxOutletService rxoutletService = new RxOutletService();
-            resp = rxoutletService.GetPrescriptionList();
+            try
+            {
+                IRxOutletService rxoutletService = new RxOutletService();
+                resp = rxoutletService.GetPrescriptionList();
+            }
+            catch(Exception ex) { }
             return resp;
         }
 
@@ -74,26 +78,43 @@ namespace RxOutlet.Controllers
         public PrescriptionResponse GetUserPrescriptionList(string objectId)
         {
             PrescriptionResponse resp = new PrescriptionResponse();
-            IRxOutletService rxoutletService = new RxOutletService();
-            resp = rxoutletService.GetUserPrescriptionList(objectId);
+            try
+            {
+                IRxOutletService rxoutletService = new RxOutletService();
+                resp = rxoutletService.GetUserPrescriptionList(objectId);
+            }
+            catch(Exception ex) { }
             return resp;
         }
 
         [HttpPost]
+        public int TransferPrescription(TransferPrescriptionModel transferPrescription)
+        {
+
+            List<TransferPrescriptionModel> LstPrescriptionModel = new List<TransferPrescriptionModel>();
+            try
+            {           
+                IRxOutletService rxService = new RxOutletService();
+                LstPrescriptionModel = rxService.TransferPrescription(transferPrescription);          
+            }
+            catch (Exception ex) { }
+            return LstPrescriptionModel.Count();
+        }
+
+
+
+        [HttpPost]
         public int UploadingPrescriptionNew(UploadPrescriptionModel uploadPrescription)
         {
-            int resp = 0;
             List<UploadPrescriptionModel> LstPrescriptionModel = new List<UploadPrescriptionModel>();
-            IRxOutletService rxService = new RxOutletService();
 
-            LstPrescriptionModel =  rxService.UploadingPrescriptionNew(uploadPrescription);
-            if(LstPrescriptionModel.Count > 0)
+            try
             {
-                resp = 1;
-                SendEmail se = new SendEmail();
-                se.SendOneEmail(LstPrescriptionModel[0].Email,LstPrescriptionModel[0].Name,LstPrescriptionModel[0].TransactionPrescriptionID);
+                IRxOutletService rxService = new RxOutletService();
+                LstPrescriptionModel = rxService.UploadingPrescriptionNew(uploadPrescription);
             }
-            return resp;
+            catch(Exception ex) { }
+            return LstPrescriptionModel.Count();
         }
 
       
@@ -145,7 +166,7 @@ namespace RxOutlet.Controllers
             {
                 resp = 1;
                 SendEmail se = new SendEmail();
-                se.SendOneEmail(LstPrescriptionModel[0].Email, LstPrescriptionModel[0].Name, LstPrescriptionModel[0].TransactionPrescriptionID);
+                se.SendOneEmail(LstPrescriptionModel[0].Email, LstPrescriptionModel[0].Name, LstPrescriptionModel[0].TransactionID);
             }
             return resp;
 
@@ -193,7 +214,7 @@ namespace RxOutlet.Controllers
             {
                 resp = 1;
                 SendEmail se = new SendEmail();
-                se.SendOneEmail(LstPrescriptionModel[0].Email, LstPrescriptionModel[0].Name, LstPrescriptionModel[0].TransactionPrescriptionID);
+                se.SendOneEmail(LstPrescriptionModel[0].Email, LstPrescriptionModel[0].Name, LstPrescriptionModel[0].TransactionID);
             }
             return resp;
             //return imageFullPath;
@@ -244,7 +265,7 @@ namespace RxOutlet.Controllers
             {
                 resp = 1;
                 SendEmail se = new SendEmail();
-                se.SendOneEmail(LstPrescriptionModel[0].Email, LstPrescriptionModel[0].Name, LstPrescriptionModel[0].TransactionPrescriptionID);
+                se.SendOneEmail(LstPrescriptionModel[0].Email, LstPrescriptionModel[0].Name, LstPrescriptionModel[0].TransactionID);
             }
             return resp;
             //return imageFullPath;
@@ -253,23 +274,13 @@ namespace RxOutlet.Controllers
         }
 
         [HttpPost]
-        public int UploadingPrescription(UploadPrescriptionModel uploadPrescription)
-        {
-
-            IRxOutletService rxService = new RxOutletService();
-            SendEmail obj = new SendEmail();
-            obj.SendOneEmail("soujanyareddy.gade@gmail.com");
-            return rxService.UploadingPrescription(uploadPrescription);
-
-        }
-
-
-        [HttpPost]
         public async Task<RegistrationResponseModel> SignUp(RegistrationModel model)
         {
             RegistrationResponseModel respModel;
+
             try
             {
+               
                 IRxOutletService RxOutletSvc = new RxOutletService();
                 var user = new ApplicationUser { Name = model.Name, UserName = model.Email, Email = model.Email, PhoneNumber = model.MobileNum };
                 var result = await System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().CreateAsync(user, model.Password);
@@ -278,10 +289,21 @@ namespace RxOutlet.Controllers
                 {
                     string activationCode = Guid.NewGuid().ToString();
                     string InsertResult = RxOutletSvc.InsertActivationCode(activationCode, model.Email);
-                    if(InsertResult != string.Empty)
+
+                    if (InsertResult != string.Empty)
                     {
                         SendEmail se = new SendEmail();
-                        var EmailResult = se.SendOneEmail(activationCode, model.Email, model.Name);
+                        //List<string> maildetails = new List<string>();
+                        //maildetails.Add(model.Email);
+                        //maildetails.Add(model.Name);
+                        ////  maildetails.Add(LstPrescriptionModel[0].TransactionID);
+                        ////subject
+                        //maildetails.Add("Confirmation Mail for Registration");
+                        ////Mail HTMLContent
+                        //maildetails.Add("<strong> Hello " + model.Name + "!</strong ><br /><br /> We're glad to have you onboard with RxOutlet! Please click the following link to activate your account<br /><a href =" + "http://rxoutlet.azurewebsites.net/Account/VerificationCode?ActivationCode=" + activationCode + ">Click here to activate your account.</a><br /><br />Thanks");
+                        ////message
+                        //maildetails.Add("RxOutlet Conformation Mail");
+                        var EmailResult=   se.SendOneEmail(activationCode,model.Email,model.Name);
                     }
                 }
             }
@@ -411,8 +433,13 @@ namespace RxOutlet.Controllers
         [HttpGet]
         public int UpdateVerifiedEmail(string objectId)
         {
+            int resp=0;
             IRxOutletService RxOutletSvc = new RxOutletService();
-            int resp = RxOutletSvc.UpdateVerificationEmail(objectId);            
+            try
+            {
+                resp = RxOutletSvc.UpdateVerificationEmail(objectId);
+            }
+            catch(Exception ex) { }        
             return resp;
         }
 

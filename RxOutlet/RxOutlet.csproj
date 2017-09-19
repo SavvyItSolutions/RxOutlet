@@ -282,6 +282,7 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RefillController.cs" />
     <Compile Include="Controllers\RxOutletController.cs" />
+    <Compile Include="Controllers\TransferPrescriptionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -295,7 +296,6 @@
     <Compile Include="Models\SubjectHeadingModel.cs" />
     <Compile Include="Models\UploadPrescription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SendEmail.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -944,6 +944,9 @@
     <Content Include="Views\Admin\Admin.cshtml" />
     <Content Include="Views\Admin\AdminPage.cshtml" />
     <Content Include="Views\Account\Registration.cshtml" />
+    <Content Include="Views\Account\VerificationCode.cshtml" />
+    <Content Include="Views\TransferPrescription\TransferPrescriptionView.cshtml" />
+    <Content Include="Views\Shared\_TransferPrescriptionView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

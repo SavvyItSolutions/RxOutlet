@@ -161,6 +161,7 @@
     </ElementType>
   </Function>
   <Function Name="rxadmin.UploadingPrescriptionNew" Method="UploadingPrescriptionNew">
+    <Parameter Name="TransactionID" Parameter="transactionID" Type="System.String" DbType="VarChar(256)" />
     <Parameter Name="ImageUrl" Parameter="imageUrl" Type="System.String" DbType="VarChar(256)" />
     <Parameter Name="UserID" Parameter="userID" Type="System.String" DbType="NVarChar(128)" />
     <Parameter Name="PhysicianName" Parameter="physicianName" Type="System.String" DbType="VarChar(256)" />
@@ -169,7 +170,21 @@
     <ElementType Name="UploadingPrescriptionNewResult">
       <Column Name="email" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
       <Column Name="name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="PrescriptionOrderID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TransactionID" Type="System.String" DbType="VarChar(256) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="rxadmin.TransferPrescription" Method="TransferPrescription">
+    <Parameter Name="TransferPrescriptionID" Parameter="transferPrescriptionID" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="PharmacyName" Parameter="pharmacyName" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="PharmacyNumaber" Parameter="pharmacyNumaber" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="PharmacyFax" Parameter="pharmacyFax" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="MedicationFor" Parameter="medicationFor" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="RxNumber" Parameter="rxNumber" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="UserID" Parameter="userID" Type="System.String" DbType="NVarChar(128)" />
+    <ElementType Name="TransferPrescriptionResult">
+      <Column Name="email" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TransferPrescriptionID" Type="System.String" DbType="VarChar(256) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

@@ -28,24 +28,56 @@ namespace RxOutlet.DataAccess.DataManager
        
         public MenuDBManager()
         {
-            string connection = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            DBContext = new DataAccess.RxOutletDataContext(connection);
+            try
+            {
+                string connection = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+                DBContext = new DataAccess.RxOutletDataContext(connection);
+            }
+            catch (Exception ex)
+            {
 
-            //string connection = System.Configuration.ConfigurationManager.ConnectionStrings["RxOutlet"].ConnectionString;
-            //DBContext = new DataAccess.RxOutletDataContext(connection);
+            }
         }
+
+        public IList<TransferPrescriptionResult> TransferPrescription(TransferPrescriptionModel transferPrescription)
+        {
+            transferPrescription.TransferPrescriptionID = Guid.NewGuid().ToString();
+
+            try
+            {
+                ISingleResult<TransferPrescriptionResult> result = DBContext.TransferPrescription(
+                   transferPrescription.TransferPrescriptionID,
+                    transferPrescription.PharmacyName,
+                    transferPrescription.PharmacyNumaber,
+                    transferPrescription.PharmacyFax,
+                    transferPrescription.MedicationFor,
+                    transferPrescription.RxNumber,
+                    transferPrescription.UserID
+                    );
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
+
 
         public IList<UploadingPrescriptionNewResult> UploadingPrescriptionNew(UploadPrescriptionModel uploadPrescription)
         {
+            uploadPrescription.TransactionID = Guid.NewGuid().ToString();
             try
             {
                 ISingleResult<UploadingPrescriptionNewResult> result = 
                  DBContext.UploadingPrescriptionNew(
+                     uploadPrescription.TransactionID,
                      uploadPrescription.Filepath,
                      uploadPrescription.UserID,
-                   uploadPrescription.PhysicianName,
-                    uploadPrescription.PhysicianNumber,
-                    uploadPrescription.MedicationFor
+                     uploadPrescription.PhysicianName,
+                     uploadPrescription.PhysicianNumber,
+                     uploadPrescription.MedicationFor
                     );
                 return result.ToList(); 
             }
@@ -90,6 +122,7 @@ namespace RxOutlet.DataAccess.DataManager
                 return null;
             }
         }
+
         //public IList<PrescriptionListResult> GetPrescriptionList()
         //{
         //    try
