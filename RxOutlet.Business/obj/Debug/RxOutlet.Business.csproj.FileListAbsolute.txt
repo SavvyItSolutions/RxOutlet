@@ -50,3 +50,8 @@ G:\GitHub Folder\RxOutlet\RxOutlet.Business\bin\Debug\SendGrid.dll
 G:\GitHub Folder\RxOutlet\RxOutlet.Business\bin\Debug\Newtonsoft.Json.xml
 G:\GitHub Folder\RxOutlet\RxOutlet.Business\bin\Debug\SendGrid.pdb
 G:\GitHub Folder\RxOutlet\RxOutlet.Business\bin\Debug\SendGrid.xml
+D:\Sample\RxOutlet\RxOutlet.Business\bin\Debug\Newtonsoft.Json.dll
+D:\Sample\RxOutlet\RxOutlet.Business\bin\Debug\SendGrid.dll
+D:\Sample\RxOutlet\RxOutlet.Business\bin\Debug\Newtonsoft.Json.xml
+D:\Sample\RxOutlet\RxOutlet.Business\bin\Debug\SendGrid.pdb
+D:\Sample\RxOutlet\RxOutlet.Business\bin\Debug\SendGrid.xml

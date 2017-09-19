@@ -120,7 +120,7 @@ namespace RxOutlet.Controllers
       
 
         [HttpPost]
-        public int ByteArray_New(ByteArrayModel byt)
+        public int ByteArray(ByteArrayModel byt)
         {
             byte[] array = byt.array; string userid = byt.userid;
             string FileExtension = byt.FileExtension;
@@ -173,7 +173,7 @@ namespace RxOutlet.Controllers
         }
 
         [HttpPost]
-        public int ByteArray(byte[] array, string userid,string FileExtension)
+        public int ByteArray_3(byte[] array, string userid,string FileExtension)
         {
             int resp = 0;
             List<UploadPrescriptionModel> LstPrescriptionModel = new List<UploadPrescriptionModel>();
@@ -223,7 +223,7 @@ namespace RxOutlet.Controllers
         }
 
         [HttpPost]
-        public int ByteArray(byte[] array)
+        public int ByteArray_Array(byte[] array)
         {
             int resp = 0;
             List<UploadPrescriptionModel> LstPrescriptionModel = new List<UploadPrescriptionModel>();
