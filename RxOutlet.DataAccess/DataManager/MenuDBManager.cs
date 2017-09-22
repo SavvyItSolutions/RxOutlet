@@ -65,13 +65,16 @@ namespace RxOutlet.DataAccess.DataManager
 
 
 
-        public IList<UploadingPrescriptionNewResult> UploadingPrescriptionNew(UploadPrescriptionModel uploadPrescription)
+        public UploadingPrescriptionNewResult UploadingPrescriptionNew(UploadPrescriptionModel uploadPrescription)
         {
             uploadPrescription.TransactionID = Guid.NewGuid().ToString();
+
+            UploadingPrescriptionNewResult objResult = new UploadingPrescriptionNewResult();
+
+          
             try
             {
-                ISingleResult<UploadingPrescriptionNewResult> result = 
-                 DBContext.UploadingPrescriptionNew(
+                ISingleResult<UploadingPrescriptionNewResult> result = DBContext.UploadingPrescriptionNew(
                      uploadPrescription.TransactionID,
                      uploadPrescription.Filepath,
                      uploadPrescription.UserID,
@@ -79,7 +82,12 @@ namespace RxOutlet.DataAccess.DataManager
                      uploadPrescription.PhysicianNumber,
                      uploadPrescription.MedicationFor
                     );
-                return result.ToList(); 
+
+                objResult.email = uploadPrescription.Email;
+                objResult.name = uploadPrescription.Name;
+                objResult.TransactionID = uploadPrescription.TransactionID;
+
+                return objResult; //return object
             }
             catch (Exception ex)
             {
@@ -88,40 +96,40 @@ namespace RxOutlet.DataAccess.DataManager
         }
 
 
-        public  int UploadingPrescription(UploadPrescriptionModel uploadPrescription)
-        {
-            try
-            {
-                int result = DBContext.PrescriptionsUpload(
-                   uploadPrescription.Title,
-                    uploadPrescription.Description,
-                    uploadPrescription.Filepath ,
-                    uploadPrescription.UserID   
-                                                        );
-                return result;
-            }
-            catch (Exception ex)
-            {
-                return 0;
-            }
-        }
+        //public  int UploadingPrescription(UploadPrescriptionModel uploadPrescription)
+        //{
+        //    try
+        //    {
+        //        int result = DBContext.PrescriptionsUpload(
+        //           uploadPrescription.Title,
+        //            uploadPrescription.Description,
+        //            uploadPrescription.Filepath ,
+        //            uploadPrescription.UserID   
+        //                                                );
+        //        return result;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return 0;
+        //    }
+        //}
 
 
        
 
-        public IList<ConfirmationEmailResult> ConfirmationEmail(string UserID)
-        {
-            try
-            {
-                ISingleResult<ConfirmationEmailResult> result =
-                DBContext.ConfirmationEmail(UserID);
-                return result.ToList();
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
+        //public IList<ConfirmationEmailResult> ConfirmationEmail(string UserID)
+        //{
+        //    try
+        //    {
+        //        ISingleResult<ConfirmationEmailResult> result =
+        //        DBContext.ConfirmationEmail(UserID);
+        //        return result.ToList();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return null;
+        //    }
+        //}
 
         //public IList<PrescriptionListResult> GetPrescriptionList()
         //{

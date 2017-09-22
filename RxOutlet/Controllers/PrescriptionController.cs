@@ -24,7 +24,7 @@ namespace RxOutlet.Controllers
         HttpClient ConfirmationEmailClient;
         //The URL of the WEB API Service
          string PrescriptionDetailsURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/UploadingPrescriptionNew";
-      //  string PrescriptionDetailsURL = "http://localhost:64404/api/Rxoutlet/UploadingPrescriptionNew";
+      // string PrescriptionDetailsURL = "http://localhost:64404/api/Rxoutlet/ByteArray";
         string ConfirmationMailURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/ConfirmationMail";
 
       //  string UserPrescriptionListURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/GetUserPrescriptionList/";
@@ -85,13 +85,13 @@ namespace RxOutlet.Controllers
             IRxOutletService RxOutletSvc = new RxOutletService();
                   RxOutletSvc.UploadingPrescriptionNew(model);
 
-            
+
             //HttpResponseMessage PrescriptionDetailsResponse = await client.PostAsJsonAsync(PrescriptionDetailsURL, model);
 
             //if (PrescriptionDetailsResponse.IsSuccessStatusCode)
             //{
 
-            //       HttpResponseMessage ConfirmationMailResponse = await client.PostAsJsonAsync(ConfirmationMailURL, model.UserID);
+            //    HttpResponseMessage ConfirmationMailResponse = await client.PostAsJsonAsync(ConfirmationMailURL, model.UserID);
 
             //    return View("LatestImage");
 
