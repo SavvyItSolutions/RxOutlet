@@ -21,17 +21,17 @@ namespace RxOutlet.Business
         GetDrugNameResponse GetProductDetails(int id);
         //  GetDrugNameResponse GetCartItems(string UserName);
        
-        int UploadingPrescription(UploadPrescriptionModel uploadingPrescription);
+    //    int UploadingPrescription(UploadPrescriptionModel uploadingPrescription);
       
 
         PrescriptionResponse GetUserPrescriptionList(string UserID);
         PrescriptionResponse GetPrescriptionList();
-        ConfirmationEmailResponse ConfirmationMail(string UserID);
+       // ConfirmationEmailResponse ConfirmationMail(string UserID);
         string InsertActivationCode(string ActivationCode, string Email);
         int UpdateVerificationEmail(string ActivationCode);
     
 
-        List<UploadPrescriptionModel> UploadingPrescriptionNew(UploadPrescriptionModel uploadingPrescription);
+        UploadPrescriptionModel UploadingPrescriptionNew(UploadPrescriptionModel uploadingPrescription);
         List<TransferPrescriptionModel> TransferPrescription(TransferPrescriptionModel transferPrescription);
     }
 }

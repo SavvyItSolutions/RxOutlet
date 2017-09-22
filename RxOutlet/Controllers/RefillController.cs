@@ -9,10 +9,15 @@ namespace RxOutlet.Controllers
     public class RefillController : Controller
     {
         // GET: Refill
-        public ActionResult Refill()
+        public ActionResult SmartTable()
         {
             return View();
         }
+        public ActionResult UIGridSorting()
+        {
+            return View();
+        }
+
 
         public ActionResult NewPrescription()
         {

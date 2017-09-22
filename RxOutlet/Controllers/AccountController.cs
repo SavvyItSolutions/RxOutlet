@@ -77,6 +77,17 @@ namespace RxOutlet.Controllers
             }
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult SecurityQuestionsView()
+        {
+          
+
+            return View();
+        }
+
+
+
         //
         // GET: /Account/Login
         [AllowAnonymous]

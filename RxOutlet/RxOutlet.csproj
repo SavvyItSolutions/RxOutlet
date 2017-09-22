@@ -947,6 +947,9 @@
     <Content Include="Views\Account\VerificationCode.cshtml" />
     <Content Include="Views\TransferPrescription\TransferPrescriptionView.cshtml" />
     <Content Include="Views\Shared\_TransferPrescriptionView.cshtml" />
+    <Content Include="Views\Refill\SmartTable.cshtml" />
+    <Content Include="Views\Refill\UIGridSorting.cshtml" />
+    <Content Include="Views\Account\SecurityQuestionsView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

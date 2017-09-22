@@ -21,16 +21,16 @@ namespace RxOutlet.DataAccess.Interfaces
         IList<GetProductDetailsResult> GetProductDetails(int id);
         //   IList<GetCartItemsResult> GetCartItems(string UserName);
         //int Registration(RegistrationModel register);
-        int UploadingPrescription(UploadPrescriptionModel uploadPrescription);
+      //  int UploadingPrescription(UploadPrescriptionModel uploadPrescription);
         //IList<LoginResult> Login(string email);
 
         IList<GetUserPrescriptionListResult> GetUserPrescriptionList(string UserID);
         IList<PrescriptionListResult> GetPrescriptionList();
-        IList<ConfirmationEmailResult> ConfirmationEmail(string UserID);
+      //  IList<ConfirmationEmailResult> ConfirmationEmail(string UserID);
         IList<InsertActivationCodeResult> InsertActivationCode(string ActivationCode, string Email);
         int UpdateVerificationMail(string ActivationCode);
 
-        IList<UploadingPrescriptionNewResult> UploadingPrescriptionNew(UploadPrescriptionModel uploadPrescription);
+        UploadingPrescriptionNewResult UploadingPrescriptionNew(UploadPrescriptionModel uploadPrescription);
        // int TransferPrescription(TransferPrescriptionModel transferPrescription);
         IList<TransferPrescriptionResult> TransferPrescription(TransferPrescriptionModel transferPrescription);
     }

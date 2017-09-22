@@ -106,15 +106,20 @@ namespace RxOutlet.Controllers
         [HttpPost]
         public int UploadingPrescriptionNew(UploadPrescriptionModel uploadPrescription)
         {
-            List<UploadPrescriptionModel> LstPrescriptionModel = new List<UploadPrescriptionModel>();
+            UploadPrescriptionModel objPrescriptionModel = new UploadPrescriptionModel();
 
             try
             {
                 IRxOutletService rxService = new RxOutletService();
-                LstPrescriptionModel = rxService.UploadingPrescriptionNew(uploadPrescription);
+                objPrescriptionModel = rxService.UploadingPrescriptionNew(uploadPrescription);
             }
             catch(Exception ex) { }
-            return LstPrescriptionModel.Count();
+
+            if (objPrescriptionModel != null)
+                return 1;
+            else
+                return 0;
+
         }
 
       
@@ -122,11 +127,12 @@ namespace RxOutlet.Controllers
         [HttpPost]
         public int ByteArray(ByteArrayModel byt)
         {
-            byte[] array = byt.array; string userid = byt.userid;
+            byte[] array = byt.array;
+           // string userid = "bdab1060-9dcd-47ce-a9c5-3eb305e29e91";
             string FileExtension = byt.FileExtension;
 
             int resp = 0;
-            List<UploadPrescriptionModel> LstPrescriptionModel = new List<UploadPrescriptionModel>();
+            UploadPrescriptionModel objPrescriptionModel = new UploadPrescriptionModel();
             IRxOutletService rxService = new RxOutletService();
             string imageFullPath = null;
             try
@@ -159,119 +165,119 @@ namespace RxOutlet.Controllers
             }
             UploadPrescriptionModel objuploadPrescription = new UploadPrescriptionModel();
             objuploadPrescription.Filepath = imageFullPath;
-            objuploadPrescription.UserID = byt.userid;
+            objuploadPrescription.UserID = "bdab1060-9dcd-47ce-a9c5-3eb305e29e91";
 
-            LstPrescriptionModel = rxService.UploadingPrescriptionNew(objuploadPrescription);
-            if (LstPrescriptionModel.Count > 0)
+            objPrescriptionModel = rxService.UploadingPrescriptionNew(objuploadPrescription);
+            if (objPrescriptionModel!=null)
             {
                 resp = 1;
                 SendEmail se = new SendEmail();
-                se.SendOneEmail(LstPrescriptionModel[0].Email, LstPrescriptionModel[0].Name, LstPrescriptionModel[0].TransactionID);
+                se.SendOneEmail(objPrescriptionModel.Email, objPrescriptionModel.Name, objPrescriptionModel.TransactionID);
             }
             return resp;
 
         }
 
-        [HttpPost]
-        public int ByteArray_3(byte[] array, string userid,string FileExtension)
-        {
-            int resp = 0;
-            List<UploadPrescriptionModel> LstPrescriptionModel = new List<UploadPrescriptionModel>();
-            IRxOutletService rxService = new RxOutletService();
-            string imageFullPath = null;
-            try
-            {
-                CloudStorageAccount cloudStorageAccount = ConnectionString.GetConnectionString();
-                CloudBlobClient cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
-                CloudBlobContainer cloudBlobContainer = cloudBlobClient.GetContainerReference("rxoutlet");
+        //[HttpPost]
+        //public int ByteArray_3(byte[] array, string userid,string FileExtension)
+        //{
+        //    int resp = 0;
+        //    List<UploadPrescriptionModel> LstPrescriptionModel = new List<UploadPrescriptionModel>();
+        //    IRxOutletService rxService = new RxOutletService();
+        //    string imageFullPath = null;
+        //    try
+        //    {
+        //        CloudStorageAccount cloudStorageAccount = ConnectionString.GetConnectionString();
+        //        CloudBlobClient cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
+        //        CloudBlobContainer cloudBlobContainer = cloudBlobClient.GetContainerReference("rxoutlet");
 
-                if (cloudBlobContainer.CreateIfNotExists())
-                {
-                    cloudBlobContainer.SetPermissionsAsync(
-                       new BlobContainerPermissions
-                       {
-                           PublicAccess = BlobContainerPublicAccessType.Blob
-                       }
-                       );
-                }
-                string imageName = Guid.NewGuid().ToString() + "-" + FileExtension;
+        //        if (cloudBlobContainer.CreateIfNotExists())
+        //        {
+        //            cloudBlobContainer.SetPermissionsAsync(
+        //               new BlobContainerPermissions
+        //               {
+        //                   PublicAccess = BlobContainerPublicAccessType.Blob
+        //               }
+        //               );
+        //        }
+        //        string imageName = Guid.NewGuid().ToString() + "-" + FileExtension;
 
-                CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(imageName);
-                cloudBlockBlob.Properties.ContentType = "image/jpg"; 
-                cloudBlockBlob.UploadFromByteArray(array,0,1);
+        //        CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(imageName);
+        //        cloudBlockBlob.Properties.ContentType = "image/jpg"; 
+        //        cloudBlockBlob.UploadFromByteArray(array,0,1);
 
 
-                imageFullPath = cloudBlockBlob.Uri.ToString();
-            }
-            catch (Exception ex)
-            {
+        //        imageFullPath = cloudBlockBlob.Uri.ToString();
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-            }
-            UploadPrescriptionModel objuploadPrescription = new UploadPrescriptionModel();
-            objuploadPrescription.Filepath = imageFullPath;
-            LstPrescriptionModel = rxService.UploadingPrescriptionNew(objuploadPrescription);
-            if (LstPrescriptionModel.Count > 0)
-            {
-                resp = 1;
-                SendEmail se = new SendEmail();
-                se.SendOneEmail(LstPrescriptionModel[0].Email, LstPrescriptionModel[0].Name, LstPrescriptionModel[0].TransactionID);
-            }
-            return resp;
-            //return imageFullPath;
+        //    }
+        //    UploadPrescriptionModel objuploadPrescription = new UploadPrescriptionModel();
+        //    objuploadPrescription.Filepath = imageFullPath;
+        //    LstPrescriptionModel = rxService.UploadingPrescriptionNew(objuploadPrescription);
+        //    if (LstPrescriptionModel.Count > 0)
+        //    {
+        //        resp = 1;
+        //        SendEmail se = new SendEmail();
+        //        se.SendOneEmail(LstPrescriptionModel[0].Email, LstPrescriptionModel[0].Name, LstPrescriptionModel[0].TransactionID);
+        //    }
+        //    return resp;
+        //    //return imageFullPath;
         
             
-        }
+        //}
 
-        [HttpPost]
-        public int ByteArray_Array(byte[] array)
-        {
-            int resp = 0;
-            List<UploadPrescriptionModel> LstPrescriptionModel = new List<UploadPrescriptionModel>();
-            IRxOutletService rxService = new RxOutletService();
-            string imageFullPath = null;
-            try
-            {
-                CloudStorageAccount cloudStorageAccount = ConnectionString.GetConnectionString();
-                CloudBlobClient cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
-                CloudBlobContainer cloudBlobContainer = cloudBlobClient.GetContainerReference("rxoutlet");
+        //[HttpPost]
+        //public int ByteArray_Array(byte[] array)
+        //{
+        //    int resp = 0;
+        //    List<UploadPrescriptionModel> LstPrescriptionModel = new List<UploadPrescriptionModel>();
+        //    IRxOutletService rxService = new RxOutletService();
+        //    string imageFullPath = null;
+        //    try
+        //    {
+        //        CloudStorageAccount cloudStorageAccount = ConnectionString.GetConnectionString();
+        //        CloudBlobClient cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
+        //        CloudBlobContainer cloudBlobContainer = cloudBlobClient.GetContainerReference("rxoutlet");
 
-                if (cloudBlobContainer.CreateIfNotExists())
-                {
-                    cloudBlobContainer.SetPermissionsAsync(
-                       new BlobContainerPermissions
-                       {
-                           PublicAccess = BlobContainerPublicAccessType.Blob
-                       }
-                       );
-                }
-                string imageName = Guid.NewGuid().ToString() + "-" +".jpg";
+        //        if (cloudBlobContainer.CreateIfNotExists())
+        //        {
+        //            cloudBlobContainer.SetPermissionsAsync(
+        //               new BlobContainerPermissions
+        //               {
+        //                   PublicAccess = BlobContainerPublicAccessType.Blob
+        //               }
+        //               );
+        //        }
+        //        string imageName = Guid.NewGuid().ToString() + "-" +".jpg";
 
-                CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(imageName);
-                cloudBlockBlob.Properties.ContentType = "image/jpg";
-                cloudBlockBlob.UploadFromByteArray(array, 0, array.Length);
-
-
-                imageFullPath = cloudBlockBlob.Uri.ToString();
-            }
-            catch (Exception ex)
-            {
-
-            }
-            UploadPrescriptionModel objuploadPrescription = new UploadPrescriptionModel();
-            objuploadPrescription.Filepath = imageFullPath;
-            objuploadPrescription.UserID = array.Length.ToString();
-            LstPrescriptionModel = rxService.UploadingPrescriptionNew(objuploadPrescription);
-            if (LstPrescriptionModel.Count > 0)
-            {
-                resp = 1;
-                SendEmail se = new SendEmail();
-                se.SendOneEmail(LstPrescriptionModel[0].Email, LstPrescriptionModel[0].Name, LstPrescriptionModel[0].TransactionID);
-            }
-            return resp;
-            //return imageFullPath;
+        //        CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(imageName);
+        //        cloudBlockBlob.Properties.ContentType = "image/jpg";
+        //        cloudBlockBlob.UploadFromByteArray(array, 0, array.Length);
 
 
-        }
+        //        imageFullPath = cloudBlockBlob.Uri.ToString();
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //    }
+        //    UploadPrescriptionModel objuploadPrescription = new UploadPrescriptionModel();
+        //    objuploadPrescription.Filepath = imageFullPath;
+        //    objuploadPrescription.UserID = array.Length.ToString();
+        //    LstPrescriptionModel = rxService.UploadingPrescriptionNew(objuploadPrescription);
+        //    if (LstPrescriptionModel.Count > 0)
+        //    {
+        //        resp = 1;
+        //        SendEmail se = new SendEmail();
+        //        se.SendOneEmail(LstPrescriptionModel[0].Email, LstPrescriptionModel[0].Name, LstPrescriptionModel[0].TransactionID);
+        //    }
+        //    return resp;
+        //    //return imageFullPath;
+
+
+        //}
 
         [HttpPost]
         public async Task<RegistrationResponseModel> SignUp(RegistrationModel model)
