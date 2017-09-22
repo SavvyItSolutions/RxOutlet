@@ -12,6 +12,7 @@ using RxOutlet.Models;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web.Security;
+using RxOutlet.Business;
 
 namespace RxOutlet.Controllers
 {
@@ -23,15 +24,15 @@ namespace RxOutlet.Controllers
 
         HttpClient client;
 
-        HttpClient ConfirmationEmailClient;
+       // HttpClient ConfirmationEmailClient;
         //The URL of the WEB API Service
-         string RegistrationURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/SignUp";
-         // string RegistrationURL = "http://localhost:64404/api/Rxoutlet/SignUp";
+       //  string RegistrationURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/SignUp";
+          string RegistrationURL = "http://localhost:64404/api/Rxoutlet/SignUp";
 
           string VerifiedEmailURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/UpdateVerifiedEmail";
-       /// string VerifiedEmailURL = "http://localhost:64404/api/Rxoutlet/UpdateVerifiedEmail";
+        /// string VerifiedEmailURL = "http://localhost:64404/api/Rxoutlet/UpdateVerifiedEmail";
 
-
+      
 
         public AccountController()
         {
@@ -140,9 +141,17 @@ namespace RxOutlet.Controllers
             
             }
 
+
+            IRxOutletService objService = new RxOutletService();
+
+      //  objService.CheckDL(model.Email);
+
+          
+
+
             //This doesn't count login failures towards account lockout
             //     To enable password failures to trigger account lockout, change to shouldLockout: true
-                var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -222,13 +231,29 @@ namespace RxOutlet.Controllers
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
 
-            HttpResponseMessage PrescriptionDetailsResponse = await client.PostAsJsonAsync(RegistrationURL, model);
+            HttpResponseMessage RegistrationResponse = await client.PostAsJsonAsync(RegistrationURL, model);
+          
+           
+          string  returnValue1 = await RegistrationResponse.Content.ReadAsStringAsync();
 
-            if (PrescriptionDetailsResponse.IsSuccessStatusCode)
+            if (returnValue1.Contains("true"))
             {
                 TempData["ConfirmationEmail"] = "Thank you for Signing Up. We have sent an email to your authorized email address.Please activate the account by clicking the link in the email and login below";
-                return RedirectToAction("Login");
+                    return RedirectToAction("Login");
             }
+            if (returnValue1.Contains("already taken"))
+            {
+                TempData["Status"] = "Email already exists in our records. Please Login with your credentials or SignUp with another email address.";
+                return View();
+            }
+          
+
+
+            //if (PrescriptionDetailsResponse.IsSuccessStatusCode)
+            //{
+            //    TempData["ConfirmationEmail"] = "Thank you for Signing Up. We have sent an email to your authorized email address.Please activate the account by clicking the link in the email and login below";
+            //    return RedirectToAction("Login");
+            //}
             return View("Register");
         }
 
