@@ -106,7 +106,7 @@ namespace RxOutlet.Controllers
         [HttpPost]
         public int UploadingPrescriptionNew(UploadPrescriptionModel uploadPrescription)
         {
-            UploadPrescriptionModel objPrescriptionModel = new UploadPrescriptionModel();
+           List< UploadPrescriptionModel> objPrescriptionModel = new List<UploadPrescriptionModel>();
 
             try
             {
@@ -167,7 +167,7 @@ namespace RxOutlet.Controllers
             objuploadPrescription.Filepath = imageFullPath;
             objuploadPrescription.UserID = "bdab1060-9dcd-47ce-a9c5-3eb305e29e91";
 
-            objPrescriptionModel = rxService.UploadingPrescriptionNew(objuploadPrescription);
+          ///  objPrescriptionModel = rxService.UploadingPrescriptionNew(objuploadPrescription);
             if (objPrescriptionModel!=null)
             {
                 resp = 1;

@@ -110,5 +110,16 @@ namespace RxOutlet.DataAccess.Properties {
                 return ((string)(this["RxOutletConnectionString4"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=103.60.213.249,1433;Initial Catalog=RxOutlet;Persist Security Info=Tr" +
+            "ue;User ID=guest")]
+        public string RxOutletConnectionString5 {
+            get {
+                return ((string)(this["RxOutletConnectionString5"]));
+            }
+        }
     }
 }

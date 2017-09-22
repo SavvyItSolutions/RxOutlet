@@ -7,32 +7,25 @@ using RxOutlet.Models;
 
 namespace RxOutlet.DataAccess.Interfaces
 {
+   
     
         public interface IMenuDBManger
         {
-            //IList<GetMenuListResult> GetMenuList();
-            //IList<GetSubMenuListResult> GetSubMenuList(int menuID);
-            //IList<GetMenuItemListResult> GetMenuItemList(int menuID, int subMenuID);
+       
+
             IList<GetMenuResult> GetCompleteMenu();
             IList<GetDrugListResult> GetDrugList();
             IList<GetSupplierNameResult> GetSupplierName();
       IList<GetDrugNamesSearchResult> GetDrugNamesSearch();
         IList<GetDrugTypesResult> GetDrugTypes();
-        IList<GetProductDetailsResult> GetProductDetails(int id);
-        //   IList<GetCartItemsResult> GetCartItems(string UserName);
-        //int Registration(RegistrationModel register);
-      //  int UploadingPrescription(UploadPrescriptionModel uploadPrescription);
-        //IList<LoginResult> Login(string email);
-
+        IList<GetProductDetailsResult> GetProductDetails(int id);  
         IList<GetUserPrescriptionListResult> GetUserPrescriptionList(string UserID);
         IList<PrescriptionListResult> GetPrescriptionList();
-      //  IList<ConfirmationEmailResult> ConfirmationEmail(string UserID);
         IList<InsertActivationCodeResult> InsertActivationCode(string ActivationCode, string Email);
         int UpdateVerificationMail(string ActivationCode);
-
-        UploadingPrescriptionNewResult UploadingPrescriptionNew(UploadPrescriptionModel uploadPrescription);
-       // int TransferPrescription(TransferPrescriptionModel transferPrescription);
+       IList< UploadingPrescriptionNewResult> UploadingPrescriptionNew(UploadPrescriptionModel uploadPrescription);
         IList<TransferPrescriptionResult> TransferPrescription(TransferPrescriptionModel transferPrescription);
+        IList<CheckingDrivingLicenseResult> CheckDl(string Email);
     }
 
 }

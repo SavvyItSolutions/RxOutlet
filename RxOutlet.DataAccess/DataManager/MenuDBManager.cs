@@ -39,6 +39,22 @@ namespace RxOutlet.DataAccess.DataManager
             }
         }
 
+        public IList<CheckingDrivingLicenseResult> CheckDl(string email)
+        {
+            try
+            {
+                ISingleResult<CheckingDrivingLicenseResult> result =
+                DBContext.CheckingDrivingLicense(email);
+
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
         public IList<TransferPrescriptionResult> TransferPrescription(TransferPrescriptionModel transferPrescription)
         {
             transferPrescription.TransferPrescriptionID = Guid.NewGuid().ToString();
@@ -65,11 +81,11 @@ namespace RxOutlet.DataAccess.DataManager
 
 
 
-        public UploadingPrescriptionNewResult UploadingPrescriptionNew(UploadPrescriptionModel uploadPrescription)
+        public IList<UploadingPrescriptionNewResult> UploadingPrescriptionNew(UploadPrescriptionModel uploadPrescription)
         {
             uploadPrescription.TransactionID = Guid.NewGuid().ToString();
 
-            UploadingPrescriptionNewResult objResult = new UploadingPrescriptionNewResult();
+          
 
           
             try
@@ -83,11 +99,11 @@ namespace RxOutlet.DataAccess.DataManager
                      uploadPrescription.MedicationFor
                     );
 
-                objResult.email = uploadPrescription.Email;
-                objResult.name = uploadPrescription.Name;
-                objResult.TransactionID = uploadPrescription.TransactionID;
+                //objResult.email = uploadPrescription.Email;
+                //objResult.name = uploadPrescription.Name;
+                //objResult.TransactionID = uploadPrescription.TransactionID;
 
-                return objResult; //return object
+                return result.ToList(); //return object
             }
             catch (Exception ex)
             {

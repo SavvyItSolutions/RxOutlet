@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RxOutlet.Models;
+using RxOutlet.DataAccess;
 
 namespace RxOutlet.Business
 {
@@ -29,9 +30,10 @@ namespace RxOutlet.Business
        // ConfirmationEmailResponse ConfirmationMail(string UserID);
         string InsertActivationCode(string ActivationCode, string Email);
         int UpdateVerificationEmail(string ActivationCode);
-    
 
-        UploadPrescriptionModel UploadingPrescriptionNew(UploadPrescriptionModel uploadingPrescription);
+
+        List<UploadPrescriptionModel> UploadingPrescriptionNew(UploadPrescriptionModel uploadingPrescription);
         List<TransferPrescriptionModel> TransferPrescription(TransferPrescriptionModel transferPrescription);
+      //  CheckingDrivingLicenseResult CheckDL(string email);
     }
 }

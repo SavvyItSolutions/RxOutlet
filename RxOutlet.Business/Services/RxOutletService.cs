@@ -13,6 +13,34 @@ namespace RxOutlet.Business
     public class RxOutletService : IRxOutletService
     {
 
+        //public LoginResponse CheckDl(string email)
+        //{
+
+        //    try
+        //    {
+
+        //        IMenuDBManger menuDBManager = new MenuDBManager();
+        //        IList<CheckingDrivingLicenseResult> PrescriptionListresultsObj = menuDBManager.CheckDl();
+
+        //        foreach (PrescriptionListResult result in PrescriptionListresultsObj)
+        //        {
+        //            prescriptionList.Add(new UploadPrescriptionModel
+        //            {
+        //                Name = result.Name,
+        //                Email = result.Email,
+        //                PhoneNumber = result.PhoneNumber,
+        //                Title = result.Title,
+        //                Description = result.Description,
+        //                Filepath = result.imageUrl
+        //                CreatedDate = (result.CreatedDate)
+        //            });
+        //        }
+        //        prescriptionResponse.GetPrescriptionList = prescriptionList;
+        //    }
+        //    catch (Exception ex) { }
+
+        //    return prescriptionResponse;
+        //}
 
 
         //public ConfirmationEmailResponse ConfirmationMail(string UserID)
@@ -146,31 +174,46 @@ namespace RxOutlet.Business
 
 
 
-        public UploadPrescriptionModel UploadingPrescriptionNew(UploadPrescriptionModel uploadingPrescription)
+        public List<UploadPrescriptionModel> UploadingPrescriptionNew(UploadPrescriptionModel uploadingPrescription)
         {
-            UploadPrescriptionModel retObj = new UploadPrescriptionModel();
-            try
-            {
-               UploadingPrescriptionNewResult resultObj = new UploadingPrescriptionNewResult();
-                IMenuDBManger menuDBManager = new MenuDBManager();
+           List< UploadPrescriptionModel> retObj = new List< UploadPrescriptionModel>();
+          
+                //UploadingPrescriptionNewResult resultObj = new UploadingPrescriptionNewResult();
+                // IMenuDBManger menuDBManager = new MenuDBManager();
 
-                resultObj = menuDBManager.UploadingPrescriptionNew(uploadingPrescription);
-                retObj.Name = resultObj.name;
-                retObj.Email = resultObj.email;
-                retObj.TransactionID = resultObj.TransactionID;
+                // resultObj = menuDBManager.UploadingPrescriptionNew(uploadingPrescription);
+                // retObj.Name = resultObj.name;
+                // retObj.Email = resultObj.email;
+                // retObj.TransactionID = resultObj.TransactionID;
 
+              
+                try
+                {
+                    IList<UploadingPrescriptionNewResult> resultObj = new List<UploadingPrescriptionNewResult>();
+                    IMenuDBManger menuDBManager = new MenuDBManager();
 
-                if (retObj.TransactionID!= "")
+                    resultObj = menuDBManager.UploadingPrescriptionNew(uploadingPrescription);
+                    foreach (UploadingPrescriptionNewResult obj in resultObj)
+                    {
+                        retObj.Add(new UploadPrescriptionModel
+                        {
+                            Name = obj.name,
+                            Email = obj.email,
+                            TransactionID = obj.TransactionID
+                        });
+                    }
+
+                    if (retObj.Count>0)
                 {
                     SendEmail se = new SendEmail();
                     List<string> maildetails = new List<string>();
-                    maildetails.Add(retObj.Email);
-                    maildetails.Add(retObj.Name);
-                    maildetails.Add(retObj.TransactionID);
+                    maildetails.Add(retObj[0].Email);
+                    maildetails.Add(retObj[0].Name);
+                    maildetails.Add(retObj[0].TransactionID);
                     //subject
                     maildetails.Add("Confirmation Mail for Filling New Prescription");
                     //Mail HTMLContent
-                    maildetails.Add("Thank you for Filling your Prescription. Your Transaction ID -" + retObj.TransactionID);
+                    maildetails.Add("Thank you for Filling your Prescription. Your Transaction ID -" + retObj[0].TransactionID);
                     //message
                     maildetails.Add("RxOutlet Fill New Prescription Mail");
                     se.SendOneEmail(maildetails);

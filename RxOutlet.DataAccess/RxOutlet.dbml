@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="RxOutlet" Class="RxOutletDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=108.58.151.10;Initial Catalog=RxOutlet;Persist Security Info=True;User ID=rxadmin" SettingsObjectName="RxOutlet.DataAccess.Properties.Settings" SettingsPropertyName="RxOutletConnectionString4" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=103.60.213.249,1433;Initial Catalog=RxOutlet;Persist Security Info=True;User ID=guest" SettingsObjectName="RxOutlet.DataAccess.Properties.Settings" SettingsPropertyName="RxOutletConnectionString5" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tblMainMenu" Member="tblMainMenus">
     <Type Name="tblMainMenu">
       <Column Name="MenuID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -185,6 +185,12 @@
       <Column Name="email" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
       <Column Name="name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="TransferPrescriptionID" Type="System.String" DbType="VarChar(256) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.CheckingDrivingLicense" Method="CheckingDrivingLicense">
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(256)" />
+    <ElementType Name="CheckingDrivingLicenseResult">
+      <Column Name="DrivingLicenseID" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

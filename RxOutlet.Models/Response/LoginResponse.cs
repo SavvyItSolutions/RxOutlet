@@ -13,6 +13,10 @@ namespace RxOutlet.Models
         public bool Success { get; set; }
         public string ErrorMessage { get; set; }
 
+
+        public IList<LoginModel> CheckDl { get; set; }
+
+
         public LoginResponse(bool _ismailconfirmed, string _userId, bool _success, string _errorMessage)
         {
 
@@ -21,6 +25,8 @@ namespace RxOutlet.Models
             Success = _success;
             ErrorMessage = _errorMessage;
         }
+
+
 
     }
 }

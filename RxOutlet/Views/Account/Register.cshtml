@@ -5,24 +5,26 @@
     
 <div class="container">
     <div class="row">
-    
-        <div class="main-page">
-            <h1 class="page-title text-center" style="color:#4557b8;"> Sign up</h1>
+       
+            <div class="main-page">
+                <h1 class="page-title text-center" style="color:#4557b8;"> Sign up</h1>
+                <p class="text-center" style="color:red; ">
+                    @TempData["Status"]
+                </p>
+                <div class="page-content">
 
-            <div class="page-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                          
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="box-border">
+                                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                {    @Html.AntiForgeryToken()
 
-                <div class="row">
-                    <div class="col-sm-4">
+                                    @Html.ValidationSummary("", new { @class = "text-danger" })
 
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="box-border">
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{    @Html.AntiForgeryToken()
-  
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-
-    <p>
+<p>
         @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
     
 

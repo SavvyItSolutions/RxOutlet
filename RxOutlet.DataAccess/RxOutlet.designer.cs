@@ -48,7 +48,7 @@ namespace RxOutlet.DataAccess
     #endregion
 		
 		public RxOutletDataContext() : 
-				base(global::RxOutlet.DataAccess.Properties.Settings.Default.RxOutletConnectionString4, mappingSource)
+				base(global::RxOutlet.DataAccess.Properties.Settings.Default.RxOutletConnectionString5, mappingSource)
 		{
 			OnCreated();
 		}
@@ -227,6 +227,13 @@ namespace RxOutlet.DataAccess
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), transferPrescriptionID, pharmacyName, pharmacyNumaber, pharmacyFax, medicationFor, rxNumber, userID);
 			return ((ISingleResult<TransferPrescriptionResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.CheckingDrivingLicense")]
+		public ISingleResult<CheckingDrivingLicenseResult> CheckingDrivingLicense([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="NVarChar(256)")] string email)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), email);
+			return ((ISingleResult<CheckingDrivingLicenseResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -2157,6 +2164,32 @@ namespace RxOutlet.DataAccess
 				if ((this._TransferPrescriptionID != value))
 				{
 					this._TransferPrescriptionID = value;
+				}
+			}
+		}
+	}
+	
+	public partial class CheckingDrivingLicenseResult
+	{
+		
+		private string _DrivingLicenseID;
+		
+		public CheckingDrivingLicenseResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrivingLicenseID", DbType="VarChar(256)")]
+		public string DrivingLicenseID
+		{
+			get
+			{
+				return this._DrivingLicenseID;
+			}
+			set
+			{
+				if ((this._DrivingLicenseID != value))
+				{
+					this._DrivingLicenseID = value;
 				}
 			}
 		}
