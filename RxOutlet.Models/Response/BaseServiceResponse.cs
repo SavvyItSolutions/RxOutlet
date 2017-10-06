@@ -10,7 +10,7 @@ namespace RxOutlet.Models
 {
     public abstract class BaseServiceResponse
     {
-        public int ErorCode { get; set; }
+        public int ErrorCode { get; set; }
         public string ErrorDescription { get; set; }
     }
 }

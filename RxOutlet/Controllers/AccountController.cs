@@ -99,6 +99,12 @@ namespace RxOutlet.Controllers
         }
 
         [AllowAnonymous]
+        public ActionResult Registration( )
+        {
+          
+            return View();
+        }
+        [AllowAnonymous]
         public async Task<ActionResult> VerificationCode(string ActivationCode)
         {
             ActivationCode = Request.QueryString["ActivationCode"];
@@ -121,7 +127,7 @@ namespace RxOutlet.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
-        {
+        { 
 
                 if (ModelState.IsValid)
                 {
@@ -147,7 +153,7 @@ namespace RxOutlet.Controllers
       //  objService.CheckDL(model.Email);
 
           
-
+            
 
             //This doesn't count login failures towards account lockout
             //     To enable password failures to trigger account lockout, change to shouldLockout: true
@@ -155,7 +161,17 @@ namespace RxOutlet.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    var userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant
+.Identity.GetUserId();
+
+                    IRxOutletService RxOutletSvc = new RxOutletService();
+                    var dl = RxOutletSvc.CheckDL(userId);
+                   
+                    if (dl.DrivingLicense.DrivingLicenseID != null)
                     return RedirectToAction("upload", "Prescription");
+                    else if (dl.DrivingLicense.DrivingLicenseID == null)
+                        TempData["DrivingLicence"] = "exist";
+                    return PartialView("_LoginPopup");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

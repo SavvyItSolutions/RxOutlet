@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RxOutlet.Models;
+using System.Data.Linq;
 
 namespace RxOutlet.DataAccess.Interfaces
 {
@@ -23,9 +24,10 @@ namespace RxOutlet.DataAccess.Interfaces
         IList<PrescriptionListResult> GetPrescriptionList();
         IList<InsertActivationCodeResult> InsertActivationCode(string ActivationCode, string Email);
         int UpdateVerificationMail(string ActivationCode);
-       IList< UploadingPrescriptionNewResult> UploadingPrescriptionNew(UploadPrescriptionModel uploadPrescription);
-        IList<TransferPrescriptionResult> TransferPrescription(TransferPrescriptionModel transferPrescription);
-        IList<CheckingDrivingLicenseResult> CheckDl(string Email);
+        ISingleResult< UploadingPrescriptionNewResult> UploadingPrescriptionNew(UploadPrescription uploadPrescription);
+        ISingleResult<TransferPrescriptionResult> TransferPrescription(TransferPrescription transferPrescription);
+        // ISingleResult<TransferPrescriptionResult>  TransferPrescriptionNew(TransferPrescriptionModel transferPrescription);
+        ISingleResult<CheckDLResult> CheckDL(string userid);
     }
 
 }

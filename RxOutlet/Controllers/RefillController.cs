@@ -29,5 +29,11 @@ namespace RxOutlet.Controllers
         {
             return View();
         }
+
+
+        public ActionResult ngGrid()
+        {
+            return View();
+        }
     }
 }

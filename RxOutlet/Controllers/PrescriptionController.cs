@@ -72,7 +72,7 @@ namespace RxOutlet.Controllers
         [Authorize]
         //The Post method
         [HttpPost]
-        public ActionResult Upload(HttpPostedFileBase photo, UploadPrescriptionModel model)
+        public ActionResult Upload(HttpPostedFileBase photo, UploadPrescription model)
         {
             
             if (photo != null)
@@ -86,16 +86,7 @@ namespace RxOutlet.Controllers
                   RxOutletSvc.UploadingPrescriptionNew(model);
 
 
-            //HttpResponseMessage PrescriptionDetailsResponse = await client.PostAsJsonAsync(PrescriptionDetailsURL, model);
-
-            //if (PrescriptionDetailsResponse.IsSuccessStatusCode)
-            //{
-
-            //    HttpResponseMessage ConfirmationMailResponse = await client.PostAsJsonAsync(ConfirmationMailURL, model.UserID);
-
-            //    return View("LatestImage");
-
-            //}
+         
 
             return View("LatestImage");
 

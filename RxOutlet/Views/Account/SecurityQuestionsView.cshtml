@@ -3,23 +3,46 @@
     <br />
     <br />
     <div class="col-md-3">
-        <label for="inputusername">1. Date of Birth </label>
-        <input class="form-control" placeholder="dob" type="datetime" id="inputusername" />
 
+        @*<label for="city" class="col-sm-1">DOB :</label>
+        <div class="col-sm-3">
+            <div class="input-group date">
+                <input type="text" class="form-control">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+
+
+        </div>*@<!--/ [col] -->
+
+        <label for="inputusername">1. Date of Birth </label>
+        <div class="input-group date">
+            <input type="text" class="form-control">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+        </div>
         <br />
         <br />
+        <script type='text/javascript'>
+$(function(){
+$('.input-group.date').datepicker({
+    calendarWeeks: true,
+    todayHighlight: true,
+    autoclose: true
+});
+});
+
+
+
+        </script>
 
 
         <label for="inputusername"> 2. Place from where you got SSN </label>
 
-        <select>
-            <option value="volvo">--Select--</option>
-            <option value="saab">Texas</option>
-            <option value="mercedes">New York</option>
-            <option value="audi">Los Angles</option>
+
+        <select class="form-control" name="Province">
+            <option value="Alabama">Alabama</option>
+            <option value="Illinois">Illinois</option>
+            <option value="Kansas">Kansas</option>
         </select>
-
-
 
 
         <br />

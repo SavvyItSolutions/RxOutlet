@@ -64,6 +64,7 @@
     <Compile Include="Models\ByteArrayModel.cs" />
     <Compile Include="Models\CompleteMenu.cs" />
     <Compile Include="Models\ConfirmationEmailModel.cs" />
+    <Compile Include="Models\DrivingLicense.cs" />
     <Compile Include="Models\DrugNames.cs" />
     <Compile Include="Models\DrugSearch.cs" />
     <Compile Include="Models\GetDrugList.cs" />
@@ -73,11 +74,14 @@
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\RegistrationModel.cs" />
     <Compile Include="Models\SubMenu.cs" />
+    <Compile Include="Models\TransferPrescription.cs" />
     <Compile Include="Models\TransferPrescriptionModel.cs" />
+    <Compile Include="Models\UploadPrescription.cs" />
     <Compile Include="Models\UploadPrescriptionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Response\BaseServiceResponse.cs" />
     <Compile Include="Response\ConfirmationEmailResponse.cs" />
+    <Compile Include="Response\DrivingLicenseResponse.cs" />
     <Compile Include="Response\DrugSearchResponse.cs" />
     <Compile Include="Response\GetDrugNameResponse.cs" />
     <Compile Include="Response\LoginResponse.cs" />
@@ -89,6 +93,8 @@
     <Compile Include="Response\RxOutletMenuListResponse.cs" />
     <Compile Include="Response\RxOutletMenuResponse.cs" />
     <Compile Include="Response\RxOutletSubMenuListResponse.cs" />
+    <Compile Include="Response\TransferPrescriptionResponse.cs" />
+    <Compile Include="Response\UploadPrescriptionResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

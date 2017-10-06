@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace RxOutlet.Models
 {
-  public  class TransferPrescriptionModel
+   public class TransferPrescription
     {
-
         public string TransferPrescriptionID { get; set; }
-     
+
         public string PharmacyName { get; set; }
         public string PharmacyNumaber { get; set; }
         public string PharmacyFax { get; set; }
@@ -22,15 +20,13 @@ namespace RxOutlet.Models
         public string Name { get; set; }
         public string Email { get; set; }
 
-        public TransferPrescriptionModel()
+        public TransferPrescription()
         { }
-        public TransferPrescriptionModel(string email, string name, string transferPrescriptionID)
+        public TransferPrescription(string email, string name, string transferPrescriptionID)
         {
             Email = email;
             Name = name;
             TransferPrescriptionID = transferPrescriptionID;
         }
-
-
     }
 }

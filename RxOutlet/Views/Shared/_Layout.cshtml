@@ -1,7 +1,16 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-touch.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
+    <script src="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.js"></script>
    
+
+   
+
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="http://ui-grid.info/release/ui-grid.js"></script>
     <link rel="stylesheet" href="http://ui-grid.info/release/ui-grid.css" type="text/css">
@@ -40,25 +49,117 @@
     @Scripts.Render("~/bundles/modernizr")
     <script src="/Scripts/modernizr-2.6.2.js"></script>
 
-   
+
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/uigrid")
-  
+
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet" />
 
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
-  
+
 
 <style>
 
-       
-      
+#overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: #000;
+filter:alpha(opacity=70);
+-moz-opacity:0.7;
+-khtml-opacity: 0.7;
+opacity: 0.7;
+z-index: 100;
+display: none;
+}
+.cnt223 a{
+text-decoration: none;
+}
+.popup{
+width: 100%;
+margin: 0 auto;
+display: none;
+position: fixed;
+z-index: 101;
+}
+.cnt223{
+min-width: 600px;
+width: 600px;
+min-height: 150px;
+margin: 100px auto;
+background: #f3f3f3;
+position: relative;
+z-index: 103;
+padding: 10px;
+border-radius: 5px;
+box-shadow: 0 2px 5px #000;
+}
+.cnt223 p{
+clear: both;
+color: #555555;
+text-align: justify;
+}
+.cnt223 p a{
+color: #d91900;
+font-weight: bold;
+}
+.cnt223 .x{
+float: right;
+height: 35px;
+left: 22px;
+position: relative;
+top: -25px;
+width: 34px;
+}
+.cnt223 .x:hover{
+cursor: pointer;
+}
+    /*Login popup end*/
+
+
+/*ng-form grid*/
+    .grid {
+        width: 500px;
+        height: 250px;
+    }
+  .gridStyle {
+    border: 1px solid rgb(212,212,212);
+    width: 400px; 
+    height: 600px
+}
+
+
+
+.checkbox
+{
+width: 16px;
+margin: auto;
+}
+.checkbox-box
+{
+border: 0;
+display: inline-block;
+width: 16px;
+height: 16px;
+}
+.checkbox-checked
+{
+background-image: url("../../../resources/checkbox/checkbox-checked.png");
+}
+.checkbox-unchecked
+{
+background-image: url("../../../resources/checkbox/checkbox-unchecked.png");
+}
+
+/*ng-form grid*/
 
 
 
@@ -71,14 +172,14 @@
     .products .product-right {
     position: static;
       }
-	  
+
 	  .products .product-container .inner {
-    
+
     padding-bottom: 5px;
 }
 
 .products .product-container {
-   
+
     padding-bottom: 5px;
 }
 /* .block-vertical-menu .vertical-head .vertical-title {
@@ -90,7 +191,7 @@ font-size:18px;
 }
 /*.block-head {
 background:#5a88ca !important;
-color:#ffffff; 
+color:#ffffff;
 }*/
 .title:after {
     content: '';
@@ -228,7 +329,7 @@ form.form-search {
   transform: translateX(-50%);
 }
 
-.vertical-divider:before, 
+.vertical-divider:before,
 .vertical-divider:after {
   position: absolute;
   left: 50%;
@@ -241,7 +342,7 @@ form.form-search {
 }
 
 .row-divided > .vertical-divider {
-  height: calc(50% - 1rem);    
+  height: calc(50% - 1rem);
 }
 
 .vertical-divider:before {

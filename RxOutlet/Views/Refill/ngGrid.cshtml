@@ -1,0 +1,92 @@
+﻿
+
+ @*ng grid basic  ---- Working*@ 
+
+@*<div ng-controller="ngbasicCntrl">
+        <div ui-grid="{ data: myData }" class="grid"></div>
+    </div>*@
+
+@*ng grid basic  ---- Working*@ 
+
+
+
+<br />
+<br />
+
+
+
+@*ng grid Connect to API  ---- Working*@ 
+
+    @*<div ng-controller="ngAPICtrl">
+        <div ui-grid="gridOptions" class="grid"></div>
+    </div>*@
+
+@*ng grid Connect to API  ---- Working*@ 
+
+
+<br />
+<br />
+
+
+
+
+@*ng grid Pagination  ---- Working*@
+
+    @*<div ng-controller="ngPaginationCtrl">
+        <div ui-grid="gridOptions" class="grid"></div>
+        <p>
+            Current page:
+            <input type="number" min="1" max="{{ pagination.getTotalPages() }}" ng-model="pagination.pageNumber" ng-change="load()">of {{ pagination.getTotalPages() }}
+        </p>
+        <button type="button" class="btn btn-success" ng-click="pagination.previousPage()">previous page</button>
+        <button type="button" class="btn btn-success" ng-click="pagination.nextPage()">next page</button>
+    </div>*@
+
+@*ng grid Pagination  ---- Working*@
+
+
+
+
+
+
+@*ng grid Filter  ---- Working*@
+
+<div ng-controller="FilterCntrl">
+    <div ui-grid="gridOptions" class="grid gridStyle"></div>
+    <p>
+        Current page:
+        <input type="number" min="1" max="{{ pagination.getTotalPages() }}" ng-model="pagination.pageNumber" ng-change="load()">of {{ pagination.getTotalPages() }}
+    </p>
+    <button type="button" class="btn btn-success" ng-click="pagination.previousPage()">previous page</button>
+    <button type="button" class="btn btn-success" ng-click="pagination.nextPage()">next page</button>
+</div>
+
+
+    @*ng grid Filter  ---- Working*@
+
+
+
+
+
+
+<div ng-controller="ServiceCntrl">
+    <div ui-grid="gridOptions" class="grid" width="100%"></div>
+    <p>
+        Current page:
+        <input type="number" min="1" max="{{ pagination.getTotalPages() }}" ng-model="pagination.pageNumber" ng-change="load()">of {{ pagination.getTotalPages() }}
+    </p>
+    <button type="button" class="btn btn-success" ng-click="pagination.previousPage()">previous page</button>
+    <button type="button" class="btn btn-success" ng-click="pagination.nextPage()">next page</button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

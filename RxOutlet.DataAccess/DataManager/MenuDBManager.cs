@@ -39,14 +39,14 @@ namespace RxOutlet.DataAccess.DataManager
             }
         }
 
-        public IList<CheckingDrivingLicenseResult> CheckDl(string email)
+        public ISingleResult<CheckDLResult> CheckDL(string userid)
         {
             try
             {
-                ISingleResult<CheckingDrivingLicenseResult> result =
-                DBContext.CheckingDrivingLicense(email);
+                ISingleResult<CheckDLResult> result =
+                DBContext.CheckDL(userid);
 
-                return result.ToList();
+                return result;
             }
             catch (Exception ex)
             {
@@ -55,7 +55,7 @@ namespace RxOutlet.DataAccess.DataManager
         }
 
 
-        public IList<TransferPrescriptionResult> TransferPrescription(TransferPrescriptionModel transferPrescription)
+        public ISingleResult<TransferPrescriptionResult> TransferPrescription(TransferPrescription transferPrescription)
         {
             transferPrescription.TransferPrescriptionID = Guid.NewGuid().ToString();
 
@@ -70,7 +70,7 @@ namespace RxOutlet.DataAccess.DataManager
                     transferPrescription.RxNumber,
                     transferPrescription.UserID
                     );
-                return result.ToList();
+                return result;
             }
             catch (Exception ex)
             {
@@ -79,15 +79,10 @@ namespace RxOutlet.DataAccess.DataManager
         }
 
 
-
-
-        public IList<UploadingPrescriptionNewResult> UploadingPrescriptionNew(UploadPrescriptionModel uploadPrescription)
+       
+        public ISingleResult<UploadingPrescriptionNewResult> UploadingPrescriptionNew(UploadPrescription uploadPrescription)
         {
             uploadPrescription.TransactionID = Guid.NewGuid().ToString();
-
-          
-
-          
             try
             {
                 ISingleResult<UploadingPrescriptionNewResult> result = DBContext.UploadingPrescriptionNew(
@@ -99,11 +94,7 @@ namespace RxOutlet.DataAccess.DataManager
                      uploadPrescription.MedicationFor
                     );
 
-                //objResult.email = uploadPrescription.Email;
-                //objResult.name = uploadPrescription.Name;
-                //objResult.TransactionID = uploadPrescription.TransactionID;
-
-                return result.ToList(); //return object
+                return result;
             }
             catch (Exception ex)
             {

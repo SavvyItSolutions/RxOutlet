@@ -215,25 +215,25 @@ namespace RxOutlet.DataAccess
 			return ((ISingleResult<InsertActivationCodeResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="rxadmin.UploadingPrescriptionNew")]
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.UploadingPrescriptionNew")]
 		public ISingleResult<UploadingPrescriptionNewResult> UploadingPrescriptionNew([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TransactionID", DbType="VarChar(256)")] string transactionID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ImageUrl", DbType="VarChar(256)")] string imageUrl, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="NVarChar(128)")] string userID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PhysicianName", DbType="VarChar(256)")] string physicianName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PhysicianNumber", DbType="VarChar(256)")] string physicianNumber, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MedicationFor", DbType="VarChar(256)")] string medicationFor)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), transactionID, imageUrl, userID, physicianName, physicianNumber, medicationFor);
 			return ((ISingleResult<UploadingPrescriptionNewResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="rxadmin.TransferPrescription")]
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.TransferPrescription")]
 		public ISingleResult<TransferPrescriptionResult> TransferPrescription([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TransferPrescriptionID", DbType="VarChar(256)")] string transferPrescriptionID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PharmacyName", DbType="VarChar(256)")] string pharmacyName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PharmacyNumaber", DbType="VarChar(256)")] string pharmacyNumaber, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PharmacyFax", DbType="VarChar(256)")] string pharmacyFax, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MedicationFor", DbType="VarChar(256)")] string medicationFor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RxNumber", DbType="VarChar(256)")] string rxNumber, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="NVarChar(128)")] string userID)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), transferPrescriptionID, pharmacyName, pharmacyNumaber, pharmacyFax, medicationFor, rxNumber, userID);
 			return ((ISingleResult<TransferPrescriptionResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.CheckingDrivingLicense")]
-		public ISingleResult<CheckingDrivingLicenseResult> CheckingDrivingLicense([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="NVarChar(256)")] string email)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.CheckDL")]
+		public ISingleResult<CheckDLResult> CheckDL([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="VarChar(256)")] string userId)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), email);
-			return ((ISingleResult<CheckingDrivingLicenseResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId);
+			return ((ISingleResult<CheckDLResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -2169,12 +2169,12 @@ namespace RxOutlet.DataAccess
 		}
 	}
 	
-	public partial class CheckingDrivingLicenseResult
+	public partial class CheckDLResult
 	{
 		
 		private string _DrivingLicenseID;
 		
-		public CheckingDrivingLicenseResult()
+		public CheckDLResult()
 		{
 		}
 		

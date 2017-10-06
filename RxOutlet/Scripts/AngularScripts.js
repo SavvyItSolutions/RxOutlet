@@ -19,35 +19,32 @@ $(document).ready(function ()    {
               $("#dialog-modal").dialog("open");
 
           });
-      });
+          });
 
 
 
+//$("#dialog-modal").dialog({
+//    autoOpen: false,
+//    modal: true,// to make background html page disable when popup get opened.
+//    width: 400,
+//    height: 400,
+
+//    show: {
+//        effect: "shake",
+//        duration: 100
+//    },
+//    hide: {
+//        effect: "explode",
+//        duration: 1000
+//    }
+//});
+//$("#modal-opener").click(function () {
+//    $("#dialog-modal").dialog("open");
+
+//});
 
 
-$("#dialog-modal").dialog({
-    autoOpen: false,
-    modal: true,// to make background html page disable when popup get opened.
-    width: 400,
-    height: 400,
-
-    show: {
-        effect: "shake",
-        duration: 100
-    },
-    hide: {
-        effect: "explode",
-        duration: 1000
-    }
-});
-$("#modal-opener").click(function () {
-    $("#dialog-modal").dialog("open");
-
-});
-
-
-
-
+        
 
 var search = {
     SearchText: 'asp',
@@ -59,7 +56,7 @@ var search = {
 
 
 var app = angular.
-    module("Drugs", ['ui.bootstrap','ui.grid', 'ui.grid.pagination','ui.grid.selection']).
+    module("Drugs", ['ui.bootstrap','ui.grid', 'ui.grid.pagination','ui.grid.selection','ngTouch']).
     controller("DisplayDrugInfo", ['$log', '$scope', '$http', function ($log, $scope, $http) {
         $http({
             method: 'Get',
@@ -85,6 +82,900 @@ var app = angular.
             }
         });
     }]);
+
+
+
+/////// ng grid basic  ---- Working 
+
+
+//app.controller("ngbasicCntrl", ['$scope', function ($scope) {
+//    $scope.myData = [{
+//        "firstName": "Cox",
+//        "lastName": "Carney",
+//        "company": "Enormo",
+//        "employed": true
+//    }, {
+//        "firstName": "Lorraine",
+//        "lastName": "Wise",
+//        "company": "Comveyer",
+//        "employed": false
+//    }, {
+//        "firstName": "Nancy",
+//        "lastName": "Waters",
+//        "company": "Fuelton",
+//        "employed": false
+//    }];
+//}]);
+
+
+
+/////// ng grid basic  ---- Working 
+
+
+
+
+////// ng Grid CONNECT TO REST API 
+
+app.service('ProductsService', ['$http', ProductsService]);
+app.service('DrugService', ['$http', DrugService]);
+   
+//   function ProductsService($http) {
+//       var self = this;
+//       //// not working with the api of our type 
+//       var baseUrl = 'HTTPS://API.BACKAND.COM/1/OBJECTS/';
+//       var anonymousToken = {
+//           'AnonymousToken': '78020290-5df3-44b8-9bdb-7b3b4fea2f25'
+//       };
+//       var objectName = 'products';
+
+     
+
+//       self.readAll = function (pageSize, pageNumber) {
+//           return $http({
+//               method: 'GET',
+//               url: baseUrl + objectName,
+//               params: {
+//                   pageSize: pageSize,
+//                   pageNumber: pageNumber
+//               },
+//               headers: anonymousToken
+//           }).then(function (response) {
+//               return response.data;
+//           });
+//       };
+//       self.readOne = function (id) {
+//           return $http({
+//               method: 'GET',
+//               url: baseUrl + objectName + '/' + id,
+//               headers: anonymousToken
+//           }).then(function (response) {
+//               return response.data;
+//           });
+//       };
+//       self.create = function (data) {
+//           return $http({
+//               method: 'POST',
+//               url: baseUrl + objectName,
+//               data: data,
+//               params: {
+//                   returnObject: true
+//               },
+//               headers: anonymousToken
+//           }).then(function (response) {
+//               return response.data;
+//           });
+//       };
+//       self.update = function (id, data) {
+//           return $http({
+//               method: 'PUT',
+//               url: baseUrl + objectName + '/' + id,
+//               data: data,
+//               headers: anonymousToken
+//           }).then(function (response) {
+//               return response.data;
+//           });
+//       };
+//       self.delete = function (id) {
+//           return $http({
+//               method: 'DELETE',
+//               url: baseUrl + objectName + '/' + id,
+//               headers: anonymousToken
+//           });
+//       };
+//   };
+
+
+//   app.controller("ngAPICtrl", ['ProductsService', '$scope', function (ProductsService, $scope) {
+//       $scope.gridOptions = {
+//           excludeProperties: '__metadata',
+//       };
+
+//       $scope.load = function () {
+//           ProductsService.readAll().then(function (response) {
+//               $scope.gridOptions.data = response.data;
+//           });
+//       }
+
+//       $scope.load();
+//   }]);
+
+
+////// ng Grid CONNECT TO REST API 
+
+
+
+
+   
+////// ng Grid Pagination
+
+
+  
+
+//   function ProductsService($http) {
+
+//       var self = this;
+//       var baseUrl = 'https://api.backand.com/1/objects/';
+//       var anonymousToken = {
+//           'AnonymousToken': '78020290-5df3-44b8-9bdb-7b3b4fea2f25'
+//       };
+
+//       var objectName = 'products';
+
+//       self.readAll = function (pageSize, pageNumber) {
+//           return $http({
+//               method: 'GET',
+//               url: baseUrl + objectName,
+//               params: {
+//                   pageSize: pageSize,
+//                   pageNumber: pageNumber
+//               },
+//               headers: anonymousToken
+//           }).then(function (response) {
+//               return response.data;
+//           });
+//       };
+
+//       self.readOne = function (id) {
+//           return $http({
+//               method: 'GET',
+//               url: baseUrl + objectName + '/' + id,
+//               headers: anonymousToken
+//           }).then(function (response) {
+//               return response.data;
+//           });
+//       };
+
+//       self.create = function (data) {
+//           return $http({
+//               method: 'POST',
+//               url: baseUrl + objectName,
+//               data: data,
+//               params: {
+//                   returnObject: true
+//               },
+//               headers: anonymousToken
+//           }).then(function (response) {
+//               return response.data;
+//           });
+//       };
+
+//       self.update = function (id, data) {
+//           return $http({
+//               method: 'PUT',
+//               url: baseUrl + objectName + '/' + id,
+//               data: data,
+//               headers: anonymousToken
+//           }).then(function (response) {
+//               return response.data;
+//           });
+//       };
+
+//       self.delete = function (id) {
+//           return $http({
+//               method: 'DELETE',
+//               url: baseUrl + objectName + '/' + id,
+//               headers: anonymousToken
+//           });
+//       };
+
+//   };
+
+
+//   app.controller("ngPaginationCtrl", ['ProductsService', '$scope', function (ProductsService, $scope) {
+//       $scope.gridOptions = {
+//           excludeProperties: '__metadata',
+//           enablePaginationControls: false
+//       };
+
+//       $scope.pagination = {
+//           pageSize: 5,
+//           pageNumber: 1,
+//           totalItems: null,
+//           getTotalPages: function () {
+//               return Math.ceil(this.totalItems / this.pageSize);
+//           },
+//           nextPage: function () {
+//               if (this.pageNumber < this.getTotalPages()) {
+//                   this.pageNumber++;
+//                   $scope.load();
+//               }
+//           },
+//           previousPage: function () {
+//               if (this.pageNumber > 1) {
+//                   this.pageNumber--;
+//                   $scope.load();
+//               }
+//           }
+//       }
+
+//       $scope.load = function () {
+//           ProductsService.readAll($scope.pagination.pageSize, $scope.pagination.pageNumber).then(function (response) {
+//               $scope.gridOptions.data = response.data;
+//               $scope.pagination.totalItems = response.totalRows;
+
+//           });
+//       }
+
+//       $scope.load();
+//   }]);
+
+////// ng Grid Pagination
+
+
+
+
+//// ng grid Filter 
+
+   app.controller("FilterCntrl", ['ProductsService', '$scope', function (ProductsService, $scope) {
+       $scope.sort = [];
+       $scope.filter = [];
+       $scope.pagination = {
+           pageSize: 5,
+           pageNumber: 1,
+           totalItems: null,
+           getTotalPages: function () {
+               return Math.ceil(this.totalItems / this.pageSize);
+           },
+           nextPage: function () {
+               if (this.pageNumber < this.getTotalPages()) {
+                   this.pageNumber++;
+                   $scope.load();
+               }
+           },
+           previousPage: function () {
+               if (this.pageNumber > 1) {
+                   this.pageNumber--;
+                   $scope.load();
+               }
+           }
+       }
+
+       $scope.gridOptions = {
+           excludeProperties: '__metadata',
+           enablePaginationControls: false,
+           useExternalSorting: true,
+           useExternalFiltering: true,
+           enableFiltering: true,
+           onRegisterApi: function (gridApi) {
+               $scope.gridApi = gridApi;
+               //declare the events
+
+               $scope.gridApi.core.on.sortChanged($scope, function (grid, sortColumns) {
+                   $scope.sort = [];
+                   angular.forEach(sortColumns, function (sortColumn) {
+                       $scope.sort.push({
+                           fieldName: sortColumn.name,
+                           order: sortColumn.sort.direction
+                       });
+                   });
+                   $scope.load();
+               });
+
+               $scope.gridApi.core.on.filterChanged($scope, function () {
+                   $scope.filter = [];
+
+                   var grid = this.grid;
+                   angular.forEach(grid.columns, function (column) {
+                       var fieldName = column.field;
+                       var value = column.filters[0].term;
+                       var operator = "contains";
+                       if (value) {
+                           if (fieldName == "id") operator = "equals";
+                           else if (fieldName == "price") operator = "greaterThanOrEqualsTo";
+                           $scope.filter.push({
+                               fieldName: fieldName,
+                               operator: operator,
+                               value: value
+                           })
+                       }
+                   });
+
+                   $scope.load();
+               });
+           }
+       };
+
+
+
+       $scope.load = function () {
+           ProductsService.readAll($scope.pagination.pageSize, $scope.pagination.pageNumber, $scope.sort, $scope.filter).then(function (response) {
+               $scope.gridOptions.data = response.data;
+               $scope.pagination.totalItems = response.totalRows;
+
+           });
+       }
+
+       $scope.load();
+   }]);
+
+
+     
+          
+
+   function ProductsService($http) {
+
+       var self = this;
+       var baseUrl = 'https://api.backand.com/1/objects/';
+       var anonymousToken = {
+           'AnonymousToken': '78020290-5df3-44b8-9bdb-7b3b4fea2f25'
+       };
+
+       var objectName = 'products';
+
+       self.readAll = function (pageSize, pageNumber, sort, filter) {
+           return $http({
+               method: 'GET',
+              url: baseUrl + objectName,
+               params: {
+                   pageSize: pageSize,
+                   pageNumber: pageNumber,
+                   sort: sort,
+                   filter: filter
+               },
+               headers: anonymousToken
+           }).then(function (response) {
+               return response.data;
+           });
+       };
+
+       self.readOne = function (id) {
+           return $http({
+               method: 'GET',
+               url: baseUrl + objectName + '/' + id,
+               headers: anonymousToken
+           }).then(function (response) {
+               return response.data;
+           });
+       };
+
+       self.create = function (data) {
+           return $http({
+               method: 'POST',
+               url: baseUrl + objectName,
+               data: data,
+               params: {
+                   returnObject: true
+               },
+               headers: anonymousToken
+           }).then(function (response) {
+               return response.data;
+           });
+       };
+
+       self.update = function (id, data) {
+           return $http({
+               method: 'PUT',
+               url: baseUrl + objectName + '/' + id,
+               data: data,
+               headers: anonymousToken
+           }).then(function (response) {
+               return response.data;
+           });
+       };
+
+       self.delete = function (id) {
+           return $http({
+               method: 'DELETE',
+               url: baseUrl + objectName + '/' + id,
+               headers: anonymousToken
+           });
+       };
+
+   };
+
+///// ng grid Filter
+
+
+
+
+///// ng grid with our api url 
+
+
+// https://github.com/angular-ui/ui-grid/wiki/Defining-columns   --- column definitions and propertie
+
+
+
+
+
+   app.controller("ServiceCntrl", ['DrugService', '$scope', function (DrugService, $scope) {
+
+       $scope.sort = [];
+       $scope.filter = [];
+       $scope.pagination = {
+           pageSize:10,
+           pageNumber: 1,
+           totalItems: null,
+           getTotalPages: function () {
+               return Math.ceil(this.totalItems / this.pageSize);
+           },
+           nextPage: function () {
+               if (this.pageNumber < this.getTotalPages()) {
+                   this.pageNumber++;
+                   $scope.load();
+               }
+           },
+           previousPage: function () {
+               if (this.pageNumber > 1) {
+                   this.pageNumber--;
+                   $scope.load();
+               }
+           }
+       }
+     
+      
+     
+       $scope.gridOptions = {
+           excludeProperties: '__metadata',
+           columnDefs: [
+              { field: 'Select',
+      
+       cellTemplate: '<div class="ngSelectionCell"><input tabindex="-1" class="ngSelectionCheckbox" type="checkbox" ng-checked="row.selected" /> </div>'
+   },
+              { field: 'DrugTypeID', displayName: 'DrugTypeID', width: "25%" },
+      { field: 'DrugCount', displayName: 'DrugCount', visible: true },
+       { field: 'DrugTypeName', displayName: 'DrugTypeName', width: "25%" },
+        {
+            field: 'edit',
+            cellTemplate: '<button id="editBtn" type="button" class="btn-small glyphicon glyphicon-pencil" ng-click="grid.appScope.editUser(row.entity)" ></button> '
+        },
+
+
+
+       ],
+           enablePaginationControls: false,
+           useExternalSorting: true,
+           useExternalFiltering: true,
+           enableFiltering: true,
+           onRegisterApi: function (gridApi) {
+               $scope.gridApi = gridApi;
+               //declare the events
+               $scope.toggleCheckerAll = function (checked) {
+                   for (var i = 0; i < $scope.gridData.length; i++) {
+                       $scope.gridData[i].checker = checked;
+                   }
+               };
+
+               $scope.toggleChecker = function (checked) {
+                   var rows = $scope.gridOptions.$gridScope.renderedRows,
+                       allChecked = true;
+
+                   for (var r = 0; r < rows.length; r++) {
+                       if (rows[r].entity.checker !== true) {
+                           allChecked = false;
+                           break;
+                       }
+                   }
+                   if (!$scope.gridOptions.$gridScope.checker)
+                       $scope.gridOptions.$gridScope.checker = {};
+
+                   $scope.gridOptions.$gridScope.checker.checked = allChecked;
+               };
+
+
+               $scope.editUser = function (data) {
+                   alert('Edit Value' );
+               }
+               $scope.gridApi.core.on.sortChanged($scope, function (grid, sortColumns) {
+                   $scope.sort = [];
+                   angular.forEach(sortColumns, function (sortColumn) {
+                       $scope.sort.push({
+                           fieldName: 'DrugTypeID',
+                           //fieldName: sortColumn.name,
+                           order: sortColumn.sort.direction
+                       });
+                   });
+                   $scope.load();
+               });
+
+               $scope.gridApi.core.on.filterChanged($scope, function () {
+                   $scope.filter = [];
+
+                   var grid = this.grid;
+                   angular.forEach(grid.columns, function (column) {
+                       var fieldName = column.field;
+                       var value = column.filters[0].term;
+                       var operator = "contains";
+                       if (value) {
+                       
+                           if (fieldName == "DrugTypeID") operator = "equals";
+                           else if (fieldName == "DrugCount") operator = "greaterThanOrEqualsTo";
+                           $scope.filter.push({
+                               fieldName: fieldName,
+                               operator: operator,
+                               value: value
+                           })
+                       }
+                   });
+
+                   $scope.load();
+               });
+           }
+       };
+
+
+       
+
+       $scope.load = function () {
+           DrugService.readAll($scope.pagination.pageSize, $scope.pagination.pageNumber, $scope.sort, $scope.filter).then(function (response) {
+               $scope.gridOptions.data = response.DrugList;
+               $scope.pagination.totalItems = response.DrugList.length;
+
+           });
+       }
+
+       $scope.load();
+   }]);
+
+
+
+
+
+
+
+
+
+   function DrugService($http) {
+
+       var self = this;
+       var baseUrl = 'http://localhost:64404/api/RxOutlet/GetDrugTypes';
+       var anonymousToken = {
+           'AnonymousToken': '78020290-5df3-44b8-9bdb-7b3b4fea2f25'
+       };
+
+       var objectName = 'products';
+
+       self.readAll = function (pageSize, pageNumber, sort, filter) {
+           return $http({
+               method: 'GET',
+               url: baseUrl ,
+               params: {
+                   pageSize: pageSize,
+                   pageNumber: pageNumber,
+                   sort: sort,
+                   filter: filter
+               },
+               headers: anonymousToken
+           }).then(function (response) {
+               return response.data;
+           });
+       };
+
+       self.readOne = function (id) {
+           return $http({
+               method: 'GET',
+               url: baseUrl + objectName + '/' + id,
+               headers: anonymousToken
+           }).then(function (response) {
+               return response.data;
+           });
+       };
+
+       self.create = function (data) {
+           return $http({
+               method: 'POST',
+               url: baseUrl + objectName,
+               data: data,
+               params: {
+                   returnObject: true
+               },
+               headers: anonymousToken
+           }).then(function (response) {
+               return response.data;
+           });
+       };
+
+       self.update = function (id, data) {
+           return $http({
+               method: 'PUT',
+               url: baseUrl + objectName + '/' + id,
+               data: data,
+               headers: anonymousToken
+           }).then(function (response) {
+               return response.data;
+           });
+       };
+
+       self.delete = function (id) {
+           return $http({
+               method: 'DELETE',
+               url: baseUrl + objectName + '/' + id,
+               headers: anonymousToken
+           });
+       };
+
+   };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   //app.controller("ServiceCntrl", ['DrugService', '$scope', function (DrugService, $scope) {
+   //    $scope.sort = [];
+   //    $scope.filter = [];
+   //    $scope.pagination = {
+   //        pageSize: 5,
+   //        pageNumber: 1,
+   //        totalItems: null,
+   //        getTotalPages: function () {
+   //            return Math.ceil(this.totalItems / this.pageSize);
+   //        },
+   //        nextPage: function () {
+   //            if (this.pageNumber < this.getTotalPages()) {
+   //                this.pageNumber++;
+   //                $scope.load();
+   //            }
+   //        },
+   //        previousPage: function () {
+   //            if (this.pageNumber > 1) {
+   //                this.pageNumber--;
+   //                $scope.load();
+   //            }
+   //        }
+   //    }
+
+
+     
+   //    $scope.gridOptions = {
+
+   //        excludeProperties: '__metadata',
+   //        enablePaginationControls: false,
+   //        useExternalSorting: true,
+   //        useExternalFiltering: true,
+   //        enableFiltering: true,
+   //   //          columnDefs: [
+   //   //{field: 'DrugCount', displayName: 'DrugCount', visible:true},
+   //   //{field:'DrugTypeID', displayName:'DrugTypeID',width: "10%"},
+   //   // { field: 'DrugTypeName', displayName: 'DrugTypeName', width: "60%" }
+   //   //     ],
+   //        onRegisterApi: function (gridApi) {
+   //            $scope.gridApi = gridApi;
+   //            //declare the events
+
+   //            $scope.gridApi.core.on.sortChanged($scope, function (grid, sortColumns) {
+   //                $scope.sort = [];
+   //                angular.forEach(sortColumns, function (sortColumn) {
+   //                    $scope.sort.push({
+   //                        fieldName: sortColumn.name,
+   //                        order: sortColumn.sort.direction
+   //                    });
+   //                });
+   //                $scope.load();
+   //            });
+
+   //            $scope.gridApi.core.on.filterChanged($scope, function () {
+   //                $scope.filter = [];
+
+   //                var grid = this.grid;
+   //                angular.forEach(grid.columns, function (column) {
+   //                    var fieldName = column.field;
+   //                    var value = column.filters[0].term;
+   //                    var operator = "contains";
+   //                    if (value) {
+   //                        if (fieldName == "DrugTypeID") operator = "equals";
+   //                        else if (fieldName == "DrugCount") operator = "greaterThanOrEqualsTo";
+   //                        $scope.filter.push({
+   //                            fieldName: fieldName,
+   //                            operator: operator,
+   //                            value: value
+   //                        })
+   //                    }
+   //                });
+
+   //                $scope.load();
+   //            });
+   //        }
+   //    };
+
+
+
+   //    $scope.load = function () {
+   //        DrugService.readAll($scope.pagination.pageSize, $scope.pagination.pageNumber, $scope.sort, $scope.filter).then(function (response) {
+   //            $scope.gridOptions.data = response.DrugList;
+   //            $scope.pagination.totalItems = response.DrugList.length;//response.totalRows;
+
+   //        });
+   //    }
+
+   //    $scope.load();
+   //}]);
+
+
+   //function DrugService($http) {
+
+   //    var self = this;
+   //    var baseUrl = 'http://localhost:64404/api/RxOutlet/GetDrugTypes';
+   //    var anonymousToken = {
+   //        'AnonymousToken': '78020290-5df3-44b8-9bdb-7b3b4fea2f25'
+   //    };
+
+   //    var objectName = 'products';
+
+   //    self.readAll = function (pageSize, pageNumber, sort, filter) {
+   //        return $http({
+   //            method: 'GET',
+   //            url: baseUrl,
+   //            params: {
+   //                pageSize: pageSize,
+   //                pageNumber: pageNumber,
+   //                sort: sort,
+   //                filter: filter
+   //            },
+   //            headers: anonymousToken
+   //        }).then(function (response) {
+   //            return response.data;
+   //        });
+   //    };
+
+   //    self.readOne = function (id) {
+   //        return $http({
+   //            method: 'GET',
+   //            url: baseUrl + objectName + '/' + id,
+   //            headers: anonymousToken
+   //        }).then(function (response) {
+   //            return response.data;
+   //        });
+   //    };
+
+   //    self.create = function (data) {
+   //        return $http({
+   //            method: 'POST',
+   //            url: baseUrl + objectName,
+   //            data: data,
+   //            params: {
+   //                returnObject: true
+   //            },
+   //            headers: anonymousToken
+   //        }).then(function (response) {
+   //            return response.data;
+   //        });
+   //    };
+
+   //    self.update = function (id, data) {
+   //        return $http({
+   //            method: 'PUT',
+   //            url: baseUrl + objectName + '/' + id,
+   //            data: data,
+   //            headers: anonymousToken
+   //        }).then(function (response) {
+   //            return response.data;
+   //        });
+   //    };
+
+   //    self.delete = function (id) {
+   //        return $http({
+   //            method: 'DELETE',
+   //            url: baseUrl + objectName + '/' + id,
+   //            headers: anonymousToken
+   //        });
+   //    };
+
+   //};
+
+
+//// Smart Table
+
+
+   app.controller("pipeCtrl", ['Resource', function (service) {
+
+       var ctrl = this;
+
+       this.displayed = [];
+
+       this.callServer = function callServer(tableState) {
+
+           ctrl.isLoading = true;
+
+           var pagination = tableState.pagination;
+
+           var start = pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
+           var number = pagination.number || 10;  // Number of entries showed per page.
+
+           service.getPage(start, number, tableState).then(function (result) {
+               ctrl.displayed = result.data;
+               tableState.pagination.numberOfPages = result.numberOfPages;//set the number of pages so the pagination can update
+               ctrl.isLoading = false;
+           });
+       };
+
+   }]);
+
+
+   app.factory('Resource', ['$q', '$filter', '$timeout', function ($q, $filter, $timeout) {
+
+       //this would be the service to call your server, a standard bridge between your model an $http
+
+       // the database (normally on your server)
+       var randomsItems = [];
+
+       function createRandomItem(id) {
+           var heroes = ['Batman', 'Superman', 'Robin', 'Thor', 'Hulk', 'Niki Larson', 'Stark', 'Bob Leponge'];
+           return {
+               id: id,
+               name: heroes[Math.floor(Math.random() * 7)],
+               age: Math.floor(Math.random() * 1000),
+               saved: Math.floor(Math.random() * 10000)
+           };
+
+       }
+
+       for (var i = 0; i < 1000; i++) {
+           randomsItems.push(createRandomItem(i));
+       }
+
+
+       //fake call to the server, normally this service would serialize table state to send it to the server (with query parameters for example) and parse the response
+       //in our case, it actually performs the logic which would happened in the server
+       function getPage(start, number, params) {
+
+           var deferred = $q.defer();
+
+           var filtered = params.search.predicateObject ? $filter('filter')(randomsItems, params.search.predicateObject) : randomsItems;
+
+           if (params.sort.predicate) {
+               filtered = $filter('orderBy')(filtered, params.sort.predicate, params.sort.reverse);
+           }
+
+           var result = filtered.slice(start, start + number);
+
+           $timeout(function () {
+               //note, the server passes the information about the data set size
+               deferred.resolve({
+                   data: result,
+                   numberOfPages: Math.ceil(filtered.length / number)
+               });
+           }, 1500);
+
+
+           return deferred.promise;
+       }
+
+       return {
+           getPage: getPage
+       };
+
+   }]);
+
+
+//// smart table 
+
+
+
 
 
 app.controller("SupplierNameCntrl", ['$log', '$scope', '$http', function ($log, $scope, $http) {
@@ -146,6 +1037,8 @@ app.controller("ProductDetailsCntrl", ['$log', '$scope', '$http', function ($log
     $scope.qty--;
     };
 }]);
+
+
 
 
 

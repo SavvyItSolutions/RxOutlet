@@ -88,37 +88,64 @@ namespace RxOutlet.Controllers
         }
 
         [HttpPost]
-        public int TransferPrescription(TransferPrescriptionModel transferPrescription)
+        public TransferPrescriptionResponse TransferPrescription(TransferPrescription transferPrescription)
         {
 
-            List<TransferPrescriptionModel> LstPrescriptionModel = new List<TransferPrescriptionModel>();
+            TransferPrescriptionResponse objPrescriptionModel = new TransferPrescriptionResponse(2, "Default", null);
             try
             {           
                 IRxOutletService rxService = new RxOutletService();
-                LstPrescriptionModel = rxService.TransferPrescription(transferPrescription);          
+                objPrescriptionModel = rxService.TransferPrescription(transferPrescription);          
             }
-            catch (Exception ex) { }
-            return LstPrescriptionModel.Count();
+            catch (Exception ex) {
+                // objPrescriptionModel = new TransferPrescriptionResponse(3, ex.Message, new TransferPrescription());
+                objPrescriptionModel = new TransferPrescriptionResponse(3, ex.Message, null);
+
+            }
+
+
+            return objPrescriptionModel;
         }
 
 
+        [HttpPost]
+        public DrivingLicenseResponse CheckDL(string userid)
+        {
+
+            DrivingLicenseResponse objPrescriptionModel = new DrivingLicenseResponse(2, "Default", null);
+            try
+            {
+                IRxOutletService rxService = new RxOutletService();
+                objPrescriptionModel = rxService.CheckDL(userid);
+            }
+            catch (Exception ex)
+            {
+                // objPrescriptionModel = new TransferPrescriptionResponse(3, ex.Message, new TransferPrescription());
+                objPrescriptionModel = new DrivingLicenseResponse(3, ex.Message, null);
+
+            }
+
+
+            return objPrescriptionModel;
+        }
+
 
         [HttpPost]
-        public int UploadingPrescriptionNew(UploadPrescriptionModel uploadPrescription)
+        public UploadPrescriptionResponse UploadingPrescriptionNew(UploadPrescription uploadPrescription)
         {
-           List< UploadPrescriptionModel> objPrescriptionModel = new List<UploadPrescriptionModel>();
+            UploadPrescriptionResponse objPrescriptionModel = new UploadPrescriptionResponse(2,"Default", null);
 
             try
             {
                 IRxOutletService rxService = new RxOutletService();
                 objPrescriptionModel = rxService.UploadingPrescriptionNew(uploadPrescription);
             }
-            catch(Exception ex) { }
+            catch(Exception ex) {
+                objPrescriptionModel = new UploadPrescriptionResponse(3, ex.Message, null);
 
-            if (objPrescriptionModel != null)
-                return 1;
-            else
-                return 0;
+            }
+
+            return objPrescriptionModel;
 
         }
 
@@ -369,6 +396,7 @@ namespace RxOutlet.Controllers
             GetDrugNameResponse resp = new GetDrugNameResponse();
             IRxOutletService itemService = new RxOutletService();
             resp = itemService.GetDrugTypes();
+
             return resp;
         }
 

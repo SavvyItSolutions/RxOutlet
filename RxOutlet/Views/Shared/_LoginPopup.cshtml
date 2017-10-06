@@ -1,0 +1,44 @@
+﻿  
+        <div class="row" id="LoginPopupDiv">
+            <div class="col-xs-12">
+
+                <div id="modal-table" class="modal fade" tabindex="-1">
+                    <div class="modal-dialog" style="left:5%; width:500px">
+                        <div class="modal-content">
+                            <div class="modal-header no-padding">
+                                <div class="table-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        <span class="white">&times;</span>
+                                    </button>
+                                    For Filling/Transfer Prescription
+                                </div>
+                            </div>
+
+                            <p>You don't have complete profile which is required for Filling/Transfer Prescriptions.  </p>
+                            <div @*class="modal-body no-padding col-md-6"*@>
+                                <button class="btn btn-sm btn-info pull-left">
+
+                                    @Html.ActionLink("Existing Store User", "securityquestionsview", new { @style = "color:white;" })
+
+                                </button>
+                                @*<a href="#"  class="btn btn-info pull-left" data-toggle="modal"> @Html.ActionLink("Existing Store User", "securityquestionsview") </a>
+                                    <a href="#"  class="btn btn-info" data-toggle="modal"> @Html.ActionLink("Register Online", "Registration")  </a>*@
+
+                                <button class="btn btn-sm btn-info" data-dismiss="modal">
+
+                                    @Html.ActionLink("Register Online", "Registration")
+                                </button>
+
+
+                            </div>
+                            <br />
+
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+
+                <!-- PAGE CONTENT ENDS -->
+            </div>
+
+        </div>
+

@@ -15,7 +15,7 @@ namespace RxOutlet.Controllers
 
         [HttpPost]
    
-        public ActionResult _TransferPrescriptionView(TransferPrescriptionModel model)
+        public ActionResult _TransferPrescriptionView(TransferPrescription model)
         { 
             model.UserID = User.Identity.GetUserId();
             IRxOutletService RxOutletSvc = new RxOutletService();

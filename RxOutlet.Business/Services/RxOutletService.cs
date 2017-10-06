@@ -7,40 +7,32 @@ using RxOutlet.DataAccess;
 using RxOutlet.DataAccess.Interfaces;
 using RxOutlet.DataAccess.DataManager;
 using RxOutlet.Models;
+using System.Data.Linq;
 
 namespace RxOutlet.Business
 {
     public class RxOutletService : IRxOutletService
     {
 
-        //public LoginResponse CheckDl(string email)
-        //{
+        public DrivingLicenseResponse CheckDL(string UserID)
+        {
 
-        //    try
-        //    {
+            DrivingLicenseResponse retObj=null;
+            try
+            {
+               DrivingLicense drivinglicense = new DrivingLicense();
 
-        //        IMenuDBManger menuDBManager = new MenuDBManager();
-        //        IList<CheckingDrivingLicenseResult> PrescriptionListresultsObj = menuDBManager.CheckDl();
+                IMenuDBManger menuDBManager = new MenuDBManager();
+                ISingleResult <CheckDLResult> resultObj = menuDBManager.CheckDL(UserID);
+                 //retObj.DrivingLicense.DrivingLicenseID = resultObj[0].DrivingLicenseID;
+                 var t = resultObj.FirstOrDefault<CheckDLResult>();
 
-        //        foreach (PrescriptionListResult result in PrescriptionListresultsObj)
-        //        {
-        //            prescriptionList.Add(new UploadPrescriptionModel
-        //            {
-        //                Name = result.Name,
-        //                Email = result.Email,
-        //                PhoneNumber = result.PhoneNumber,
-        //                Title = result.Title,
-        //                Description = result.Description,
-        //                Filepath = result.imageUrl
-        //                CreatedDate = (result.CreatedDate)
-        //            });
-        //        }
-        //        prescriptionResponse.GetPrescriptionList = prescriptionList;
-        //    }
-        //    catch (Exception ex) { }
+                retObj = new DrivingLicenseResponse(0, "Sucess", new DrivingLicense(t.DrivingLicenseID));
 
-        //    return prescriptionResponse;
-        //}
+            }
+            catch (Exception ex) { }
+            return retObj;
+        }
 
 
         //public ConfirmationEmailResponse ConfirmationMail(string UserID)
@@ -132,95 +124,88 @@ namespace RxOutlet.Business
         }
 
 
-        public List<TransferPrescriptionModel> TransferPrescription(TransferPrescriptionModel transferPrescription)
+        public TransferPrescriptionResponse TransferPrescription(TransferPrescription transferPrescription)
         {
-            List<TransferPrescriptionModel> retObj = new List<TransferPrescriptionModel>();
+            //TransferPrescriptionResponse retObj = new TransferPrescriptionResponse();
+            TransferPrescriptionResponse retObj;
+            IMenuDBManger menuDBManager = new MenuDBManager();
             try
             {
-                IList<TransferPrescriptionResult> resultObj = new List<TransferPrescriptionResult>();
-                IMenuDBManger menuDBManager = new MenuDBManager();
+                ISingleResult<TransferPrescriptionResult> resultObj = menuDBManager.TransferPrescription(transferPrescription); 
+                var t = resultObj.FirstOrDefault<TransferPrescriptionResult>();
 
-                resultObj = menuDBManager.TransferPrescription(transferPrescription);
-                foreach (TransferPrescriptionResult obj in resultObj)
-                {
-                    retObj.Add(new TransferPrescriptionModel
-                    {
-                        Name = obj.name,
-                        Email = obj.email,
-                        TransferPrescriptionID = obj.TransferPrescriptionID
-                    });
-                }
+                retObj = new TransferPrescriptionResponse(0, "Sucess", new TransferPrescription(t.email, t.name, t.TransferPrescriptionID));
 
-                if (retObj.Count > 0)
+                // return x;
+                //  IList<TransferPrescriptionResult> resultObj = new List<TransferPrescriptionResult>();
+
+
+                //  resultObj = menuDBManager.TransferPrescriptionNew(transferPrescription);
+
+                // retObj.TransferPrescription.Name = resultObj[0].name;
+                //retObj.TransferPrescription.Email = resultObj[0].email;
+                // retObj.TransferPrescription.TransferPrescriptionID = "";
+
+                if (retObj != null)
                 {
                     SendEmail se = new SendEmail();
                     List<string> maildetails = new List<string>();
-                    maildetails.Add(retObj[0].Email);
-                    maildetails.Add(retObj[0].Name);
-                    maildetails.Add(retObj[0].TransferPrescriptionID);
+                    maildetails.Add(retObj.TransferPrescription.Email);
+                    maildetails.Add(retObj.TransferPrescription.Name);
+                    maildetails.Add(retObj.TransferPrescription.TransferPrescriptionID);
                     //subject
                     maildetails.Add("Confirmation Mail for Transfer Prescription");
                     //Mail HTMLContent
-                    maildetails.Add("Thank you for Transfering your Prescription. Your Transfer Prescription ID -" + retObj[0].TransferPrescriptionID);
+                    maildetails.Add("Thank you for Transfering your Prescription. Your Transfer Prescription ID -" + retObj.TransferPrescription.TransferPrescriptionID);
                     //message
                     maildetails.Add("RxOutlet Transfer Prescription Mail");
                     se.SendOneEmail(maildetails);
                 }
             }
-            catch (Exception ex) { }
+
+            catch (Exception ex) { return new TransferPrescriptionResponse(1, ex.Message, null); }
             return retObj;
 
         }
 
 
 
-        public List<UploadPrescriptionModel> UploadingPrescriptionNew(UploadPrescriptionModel uploadingPrescription)
-        {
-           List< UploadPrescriptionModel> retObj = new List< UploadPrescriptionModel>();
-          
-                //UploadingPrescriptionNewResult resultObj = new UploadingPrescriptionNewResult();
-                // IMenuDBManger menuDBManager = new MenuDBManager();
+        public UploadPrescriptionResponse UploadingPrescriptionNew(UploadPrescription uploadingPrescription)
+        { 
+           UploadPrescriptionResponse retObj ;
+            IMenuDBManger menuDBManager = new MenuDBManager();
 
-                // resultObj = menuDBManager.UploadingPrescriptionNew(uploadingPrescription);
-                // retObj.Name = resultObj.name;
-                // retObj.Email = resultObj.email;
-                // retObj.TransactionID = resultObj.TransactionID;
 
-              
-                try
-                {
-                    IList<UploadingPrescriptionNewResult> resultObj = new List<UploadingPrescriptionNewResult>();
-                    IMenuDBManger menuDBManager = new MenuDBManager();
+            try
+            {
+                ISingleResult<UploadingPrescriptionNewResult> resultObj = menuDBManager.UploadingPrescriptionNew(uploadingPrescription); ;
+                var t = resultObj.FirstOrDefault<UploadingPrescriptionNewResult>();
 
-                    resultObj = menuDBManager.UploadingPrescriptionNew(uploadingPrescription);
-                    foreach (UploadingPrescriptionNewResult obj in resultObj)
-                    {
-                        retObj.Add(new UploadPrescriptionModel
-                        {
-                            Name = obj.name,
-                            Email = obj.email,
-                            TransactionID = obj.TransactionID
-                        });
-                    }
+                retObj = new UploadPrescriptionResponse(0, "Sucess", new UploadPrescription(t.email, t.name, t.TransactionID));
 
-                    if (retObj.Count>0)
+
+                 
+                if (retObj != null)
+                   
                 {
                     SendEmail se = new SendEmail();
                     List<string> maildetails = new List<string>();
-                    maildetails.Add(retObj[0].Email);
-                    maildetails.Add(retObj[0].Name);
-                    maildetails.Add(retObj[0].TransactionID);
+                    maildetails.Add(retObj.UploadPrescription.Email);
+                    maildetails.Add(retObj.UploadPrescription.Name);
+                    maildetails.Add(retObj.UploadPrescription.TransactionID);
                     //subject
                     maildetails.Add("Confirmation Mail for Filling New Prescription");
                     //Mail HTMLContent
-                    maildetails.Add("Thank you for Filling your Prescription. Your Transaction ID -" + retObj[0].TransactionID);
+                    maildetails.Add("Thank you for Filling your Prescription. Your Transaction ID -" + retObj.UploadPrescription.TransactionID);
                     //message
                     maildetails.Add("RxOutlet Fill New Prescription Mail");
                     se.SendOneEmail(maildetails);
                 }
 
             }
-            catch (Exception ex) { }
+            catch (Exception ex) {
+                return new UploadPrescriptionResponse(1, ex.Message, null);
+            }
             return retObj;
 
         }

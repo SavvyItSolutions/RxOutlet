@@ -12,5 +12,11 @@ namespace RxOutlet.Models
             public IList<GetDrugList> DrugList { get; set; }
         
     }
+
+    //public class GridResponse 
+    //{
+    //    public IList<Drug> data { get; set; }
+    //    public int totalrows;
+    //}
 }
 
