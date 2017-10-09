@@ -108,15 +108,15 @@ namespace RxOutlet.Controllers
         }
 
 
-        [HttpPost]
-        public DrivingLicenseResponse CheckDL(string userid)
+        [HttpGet]
+        public DrivingLicenseResponse CheckDL(string objectId)
         {
 
             DrivingLicenseResponse objPrescriptionModel = new DrivingLicenseResponse(2, "Default", null);
             try
             {
                 IRxOutletService rxService = new RxOutletService();
-                objPrescriptionModel = rxService.CheckDL(userid);
+                objPrescriptionModel = rxService.CheckDL(objectId);
             }
             catch (Exception ex)
             {

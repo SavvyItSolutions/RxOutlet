@@ -1,6 +1,4 @@
-﻿
-
-<div class="container">
+﻿<div class="container">
     <div class="row">
 
         <div class="main-page">
@@ -8,495 +6,639 @@
             <div class="page-content checkout-page">
 
 
-                <h1 class="text-center" style="color: #5a88ca; margin-top:1%;"> Patient Registration Form </h1>
+                <h1 class="text-center" style="color: #5a88ca; margin-top:0%;">Patient Registration Form </h1>
 
-                <p> All the fields in this section are mandatory unless specified </p>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false">
+                                <h3 class="checkout-sep">*Patient Information</h3>
 
-                <h3 class="checkout-sep">Patient Information</h3>
-                <form class="form-horizontal" role="form">
-                    <div class="box-border">
+
+                            </a>
+                        </h2>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                        <div class="panel-body">
+                            <form class="form-horizontal" role="form">
+
+                                <div class="box-border">
 
 
-                        <div>
-                            <div class="form-group">
+                                    <div>
+                                        <div class="form-group">
 
-                                <label for="first_name" class="col-sm-1">First:</label>
-                                <div class="col-sm-3">
-                                    <input type="text" class="form-control">
-                                </div><!--/ [col] -->
+                                            <label for="first_name" class="col-sm-1">First Name:</label>
+                                            <div class="col-sm-3">
+                                                <input type="text" class="form-control">
+                                            </div><!--/ [col] -->
 
-                                <label for="last_name" class="col-sm-1">Last:</label>
-                                <div class="col-sm-3">
-                                    <input type="text" class="form-control">
-                                </div><!--/ [col] -->
+                                            <label for="last_name" class="col-sm-1">Last Name:</label>
+                                            <div class="col-sm-3">
+                                                <input type="text" class="form-control">
+                                            </div><!--/ [col] -->
 
-                                <label for="last_name" class="col-sm-1">M.I.:</label>
-                                <div class="col-sm-3">
-                                    <input type="text" class="form-control">
+                                            <label for="last_name" class="col-sm-1">M.I.:</label>
+                                            <div class="col-sm-3">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div><!--/ .row -->
+
+                                        <div class="form-group">
+
+
+                                            <label for="address" class="col-xs-1">Address:</label>
+                                            <div class="col-xs-11">
+                                                <input type="text" class="form-control">
+
+                                            </div><!--/ [col] -->
+
+                                        </div><!-- / .row -->
+
+                                        <div class="form-group">
+
+
+
+                                            <label for="city" class="col-sm-1">City:</label>
+                                            <div class="col-sm-3">
+                                                <input type="text" name="city" id="city" class="form-control">
+                                            </div>
+
+
+
+                                            <!--/ [col] -->
+
+
+                                            <label class="col-sm-1"> State:</label>
+                                            <div class="col-sm-3">
+                                                <select class="form-control" name="Province">
+                                                    <option value="AL">Alabama</option>
+                                                    <option value="AK">Alaska</option>
+                                                    <option value="AZ">Arizona</option>
+                                                    <option value="AR">Arkansas</option>
+                                                    <option value="CA">California</option>
+                                                    <option value="CO">Colorado</option>
+                                                    <option value="CT">Connecticut</option>
+                                                    <option value="DE">Delaware</option>
+                                                    <option value="DC">District Of Columbia</option>
+                                                    <option value="FL">Florida</option>
+                                                    <option value="GA">Georgia</option>
+                                                    <option value="HI">Hawaii</option>
+                                                    <option value="ID">Idaho</option>
+                                                    <option value="IL">Illinois</option>
+                                                    <option value="IN">Indiana</option>
+                                                    <option value="IA">Iowa</option>
+                                                    <option value="KS">Kansas</option>
+                                                    <option value="KY">Kentucky</option>
+                                                    <option value="LA">Louisiana</option>
+                                                    <option value="ME">Maine</option>
+                                                    <option value="MD">Maryland</option>
+                                                    <option value="MA">Massachusetts</option>
+                                                    <option value="MI">Michigan</option>
+                                                    <option value="MN">Minnesota</option>
+                                                    <option value="MS">Mississippi</option>
+                                                    <option value="MO">Missouri</option>
+                                                    <option value="MT">Montana</option>
+                                                    <option value="NE">Nebraska</option>
+                                                    <option value="NV">Nevada</option>
+                                                    <option value="NH">New Hampshire</option>
+                                                    <option value="NJ">New Jersey</option>
+                                                    <option value="NM">New Mexico</option>
+                                                    <option value="NY">New York</option>
+                                                    <option value="NC">North Carolina</option>
+                                                    <option value="ND">North Dakota</option>
+                                                    <option value="OH">Ohio</option>
+                                                    <option value="OK">Oklahoma</option>
+                                                    <option value="OR">Oregon</option>
+                                                    <option value="PA">Pennsylvania</option>
+                                                    <option value="RI">Rhode Island</option>
+                                                    <option value="SC">South Carolina</option>
+                                                    <option value="SD">South Dakota</option>
+                                                    <option value="TN">Tennessee</option>
+                                                    <option value="TX">Texas</option>
+                                                    <option value="UT">Utah</option>
+                                                    <option value="VT">Vermont</option>
+                                                    <option value="VA">Virginia</option>
+                                                    <option value="WA">Washington</option>
+                                                    <option value="WV">West Virginia</option>
+                                                    <option value="WI">Wisconsin</option>
+                                                    <option value="WY">Wyoming</option>
+                                                </select>
+                                            </div><!--/ [col] -->
+
+
+                                            <label for="postal_code" class="col-sm-2">Zip/Postal Code:</label>
+                                            <div class="col-sm-2">
+                                                <input type="text" name="postal_code" id="postal_code" class="form-control">
+                                            </div><!--/ [col] -->
+                                        </div><!--/ .row -->
+
+                                        <div class="form-group">
+
+                                            <label for="city" class="col-sm-1">DOB :</label>
+                                            <div class="col-sm-3">
+                                                <div class="input-group date">
+                                                    <input type="text" class="form-control">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                </div>
+
+
+                                            </div><!--/ [col] -->
+
+
+                                            <label for="gender" class="col-sm-2">Gender:</label>
+                                            <div class="col-sm-2">
+                                                <input type="radio" name="fruit" value="Apple">male
+                                                <input type="radio" name="fruit" value="Orange">female
+
+                                            </div><!--/ [col] -->
+
+
+                                            <label for="telephone" class="col-sm-1"> Phone:</label>
+
+                                            <div class="col-sm-3">
+                                                <input class="form-control input-mask-phone" type="text" id="form-field-mask-2">
+                                            </div><!--/ [col] -->
+
+
+                                        </div><!--/ .row -->
+
+
+
+
+                                    </div>
                                 </div>
-                            </div><!--/ .row -->
+                            </form>
 
-                            <div class="form-group">
+                        </div>
+                    </div>
+                </div>
 
-
-                                <label for="address" class="col-xs-1">Address:</label>
-                                <div class="col-xs-11">
-                                    <input type="text" class="form-control">
-
-                                </div><!--/ [col] -->
-
-                            </div><!-- / .row -->
-
-                            <div class="form-group">
-
-
-
-                                <label for="city" class="col-sm-1">City:</label>
-                                <div class="col-sm-3">
-                                    <input type="text" name="city" id="city" class="form-control">
-                                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false">
+                                <h3 class="checkout-sep">*INSURANCE INFORMATION</h3>
+                            </a>
+                        </h2>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                        <div class="panel-body">
+                            <form class="form-horizontal" role="form">
+                                <div class="box-border">
+                                    <div class="form-group">
 
 
 
-                                <!--/ [col] -->
+
+                                        <label for="checking" class="col-sm-3">Do you have Medicare?</label>
+                                        <div class="col-sm-3">
+                                            <input type="radio" name="checking" value="Yes">yes
+                                            <input type="radio" name="checking" value="No">No
+
+                                        </div>
 
 
-                                <label class="col-sm-1"> State/Province:</label>
-                                <div class="col-sm-3">
-                                    <select class="form-control" name="Province">
-                                        <option value="Alabama">Alabama</option>
-                                        <option value="Illinois">Illinois</option>
-                                        <option value="Kansas">Kansas:</option>
-                                    </select>
-                                </div><!--/ [col] -->
 
 
-                                <label for="postal_code" class="col-sm-2">Zip/Postal Code:</label>
-                                <div class="col-sm-2">
-                                    <input type="text" name="postal_code" id="postal_code" class="form-control">
-                                </div><!--/ [col] -->
-                            </div><!--/ .row -->
 
-                            <div class="form-group">
+                                        <label for="last_name_1" class="col-sm-2">Medicare ID#:</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" name="last_name_1" id="last_name_1" class="form-control">
 
-                                <label for="city" class="col-sm-1">DOB :</label>
-                                <div class="col-sm-3">
-                                    <div class="input-group date">
-                                        <input type="text" class="form-control">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        </div><!--/ [col] -->
+                                        <!--/ .row -->
                                     </div>
 
-
-                                </div><!--/ [col] -->
-
-
-                                <label for="gender" class="col-sm-2">Gender:</label>
-                                <div class="col-sm-2">
-                                    <input type="radio" name="fruit" value="Apple">male
-                                    <input type="radio" name="fruit" value="Orange">female
-
-                                </div><!--/ [col] -->
+                                    <div class="form-group">
 
 
-                                <label for="postal_code" class="col-sm-2">SSN:</label>
-                                <div class="col-sm-2">
-                                    <input type="text" name="postal_code" id="postal_code" class="form-control">
-                                </div><!--/ [col] -->
+                                        <label for="confirm" class="col-sm-3">Prescription Insurance Company:</label>
+                                        <div class="col-sm-3">
+                                            <input type="password" name="confirm" id="confirm" class="form-control">
 
-
-                            </div><!--/ .row -->
-                            <div class="form-group">
-
-                                <label for="telephone" class="col-sm-1"> Phone:</label>
-
-                                <div class="col-sm-3">
-                                    <input class="form-control input-mask-phone" type="text" id="form-field-mask-2">
-                                </div><!--/ [col] -->
+                                        </div>
 
 
 
 
-                                <label for="telephone" class="col-sm-1">Alt.Phone:</label>
-                                <div class="col-sm-3">
-                                    <input class="form-control input-mask-phone" type="text" id="form-field-mask-2">
-                                </div><!--/ [col] -->
+
+                                        <label for="last_name_1" class="col-sm-2">Phone:</label>
+                                        <div class="col-sm-4">
+                                            <input class="form-control input-mask-phone" type="text" id="form-field-mask-2">
+                                        </div><!--/ [col] -->
 
 
 
-                                <label for="telephone" class="col-sm-1">Email:</label>
-                                <div class="col-sm-3">
-                                    <input type="text" name="telephone" id="telephone" class="form-control">
-                                </div><!--/ [col] -->
-
-                            </div><!--/ .row -->
-
-                            <div class="form-group">
-
-                                <label for="password" class="col-sm-1">Password:</label>
-                                <div class="col-sm-5">
-                                    <input type="password" name="password" id="password" class="form-control">
-                                </div><!--/ [col] -->
+                                    </div>
+                                    <div class="form-group">
 
 
-                                <label for="confirm" class="col-sm-2">Confirm Password:</label>
-                                <div class="col-sm-4">
-                                    <input type="password" name="confirm" id="confirm" class="form-control">
-                                </div><!--/ [col] -->
-                            </div><!--/ .row -->
+
+                                        <label for="confirm" class="col-sm-1">BIN #:</label>
+                                        <div class="col-sm-3">
+                                            <input type="password" name="confirm" id="confirm" class="form-control">
+
+                                        </div>
+
+
+
+
+
+                                        <label for="last_name_1" class="col-sm-1">PCN #:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" name="last_name_1" id="last_name_1" class="form-control">
+
+
+                                        </div><!--/ [col] -->
+
+
+                                        <label for="last_name_1" class="col-sm-1">ID #:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" name="last_name_1" id="last_name_1" class="form-control">
+
+                                        </div><!--/ [col] -->
+
+                                    </div>
+                                    <div class="form-group">
+
+
+
+                                        <label for="confirm" class="col-sm-1">Group#:</label>
+                                        <div class="col-sm-5">
+                                            <input type="password" name="confirm" id="confirm" class="form-control">
+
+                                        </div>
+
+
+
+
+
+                                        <label for="last_name_1" class="col-sm-2">Additional Information:</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" name="last_name_1" id="last_name_1" class="form-control">
+
+                                        </div><!--/ [col] -->
+
+
+                                    </div>
+                                </div>
+
+                            </form>
 
                         </div>
                     </div>
-                    <h3 class="checkout-sep">INSURANCE INFORMATION</h3>
-                    <div class="box-border">
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="false">
+                                <h3 class="checkout-sep">ADDITIONAL Information </h3>
+                            </a>
+                        </h2>
+                    </div>
+                    <div id="collapseEight" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                        <div class="panel-body">
+                            <form class="form-horizontal" role="form">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h2 class="panel-title">
+                                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false">
+                                                <h3 class="checkout-sep">DRUG AND FOOD ALLERGIES</h3>
+                                            </a>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                        <div class="panel-body">
+                                            <form class="form-horizontal" role="form">
+                                                <div class="box-border">
+                                                    <div class="form-group">
+                                                        <li>
+                                                            <div class="col-sm-2">
+                                                                <input type="checkbox" name="checking" value="Yes">Codeine(32)
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="col-sm-2">
+                                                                <input type="checkbox" name="checking" value="Yes">Sdivfa(87)
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="col-sm-2">
+                                                                <input type="checkbox" name="checking" value="Yes">Penicillin(70)
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="col-sm-2">
+                                                                <input type="checkbox" name="checking" value="Yes">Tetracyclin(93)
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="col-sm-2">
+                                                                <input type="checkbox" name="checking" value="Yes">Other(00)
+                                                            </div>
+                                                        </li>
+                                                    </div>
+                                                    <div class="form-group">
+
+
+                                                        <label for="last_name_1" class="col-sm-2">List Other Allergies:</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" name="last_name_1" id="last_name_1" class="form-control">
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h2 class="panel-title">
+                                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false">
+                                                <h3 class="checkout-sep">Health Conditions</h3>
+                                            </a>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseFour" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                        <div class="panel-body">
+                                            <form class="form-horizontal" role="form">
+                                                <div class="box-border">
+                                                    <div class="form-group">
+                                                        <div>
+                                                            <div class="col-sm-2">
+                                                                <input type="checkbox" name="checking" value="Yes">Diabetes(200)
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <div class="col-sm-2">
+                                                                <input type="checkbox" name="checking" value="Yes">Hypertension(300)
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <div class="col-sm-2">
+                                                                <input type="checkbox" name="checking" value="Yes">Heart Disease(400)
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <div class="col-sm-2">
+                                                                <input type="checkbox" name="checking" value="Yes">Glaucoma(500)
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <div class="col-sm-2">
+                                                                <input type="checkbox" name="checking" value="Yes">Digestive Disorder(600)
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <div class="col-sm-2">
+                                                                <input type="checkbox" name="checking" value="Yes">Thyroid Disorder(700)
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <div class="col-sm-2">
+                                                                <input type="checkbox" name="checking" value="Yes">Arthritis(800)
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <div class="col-sm-2">
+                                                                <input type="checkbox" name="checking" value="Yes">Unknown(000)
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <div class="col-sm-2">
+                                                                <input type="checkbox" name="checking" value="Yes">Other(000)
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group">
+
+
+                                                        <label for="last_name_1" class="col-sm-2">Other Health Conditions:</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" name="last_name_1" id="last_name_1" class="form-control">
+                                                        </div>
+
+
+                                                    </div>
+
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h2 class="panel-title">
+                                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false">
+                                                <h3 class="checkout-sep">MEDICATIONS AND SUPPLEMENTS</h3>
+                                            </a>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseFive" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                        <div class="panel-body">
+                                            <form class="form-horizontal" role="form">
+                                                <div class="box-border">
+                                                    <div class="form-group">
+
+
+                                                        <label for="last_name_1" class="col-sm-6">Please list all medications and supplements that you are currently taking: </label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" name="last_name_1" id="last_name_1" class="form-control">
+
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h2 class="panel-title">
+                                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false">
+                                                <h3 class="checkout-sep">PHYSICIAN INFORMATION </h3>
+                                            </a>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseSix" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                        <div class="panel-body">
+                                            <form class="form-horizontal" role="form">
+                                                <div class="box-border">
+                                                    <div class="form-group">
+                                                        <li>
+
+                                                            <label for="last_name_1" class="col-sm-1">First: </label>
+                                                            <div class="col-sm-5">
+                                                                <input type="text" name="last_name_1" id="last_name_1" class="form-control">
+
+
+                                                            </div>
+                                                        </li>
+                                                        <li>
+
+                                                            <label for="last_name_1" class="col-sm-1">Last: </label>
+                                                            <div class="col-sm-5">
+                                                                <input type="text" name="last_name_1" id="last_name_1" class="form-control">
+
+
+                                                            </div>
+                                                        </li>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <li>
+
+                                                            <label for="last_name_1" class="col-sm-1">Phone: </label>
+                                                            <div class="col-sm-3">
+                                                                <input class="form-control input-mask-phone" type="text" id="form-field-mask-2">
+                                                            </div><!--/ [col] -->
+
+
+                                                        </li>
+
+                                                        <li>
+
+                                                            <label for="last_name_1" class="col-sm-2">Alt. Phone: </label>
+                                                            <div class="col-sm-3">
+                                                                <input class="form-control input-mask-phone" type="text" id="form-field-mask-2">
+                                                            </div><!--/ [col] -->
+
+
+                                                        </li>
+                                                        <li>
+
+                                                            <label for="last_name_1" class="col-sm-1">Fax: </label>
+                                                            <div class="col-sm-2">
+                                                                <input type="text" name="last_name_1" id="last_name_1" class="form-control">
+
+
+                                                            </div>
+                                                        </li>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h2 class="panel-title">
+                                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false">
+                                                <h3 class="checkout-sep">ADDITIONAL COMMENTS  </h3>
+                                            </a>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseSeven" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                        <div class="panel-body">
+                                            <form class="form-horizontal" role="form">
+                                                <div class="box-border">
+                                                    <div class="form-group">
+                                                        <li>
+
+                                                            <label for="last_name_1" class="col-sm-7">Is there anything else that you would like us to know so that we may better serve you:  </label>
+                                                            <div class="col-sm-5">
+                                                                <input type="text" name="last_name_1" id="last_name_1" class="form-control">
+
+
+                                                            </div>
+                                                        </li>
+                                                    </div>
+                                                </div>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <p>My signature below authorizes RxOutlet Pharmacy to administer the following: </p>
+                    <ol>1.Use any information that I provide in this registration form to enroll in the RxOutlet Pharmacy Patient Assistance and Mail Order program.</ol>
+                    <ol>2.Receive and keep records of all prescriptions for the medications I receive under the program</ol>
+                    <ol>
+                        3.Contact my doctor(s), health care provider(s), and/or pharmacist about my registration for the program, and disclose to the information contained in this registration
+                        form
+                    </ol>
+                    <ol>
+                        4. Request information from my insurer(s), physician(s), health care provider(s), and/or pharmacist about the prescribed medications I receive or will receive while
+                        enrolled in the program and about my medical condition. By signing below, I authorize my insurer(s), physician(s), health care provider(s), and/or pharmacist to
+                        release information about my prescribed medications and medical condition that is requested by RxOutlet Pharmacy
+                    </ol>
+
+                    <ol>
+                        5. Contact my insurer(s) and other potential funding sources on my behalf in order to determine if I am eligible for health insurance coverage or other funds, and disclose
+                        to them information contained in this registration form or information about my prescribed medications and medical condition that has been provided by my
+                        physician(s), health care provider(s), and/or pharmacist.
+                    </ol>
+                    <ol>
+                        6. I understand that this Authorization to Release and Disclose Medical Information will remain in effect for as long as I am enrolled and participate in the program and
+                        for a period of three (3) years after my participation in the program ends. Furthermore, I certify that the information provided on this registration form is complete and
+                        accurate to the best of my knowledge and agree to notify RxOutlet Pharmacy of any change in my insurance eligibility
+                    </ol>
+                    <ol>
+                        7.By submitting this application, I confirm that I have read, understand, and agree to the RxOutlet Pharmacy privacy policy posted at:
+                        http://www.RxOutlet.com
+                    </ol>
+                </div>
+
+                <div class="box-border">
+                    <div class="form-group">
+
+
+                        <label for="last_name_1" class="col-sm-2">Patient Initial:  </label>
+                        <div class="col-sm-4">
+                            <input type="text" name="" id="" class="form-control" placeholder="Ex:Jhon Doe ( JD )">
+
+
+                        </div>
+
+
+
+
+
+
+
                         <div class="form-group">
-
-
-
-
-                            <label for="checking" class="col-sm-3">Do you have Medicare?</label>
-                            <div class="col-sm-3">
-                                <input type="radio" name="checking" value="Yes">yes
-                                <input type="radio" name="checking" value="No">No
-
-                            </div>
-
-
-
-
-
-                            <label for="last_name_1" class="col-sm-2">Medicare ID#:</label>
+                            <label for="datepicker1" class="col-sm-2">Date:</label>
                             <div class="col-sm-4">
-                                <input type="text" name="last_name_1" id="last_name_1" class="form-control">
-
-                            </div><!--/ [col] -->
-                            <!--/ .row -->
-                        </div>
-
-                        <div class="form-group">
-
-
-                            <label for="confirm" class="col-sm-3">Prescription Insurance Company:</label>
-                            <div class="col-sm-3">
-                                <input type="password" name="confirm" id="confirm" class="form-control">
-
-                            </div>
-
-
-
-
-
-                            <label for="last_name_1" class="col-sm-2">Phone:</label>
-                            <div class="col-sm-4">
-                                <input class="form-control input-mask-phone" type="text" id="form-field-mask-2">
-                            </div><!--/ [col] -->
-
-
-
-                        </div>
-                        <div class="form-group">
-
-
-
-                            <label for="confirm" class="col-sm-1">BIN #:</label>
-                            <div class="col-sm-3">
-                                <input type="password" name="confirm" id="confirm" class="form-control">
-
-                            </div>
-
-
-
-
-
-                            <label for="last_name_1" class="col-sm-1">PCN #:</label>
-                            <div class="col-sm-3">
-                                <input type="text" name="last_name_1" id="last_name_1" class="form-control">
-
-
-                            </div><!--/ [col] -->
-
-
-                            <label for="last_name_1" class="col-sm-1">ID #:</label>
-                            <div class="col-sm-3">
-                                <input type="text" name="last_name_1" id="last_name_1" class="form-control">
-
-                            </div><!--/ [col] -->
-
-                        </div>
-                        <div class="form-group">
-
-
-
-                            <label for="confirm" class="col-sm-1">Group#:</label>
-                            <div class="col-sm-5">
-                                <input type="password" name="confirm" id="confirm" class="form-control">
-
-                            </div>
-
-
-
-
-
-                            <label for="last_name_1" class="col-sm-2">Additional Information:</label>
-                            <div class="col-sm-4">
-                                <input type="text" name="last_name_1" id="last_name_1" class="form-control">
-
-                            </div><!--/ [col] -->
-
-
-                        </div>
-                    </div>
-                    <h3 class="checkout-sep">DRUG AND FOOD ALLERGIES</h3>
-                    <div class="box-border">
-                        <div class="form-group">
-                            <li>
-                                <div class="col-sm-2">
-                                    <input type="checkbox" name="checking" value="Yes">Codeine(32)
-                                </div>
-                            </li>
-                            <li>
-                                <div class="col-sm-2">
-                                    <input type="checkbox" name="checking" value="Yes">Sdivfa(87)
-                                </div>
-                            </li>
-                            <li>
-                                <div class="col-sm-2">
-                                    <input type="checkbox" name="checking" value="Yes">Penicillin(70)
-                                </div>
-                            </li>
-                            <li>
-                                <div class="col-sm-2">
-                                    <input type="checkbox" name="checking" value="Yes">Tetracyclin(93)
-                                </div>
-                            </li>
-                            <li>
-                                <div class="col-sm-2">
-                                    <input type="checkbox" name="checking" value="Yes">Other(00)
-                                </div>
-                            </li>
-                        </div>
-                        <div class="form-group">
-
-
-                            <label for="last_name_1" class="col-sm-2">List Other Allergies:</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="last_name_1" id="last_name_1" class="form-control">
-                            </div>
-
-
-                        </div>
-                    </div>
-                    <h3 class="checkout-sep">Health Conditions</h3>
-                    <div class="box-border">
-                        <div class="form-group">
-                            <div>
-                                <div class="col-sm-2">
-                                    <input type="checkbox" name="checking" value="Yes">Diabetes(200)
-                                </div>
-                            </div>
-                            <div>
-                                <div class="col-sm-2">
-                                    <input type="checkbox" name="checking" value="Yes">Hypertension(300)
-                                </div>
-                            </div>
-                            <div>
-                                <div class="col-sm-2">
-                                    <input type="checkbox" name="checking" value="Yes">Heart Disease(400)
-                                </div>
-                            </div>
-                            <div>
-                                <div class="col-sm-2">
-                                    <input type="checkbox" name="checking" value="Yes">Glaucoma(500)
-                                </div>
-                            </div>
-                            <div>
-                                <div class="col-sm-2">
-                                    <input type="checkbox" name="checking" value="Yes">Digestive Disorder(600)
-                                </div>
-                            </div>
-                            <div>
-                                <div class="col-sm-2">
-                                    <input type="checkbox" name="checking" value="Yes">Thyroid Disorder(700)
-                                </div>
-                            </div>
-                            <div>
-                                <div class="col-sm-2">
-                                    <input type="checkbox" name="checking" value="Yes">Arthritis(800)
-                                </div>
-                            </div>
-                            <div>
-                                <div class="col-sm-2">
-                                    <input type="checkbox" name="checking" value="Yes">Unknown(000)
-                                </div>
-                            </div>
-                            <div>
-                                <div class="col-sm-2">
-                                    <input type="checkbox" name="checking" value="Yes">Other(000)
-                                </div>
+                                <input type="text" class="form-control" id="datepicker1" readonly>
                             </div>
                         </div>
 
 
-                        <div class="form-group">
 
 
-                            <label for="last_name_1" class="col-sm-2">Other Health Conditions:</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="last_name_1" id="last_name_1" class="form-control">
-                            </div>
 
-
-                        </div>
 
                     </div>
-                    <h3 class="checkout-sep">MEDICATIONS AND SUPPLEMENTS</h3>
-                    <div class="box-border">
-                        <div class="form-group">
 
+                    <p class="text-center">
+                        <button class="button text-center"><i class="fa fa-user"></i> Create Registration</button>
+                    </p>
 
-                            <label for="last_name_1" class="col-sm-6">Please list all medications and supplements that you are currently taking: </label>
-                            <div class="col-sm-6">
-                                <input type="text" name="last_name_1" id="last_name_1" class="form-control">
+                    </form>
+                </div>
 
-
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                    <h3 class="checkout-sep">PHYSICIAN INFORMATION </h3>
-                    <div class="box-border">
-                        <div class="form-group">
-                            <li>
-
-                                <label for="last_name_1" class="col-sm-1">First: </label>
-                                <div class="col-sm-5">
-                                    <input type="text" name="last_name_1" id="last_name_1" class="form-control">
-
-
-                                </div>
-                            </li>
-                            <li>
-
-                                <label for="last_name_1" class="col-sm-1">Last: </label>
-                                <div class="col-sm-5">
-                                    <input type="text" name="last_name_1" id="last_name_1" class="form-control">
-
-
-                                </div>
-                            </li>
-                        </div>
-                        <div class="form-group">
-                            <li>
-
-                                <label for="last_name_1" class="col-sm-1">Phone: </label>
-                                <div class="col-sm-3">
-                                    <input class="form-control input-mask-phone" type="text" id="form-field-mask-2">
-                                </div><!--/ [col] -->
-
-
-                            </li>
-
-                            <li>
-
-                                <label for="last_name_1" class="col-sm-2">Alt. Phone: </label>
-                                <div class="col-sm-3">
-                                    <input class="form-control input-mask-phone" type="text" id="form-field-mask-2">
-                                </div><!--/ [col] -->
-
-
-                            </li>
-                            <li>
-
-                                <label for="last_name_1" class="col-sm-1">Fax: </label>
-                                <div class="col-sm-2">
-                                    <input type="text" name="last_name_1" id="last_name_1" class="form-control">
-
-
-                                </div>
-                            </li>
-                        </div>
-                    </div>
-                    <h3 class="checkout-sep">ADDITIONAL COMMENTS  </h3>
-                    <div class="box-border">
-                        <div class="form-group">
-                            <li>
-
-                                <label for="last_name_1" class="col-sm-7">Is there anything else that you would like us to know so that we may better serve you:  </label>
-                                <div class="col-sm-5">
-                                    <input type="text" name="last_name_1" id="last_name_1" class="form-control">
-
-
-                                </div>
-                            </li>
-                        </div>
-                    </div>
-
-                    <div class="container">
-                        <p>My signature below authorizes RxOutlet Pharmacy to administer the following: </p>
-                        <ol>1.Use any information that I provide in this registration form to enroll in the RxOutlet Pharmacy Patient Assistance and Mail Order program.</ol>
-                        <ol>2.Receive and keep records of all prescriptions for the medications I receive under the program</ol>
-                        <ol>
-                            3.Contact my doctor(s), health care provider(s), and/or pharmacist about my registration for the program, and disclose to the information contained in this registration
-                            form
-                        </ol>
-                        <ol>
-                            4. Request information from my insurer(s), physician(s), health care provider(s), and/or pharmacist about the prescribed medications I receive or will receive while
-                            enrolled in the program and about my medical condition. By signing below, I authorize my insurer(s), physician(s), health care provider(s), and/or pharmacist to
-                            release information about my prescribed medications and medical condition that is requested by RxOutlet Pharmacy
-                        </ol>
-
-                        <ol>
-                            5. Contact my insurer(s) and other potential funding sources on my behalf in order to determine if I am eligible for health insurance coverage or other funds, and disclose
-                            to them information contained in this registration form or information about my prescribed medications and medical condition that has been provided by my
-                            physician(s), health care provider(s), and/or pharmacist.
-                        </ol>
-                        <ol>
-                            6. I understand that this Authorization to Release and Disclose Medical Information will remain in effect for as long as I am enrolled and participate in the program and
-                            for a period of three (3) years after my participation in the program ends. Furthermore, I certify that the information provided on this registration form is complete and
-                            accurate to the best of my knowledge and agree to notify RxOutlet Pharmacy of any change in my insurance eligibility
-                        </ol>
-                        <ol>
-                            7.By submitting this application, I confirm that I have read, understand, and agree to the RxOutlet Pharmacy privacy policy posted at:
-                            http://www.RxOutlet.com
-                        </ol>
-                    </div>
-
-                    <div class="box-border">
-                        <div class="form-group">
-
-
-                            <label for="last_name_1" class="col-sm-2">Patient Initial:  </label>
-                            <div class="col-sm-4">
-                                <input type="text" name="" id="" class="form-control" placeholder="Ex:Jhon Doe ( JD )">
-
-
-                            </div>
-
-
-
-                            <label for="last_name_1" class="col-sm-2">Date:  </label>
-                            <div class="col-sm-4">
-                                @*@Html.TextBoxFor(x => x., new { @Value = @DateTime.Now.ToShortDateString() })*@
-                                <input type="text" class="form-control">
-
-
-                            </div>
-
-
-                        </div>
-
-                        <p class="text-center">
-                            <button class="button text-center"><i class="fa fa-user"></i> Create Registration</button>
-                        </p>
-
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<a href="#" class="scroll_top" title="Scroll to Top" style="display: inline;">Scroll</a>
-<script type='text/javascript'>
+                <script type='text/javascript'>
 $(function(){
 $('.input-group.date').datepicker({
     calendarWeeks: true,
@@ -504,11 +646,8 @@ $('.input-group.date').datepicker({
     autoclose: true
 });
 });
-
-
-
-</script>
-<script type='text/javascript'>
+                </script>
+                @*<script type='text/javascript'>
 jQuery(function($){
   $.mask.definitions['~']='[+-]';
 				$('.input-mask-date').mask('99/99/9999');
@@ -517,4 +656,29 @@ jQuery(function($){
 				$(".input-mask-product").mask("a*-999-a999",{placeholder:" ",completed:function(){alert("You typed the following: "+this.val());}});
 
 });
-</script>
+
+                </script>*@
+                <script type='text/javascript'>
+$(document).ready(function() {
+  var date = new Date();
+  var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  var end = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+  $('#datepicker1').datepicker({
+format: "mm/dd/yyyy",
+todayHighlight: true,
+startDate: today,
+endDate: end,
+autoclose: true
+  });
+  $('#datepicker2').datepicker({
+format: "mm/dd/yyyy",
+todayHighlight: true,
+startDate: today,
+endDate: end,
+autoclose: true
+  });
+
+  $('#datepicker1,#datepicker2').datepicker('setDate', today);
+});
+                </script>
