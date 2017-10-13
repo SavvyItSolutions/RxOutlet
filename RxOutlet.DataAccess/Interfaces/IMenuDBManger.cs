@@ -28,6 +28,7 @@ namespace RxOutlet.DataAccess.Interfaces
         ISingleResult<TransferPrescriptionResult> TransferPrescription(TransferPrescription transferPrescription);
         // ISingleResult<TransferPrescriptionResult>  TransferPrescriptionNew(TransferPrescriptionModel transferPrescription);
         ISingleResult<CheckDLResult> CheckDL(string userid);
+        IList<GetSingUpSecurityQuestionsResult> SecurityQuestions();
     }
 
 }

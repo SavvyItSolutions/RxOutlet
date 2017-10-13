@@ -193,4 +193,9 @@
       <Column Name="DrivingLicenseID" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.GetSingUpSecurityQuestions" Method="GetSingUpSecurityQuestions">
+    <ElementType Name="GetSingUpSecurityQuestionsResult">
+      <Column Name="SecurityQuestions" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

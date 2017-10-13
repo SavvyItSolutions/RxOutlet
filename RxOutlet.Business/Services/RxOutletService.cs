@@ -14,6 +14,33 @@ namespace RxOutlet.Business
     public class RxOutletService : IRxOutletService
     {
 
+        public List<RegistrationModel> GetSecurityQuestions()
+        {
+
+            RegistrationResponseModel retObj = null;
+            List<RegistrationModel> prescriptionList = new List<RegistrationModel>();
+            try
+            {
+                IMenuDBManger menuDBManager = new MenuDBManager();
+                IList<GetSingUpSecurityQuestionsResult> PrescriptionListresultsObj = menuDBManager.SecurityQuestions();
+
+                foreach (GetSingUpSecurityQuestionsResult result in PrescriptionListresultsObj)
+                {
+                    prescriptionList.Add(new RegistrationModel
+                    {
+                        SecurityQuestions = result.SecurityQuestions
+                        //CreatedDate= (result.CreatedDate)
+                    });
+                }
+            
+             
+        }
+            catch (Exception ex) { }
+
+            return prescriptionList;
+                
+        }
+
         public DrivingLicenseResponse CheckDL(string UserID)
         {
 
@@ -30,7 +57,7 @@ namespace RxOutlet.Business
                 retObj = new DrivingLicenseResponse(0, "Sucess", new DrivingLicense(t.DrivingLicenseID));
 
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { return new DrivingLicenseResponse(1, ex.Message, null); }
             return retObj;
         }
 

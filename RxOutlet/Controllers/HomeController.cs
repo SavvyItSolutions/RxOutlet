@@ -91,5 +91,11 @@ namespace RxOutlet.Controllers
            
             return PartialView();
         }
+
+        public ActionResult MySettings() //This view is strongly typed against User
+        {
+
+            return View();
+        }
     }
 }

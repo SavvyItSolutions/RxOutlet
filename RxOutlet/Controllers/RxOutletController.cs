@@ -60,6 +60,21 @@ namespace RxOutlet.Controllers
 
 
         [HttpGet]
+        public List<RegistrationModel> GetSignUpSecurityQuestions()
+        {
+            RegistrationResponseModel resp = new RegistrationResponseModel(2,"Default",null);
+
+            List<RegistrationModel> respModel = new List<RegistrationModel>();
+            try
+            {
+                IRxOutletService rxoutletService = new RxOutletService();
+                respModel = rxoutletService.GetSecurityQuestions();
+            }
+            catch (Exception ex) { resp = new RegistrationResponseModel(3, ex.Message, null); }
+            return respModel;
+        }
+
+        [HttpGet]
         public PrescriptionResponse GetPrescriptionList()
         {          
             PrescriptionResponse resp = new PrescriptionResponse();

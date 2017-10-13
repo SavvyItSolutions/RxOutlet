@@ -20,7 +20,14 @@ namespace RxOutlet.Models
 
         public string Name { get; set; }
         public string ActivationCode { get; set; }
-     //   public string DrivingLicenceID { get; set; }
+        public int SecurityQuestionID { get; set; }
+        public string SecurityAnswer { get; set; }
+        public bool PrivacyAcceptance { get; set; }
+        public bool SplOffersEmail { get; set; }
+        public bool PrescriptionEmail { get; set; }
+
+
+        //   public string DrivingLicenceID { get; set; }
 
 
 

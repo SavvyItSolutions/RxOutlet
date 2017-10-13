@@ -35,6 +35,7 @@ namespace RxOutlet.Business
         UploadPrescriptionResponse UploadingPrescriptionNew(UploadPrescription uploadingPrescription);
         TransferPrescriptionResponse TransferPrescription(TransferPrescription transferPrescription);
         DrivingLicenseResponse CheckDL(string userid);
+        List<RegistrationModel> GetSecurityQuestions();
 
 
 

@@ -11,8 +11,8 @@ using Microsoft.Owin.Security;
 using RxOutlet.Models;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Web.Security;
 using RxOutlet.Business;
+using System.Collections.Generic;
 
 namespace RxOutlet.Controllers
 {
@@ -21,17 +21,14 @@ namespace RxOutlet.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        ImageService imageService = new ImageService();
         HttpClient client;
 
-       // HttpClient ConfirmationEmailClient;
-        //The URL of the WEB API Service
-       //  string RegistrationURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/SignUp";
-          string RegistrationURL = "http://localhost:64404/api/Rxoutlet/SignUp";
-
+        // HttpClient ConfirmationEmailClient;
+        //The URL of the WEB API Service   
+        string RegistrationURL = "http://localhost:64404/api/Rxoutlet/SignUp";
+        string SignUpSecurityQuestionsURL = "http://localhost:64404/api/Rxoutlet/GetSignUpSecurityQuestions";
           string VerifiedEmailURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/UpdateVerifiedEmail";
-        /// string VerifiedEmailURL = "http://localhost:64404/api/Rxoutlet/UpdateVerifiedEmail";
-
       
 
         public AccountController()
@@ -99,11 +96,23 @@ namespace RxOutlet.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult Registration( )
+     
+        public ActionResult Registration()
         {
-          
+            return View();
+        
+        }
+
+
+        [HttpPost]
+        public ActionResult Registration(HttpPostedFileBase photo)
+        {
+            string BolbContainer = "insurancedetails";
+            imageService.UploadImageAsync(photo, BolbContainer);
             return View();
         }
+
+
         [AllowAnonymous]
         public async Task<ActionResult> VerificationCode(string ActivationCode)
         {
@@ -149,11 +158,6 @@ namespace RxOutlet.Controllers
 
 
             IRxOutletService objService = new RxOutletService();
-
-      //  objService.CheckDL(model.Email);
-
-          
-            
 
             //This doesn't count login failures towards account lockout
             //     To enable password failures to trigger account lockout, change to shouldLockout: true
@@ -227,13 +231,30 @@ namespace RxOutlet.Controllers
                     return View(model);
             }
         }
-
+    
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register()
+        [HttpGet]
+        public  ActionResult  Register()
         {
-            return View();
+            RegistrationModel objRegistration = new RegistrationModel();
+            RxOutletService objservice = new RxOutletService();
+
+            var a=   objservice.GetSecurityQuestions();
+
+            List<string> SecurityQuestions = new List<string>();
+
+            for (int i = 0; i < a.Count; i++)
+            {
+                SecurityQuestions.Add(a[i].SecurityQuestions);
+            }
+
+
+
+            objRegistration.SecurityQuestions = SecurityQuestions.ToString();
+      
+            return View(objRegistration);
         }
 
 

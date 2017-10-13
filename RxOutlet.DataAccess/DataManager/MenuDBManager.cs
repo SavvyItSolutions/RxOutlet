@@ -39,6 +39,23 @@ namespace RxOutlet.DataAccess.DataManager
             }
         }
 
+   
+
+        public IList<GetSingUpSecurityQuestionsResult> SecurityQuestions()
+        {
+            try
+            {
+                ISingleResult<GetSingUpSecurityQuestionsResult> result =
+                DBContext.GetSingUpSecurityQuestions();
+
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         public ISingleResult<CheckDLResult> CheckDL(string userid)
         {
             try

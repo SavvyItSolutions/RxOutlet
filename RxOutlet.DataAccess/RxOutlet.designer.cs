@@ -235,6 +235,13 @@ namespace RxOutlet.DataAccess
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId);
 			return ((ISingleResult<CheckDLResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetSingUpSecurityQuestions")]
+		public ISingleResult<GetSingUpSecurityQuestionsResult> GetSingUpSecurityQuestions()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<GetSingUpSecurityQuestionsResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblMainMenu")]
@@ -2190,6 +2197,32 @@ namespace RxOutlet.DataAccess
 				if ((this._DrivingLicenseID != value))
 				{
 					this._DrivingLicenseID = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetSingUpSecurityQuestionsResult
+	{
+		
+		private string _SecurityQuestions;
+		
+		public GetSingUpSecurityQuestionsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecurityQuestions", DbType="VarChar(256)")]
+		public string SecurityQuestions
+		{
+			get
+			{
+				return this._SecurityQuestions;
+			}
+			set
+			{
+				if ((this._SecurityQuestions != value))
+				{
+					this._SecurityQuestions = value;
 				}
 			}
 		}

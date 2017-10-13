@@ -74,9 +74,12 @@ namespace RxOutlet.Controllers
         [HttpPost]
         public ActionResult Upload(HttpPostedFileBase photo, UploadPrescription model)
         {
-            
+
             if (photo != null)
-                model.Filepath = imageService.UploadImageAsync(photo);
+            { 
+            string blobcontainer = "newprescriptions";
+            model.Filepath = imageService.UploadImageAsync(photo, blobcontainer);
+        }
             else
                 model.Filepath = "";
 

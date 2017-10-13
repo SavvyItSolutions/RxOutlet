@@ -13,7 +13,7 @@ namespace RxOutlet
 {
     public class ImageService
     {
-        public  string UploadImageAsync(HttpPostedFileBase imageToUpload)
+        public  string UploadImageAsync(HttpPostedFileBase imageToUpload,string BolbContainer)
         { 
 
             string imageFullPath = null;
@@ -25,7 +25,7 @@ namespace RxOutlet
             {
                 CloudStorageAccount cloudStorageAccount = ConnectionString.GetConnectionString();
                 CloudBlobClient cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
-                CloudBlobContainer cloudBlobContainer = cloudBlobClient.GetContainerReference("rxoutlet");
+                CloudBlobContainer cloudBlobContainer = cloudBlobClient.GetContainerReference(BolbContainer);
 
                 if ( cloudBlobContainer.CreateIfNotExists())
                 {
