@@ -1,79 +1,324 @@
-﻿<div class="container">
-    <h3 class="text-center"> Security Questions</h3>
-    <br />
-    <br />
-    <div class="col-md-3">
-
-        @*<label for="city" class="col-sm-1">DOB :</label>
-        <div class="col-sm-3">
-            <div class="input-group date">
-                <input type="text" class="form-control">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-            </div>
-
-
-        </div>*@<!--/ [col] -->
-
-        <label for="inputusername">1. Date of Birth </label>
-        <div class="input-group date">
-            <input type="text" class="form-control">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+﻿<div class="container product-page">
+    <div class="row">
+        <div class="block block-breadcrumbs">
+            <ul>
+                <li class="home">
+                    <a href="#"><i class="fa fa-home"></i></a>
+                    <span></span>
+                </li>
+                <li><a href="#"> Prescription Services</a><span></span></li>
+                <li> Refill Prescription</li>
+            </ul>
         </div>
-        <br />
-        <br />
-        <script type='text/javascript'>
-$(function(){
-$('.input-group.date').datepicker({
+    </div>
+    <div class="row">
+
+    </div>
+    <div class="row">
+        <!-- Product tab -->
+        <div class="block block-tabs tab-left">
+            <div class="block-head">
+                <ul class="nav-tab">
+
+                    <li class="active"><a data-toggle="tab" href="#tab-1">Locate Prescriptions</a></li>
+                    <li><a data-toggle="tab" href="#tab-2">Verify Account</a></li>
+                </ul>
+            </div>
+            <div class="block-inner">
+                <div class="tab-container">
+                    <div id="tab-1" class="tab-panel active">
+                        <h5>How do you want to locate your prescriptions?</h5>
+
+                        <div class="panel with-nav-tabs panel-default">
+                            <div class="panel-heading">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#tab1info" data-toggle="tab"> By my patient information </a></li>
+                                    <li><a href="#tab2info" data-toggle="tab"> By my prescription label information </a></li>
+                                    <li><a href="#tab3info" data-toggle="tab">I do not have prescriptions    </a></li>
+                                </ul>
+                            </div>
+                            <div class="panel-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="tab1info">
+                                        <h5>My Patient Information</h5>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group form-group-sm">
+                                                    <label for="firstname" class="control-label">First Name</label>
+                                                    <input type="text" class="form-control" id="firstname" placeholder="Firstname">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+
+                                                <label for="firstname" class="control-label"></label>
+                                                <p>This should be your information. Do you want to connect a family member?</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group form-group-sm">
+                                                    <label for="firstname" class="control-label">Last Name</label>
+                                                    <input type="text" class="form-control" id="firstname" placeholder="Firstname">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group form-group-sm">
+                                                    <label for="city" class="col-sm-12">DOB </label>
+                                                    <div class="input-group date">
+                                                        <input type="text" class="form-control">
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+
+                                                <label for="firstname" class="control-label"></label>
+                                                <p>The patient must be over 18. Do you want to connect a minor? </p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label for="gender" class="col-sm-12">Gender</label>
+                                            <div class="col-sm-2">
+                                                <input type="radio" name="fruit" value="Apple">male
+                                                <input type="radio" name="fruit" value="Orange">female
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group form-group-sm">
+                                                    <label for="firstname" class="control-label">Address Line 1</label>
+                                                    <input type="text" class="form-control" id="firstname" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+
+                                                <label for="firstname" class="control-label"></label>
+                                                <p>Need help with a military(APO) address?</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label for="address" class="col-xs-12">Address Line 1</label>
+                                            <div class="col-xs-4">
+                                                <input type="text" class="form-control">
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <label for="address" class="col-xs-12">City</label>
+                                            <div class="col-xs-4">
+                                                <input type="text" class="form-control">
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <label class="col-sm-12"> State</label>
+                                            <div class="col-sm-4">
+                                                <select class="form-control" name="Province">
+                                                    <option value="AL">Alabama</option>
+                                                    <option value="AK">Alaska</option>
+                                                    <option value="AZ">Arizona</option>
+                                                    <option value="AR">Arkansas</option>
+                                                    <option value="CA">California</option>
+                                                    <option value="CO">Colorado</option>
+                                                    <option value="CT">Connecticut</option>
+                                                    <option value="DE">Delaware</option>
+                                                    <option value="DC">District Of Columbia</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label for="postal_code" class="col-sm-12">Zip/Postal Code:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" name="postal_code" id="postal_code" class="form-control">
+                                            </div>
+                                        </div>
+                                        <p class="text-center">
+                                            <button class="button text-center"> Continue</button>
+                                        </p>
+                                    </div>
+                                    <div class="tab-pane fade" id="tab2info">
+                                        <h5>My Prescription Label Information</h5>
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group form-group-sm">
+                                                    <label for="firstname" class="control-label">RX #</label>
+                                                    <input type="text" class="form-control" id="firstname" placeholder="Firstname">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+
+                                                <label for="firstname" class="control-label"></label>
+                                                <p>Leave off leading letters an zeros</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group form-group-sm">
+                                                    <label for="firstname" class="control-label">Store #</label>
+                                                    <input type="text" class="form-control" id="firstname" placeholder="Firstname">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+
+                                                <label for="firstname" class="control-label"></label>
+                                                <p>Rx # and Store # must be from the same label</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group form-group-sm">
+                                                    <label for="city" class="col-sm-12">DOB </label>
+                                                    <div class="input-group date">
+                                                        <input type="text" class="form-control">
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+
+                                                <label for="firstname" class="control-label"></label>
+                                                <p>Enter a 4 digit Year </p>
+                                            </div>
+                                        </div>
+                                        <p class="text-center">
+                                            <button class="button text-center"> Continue</button>
+                                        </p>
+
+
+
+
+                                    </div>
+                                    <div class="tab-pane fade" id="tab3info">Info 3</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-2" class="tab-panel">
+                        <div class="container">
+
+                            <h3>Verify Your Account</h3>
+                            <h5>This ensures that only identified CVS Pharmacy customers receive access to private health records.</h5>
+                            <div>
+                                <ul style="list-style-type:disc;">
+
+                                    <li><strong>This process is similar to that used by banks and credit companies to secure personal information.</strong></li>
+                                    <li><strong>Answers are only used to ensure that the person requesting access is actually you.</strong></li>
+                                    <li><strong>CVS Pharmacy does not have visibility or access to these questions or your answers.</strong></li>
+                                </ul>
+                            </div>
+
+                            <h5>Now, take a few minutes to help protect the valuable information in your account.</h5>
+
+                            <p>1.In what STATE was your SOCIAL SECURITY NUMBER issued?</p>
+                            <form>
+
+                                <div class="radio">
+                                    <label><input type="radio" value="">IN</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" value="">NC</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" value="">PR</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" value="">NJ</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" value="">NONE OF THE ABOVE</label>
+                                </div>
+                            </form>
+                            <p>2.Which of the following is/was your PHONE NUMBER</p>
+                            <form>
+
+                                <div class="radio">
+                                    <label><input type="radio" value="">426-0028</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" value="">601-5089</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" value="">583-1692</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" value="">765-3548</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" value="">NONE OF THE ABOVE</label>
+                                </div>
+                            </form>
+                            <p>3.When you lived at 105 MOLLER ST, what was the AREA CODE of your phone number? </p>
+                            <form>
+
+                                <div class="radio">
+                                    <label><input type="radio" value="">576</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" value="">175</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" value="">231</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" value="">201</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" value="">NONE OF THE ABOVE</label>
+                                </div>
+                            </form>
+                            <p class="text-center">
+                                <button class="button text-center"> Submit</button>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Product tab -->
+            <!-- Related Products -->
+            <!-- ./Related Products -->
+            <!-- upsell Products -->
+            <!-- ./upsell Products -->
+        </div>
+    </div>
+   <script type='text/javascript'>
+    $(function(){
+    $('.input-group.date').datepicker({
     calendarWeeks: true,
     todayHighlight: true,
     autoclose: true
+    });
+    });
+
+
+
+    </script>
+    <script type='text/javascript'>
+$(document).ready(function() {
+  var date = new Date();
+  var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  var end = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+  $('#datepicker1').datepicker({
+format: "mm/dd/yyyy",
+todayHighlight: true,
+startDate: today,
+endDate: end,
+autoclose: true
+  });
+  $('#datepicker2').datepicker({
+format: "mm/dd/yyyy",
+todayHighlight: true,
+startDate: today,
+endDate: end,
+autoclose: true
+  });
+
+  $('#datepicker1,#datepicker2').datepicker('setDate', today);
 });
-});
-
-
-
-        </script>
-
-
-        <label for="inputusername"> 2. Place from where you got SSN </label>
-
-
-        <select class="form-control" name="Province">
-            <option value="Alabama">Alabama</option>
-            <option value="Illinois">Illinois</option>
-            <option value="Kansas">Kansas</option>
-        </select>
-
-
-        <br />
-        <br />
-
-        <label for="inputusername">    3. Last digits of Phone Number.. </label>
-
-        <FORM method="POST"
-              onSubmit="return checkAnswer(this,'B');">
-
-            <INPUT TYPE="RADIO" VALUE="A" NAME="cc">
-            A.74*****128 <BR>
-
-            <INPUT TYPE="RADIO" VALUE="B" NAME="cc">
-            B. 09*****654<BR>
-
-            <INPUT TYPE="RADIO" VALUE="C" NAME="cc">
-            C. 81*****497<BR>
-
-            <INPUT TYPE="RADIO" VALUE="C" NAME="cc">
-            D.85*****395<BR>
-
-            <INPUT TYPE="RADIO" VALUE="C" NAME="cc">
-            E. None of the Above<BR>
-
-            <div class="col-md-12 text-right">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-
-        </FORM>
-    </div>
-</div>
-
- 
+    </script>

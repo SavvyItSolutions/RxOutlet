@@ -1,4 +1,5 @@
-﻿<div class="container">
+﻿
+<div class="container">
     <div class="row">
 
         <div class="main-page">
@@ -9,17 +10,25 @@
                 <h1 class="text-center" style="color: #5a88ca; margin-top:0%;">Patient Registration Form </h1>
 
                 <div class="panel panel-default">
+
                     <div class="panel-heading">
                         <h2 class="panel-title">
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false">
                                 <h3 class="checkout-sep">*Patient Information</h3>
-
-
                             </a>
                         </h2>
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                         <div class="panel-body">
+                            <div class="col-sm-12 text-center">
+                                <strong> <a class="button" href="#"> Scan Driving Licence  <i class="fa fa-camera" aria-hidden="true"></i> </a> </strong>
+                            </div>
+                            <br />
+
+                            <strong class="col-sm-12 text-center"> Or  </strong>
+
+                            <br />
+
                             <form class="form-horizontal" role="form">
 
                                 <div class="box-border">
@@ -184,6 +193,25 @@
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                         <div class="panel-body">
+                            <div class="col-sm-12 text-center" style="margin-bottom:20px;">
+                                <h4>Select files from your computer</h4>
+                                <form action="" method="post" enctype="multipart/form-data" id="js-upload-form">
+                                    <div class="form-inline">
+                                        <div class="form-group" style="color:blue">
+                                            <input type="file" name="photo" class="btn btn-info btn-cons" id="js-upload-files" multiple>
+                                        </div>
+                                        <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Upload file</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <br>
+                            <br />
+
+                            <strong class="col-sm-12 text-center"> Or  </strong>
+
+                            <br />
+
                             <form class="form-horizontal" role="form">
                                 <div class="box-border">
                                     <div class="form-group">
@@ -637,7 +665,8 @@
 
                     </form>
                 </div>
-
+             
+            
                 <script type='text/javascript'>
 $(function(){
 $('.input-group.date').datepicker({
@@ -646,6 +675,9 @@ $('.input-group.date').datepicker({
     autoclose: true
 });
 });
+
+
+
                 </script>
                 @*<script type='text/javascript'>
 jQuery(function($){
