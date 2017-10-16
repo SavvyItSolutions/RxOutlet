@@ -330,7 +330,11 @@ namespace RxOutlet.Controllers
             {
                
                 IRxOutletService RxOutletSvc = new RxOutletService();
-                var user = new ApplicationUser { Name = model.Name, UserName = model.Email, Email = model.Email, PhoneNumber = model.MobileNum };
+                model.SecurityQuestionID = 1;
+                model.PrivacyAcceptance = Convert.ToBoolean(0);
+                model.SplOffersEmail = Convert.ToBoolean(0);
+                model.PrescriptionEmail = Convert.ToBoolean(0);
+                var user = new ApplicationUser { Name = model.Name, UserName = model.Email, Email = model.Email, PhoneNumber = model.MobileNum ,SecurityQuestionID=model.SecurityQuestionID,SecurityAnswer=model.SecurityAnswer,PrivacyAcceptance=model.PrivacyAcceptance,SplOffersEmail=model.SplOffersEmail,PrescriptionEmail=model.PrescriptionEmail};
                 var result = await System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().CreateAsync(user, model.Password);
                 respModel = new RegistrationResponseModel(result.Succeeded, result.Errors.ToList());
                 if(result.Succeeded == true)

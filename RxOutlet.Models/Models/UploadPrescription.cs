@@ -15,8 +15,6 @@ namespace RxOutlet.Models
         public string Description { get; set; }
         public string Filepath { get; set; }
         public string UserID { get; set; }
-
-
         public string CreatedDate { get; set; }
 
 

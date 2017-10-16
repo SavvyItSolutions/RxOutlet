@@ -51,14 +51,13 @@ namespace RxOutlet.Models
         [DataType(DataType.Text)]     
         public string SecurityAnswer { get; set; }
 
-        [Required]
-        public string PrivacyAcceptance { get; set; }
+     
+        public bool PrivacyAcceptance { get; set; }
 
-        [Required]
-        public string SplOffersEmail { get; set; }
+     
+        public bool SplOffersEmail { get; set; }
 
-        [Required]
-        public string PrescriptionEmail { get; set; }
+        public bool PrescriptionEmail { get; set; }
 
 
     }
