@@ -16,7 +16,6 @@ namespace RxOutlet.Models
         [DataType(DataType.Text)]     
         public string Name { get; set; }
 
-
         [Required]
         [EmailAddress]      
         public string Email { get; set; }
@@ -24,7 +23,6 @@ namespace RxOutlet.Models
         [Required]
         [DataType(DataType.PhoneNumber)]
         public string MobileNum { get; set; }
-
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
@@ -39,26 +37,23 @@ namespace RxOutlet.Models
         [DataType(DataType.Text)]    
         public string Captcha { get; set; }
 
-     
         public string SecurityQuestions { get; set; }
 
-
-        [Required]            
+    
         public int SecurityQuestionID { get; set; }
+
+     
 
 
         [Required]
         [DataType(DataType.Text)]     
         public string SecurityAnswer { get; set; }
-
-     
+   
         public bool PrivacyAcceptance { get; set; }
 
-     
         public bool SplOffersEmail { get; set; }
 
         public bool PrescriptionEmail { get; set; }
-
 
     }
 }

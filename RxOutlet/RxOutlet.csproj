@@ -293,6 +293,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MenuDetailsModel.cs" />
+    <Compile Include="Models\PopulatingDropdown.cs" />
     <Compile Include="Models\SubjectHeadingModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -784,6 +785,8 @@
     <Content Include="Content\ui-grid.woff" />
     <Content Include="Content\ui-grid.ttf" />
     <Content Include="Content\ui-grid.eot" />
+    <Content Include="DrugImages\PrivacyPolicy.pdf" />
+    <Content Include="DrugImages\terms.pdf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\buttons.colVis.min.js" />
     <Content Include="Scripts\buttons.flash.min.js" />
@@ -952,6 +955,9 @@
     <Content Include="Views\Shared\_LoginPopup.cshtml" />
     <Content Include="Views\Shared\FamilyPage.cshtml" />
     <Content Include="Views\Home\MySettings.cshtml" />
+    <Content Include="Views\Home\Testpopup.cshtml" />
+    <Content Include="Views\Account\LoginPopup.cshtml" />
+    <Content Include="Views\Shared\_PatientInformation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

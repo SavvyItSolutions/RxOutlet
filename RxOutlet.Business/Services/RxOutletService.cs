@@ -14,10 +14,64 @@ namespace RxOutlet.Business
     public class RxOutletService : IRxOutletService
     {
 
+        public ContactUsResponse ContactUs(ContactUs contactUs)
+        {
+
+            ContactUsResponse retObj;
+            IMenuDBManger menuDBManager = new MenuDBManager();
+            try
+            {
+                ISingleResult<ContactUSInfoResult> resultObj = menuDBManager.ContactUs(contactUs);
+                var t = resultObj.FirstOrDefault<ContactUSInfoResult>();
+
+                retObj = new ContactUsResponse(0, "Sucess", new ContactUs(t.email,t.ContactUSId));
+
+            }
+
+            catch (Exception ex)
+            {
+                return new ContactUsResponse(1, ex.Message, null);
+            }
+
+
+            return retObj;
+
+        }
+
+
+        public List<ContactUs> GetContactUsSubjectHeading()
+        {
+
+            List<ContactUs> subjectHeadingList = new List<ContactUs>();
+            try
+            {
+                IMenuDBManger menuDBManager = new MenuDBManager();
+                IList<GetSubjectHeadingResult> subjectHeadingresultsObj = menuDBManager.GetContactUsSubjectHeading();
+
+                foreach (GetSubjectHeadingResult result in subjectHeadingresultsObj)
+                {
+                    subjectHeadingList.Add(new ContactUs
+                    {
+                        SubjectHeadingID = result.SubjectHeadingID,
+                        SubjectHeadingName = result.SubjectHeadingName
+                    });
+                }
+
+
+            }
+            catch (Exception ex) { }
+
+            return subjectHeadingList;
+
+        }
+
+
+
+
+
         public List<RegistrationModel> GetSecurityQuestions()
         {
 
-            RegistrationResponseModel retObj = null;
             List<RegistrationModel> prescriptionList = new List<RegistrationModel>();
             try
             {
@@ -28,8 +82,8 @@ namespace RxOutlet.Business
                 {
                     prescriptionList.Add(new RegistrationModel
                     {
+                        SecurityQuestionID=result.SecurityQuestionID,
                         SecurityQuestions = result.SecurityQuestions
-                        //CreatedDate= (result.CreatedDate)
                     });
                 }
             
@@ -151,6 +205,24 @@ namespace RxOutlet.Business
         }
 
 
+
+        public PatientRegistrationResponse PatientRegistration(PateintRegistration patientRegistration)
+        {
+            PatientRegistrationResponse retObj;
+            IMenuDBManger menuDBManager = new MenuDBManager();
+            try
+            {
+                ISingleResult<PateintRegistrationResult> resultObj = menuDBManager.PatientRegistration(patientRegistration);
+                var t = resultObj.FirstOrDefault<PateintRegistrationResult>();
+
+                retObj = new PatientRegistrationResponse(0, "Sucess", new PateintRegistration( t.PateintRegistrationID));
+
+            }
+            catch (Exception ex) { return new PatientRegistrationResponse(1, ex.Message, null); }
+            return retObj;
+
+        }
+
         public TransferPrescriptionResponse TransferPrescription(TransferPrescription transferPrescription)
         {
             //TransferPrescriptionResponse retObj = new TransferPrescriptionResponse();
@@ -196,8 +268,29 @@ namespace RxOutlet.Business
         }
 
 
+       
 
-        public UploadPrescriptionResponse UploadingPrescriptionNew(UploadPrescription uploadingPrescription)
+        public ConditionBasedResponse LocateCustomer(ConditionBased conditionBased)
+        {
+            ConditionBasedResponse retObj;
+            IMenuDBManger menuDBManager = new MenuDBManager();
+            try
+            {
+                ISingleResult<ConditionBasedResult> resultObj = menuDBManager.LocateCustomer(conditionBased); 
+                var t = resultObj.FirstOrDefault<ConditionBasedResult>();
+
+                retObj = new ConditionBasedResponse(0, "Sucess", new ConditionBased( t.RXNumber));
+            }
+            catch (Exception ex) {
+                return new ConditionBasedResponse(1, ex.Message, null);
+    }
+            return retObj;
+
+        }
+
+
+
+public UploadPrescriptionResponse UploadingPrescriptionNew(UploadPrescription uploadingPrescription)
         { 
            UploadPrescriptionResponse retObj ;
             IMenuDBManger menuDBManager = new MenuDBManager();
@@ -319,7 +412,7 @@ namespace RxOutlet.Business
 
 
 
-        public GetDrugNameResponse GetDrugTypes()
+        public GetDrugNameResponse GetDrugTypes(int pagesize,int pagenumber)
         {
             GetDrugNameResponse DrugListResponse = new GetDrugNameResponse();
             try
@@ -327,7 +420,7 @@ namespace RxOutlet.Business
                 List<GetDrugList> itemList = new List<GetDrugList>();
 
                 IMenuDBManger menuDBManager = new MenuDBManager();
-                IList<GetDrugTypesResult> MainMenuResults = menuDBManager.GetDrugTypes();
+                IList<GetDrugTypesResult> MainMenuResults = menuDBManager.GetDrugTypes(pagesize,pagenumber);
 
                 foreach (GetDrugTypesResult result in MainMenuResults)
                 {
@@ -655,5 +748,7 @@ namespace RxOutlet.Business
             catch (Exception ex) { }
             return result;
         }
+
+     
     }
 }

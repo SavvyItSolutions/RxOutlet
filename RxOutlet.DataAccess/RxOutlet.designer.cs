@@ -124,13 +124,6 @@ namespace RxOutlet.DataAccess
 			return ((ISingleResult<GetDrugListResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetDrugTypes")]
-		public ISingleResult<GetDrugTypesResult> GetDrugTypes()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<GetDrugTypesResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetSupplierName")]
 		public ISingleResult<GetSupplierNameResult> GetSupplierName()
 		{
@@ -241,6 +234,64 @@ namespace RxOutlet.DataAccess
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<GetSingUpSecurityQuestionsResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PateintRegistration")]
+		public ISingleResult<PateintRegistrationResult> PateintRegistration(
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="VarChar(256)")] string userId, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PateintRegistrationID", DbType="VarChar(256)")] string pateintRegistrationID, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="FirstName", DbType="VarChar(256)")] string firstName, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="LastName", DbType="VarChar(256)")] string lastName, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MI", DbType="VarChar(256)")] string mI, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Address", DbType="VarChar(256)")] string address, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(128)")] string city, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="State", DbType="Int")] System.Nullable<int> state, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PostalCode", DbType="VarChar(256)")] string postalCode, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="DOB", DbType="DateTime")] System.Nullable<System.DateTime> dOB, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Gender", DbType="VarChar(256)")] string gender, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PatientInfoPhoneNumber", DbType="VarChar(256)")] string patientInfoPhoneNumber, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PateintInsuranceID", DbType="VarChar(256)")] string pateintInsuranceID, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Medicare", DbType="VarChar(256)")] string medicare, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MedicareID", DbType="VarChar(256)")] string medicareID, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrescriptionInsuranceCompany", DbType="VarChar(256)")] string prescriptionInsuranceCompany, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="InsurancePhoneNumber", DbType="VarChar(256)")] string insurancePhoneNumber, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="BIN", DbType="VarChar(256)")] string bIN, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PCN", DbType="VarChar(256)")] string pCN, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="VarChar(256)")] string iD, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="GroupNum", DbType="VarChar(256)")] string groupNum, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="AdditionalInfomartion", DbType="VarChar(256)")] string additionalInfomartion, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="InsuranceImagePath", DbType="VarChar(256)")] string insuranceImagePath)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId, pateintRegistrationID, firstName, lastName, mI, address, city, state, postalCode, dOB, gender, patientInfoPhoneNumber, pateintInsuranceID, medicare, medicareID, prescriptionInsuranceCompany, insurancePhoneNumber, bIN, pCN, iD, groupNum, additionalInfomartion, insuranceImagePath);
+			return ((ISingleResult<PateintRegistrationResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConditionBased")]
+		public ISingleResult<ConditionBasedResult> ConditionBased([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="VarChar(256)")] string userId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RXNumber", DbType="VarChar(256)")] string rXNumber, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(256)")] string storenumber)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId, rXNumber, storenumber);
+			return ((ISingleResult<ConditionBasedResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetDrugTypes")]
+		public ISingleResult<GetDrugTypesResult> GetDrugTypes([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pageSize, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pagenumber)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pageSize, pagenumber);
+			return ((ISingleResult<GetDrugTypesResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ContactUSInfo")]
+		public ISingleResult<ContactUSInfoResult> ContactUSInfo([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ContactUsID", DbType="VarChar(256)")] string contactUsID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SubjectHeading", DbType="Int")] System.Nullable<int> subjectHeading, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="VarChar(256)")] string email, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="OrderReference", DbType="VarChar(256)")] string orderReference, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Message", DbType="VarChar(5000)")] string message)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), contactUsID, subjectHeading, email, orderReference, message);
+			return ((ISingleResult<ContactUSInfoResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetSubjectHeading")]
+		public ISingleResult<GetSubjectHeadingResult> GetSubjectHeading()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<GetSubjectHeadingResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -1216,68 +1267,6 @@ namespace RxOutlet.DataAccess
 		}
 	}
 	
-	public partial class GetDrugTypesResult
-	{
-		
-		private System.Nullable<int> _DrugTypeID;
-		
-		private string _DrugTypeName;
-		
-		private System.Nullable<int> _drugcount;
-		
-		public GetDrugTypesResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrugTypeID", DbType="Int")]
-		public System.Nullable<int> DrugTypeID
-		{
-			get
-			{
-				return this._DrugTypeID;
-			}
-			set
-			{
-				if ((this._DrugTypeID != value))
-				{
-					this._DrugTypeID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrugTypeName", DbType="VarChar(256)")]
-		public string DrugTypeName
-		{
-			get
-			{
-				return this._DrugTypeName;
-			}
-			set
-			{
-				if ((this._DrugTypeName != value))
-				{
-					this._DrugTypeName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_drugcount", DbType="Int")]
-		public System.Nullable<int> drugcount
-		{
-			get
-			{
-				return this._drugcount;
-			}
-			set
-			{
-				if ((this._drugcount != value))
-				{
-					this._drugcount = value;
-				}
-			}
-		}
-	}
-	
 	public partial class GetSupplierNameResult
 	{
 		
@@ -2205,10 +2194,28 @@ namespace RxOutlet.DataAccess
 	public partial class GetSingUpSecurityQuestionsResult
 	{
 		
+		private int _SecurityQuestionID;
+		
 		private string _SecurityQuestions;
 		
 		public GetSingUpSecurityQuestionsResult()
 		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecurityQuestionID", DbType="Int NOT NULL")]
+		public int SecurityQuestionID
+		{
+			get
+			{
+				return this._SecurityQuestionID;
+			}
+			set
+			{
+				if ((this._SecurityQuestionID != value))
+				{
+					this._SecurityQuestionID = value;
+				}
+			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecurityQuestions", DbType="VarChar(256)")]
@@ -2223,6 +2230,244 @@ namespace RxOutlet.DataAccess
 				if ((this._SecurityQuestions != value))
 				{
 					this._SecurityQuestions = value;
+				}
+			}
+		}
+	}
+	
+	public partial class PateintRegistrationResult
+	{
+		
+		private string _email;
+		
+		private string _name;
+		
+		private string _PateintRegistrationID;
+		
+		public PateintRegistrationResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email", DbType="NVarChar(256)")]
+		public string email
+		{
+			get
+			{
+				return this._email;
+			}
+			set
+			{
+				if ((this._email != value))
+				{
+					this._email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(50)")]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this._name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PateintRegistrationID", DbType="VarChar(256)")]
+		public string PateintRegistrationID
+		{
+			get
+			{
+				return this._PateintRegistrationID;
+			}
+			set
+			{
+				if ((this._PateintRegistrationID != value))
+				{
+					this._PateintRegistrationID = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConditionBasedResult
+	{
+		
+		private string _RXNumber;
+		
+		public ConditionBasedResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RXNumber", DbType="VarChar(256)")]
+		public string RXNumber
+		{
+			get
+			{
+				return this._RXNumber;
+			}
+			set
+			{
+				if ((this._RXNumber != value))
+				{
+					this._RXNumber = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetDrugTypesResult
+	{
+		
+		private System.Nullable<int> _DrugTypeID;
+		
+		private string _DrugTypeName;
+		
+		private System.Nullable<int> _drugcount;
+		
+		public GetDrugTypesResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrugTypeID", DbType="Int")]
+		public System.Nullable<int> DrugTypeID
+		{
+			get
+			{
+				return this._DrugTypeID;
+			}
+			set
+			{
+				if ((this._DrugTypeID != value))
+				{
+					this._DrugTypeID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrugTypeName", DbType="VarChar(256)")]
+		public string DrugTypeName
+		{
+			get
+			{
+				return this._DrugTypeName;
+			}
+			set
+			{
+				if ((this._DrugTypeName != value))
+				{
+					this._DrugTypeName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_drugcount", DbType="Int")]
+		public System.Nullable<int> drugcount
+		{
+			get
+			{
+				return this._drugcount;
+			}
+			set
+			{
+				if ((this._drugcount != value))
+				{
+					this._drugcount = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ContactUSInfoResult
+	{
+		
+		private string _email;
+		
+		private string _ContactUSId;
+		
+		public ContactUSInfoResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email", DbType="NVarChar(256)")]
+		public string email
+		{
+			get
+			{
+				return this._email;
+			}
+			set
+			{
+				if ((this._email != value))
+				{
+					this._email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactUSId", DbType="VarChar(256)")]
+		public string ContactUSId
+		{
+			get
+			{
+				return this._ContactUSId;
+			}
+			set
+			{
+				if ((this._ContactUSId != value))
+				{
+					this._ContactUSId = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetSubjectHeadingResult
+	{
+		
+		private int _SubjectHeadingID;
+		
+		private string _SubjectHeadingName;
+		
+		public GetSubjectHeadingResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubjectHeadingID", DbType="Int NOT NULL")]
+		public int SubjectHeadingID
+		{
+			get
+			{
+				return this._SubjectHeadingID;
+			}
+			set
+			{
+				if ((this._SubjectHeadingID != value))
+				{
+					this._SubjectHeadingID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubjectHeadingName", DbType="VarChar(256)")]
+		public string SubjectHeadingName
+		{
+			get
+			{
+				return this._SubjectHeadingName;
+			}
+			set
+			{
+				if ((this._SubjectHeadingName != value))
+				{
+					this._SubjectHeadingName = value;
 				}
 			}
 		}

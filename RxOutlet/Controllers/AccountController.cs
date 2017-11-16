@@ -19,6 +19,9 @@ namespace RxOutlet.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+
+    
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         ImageService imageService = new ImageService();
@@ -27,7 +30,7 @@ namespace RxOutlet.Controllers
         // HttpClient ConfirmationEmailClient;
         //The URL of the WEB API Service   
         string RegistrationURL = "http://localhost:64404/api/Rxoutlet/SignUp";
-        string SignUpSecurityQuestionsURL = "http://localhost:64404/api/Rxoutlet/GetSignUpSecurityQuestions";
+    //    string SignUpSecurityQuestionsURL = "http://localhost:64404/api/Rxoutlet/GetSignUpSecurityQuestions";
           string VerifiedEmailURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/UpdateVerifiedEmail";
       
 
@@ -79,12 +82,35 @@ namespace RxOutlet.Controllers
         [AllowAnonymous]
         public ActionResult SecurityQuestionsView()
         {
-          
 
             return View();
+
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult SecurityQuestionsView(ConditionBased conditionBased)
+        {
+
+            conditionBased.UserID = User.Identity.GetUserId();
+            conditionBased.CustomerStatus = "Exist";
+            IRxOutletService RxOutletSvc = new RxOutletService();
+       var rxnumber=     RxOutletSvc.LocateCustomer(conditionBased);
+
+
+            if (rxnumber != null)
+                return RedirectToAction("upload", "Prescription");
+            else
+           
+            return View();
+
+
         }
 
 
+        public ActionResult LoginPopup()
+        {          
+            return View();
+        }
 
         //
         // GET: /Account/Login
@@ -105,12 +131,26 @@ namespace RxOutlet.Controllers
 
 
         [HttpPost]
-        public ActionResult Registration(HttpPostedFileBase photo)
+        public ActionResult Registration(PateintRegistration patientRegistration,HttpPostedFileBase photo)
         {
-            string BolbContainer = "insurancedetails";
-            imageService.UploadImageAsync(photo, BolbContainer);
-            return View();
+
+            if (photo != null)
+            {
+                string BolbContainer = "insurancedetails";
+                patientRegistration.InsuranceImagePath = imageService.UploadImageAsync(photo, BolbContainer);
+            }
+
+            patientRegistration.UserId = User.Identity.GetUserId();
+            patientRegistration.State = 1;
+            patientRegistration.Gender = "male";
+
+            IRxOutletService RxOutletSvc = new RxOutletService();
+            RxOutletSvc.PatientRegistration(patientRegistration);
+            return RedirectToAction("upload", "Prescription");
+
         }
+
+      
 
 
         [AllowAnonymous]
@@ -175,7 +215,7 @@ namespace RxOutlet.Controllers
                     return RedirectToAction("upload", "Prescription");
                     else if (dl.DrivingLicense.DrivingLicenseID == null)
                         TempData["DrivingLicence"] = "exist";
-                    return PartialView("_LoginPopup");
+                    return RedirectToAction("LoginPopup");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -231,29 +271,33 @@ namespace RxOutlet.Controllers
                     return View(model);
             }
         }
-    
+
+
+
+
+
         //
         // GET: /Account/Register
         [AllowAnonymous]
         [HttpGet]
         public  ActionResult  Register()
         {
+
             RegistrationModel objRegistration = new RegistrationModel();
             RxOutletService objservice = new RxOutletService();
 
-            var a=   objservice.GetSecurityQuestions();
+            var result =   objservice.GetSecurityQuestions();
 
-            List<string> SecurityQuestions = new List<string>();
-
-            for (int i = 0; i < a.Count; i++)
+            List<SelectListItem> ObjItem = new List<SelectListItem>();
+            foreach (var x in result)
             {
-                SecurityQuestions.Add(a[i].SecurityQuestions);
+                var p = new SelectListItem();
+                p.Text = x.SecurityQuestions;
+                p.Value = x.SecurityQuestionID.ToString();
+                ObjItem.Add(p);
             }
+            ViewBag.ListItem = ObjItem;
 
-
-
-            objRegistration.SecurityQuestions = SecurityQuestions.ToString();
-      
             return View(objRegistration);
         }
 
@@ -264,20 +308,22 @@ namespace RxOutlet.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegistrationModel model)
         {
+            model.SecurityQuestionID = Convert.ToInt32(Request.Form["ListItem"]);
 
             HttpResponseMessage RegistrationResponse = await client.PostAsJsonAsync(RegistrationURL, model);
           
            
-          string  returnValue1 = await RegistrationResponse.Content.ReadAsStringAsync();
+            string  returnValue1 = await RegistrationResponse.Content.ReadAsStringAsync();
 
             if (returnValue1.Contains("true"))
             {
                 TempData["ConfirmationEmail"] = "Thank you for Signing Up. We have sent an email to your authorized email address.Please activate the account by clicking the link in the email and login below";
                     return RedirectToAction("Login");
             }
+
+
             if (returnValue1.Contains("already taken"))
             {
                 TempData["Status"] = "Email already exists in our records. Please Login with your credentials or SignUp with another email address.";
@@ -311,7 +357,7 @@ namespace RxOutlet.Controllers
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
-        //
+      
         // GET: /Account/ForgotPassword
         [AllowAnonymous]
         public ActionResult ForgotPassword()
@@ -319,6 +365,8 @@ namespace RxOutlet.Controllers
             return View();
         }
 
+       
+       
         //
         // POST: /Account/ForgotPassword
         [HttpPost]

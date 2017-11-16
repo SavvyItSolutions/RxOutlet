@@ -97,5 +97,11 @@ namespace RxOutlet.Controllers
 
             return View();
         }
+
+        public ActionResult Testpopup() //This view is strongly typed against User
+        {
+
+            return View();
+        }
     }
 }

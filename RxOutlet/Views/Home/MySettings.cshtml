@@ -86,10 +86,13 @@
                             <strong><hr style="border-top: 2px solid #000;"></strong>
                             <h4>Currently, you’re not managing any prescriptions for others.</h4>
                             <p>
-                                @*<a class="button text-center" href="">*@@Html.ActionLink("Add a Person", "Registration", "Account", new
+                                @*<a class="button text-center" href="">*@
+                                @*@Html.ActionLink("Add a Person", "Registration", "Account", new
                                                                      {
                                                                          @class = "button text-center"
-                                                                     })
+                                                                     })*@
+
+                                @Html.ActionLink("Add a Person", "Registration", "Account",new { @class = "button text-center" })
                             </p>
                           
 
@@ -119,7 +122,7 @@
     <script type='text/javascript'>
 $(function(){
 $('.input-group.date').datepicker({
-    calendarWeeks: true,
+    calendarWeeks: false,
     todayHighlight: true,
     autoclose: true
 });

@@ -59,19 +59,70 @@ namespace RxOutlet.Controllers
         }
 
 
+
+        [HttpPost]
+        public ContactUsResponse ContactUs(ContactUs contactUs)
+        {
+
+            ContactUsResponse objcontactUs = new ContactUsResponse(2, "Default", null);
+            try
+            {
+                IRxOutletService rxService = new RxOutletService();
+                objcontactUs = rxService.ContactUs(contactUs);
+            }
+            catch (Exception ex)
+            {
+                objcontactUs = new ContactUsResponse(3, ex.Message, null);
+
+            }
+
+
+            return objcontactUs;
+        }
+
+
+
+        [HttpGet]
+        public List<ContactUs> GetContactUsSubjectHeading()
+        {
+
+            ContactUsResponse resp = new ContactUsResponse(2, "Default", null);
+
+            List<ContactUs> respModel = new List<ContactUs>();
+            try
+            {
+                IRxOutletService rxoutletService = new RxOutletService();
+                respModel = rxoutletService.GetContactUsSubjectHeading();
+
+                // var countries = db.Countries.ToList();
+                //  return Json(countries, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex) { resp = new ContactUsResponse(3, ex.Message, null); }
+            return respModel;
+
+        }
+
+
+
+
         [HttpGet]
         public List<RegistrationModel> GetSignUpSecurityQuestions()
         {
-            RegistrationResponseModel resp = new RegistrationResponseModel(2,"Default",null);
+
+        RegistrationResponseModel resp = new RegistrationResponseModel(2,"Default",null);
 
             List<RegistrationModel> respModel = new List<RegistrationModel>();
             try
             {
                 IRxOutletService rxoutletService = new RxOutletService();
                 respModel = rxoutletService.GetSecurityQuestions();
+
+               // var countries = db.Countries.ToList();
+              //  return Json(countries, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex) { resp = new RegistrationResponseModel(3, ex.Message, null); }
             return respModel;
+
         }
 
         [HttpGet]
@@ -101,6 +152,28 @@ namespace RxOutlet.Controllers
             catch(Exception ex) { }
             return resp;
         }
+
+
+
+        [HttpPost]
+        public PatientRegistrationResponse PatientRegistration(PateintRegistration patientRegistration)
+        {
+            PatientRegistrationResponse objPrescriptionModel = new PatientRegistrationResponse(2, "Default", null);
+            try
+            {
+                IRxOutletService rxService = new RxOutletService();
+                objPrescriptionModel = rxService.PatientRegistration(patientRegistration);
+            }
+            catch (Exception ex)
+            {
+                // objPrescriptionModel = new TransferPrescriptionResponse(3, ex.Message, new TransferPrescription());
+                objPrescriptionModel = new PatientRegistrationResponse(3, ex.Message, null);
+
+            }
+            return objPrescriptionModel;
+        }
+
+
 
         [HttpPost]
         public TransferPrescriptionResponse TransferPrescription(TransferPrescription transferPrescription)
@@ -317,8 +390,6 @@ namespace RxOutlet.Controllers
         //    }
         //    return resp;
         //    //return imageFullPath;
-
-
         //}
 
         [HttpPost]
@@ -330,10 +401,6 @@ namespace RxOutlet.Controllers
             {
                
                 IRxOutletService RxOutletSvc = new RxOutletService();
-                model.SecurityQuestionID = 1;
-                model.PrivacyAcceptance = Convert.ToBoolean(0);
-                model.SplOffersEmail = Convert.ToBoolean(0);
-                model.PrescriptionEmail = Convert.ToBoolean(0);
                 var user = new ApplicationUser { Name = model.Name, UserName = model.Email, Email = model.Email, PhoneNumber = model.MobileNum ,SecurityQuestionID=model.SecurityQuestionID,SecurityAnswer=model.SecurityAnswer,PrivacyAcceptance=model.PrivacyAcceptance,SplOffersEmail=model.SplOffersEmail,PrescriptionEmail=model.PrescriptionEmail};
                 var result = await System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().CreateAsync(user, model.Password);
                 respModel = new RegistrationResponseModel(result.Succeeded, result.Errors.ToList());
@@ -409,12 +476,12 @@ namespace RxOutlet.Controllers
         }
 
         [HttpGet]
-        public GetDrugNameResponse GetDrugTypes()
+        public GetDrugNameResponse GetDrugTypes(int pageSize,int pagenumber)
         {
 
             GetDrugNameResponse resp = new GetDrugNameResponse();
             IRxOutletService itemService = new RxOutletService();
-            resp = itemService.GetDrugTypes();
+            resp = itemService.GetDrugTypes(pageSize,pagenumber);
 
             return resp;
         }
@@ -495,6 +562,21 @@ namespace RxOutlet.Controllers
             catch(Exception ex) { }        
             return resp;
         }
+
+
+        //[HttpGet]
+        //public int ConditionBased(string objectId)
+        //{
+        //    int resp = 0;
+        //    IRxOutletService RxOutletSvc = new RxOutletService();
+        //    try
+        //    {
+        //        resp = RxOutletSvc.conditionbased(objectId);
+        //    }
+        //    catch (Exception ex) { }
+        //    return resp;
+        //}
+
 
     }
 }

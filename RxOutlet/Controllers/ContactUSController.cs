@@ -8,57 +8,50 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Collections;
+using RxOutlet.Business;
 
 namespace RxOutlet.Controllers
 {
     public class ContactUSController : Controller
     {
+        [HttpGet]
         public ActionResult ContactUS()
         {
 
 
-            ContactUsModel objSubjectHeading = new ContactUsModel();
-            objSubjectHeading.SubjectHeading = PopulateSubjectHeading();
-            return View(objSubjectHeading);  
+            ContactUs objcontactUs = new ContactUs();
+            RxOutletService objservice = new RxOutletService();
+
+            var result = objservice.GetContactUsSubjectHeading();
+
+            List<SelectListItem> ObjItem = new List<SelectListItem>();
+            foreach (var x in result)
+            {
+                var p = new SelectListItem();
+                p.Text = x.SubjectHeadingName;
+                p.Value = x.SubjectHeadingID.ToString();
+                ObjItem.Add(p);
+            }
+            ViewBag.SubjectHeading = ObjItem;
+
+            return View(objcontactUs);
+
+
+
         }
 
         // Calling on http post (on Submit)
         [HttpPost]
-        public ActionResult ContactUS(ContactUsModel obj)
+        public ActionResult ContactUS(ContactUs model)
         {
+            IRxOutletService RxOutletSvc = new RxOutletService();
 
-            int strDDLValue = Convert.ToInt32(Request.Form["ddlVendor"]);
-            List<SelectListItem> dd = PopulateSubjectHeading();
-            obj.SubjectHeadingID = Convert.ToInt32(dd[strDDLValue].Value);
-            ContactUsModel objreg = new ContactUsModel();
-            string result = objreg.InsertRegDetails(obj);
-            ViewData["result"] = result;
-            ModelState.Clear();
-            return View(obj);
+            model.SubjectHeadingID = Convert.ToInt32(Request.Form["SubjectHeading"]);
+            RxOutletSvc.ContactUs(model);
+            return RedirectToAction("index", "Home");
         }
 
-        private static List<SelectListItem> PopulateSubjectHeading()
-        {
-            List<SelectListItem> items = new List<SelectListItem>();
-            // string constr = ConfigurationManager.ConnectionStrings["RxOutlet"].ConnectionString;
-            SqlConnection con = new SqlConnection("Data Source=108.58.151.10;Initial Catalog=RxOutlet;Persist Security Info=True;User ID=rxadmin;Password=rxadmin");
-            SqlCommand cmd = new SqlCommand("GetSubjectHeading", con);
-            cmd.CommandType = CommandType.StoredProcedure;        
-            con.Open();
-            using (SqlDataReader sdr = cmd.ExecuteReader())
-                    {
-                        while (sdr.Read())
-                        {
-                            items.Add(new SelectListItem
-                            {
-                                Text = sdr["SubjectHeadingName"].ToString(),
-                                Value = sdr["SubjectHeadingID"].ToString()
-                            });
-                        }
-                    }
-                    con.Close();
-            return items;
-        }
+    
             }
         }
 

@@ -8,7 +8,6 @@ using RxOutlet.DataAccess.Interfaces;
 using System.Configuration;
 using RxOutlet.Models;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using System.Web;
 using System.IO;
 
@@ -18,8 +17,6 @@ namespace RxOutlet.DataAccess.DataManager
     {
         public RxOutletDataContext DBContext;
         public RxOutletDataContext DBContextRxOutlet;
-
-        
 
         public string path { get; set; }
 
@@ -39,7 +36,42 @@ namespace RxOutlet.DataAccess.DataManager
             }
         }
 
-   
+
+        public ISingleResult<ContactUSInfoResult> ContactUs(ContactUs contactUs)
+        {
+            contactUs.ContactUsID = Guid.NewGuid().ToString();
+
+            try
+            {
+                ISingleResult<ContactUSInfoResult> result = DBContext.ContactUSInfo(
+                   contactUs.ContactUsID,
+                    contactUs.SubjectHeadingID,
+                      contactUs.Email,
+                    contactUs.OrderReference,
+                     contactUs.Message    
+                    );
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public IList<GetSubjectHeadingResult> GetContactUsSubjectHeading()
+        {
+            try
+            {
+                ISingleResult<GetSubjectHeadingResult> result =
+                DBContext.GetSubjectHeading();
+
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
 
         public IList<GetSingUpSecurityQuestionsResult> SecurityQuestions()
         {
@@ -63,6 +95,65 @@ namespace RxOutlet.DataAccess.DataManager
                 ISingleResult<CheckDLResult> result =
                 DBContext.CheckDL(userid);
 
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public ISingleResult<ConditionBasedResult> LocateCustomer(ConditionBased conditionBased)
+        {
+            try
+            {
+                ISingleResult<ConditionBasedResult> result = DBContext.ConditionBased(
+                    conditionBased.UserID,
+                    conditionBased.RXNumber,
+                    conditionBased.StoreNumber
+                    );
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
+        public ISingleResult<PateintRegistrationResult> PatientRegistration(PateintRegistration patientRegistration)
+        {
+            patientRegistration.PateintRegistrationID = Guid.NewGuid().ToString();
+
+            try
+            {
+                ISingleResult<PateintRegistrationResult> result = DBContext.PateintRegistration(
+                    patientRegistration.PateintRegistrationID,
+                    patientRegistration.FirstName,
+                    patientRegistration.LastName,
+                    patientRegistration.MI,
+                    patientRegistration.Address,
+                    patientRegistration.city,
+                    patientRegistration.PostalCode,
+                    Convert.ToInt16(patientRegistration.State),
+                    patientRegistration.Gender,
+                    Convert.ToDateTime(patientRegistration.DOB),
+                    patientRegistration.PhoneNumber,
+                    patientRegistration.UserId,
+
+                    patientRegistration.PateintInsuranceID,
+                    patientRegistration.Medicare,
+                    patientRegistration.MedicareID,
+                    patientRegistration.PrescriptionInsuranceCompany,
+                    patientRegistration.InsurancePhoneNumber,
+                    patientRegistration.BIN,
+                    patientRegistration.PCN,
+                    patientRegistration.ID,
+                    patientRegistration.GroupNum,
+                    patientRegistration.AdditionalInfomartion,
+                    patientRegistration.InsuranceImagePath
+
+                    );
                 return result;
             }
             catch (Exception ex)
@@ -216,8 +307,6 @@ namespace RxOutlet.DataAccess.DataManager
 
         public IList<GetProductDetailsResult> GetProductDetails(int id)
         {
-
-
             try
             {
                 ISingleResult<GetProductDetailsResult> result =
@@ -230,12 +319,14 @@ namespace RxOutlet.DataAccess.DataManager
             }
         }
 
-        public IList<GetDrugTypesResult> GetDrugTypes()
+
+
+        public IList<GetDrugTypesResult> GetDrugTypes(int pagesize,int pagenumber)
         {
             try
             {
                 ISingleResult<GetDrugTypesResult> result =
-                DBContext.GetDrugTypes();
+                DBContext.GetDrugTypes(pagesize, pagenumber);
                 return result.ToList();
             }
             catch (Exception ex)
@@ -340,16 +431,6 @@ namespace RxOutlet.DataAccess.DataManager
         //}
 
 
-
-
-
-
-
-
-
-
-
-
         public IList<GetMenuResult> GetCompleteMenu()
         {
             ISingleResult<GetMenuResult> result = DBContext.GetMenu();
@@ -390,6 +471,13 @@ namespace RxOutlet.DataAccess.DataManager
                 return 0;
             }
         }
+
+     
+
+
+
+
+
     }
 
 

@@ -1,4 +1,4 @@
-﻿@model RxOutlet.Models.ContactUsModel
+﻿@model RxOutlet.Models.ContactUs
 
 @{
     ViewBag.Title = "ContactUS";
@@ -139,51 +139,6 @@
 </head>
 <body>
 
-    @*@Html.Partial("_LoginModalpopUp")*@
-
-
-        @*<div class="container">
-            <div class="row">
-                <div class="col-xs-12">
-
-             <button class="btn btn-primary btn-sm pull-right" data-target="#loginmodal" data-toggle="modal">Login</button>
-
-                    <div class="modal" id="loginmodal" tabindex="-1">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button class="close" data-dissmiss="modal">&times;</button>
-                                    <h4 class="modal-title">Login</h4>
-                                </div>
-
-                                <div class="modal-body">
-
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="inputusername">User Name </label>
-                                            <input class="form-control" placeholder="Login UserName" type="text" id="inputusername" />
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="inputPassword">Password </label>
-                                            <input class="form-control" placeholder="Login Password" type="text" id="inputpassword" />
-                                        </div>
-                                    </form>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button class="btn btn-primary">Login</button>
-                                    <button class="btn btn-primary" data-dissmiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>*@
-
-
-
-
-
                 <div class="block block-breadcrumbs">
                     <ul>
                         <li class="home">
@@ -199,7 +154,7 @@
                         <div id="message-box-conact"></div>
                         <div class="row">
                             <div class="col-sm-6">
-                                <h4>CONTACT FORM</h4>
+                           
 
                                 <div>
                                     @using (Html.BeginForm())
@@ -210,9 +165,7 @@
                                                 <td>SubjectHeading</td>
                                               
                                                 <td>
-                                                    @Html.DropDownList("ddlVendor", Model.SubjectHeading, "Select Manufacurer")
-                                                    @*@Html.DropDownListFor(m => m.SubjectHeading, Model.SubjectHeading, "Please select")*@
-                                                    @*@Html.DropDownListFor(m => m.SubjectHeadingID, (IEnumerable<SelectListItem>)ViewBag., new { @class = "form-control" })*@
+                                                    @Html.DropDownList("SubjectHeading")                                                
                                                 </td>
 
                                                
@@ -229,10 +182,7 @@
                                                 <td>Message</td>
                                                 <td>@Html.TextAreaFor(x => x.Message)</td>
                                             </tr>
-                                            <tr>
-                                                <td>Status</td>
-                                                <td>@Html.TextBoxFor(x => x.Status)</td>
-                                            </tr>
+                                           
                                             <tr>
                                                 <td></td>
                                                 <td><input id="Submit" type="submit" value="submit" /></td>
@@ -244,45 +194,14 @@
                                 </div>
 
                               
-                               @*<div>
-                                    <p>
-                                        <label>Subject Heading</label>
-                                        <select id="subject">
-                                            <option value="Customer service">Customer service</option>
-                                            <option value="Webmaster"> Customer service</option>
-                                        </select>
-                                    </p>
-                                    <p>
-                                        <label>Email address</label>
-                                        <input id="address" type="text">
-                                    </p>
-                                    <p>
-                                        <label>Order reference</label>
-                                        <input id="order_reference" type="text">
-                                    </p>
-                                    <p>
-                                        <label>Message</label>
-                                        <textarea id="message" rows="5"></textarea>
-                                    </p>
-                                    <p>
-                                        <button class="button" id="btn-send-contact">Submit</button>
-                                    </p>
-                                </div>*@
+                           
                             </div>
                             <div class="col-sm-6">
                                 <h4> ADDRESS INFOMATION</h4>
                                 <div>
-                                    <p>Lorem ipsum dolor sit amet onsectetuer adipiscing elit. Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor dapibus eget. Mauris tincidunt aliquam lectus sed vestibulum. Vestibulum bibendum suscipit mattis.</p>
-                                    <ul>
-                                        <li>Praesent nec tincidunt turpis.</li>
-                                        <li>Aliquam et nisi risus.&nbsp;Cras ut varius ante.</li>
-                                        <li>Ut congue gravida dolor, vitae viverra dolor.</li>
-                                    </ul>
-                                    <br>
                                     <ul class="store_info">
-                                        <li><i class="fa fa-home"></i> 1063 Freelon Street San Francisco, CA 95108</li>
-                                        <li><i class="fa fa-phone"></i><span>+ 012.333.44444</span></li>
-                                        <li><i class="fa fa-phone"></i><span>+ 012.333.44444</span></li>
+                                        <li><i class="fa fa-home"></i> 10 Meadowlands Parkway Secaucus, NJ 07094</li>
+                                        <li><i class="fa fa-phone"></i><span>+ (201) 866-1600</span></li>                                      
                                         <li><i class="fa fa-envelope"></i>Email: <span><a href="">support@rxoutletinc.com</a></span></li>
                                     </ul>
                                 </div>

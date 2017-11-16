@@ -48,6 +48,7 @@ namespace RxOutlet.Models
 
     public class LoginViewModel
     {
+
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]
@@ -66,6 +67,7 @@ namespace RxOutlet.Models
 
     public class RegisterViewModel
     {
+
         [Required]
         [DataType(DataType.Text)]      
         [Display(Name = "Name")]
@@ -76,6 +78,7 @@ namespace RxOutlet.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
 
         [Required]
         [DataType(DataType.PhoneNumber)]
@@ -89,18 +92,20 @@ namespace RxOutlet.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
+
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        //[Required]
-        //[DataType(DataType.Text)]
-        //[Display(Name = "Captcha")]
-        //public string Captcha { get; set; }
+
+        public bool PrivacyAcceptance { get; set; }
 
 
+        public bool SplOffersEmail { get; set; }
 
+
+        public bool PrescriptionEmail { get; set; }
 
     }
 

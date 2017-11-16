@@ -153,6 +153,6 @@ G:\GitHub Folder\RxOutlet\RxOutlet.Models\bin\Debug\ko\System.Spatial.resources.
 G:\GitHub Folder\RxOutlet\RxOutlet.Models\bin\Debug\ru\System.Spatial.resources.dll
 G:\GitHub Folder\RxOutlet\RxOutlet.Models\bin\Debug\zh-Hans\System.Spatial.resources.dll
 G:\GitHub Folder\RxOutlet\RxOutlet.Models\bin\Debug\zh-Hant\System.Spatial.resources.dll
+G:\GitHub Folder\RxOutlet\RxOutlet.Models\obj\Debug\RxOutlet.Models.csprojResolveAssemblyReference.cache
 G:\GitHub Folder\RxOutlet\RxOutlet.Models\obj\Debug\RxOutlet.Models.dll
 G:\GitHub Folder\RxOutlet\RxOutlet.Models\obj\Debug\RxOutlet.Models.pdb
-G:\GitHub Folder\RxOutlet\RxOutlet.Models\obj\Debug\RxOutlet.Models.csprojResolveAssemblyReference.cache

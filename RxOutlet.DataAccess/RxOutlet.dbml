@@ -54,13 +54,6 @@
       <Column Name="RegularPrice" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.GetDrugTypes" Method="GetDrugTypes">
-    <ElementType Name="GetDrugTypesResult">
-      <Column Name="DrugTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DrugTypeName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
-      <Column Name="drugcount" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.GetSupplierName" Method="GetSupplierName">
     <ElementType Name="GetSupplierNameResult">
       <Column Name="SupplierId" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -195,7 +188,72 @@
   </Function>
   <Function Name="dbo.GetSingUpSecurityQuestions" Method="GetSingUpSecurityQuestions">
     <ElementType Name="GetSingUpSecurityQuestionsResult">
+      <Column Name="SecurityQuestionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="SecurityQuestions" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.PateintRegistration" Method="PateintRegistration">
+    <Parameter Name="UserId" Parameter="userId" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="PateintRegistrationID" Parameter="pateintRegistrationID" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="FirstName" Parameter="firstName" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="LastName" Parameter="lastName" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="MI" Parameter="mI" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="city" Type="System.String" DbType="VarChar(128)" />
+    <Parameter Name="State" Parameter="state" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PostalCode" Parameter="postalCode" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="DOB" Parameter="dOB" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Gender" Parameter="gender" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="PatientInfoPhoneNumber" Parameter="patientInfoPhoneNumber" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="PateintInsuranceID" Parameter="pateintInsuranceID" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="Medicare" Parameter="medicare" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="MedicareID" Parameter="medicareID" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="PrescriptionInsuranceCompany" Parameter="prescriptionInsuranceCompany" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="InsurancePhoneNumber" Parameter="insurancePhoneNumber" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="BIN" Parameter="bIN" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="PCN" Parameter="pCN" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="ID" Parameter="iD" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="GroupNum" Parameter="groupNum" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="AdditionalInfomartion" Parameter="additionalInfomartion" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="InsuranceImagePath" Parameter="insuranceImagePath" Type="System.String" DbType="VarChar(256)" />
+    <ElementType Name="PateintRegistrationResult">
+      <Column Name="email" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PateintRegistrationID" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ConditionBased" Method="ConditionBased">
+    <Parameter Name="UserId" Parameter="userId" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="RXNumber" Parameter="rXNumber" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="storenumber" Type="System.String" DbType="VarChar(256)" />
+    <ElementType Name="ConditionBasedResult">
+      <Column Name="RXNumber" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetDrugTypes" Method="GetDrugTypes">
+    <Parameter Name="pageSize" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pagenumber" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetDrugTypesResult">
+      <Column Name="DrugTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DrugTypeName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="drugcount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ContactUSInfo" Method="ContactUSInfo">
+    <Parameter Name="ContactUsID" Parameter="contactUsID" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="SubjectHeading" Parameter="subjectHeading" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="OrderReference" Parameter="orderReference" Type="System.String" DbType="VarChar(256)" />
+    <Parameter Name="Message" Parameter="message" Type="System.String" DbType="VarChar(5000)" />
+    <ElementType Name="ContactUSInfoResult">
+      <Column Name="email" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="ContactUSId" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetSubjectHeading" Method="GetSubjectHeading">
+    <ElementType Name="GetSubjectHeadingResult">
+      <Column Name="SubjectHeadingID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SubjectHeadingName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

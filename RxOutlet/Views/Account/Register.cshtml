@@ -1,33 +1,33 @@
-﻿@model RxOutlet.Models.RegistrationModel
+﻿ @model RxOutlet.Models.RegistrationModel
 @{
     ViewBag.Title = "Register";
-}    
-    
+}
 
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-    {    @Html.AntiForgeryToken()
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{ 
+       @Html.AntiForgeryToken()
 
-        @Html.ValidationSummary("", new { @class = "text-danger" })
-        <div class="container">
-            <div class="row">
-                <div class="block block-breadcrumbs">
-                    <ul>
-                        <li class="home">
-                            <a href="#"><i class="fa fa-home"></i></a>
-                            <span></span>
-                        </li>
-                        <li>Authentication</li>
-                    </ul>
-                </div>
-                <div class="main-page">
-                    <h1 class="page-title text-center" style="color:#4557b8;"> Sign up</h1>
-
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="container">
+        <div class="row">
+            <div class="block block-breadcrumbs">
+                <ul>
+                    <li class="home">
+                        <a href="#"><i class="fa fa-home"></i></a>
+                        <span></span>
+                    </li>
+                    <li>Authentication</li>
+                </ul>
+            </div>
+            <div class="main-page">
+                <h1 class="page-title text-center" style="color:#4557b8;"> Sign up</h1>
                     <div class="page-content">
 
                         <div class="row">
                             <div class="col-sm-3">
 
                             </div>
+
                             <div class="col-sm-6">
                                 <form class="form-horizontal" role="form">
                                     <div class="box-border">
@@ -35,10 +35,8 @@
                                             <div class="form-group">
                                                 <label class="col-sm-4"> Name </label>
                                                 <div class="col-sm-8">
-                                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", id = "txtName" })
+                                                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control", id = "txtName" })
 
-
-                                                    @*<input type="text" class="form-control">*@
                                                 </div>
                                             </div>
 
@@ -48,8 +46,6 @@
 
                                                     @Html.TextBoxFor(m => m.Email, new { @class = "form-control", id = "txtEmail" })
 
-
-                                                    @*<input type="text" class="form-control">*@
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -64,8 +60,6 @@
                                                 <div class="col-sm-8">
                                                     @Html.PasswordFor(m => m.Password, new { @class = "form-control", id = "txtPassword" })
 
-
-                                                    @*<input type="text" class="form-control">*@
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -79,33 +73,43 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-4">Security Question</label>
+
+                                                @*@Html.DropDownList("Mobiledropdown1",)*@
+
                                                 <div class="col-sm-8">
-                                                    <select class="form-control" name="Province">
 
-                                                        <option value="AK">What city did i grow up in?</option>
-                                                        <option value="AZ">Where did i born?</option>
-                                                        <option value="AR">Where is your childhood Friend name</option>
+                                                    @*@Html.DropDownListFor(M => M.Security, new SelectList(Model.Security), new { @class = "form-control", @name = "Province" })*@
+                                                    @Html.DropDownList("ListItem")
+
+                                                    @*@Html.DropDownList("City", (SelectList)ViewBag.CityList, "Please select")*@
 
 
-
-                                                    </select>
+                                                    @*@Html.DropDownList("ListItem", m => m.SecurityQuestionID, "Select Manufacurer")*@
+                                                    @*@Html.DropDownListFor(m => m.SecurityQuestionID, new SelectList("ListItem", "Value", "Text"))*@
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-4">Security Answer</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control">
+
+                                                    @Html.TextBoxFor(m => m.SecurityAnswer, new { @class = "form-control", id = "txtSecurityAnswerS" })
+                                                    @*<input type="text" class="form-control">*@
                                                 </div>
                                             </div>
                                         </div>
 
                                         <h4>Terms of Use and Privacy Statement</h4>
                                         <div class="bg-info" style="background-color: #f5f5f5;">
+                                        
 
-                                            <h5><strong>Terms of Use and Privacy Statement</strong> </h5>
+
+                                            <h5><strong>Terms of Use and Privacy Statement</strong> </h5>     
+
                                             <p>
-
-                                                <input type="checkbox" name="checking" value="Yes">Yes,I have read and accept the <a href="privacy.html" style="text-decoration:underline;">RXOutlet Pharmacy Online Terms of Use </a> and <a href="privacy.html" style="text-decoration:underline;">Privacy Statement.</a>
+                                                @*<input id="Remember" name="Remember" type="checkbox" value="@Model.PrivacyAcceptance" />*@
+                                                <label>@Html.CheckBoxFor(m => m.PrivacyAcceptance, new { id = "chkbxPrivacyAcceptance" })  Yes,I have read and accept the <a href="~/DrugImages/terms.pdf" target="_blank" style="text-decoration:underline;">RXOutlet Pharmacy Online Terms of Use </a> and <a href="~/DrugImages/PrivacyPolicy.pdf" target="_blank" style="text-decoration:underline;">Privacy Statement.</a> </label>
+                                               
+                                                 @*<input type="checkbox" name="checking" value="Yes">Yes,I have read and accept the <a href="privacy.html" style="text-decoration:underline;">RXOutlet Pharmacy Online Terms of Use </a> and <a href="privacy.html" style="text-decoration:underline;">Privacy Statement.</a>*@
 
                                             </p>
 
@@ -114,26 +118,30 @@
                                         <div class="bg-info" style="background-color: #f5f5f5;">
                                             <h5><strong>Privacy Choice (optional)</strong> </h5>
                                             <p>
-                                                <input type="checkbox" name="checking" value="Yes">Yes,Please Email me the Information from RXOutlet.com about special offers, new products, health information and more!
+                                                <label>@Html.CheckBoxFor(m => m.SplOffersEmail, new { id = "chkbxSplOffersEmail" })  Yes,Please Email me the Information from RXOutlet.com about special offers, new products, health information and more!</label>
+                                              
+                                                @*<input type="checkbox" ame="checking" value="Yes">Yes,Please Email me the Information from RXOutlet.com about special offers, new products, health information and more!*@
 
                                             </p>
 
                                             <p>
-                                                <input type="checkbox" name="checking" value="Yes">Yes,Please Email me the Information from RXOutlet.com about my prescriptions.
+                                                <label>@Html.CheckBoxFor(m => m.PrescriptionEmail, new { id = "chkbxPrescriptionEmail" }) Yes,Please Email me the Information from RXOutlet.com about my prescriptions.</label>
+
+                                                @*<input type="checkbox" name="checking" value="Yes">Yes,Please Email me the Information from RXOutlet.com about my prescriptions.*@
 
                                             </p>
 
-                                            <p>
-                                                <input type="checkbox" name="checking" value="Yes">Remember me on this computer.(Not recommended if on a shared computer.)
+                                            @*<p>
+                                        <input type="checkbox" name="checking" value="Yes">Remember me on this computer.(Not recommended if on a shared computer.)
 
-                                            </p>
+                                    </p>*@
                                         </div>
                                         <div class="form-group text-center" style="margin-top:2%" ;>
                                             <input type="submit" class="button" value="Sign Up" id="btnRegister" />
                                             @*<button class="button"> <a href="user.html" style="color:#ffffff"> <i class="fa fa-lock"></i> Sign up </a> </button>*@
                                         </div>
                                         <div class="form-group text-center">
-                                            Already Signup? <a href="login.html" style="color:#4557b8;"> Login here. </a>
+                                            Already Signup? @Html.ActionLink("Login Here", "Login")
                                         </div>
 
                                     </div>
@@ -145,12 +153,112 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
+</div>
         </div>
 
-    }
+    </div>
+
+}
+
+
+
+@*<p>
+            @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+
+
+     @Html.TextBoxFor(m => m.Name, new { @class = "form-control", id = "txtName" })
+
+     </p>
+      <p>
+                                        @Html.LabelFor(m => m.Email)
+
+
+
+                                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", id = "txtEmail" })
+
+    </p>
+                                    <p>
+                                        @Html.LabelFor(m => m.MobileNum)
+
+
+
+                                            @Html.TextBoxFor(m => m.MobileNum, new { @class = "form-control", id = "txtMobileNum" })
+    </p>
+                                    <p>
+                                      @Html.LabelFor(m => m.Password)
+
+
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", id = "txtPassword" })
+
+    </p>
+                                    <p>
+                                        @Html.LabelFor(m => m.ConfirmPassword)
+                                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", id = "txtConfirmPassword" })
+
+    </p>
+                                    <p class="text-center">
+                                        <input type="submit" class="button" value="Sign Up" id="btnRegister"  />
+
+                                    </p>
+                                    <p class="text-center">
+                                        Already Signup? @Html.ActionLink("Login Here", "Login")
+                                    </p>*@
+
+
+
+
+@*@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <h4>Register</h4>
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", id = "txtName" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", id = "txtEmail" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.MobileNum, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.MobileNum, new { @class = "form-control", id = "txtMobileNum" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", id = "txtPassword" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", id = "txtConfirmPassword" })
+            </div>
+        </div>
+        @*<div class="form-group">
+                @Html.LabelFor(m => m.Captcha, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Captcha, new { @class = "form-control",id="txtCaptcha" })
+                </div>
+            </div>*@
+@*<div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" class="btn btn-default" value="Sign Up" id="btnRegister" />
+            </div>
+        </div>
+    }*@
+
+
+
+
 
 
 
@@ -250,6 +358,30 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+
+
+
+    <script>
+  function FillCity() {
+    $.ajax({
+        url: 'http://localhost:64404/api/Rxoutlet/GetSignUpSecurityQuestions',
+        type: "GET",
+        dataType: "JSON",
+        data: "",
+        success: function (securities) {
+            $("#Security").html(""); // clear before appending new list
+            $.each(securities, function (i, security) {
+                $("#Security").append(
+                    $('<option></option>').val(security.SecurityQuestionID).html(security.SecurityQuestions));
+            });
+        }
+    });
+  }
+    </script>
+
+
+
 }
 
 

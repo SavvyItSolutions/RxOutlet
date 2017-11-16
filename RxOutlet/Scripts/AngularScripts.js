@@ -360,6 +360,9 @@ app.service('DrugService', ['$http', DrugService]);
                $scope.gridApi = gridApi;
                //declare the events
 
+
+
+
                $scope.gridApi.core.on.sortChanged($scope, function (grid, sortColumns) {
                    $scope.sort = [];
                    angular.forEach(sortColumns, function (sortColumn) {
@@ -370,6 +373,7 @@ app.service('DrugService', ['$http', DrugService]);
                    });
                    $scope.load();
                });
+
 
                $scope.gridApi.core.on.filterChanged($scope, function () {
                    $scope.filter = [];
@@ -502,7 +506,7 @@ app.service('DrugService', ['$http', DrugService]);
        $scope.sort = [];
        $scope.filter = [];
        $scope.pagination = {
-           pageSize:10,
+           pageSize:5,
            pageNumber: 1,
            totalItems: null,
            getTotalPages: function () {
@@ -612,9 +616,6 @@ app.service('DrugService', ['$http', DrugService]);
            }
        };
 
-
-       
-
        $scope.load = function () {
            DrugService.readAll($scope.pagination.pageSize, $scope.pagination.pageNumber, $scope.sort, $scope.filter).then(function (response) {
                $scope.gridOptions.data = response.DrugList;
@@ -625,13 +626,6 @@ app.service('DrugService', ['$http', DrugService]);
 
        $scope.load();
    }]);
-
-
-
-
-
-
-
 
 
    function DrugService($http) {

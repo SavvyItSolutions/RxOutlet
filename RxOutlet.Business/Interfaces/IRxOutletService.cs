@@ -18,7 +18,7 @@ namespace RxOutlet.Business
         GetDrugNameResponse GetDrugList();
         GetDrugNameResponse GetSupplierName();
         List<DrugSearch> GetDrugNamesSearchService();
-        GetDrugNameResponse GetDrugTypes();
+        GetDrugNameResponse GetDrugTypes(int pagesize,int pagenumber);
         GetDrugNameResponse GetProductDetails(int id);
         //  GetDrugNameResponse GetCartItems(string UserName);
 
@@ -31,14 +31,16 @@ namespace RxOutlet.Business
         string InsertActivationCode(string ActivationCode, string Email);
         int UpdateVerificationEmail(string ActivationCode);
 
+        PatientRegistrationResponse PatientRegistration(PateintRegistration patientRegistration);
 
         UploadPrescriptionResponse UploadingPrescriptionNew(UploadPrescription uploadingPrescription);
         TransferPrescriptionResponse TransferPrescription(TransferPrescription transferPrescription);
         DrivingLicenseResponse CheckDL(string userid);
         List<RegistrationModel> GetSecurityQuestions();
+        List<ContactUs> GetContactUsSubjectHeading();
+        ContactUsResponse ContactUs(ContactUs contactUs);
 
-
-
+        ConditionBasedResponse LocateCustomer(ConditionBased conditionBased);
 
     }
 }
