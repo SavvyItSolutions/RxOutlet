@@ -10,8 +10,6 @@ namespace RxOutlet.Models
     {
         public string TransferPrescriptionID { get; set; }
 
-
-
         public string PharmacyName { get; set; }
         public string PharmacyNumaber { get; set; }
         public string PharmacyFax { get; set; }

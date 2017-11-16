@@ -45,8 +45,6 @@ namespace RxOutlet.Models
             pateintRegistrationID = PateintRegistrationID;
         }
 
-
-
         
         public string PateintInsuranceID { get; set; }
 

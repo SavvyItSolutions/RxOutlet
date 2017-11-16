@@ -19,7 +19,6 @@ namespace RxOutlet.Models
         { }
         public ConditionBased( string rxnumber)
         {
-
             rxnumber = RXNumber;
         }
 

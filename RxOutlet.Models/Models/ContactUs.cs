@@ -10,6 +10,8 @@ namespace RxOutlet.Models
   public  class ContactUs
     {
 
+
+
         public string ContactUsID { get; set; }
         public int? SubjectHeadingID { get; set; }
         public string SubjectHeadingName { get; set; }

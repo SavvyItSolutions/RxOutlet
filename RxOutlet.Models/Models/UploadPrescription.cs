@@ -16,8 +16,6 @@ namespace RxOutlet.Models
         public string Filepath { get; set; }
         public string UserID { get; set; }
         public string CreatedDate { get; set; }
-
-
         //public string imageFullPath=null;
 
         //public HttpPostedFileBase ImageUrl { get; set; }
