@@ -55,13 +55,12 @@
     <div ui-grid="gridOptions" class="grid gridStyle"></div>
     <p>
         Current page:
-        <input type="number" min="1" max="{{ pagination.getTotalPages() }}" ng-model="pagination.pageNumber" ng-change="load()">of {{ pagination.getTotalPages() }}
     </p>
     <button type="button" class="btn btn-success" ng-click="pagination.previousPage()">previous page</button>
     <button type="button" class="btn btn-success" ng-click="pagination.nextPage()">next page</button>
 </div>
 
-
+    
     @*ng grid Filter  ---- Working*@
 
 
@@ -70,13 +69,28 @@
 
 
 <div ng-controller="ServiceCntrl">
-    <div ui-grid="gridOptions" class="grid" width="100%"></div>
+    <div ui-grid="gridOptions" class="grid" @*width="100%"*@></div>
+    <div class="row">
+        <table class="col-md-12">
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr> 
+
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+
+    </div>
     <p>
         Current page:
-        <input type="number" min="1" max="{{ pagination.getTotalPages() }}" ng-model="pagination.pageNumber" ng-change="load()">of {{ pagination.getTotalPages() }}
+        <input type="number" min="1" max="{{pagination.getTotalPages()}}" ng-model="pagination.pageNumber" ng-change="load(pagination)">of {{ pagination.getTotalPages() }}
     </p>
-    <button type="button" class="btn btn-success" ng-click="pagination.previousPage()">previous page</button>
-    <button type="button" class="btn btn-success" ng-click="pagination.nextPage()">next page</button>
+    <button type="button" class="btn btn-success" ng-disabled="previousdisabled" ng-click="pagination.previousPage(pagination)">previous page</button>
+    <button type="button" class="btn btn-success" ng-disabled="nextdisabled" ng-click="pagination.nextPage(pagination)">next page</button>
 </div>
 
 

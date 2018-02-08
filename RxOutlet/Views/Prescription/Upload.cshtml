@@ -22,7 +22,7 @@
                     <div id="tab-1" class="tab-panel active">
 
                         <p class="text-center" style="color: #438eb9;"> <strong> Please fill New Prescription by Uploading the Prescription or by Filling the Form. </strong></p>
-
+                  
 
                         @using (Html.BeginForm("Upload", "Prescription", FormMethod.Post, new { enctype = "multipart/form-data", name = "send-contact", id = "send-contact" }))
                         {
@@ -33,7 +33,7 @@
                     
                                     <div class="form-group text-center">
                                        
-                                            <input type="file"  name="photo" class="btn btn-info btn-cons">
+                                            <input type="file"  name="photo" class="btn btn-info btn-cons" multiple>
 
                                         </div>
 
@@ -48,11 +48,8 @@
                                 <div class="vertical-divider">or</div>
                                 <div class="col-xs-6">
 
-
-
                                     <form class="form-horizontal" action="" method="post">
                                         <fieldset>
-
 
                                             <!-- Name input-->
                                             <div class="form-group">
@@ -147,7 +144,93 @@
                                 <!-- div.dataTables_borderWrap -->
                                 <div>
                                     <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">
-                                        <table @*ng-controller="PresListCntrl"*@ id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="dynamic-table_info">
+
+
+                                        <table class="boredered" style="margin-top: 20px;">
+                                            <thead>
+                                                <tr>
+                                                    <!--                                   <th ng-click="sort('EmployeeID')">Employee ID
+                                                    <span class="glyphicon sort-icon" ng-show="sortBy=='EmployeeID'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                                  </th> -->
+                                                    <!--                                     <th ng-click="sort('DateOfBirth')">DOB
+                                                    <span class="glyphicon sort-icon" ng-show="sortBy=='DateOfBirth'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                                    </th> -->
+                                                    <th ng-click="sort('FirstName')">
+                                                        Name
+                                                        <span class="glyphicon sort-icon" ng-show="sortBy=='FirstName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                                    </th>
+                                                    <th ng-click="sort('Phonenumber')">
+                                                        Phone
+                                                        <span class="glyphicon sort-icon" ng-show="sortBy=='Phonenumber'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                                    </th>
+                                                    <!--                                     <th ng-click="sort('SSN')">SSN
+                                                    <span class="glyphicon sort-icon" ng-show="sortBy=='SSN'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                                    </th> -->
+                                                    <th ng-click="sort('EmailID')">
+                                                        Email
+                                                        <span class="glyphicon sort-icon" ng-show="sortBy=='EmailID'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                                    </th>
+                                                    <!--                                   <th ng-click="sort('EmployeeRoleId')">EmployeeRoleId
+                                                    <span class="glyphicon sort-icon" ng-show="sortBy=='EmployeeRoleId'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span> -->
+                                                    </th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="employee in mainCtrl.employees| pagination: curPage * pageSize | limitTo: pageSize|orderBy:sortBy:reverse|filter:search">
+                                                    <!-- <td>{{employee.EmployeeID}}</td> -->
+                                                    <!-- <td>{{employee.DateOfBirth}}</td> -->
+                                                    <td ng-click="updateUser(employee.EmployeeID)">{{employee.FirstName}} {{employee.LastName}} </td>
+                                                    <td>{{employee.PhoneNumber}}</td>
+                                                    <!-- <td>{{employee.SSN}}</td> -->
+                                                    <td>{{employee.EmailID}}</td>
+                                                    <!-- <td>{{employee.EmployeeRoleId}}</td> -->
+                                                    <td>
+                                                        <!--                                     <a href="/images/myw3schoolsimage.jpg" download>
+                                                         <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                                                        </a> -->
+
+                                                        <i ng-click="updateUser(employee.EmployeeID)" class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                        <i class="fa fa-trash" aria-hidden="true" ng-click="mainCtrl.deleteEmployee(employee)"></i>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="pagination pagination-centered" ng-show="products.length">
+                                            <ul class="pagination-controle pagination">
+                                                <li>
+                                                    <button type="button" class="btn btn-primary" ng-disabled="curPage == 0"
+                                                            ng-click="curPage=curPage-1">
+                                                        &lt; PREV
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <span>Page {{curPage + 1}} of {{ numberOfPages() }}</span>
+                                                </li>
+                                                <li>
+                                                    <button type="button" class="btn btn-primary"
+                                                            ng-disabled="curPage >= numberOfPages() - 1"
+                                                            ng-click="curPage = curPage+1">
+                                                        NEXT &gt;
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        <table ng-controller="PresListCntrl" id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="dynamic-table_info">
                                             <thead>
                                                 <tr role="row">
                                                     <th class="center sorting_disabled" rowspan="1" colspan="1" aria-label="">
@@ -168,128 +251,21 @@
                                                 </tr>
                                             </thead>
 
-                                            <tbody @*ng-repeat="x in PrescriptionList.GetPrescriptionList"*@>
+                                            <tbody ng-repeat="x in PresListCntrl.employee">
 
 
-                                                <tr role="row" class="odd">
-                                                    <td class="center">
-                                                        <label class="pos-rel">
-                                                            <input type="checkbox" class="ace">
-                                                            <span class="lbl"></span>
-                                                        </label>
-                                                    </td>
-
-                                                    <td>  09/03/2017 </td>
-                                                    <td> RX 1789938 </td>
-                                                    <td> Aspirin</td>
-                                                    <td> 09/27/2017 </td>
-                                                    <td>
-                                                        <a class="blue" href="https://icsintegration.blob.core.windows.net/rxoutlet/0f0392f2-e18f-4032-afa7-d80d23b1f11b-.gif" target="_blank">
-                                                            <i class="ace-icon fa fa-search-plus bigger-130"></i>
-                                                        </a>
-                                                    </td>
-                                                  
-                                                    
-
-
-                                                </tr>
-                                                <tr role="row" class="odd">
-                                                    <td class="center">
-                                                        <label class="pos-rel">
-                                                            <input type="checkbox" class="ace">
-                                                            <span class="lbl"></span>
-                                                        </label>
-                                                    </td>
-
-                                                    <td>  09/15/2017 </td>
-                                                    <td> RX 8769321 </td>
-                                                    <td> Synthroid</td>
-                                                    <td>  10/02/2017</td>
-                                                    <td>
-                                                        <a class="blue" href="https://icsintegration.blob.core.windows.net/rxoutlet/0f0392f2-e18f-4032-afa7-d80d23b1f11b-.gif" target="_blank">
-                                                            <i class="ace-icon fa fa-search-plus bigger-130"></i>
-                                                        </a>
-                                                    </td>
+                                            
+                                                <tr>
+                                                    <td>  {{x.LastFilled}} </td>
+                                                    <td>  {{x.PrescriptionNumber}} </td>
+                                                    <td>  {{x.Medication}} </td>
+                                                    <td>  {{x.RefillDate}} </td>
 
 
 
 
-                                                </tr>
-                                                <tr role="row" class="odd">
-                                                    <td class="center">
-                                                        <label class="pos-rel">
-                                                            <input type="checkbox" class="ace">
-                                                            <span class="lbl"></span>
-                                                        </label>
-                                                    </td>
-
-                                                    <td>  09/10/2017 </td>
-                                                    <td> RX 0458929 </td>
-                                                    <td> Nexium</td>
-                                                    <td> 09/28/2017</td>
-                                                    <td>
-                                                        <a class="blue" href="https://icsintegration.blob.core.windows.net/rxoutlet/0f0392f2-e18f-4032-afa7-d80d23b1f11b-.gif" target="_blank">
-                                                            <i class="ace-icon fa fa-search-plus bigger-130"></i>
-                                                        </a>
-                                                    </td>
-
-
-
-                                                </tr>
-                                                <tr role="row" class="odd">
-                                                    <td class="center">
-                                                        <label class="pos-rel">
-                                                            <input type="checkbox" class="ace">
-                                                            <span class="lbl"></span>
-                                                        </label>
-                                                    </td>
-
-                                                    <td>  08/06/2017 </td>
-                                                    <td> RX 1789938 </td>
-                                                    <td> Aspirin</td>
-                                                    <td> 09/25/2017 </td>
-                                                    <td>
-                                                        <a class="blue" href="https://icsintegration.blob.core.windows.net/rxoutlet/0f0392f2-e18f-4032-afa7-d80d23b1f11b-.gif" target="_blank">
-                                                            <i class="ace-icon fa fa-search-plus bigger-130"></i>
-                                                        </a>
-                                                    </td>
-
-
-
-                                                </tr>
-                                                <tr role="row" class="odd">
-                                                    <td class="center">
-                                                        <label class="pos-rel">
-                                                            <input type="checkbox" class="ace">
-                                                            <span class="lbl"></span>
-                                                        </label>
-                                                    </td>
-
-                                                    <td>  09/23/2017 </td>
-                                                    <td> RX 1789938 </td>
-                                                    <td> Crestor </td>
-                                                    <td> 10/13/2017 </td>
-                                                    <td>
-                                                        <a class="blue" href="https://icsintegration.blob.core.windows.net/rxoutlet/0f0392f2-e18f-4032-afa7-d80d23b1f11b-.gif" target="_blank">
-                                                            <i class="ace-icon fa fa-search-plus bigger-130"></i>
-                                                        </a>
-                                                    </td>
-
-
-
-
-                                                </tr>
-
-                                                @*<td>  {{x.CreatedDate}} </td>
-        <td> {{x.Title}} </td>
-        <td> {{x.Name}}</td>
-        <td> {{x.Description}} </td>
-        <td>
-            <a class="blue" href="{{x.Filepath}}">
-                <i class="ace-icon fa fa-search-plus bigger-130"></i>
-            </a>
-        </td>*@
-
+</tr>
+                                               
 
 
                                             </tbody>

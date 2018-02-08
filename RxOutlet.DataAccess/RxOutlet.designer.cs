@@ -48,7 +48,7 @@ namespace RxOutlet.DataAccess
     #endregion
 		
 		public RxOutletDataContext() : 
-				base(global::RxOutlet.DataAccess.Properties.Settings.Default.RxOutletConnectionString5, mappingSource)
+				base(global::RxOutlet.DataAccess.Properties.Settings.Default.RxOutletConnectionString6, mappingSource)
 		{
 			OnCreated();
 		}
@@ -292,6 +292,27 @@ namespace RxOutlet.DataAccess
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<GetSubjectHeadingResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetStates")]
+		public ISingleResult<GetStatesResult> GetStates()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<GetStatesResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetSignupDetails")]
+		public ISingleResult<GetSignupDetailsResult> GetSignupDetails([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="NVarChar(128)")] string userID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID);
+			return ((ISingleResult<GetSignupDetailsResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetPrescriptionList")]
+		public ISingleResult<GetPrescriptionListResult> GetPrescriptionList()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<GetPrescriptionListResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -2468,6 +2489,192 @@ namespace RxOutlet.DataAccess
 				if ((this._SubjectHeadingName != value))
 				{
 					this._SubjectHeadingName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetStatesResult
+	{
+		
+		private System.Nullable<int> _StateId;
+		
+		private string _state;
+		
+		public GetStatesResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StateId", DbType="Int")]
+		public System.Nullable<int> StateId
+		{
+			get
+			{
+				return this._StateId;
+			}
+			set
+			{
+				if ((this._StateId != value))
+				{
+					this._StateId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_state", DbType="VarChar(256)")]
+		public string state
+		{
+			get
+			{
+				return this._state;
+			}
+			set
+			{
+				if ((this._state != value))
+				{
+					this._state = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetSignupDetailsResult
+	{
+		
+		private string _email;
+		
+		private string _name;
+		
+		private string _phonenumber;
+		
+		public GetSignupDetailsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email", DbType="NVarChar(256)")]
+		public string email
+		{
+			get
+			{
+				return this._email;
+			}
+			set
+			{
+				if ((this._email != value))
+				{
+					this._email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(50)")]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this._name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phonenumber", DbType="NVarChar(MAX)")]
+		public string phonenumber
+		{
+			get
+			{
+				return this._phonenumber;
+			}
+			set
+			{
+				if ((this._phonenumber != value))
+				{
+					this._phonenumber = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetPrescriptionListResult
+	{
+		
+		private System.Nullable<System.DateTime> _Lastfilled;
+		
+		private string _prescriptionNumber;
+		
+		private string _medication;
+		
+		private System.Nullable<System.DateTime> _refilldate;
+		
+		public GetPrescriptionListResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lastfilled", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Lastfilled
+		{
+			get
+			{
+				return this._Lastfilled;
+			}
+			set
+			{
+				if ((this._Lastfilled != value))
+				{
+					this._Lastfilled = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_prescriptionNumber", DbType="VarChar(256)")]
+		public string prescriptionNumber
+		{
+			get
+			{
+				return this._prescriptionNumber;
+			}
+			set
+			{
+				if ((this._prescriptionNumber != value))
+				{
+					this._prescriptionNumber = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_medication", DbType="VarChar(256)")]
+		public string medication
+		{
+			get
+			{
+				return this._medication;
+			}
+			set
+			{
+				if ((this._medication != value))
+				{
+					this._medication = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_refilldate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> refilldate
+		{
+			get
+			{
+				return this._refilldate;
+			}
+			set
+			{
+				if ((this._refilldate != value))
+				{
+					this._refilldate = value;
 				}
 			}
 		}

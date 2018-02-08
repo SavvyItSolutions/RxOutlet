@@ -70,11 +70,13 @@
     <Compile Include="Models\DrugNames.cs" />
     <Compile Include="Models\DrugSearch.cs" />
     <Compile Include="Models\GetDrugList.cs" />
+    <Compile Include="Models\GetDrugTypes.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\MainMenu.cs" />
     <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\PateintRegistration.cs" />
+    <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\RegistrationModel.cs" />
     <Compile Include="Models\SignUpSecurityQuestions.cs" />
     <Compile Include="Models\SubMenu.cs" />
@@ -90,11 +92,13 @@
     <Compile Include="Response\DrivingLicenseResponse.cs" />
     <Compile Include="Response\DrugSearchResponse.cs" />
     <Compile Include="Response\GetDrugNameResponse.cs" />
+    <Compile Include="Response\GetDrugTypeResponse.cs" />
     <Compile Include="Response\LoginResponse.cs" />
     <Compile Include="Response\MenuDetailsResponse.cs" />
     <Compile Include="Response\PateintRegistrationResponse.cs" />
     <Compile Include="Response\PatientRegistrationResponse.cs" />
     <Compile Include="Response\PrescriptionResponse.cs" />
+    <Compile Include="Response\ProfileResponse.cs" />
     <Compile Include="Response\RegistrationResponse.cs" />
     <Compile Include="Response\RegistrationResponseModel.cs" />
     <Compile Include="Response\RxOutletMenuItemListResponse.cs" />

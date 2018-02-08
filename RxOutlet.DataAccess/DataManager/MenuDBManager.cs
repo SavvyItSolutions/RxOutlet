@@ -58,6 +58,45 @@ namespace RxOutlet.DataAccess.DataManager
             }
         }
 
+
+      
+
+
+        public ISingleResult<GetSignupDetailsResult> GetSingupDetails(string userid)
+        {
+            try
+            {
+                ISingleResult<GetSignupDetailsResult> result =
+                DBContext.GetSignupDetails(userid);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
+
+
+        public IList<GetStatesResult> GetStates()
+        {
+            try
+            {
+                ISingleResult<GetStatesResult> result =
+                DBContext.GetStates();
+
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
+
         public IList<GetSubjectHeadingResult> GetContactUsSubjectHeading()
         {
             try
@@ -261,12 +300,12 @@ namespace RxOutlet.DataAccess.DataManager
         //}
 
 
-        public IList<PrescriptionListResult> GetPrescriptionList()
+        public IList<GetPrescriptionListResult> GetPrescriptionList()
         {
             try
             {
-                ISingleResult<PrescriptionListResult> result =
-                DBContext.PrescriptionList();
+                ISingleResult<GetPrescriptionListResult> result =
+                DBContext.GetPrescriptionList();
                 return result.ToList();
             }
             catch (Exception ex)

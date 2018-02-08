@@ -39,6 +39,47 @@ namespace RxOutlet.Business
         }
 
 
+        public ProfileResponse GetSignupdetails(string UserID)
+        {
+
+            ProfileResponse retObj = null;
+            try
+            {
+                Profile profile = new Profile();
+
+                IMenuDBManger menuDBManager = new MenuDBManager();
+                ISingleResult<GetSignupDetailsResult> resultObj = menuDBManager.GetSingupDetails(UserID);             
+                var t = resultObj.FirstOrDefault<GetSignupDetailsResult>();
+
+                retObj = new ProfileResponse(0, "Sucess", null);
+            }
+            catch (Exception ex) { return new ProfileResponse(1, ex.Message, null); }
+            return retObj;
+        }
+
+
+        public List<PateintRegistration> GetStates()
+        {
+            List<PateintRegistration> subjectHeadingList = new List<PateintRegistration>();
+            try
+            {
+                IMenuDBManger menuDBManager = new MenuDBManager();
+                IList<GetStatesResult> subjectHeadingresultsObj = menuDBManager.GetStates();
+
+                foreach (GetStatesResult result in subjectHeadingresultsObj)
+                {
+                    subjectHeadingList.Add(new  PateintRegistration
+                    {
+                        StateID =Convert.ToInt16( result.StateId),
+                        State = result.state
+                    });
+                }
+            }
+            catch (Exception ex) { }
+            return subjectHeadingList;
+        }
+
+
         public List<ContactUs> GetContactUsSubjectHeading()
         {
 
@@ -153,18 +194,25 @@ namespace RxOutlet.Business
                 List<UploadPrescriptionModel> prescriptionList = new List<UploadPrescriptionModel>();
 
                 IMenuDBManger menuDBManager = new MenuDBManager();
-                IList<PrescriptionListResult> PrescriptionListresultsObj = menuDBManager.GetPrescriptionList();
+                IList<GetPrescriptionListResult> PrescriptionListresultsObj = menuDBManager.GetPrescriptionList();
 
-                foreach (PrescriptionListResult result in PrescriptionListresultsObj)
+                foreach (GetPrescriptionListResult result in PrescriptionListresultsObj)
                 {
                     prescriptionList.Add(new UploadPrescriptionModel
                     {
-                        Name = result.Name,
-                        Email = result.Email,
-                        PhoneNumber = result.PhoneNumber,
-                        Title = result.Title,
-                        Description = result.Description,
-                        Filepath = result.imageUrl
+
+                        LastFilled=Convert.ToDateTime( result.Lastfilled),
+                        PrescriptionNumber=result.prescriptionNumber,
+                        Medication=result.medication,
+                        RefillDate= Convert.ToDateTime(result.refilldate)
+
+
+                        //Name = result.Name,
+                        //Email = result.Email,
+                        //PhoneNumber = result.PhoneNumber,
+                        //Title = result.Title,
+                        //Description = result.Description,
+                        //Filepath = result.imageUrl
                         //CreatedDate= (result.CreatedDate)
                     });
                 }
@@ -412,19 +460,19 @@ public UploadPrescriptionResponse UploadingPrescriptionNew(UploadPrescription up
 
 
 
-        public GetDrugNameResponse GetDrugTypes(int pagesize,int pagenumber)
+        public GetDrugTypeResponse GetDrugTypes(int pagesize,int pagenumber)
         {
-            GetDrugNameResponse DrugListResponse = new GetDrugNameResponse();
+            GetDrugTypeResponse DrugListResponse = new GetDrugTypeResponse();
             try
             {
-                List<GetDrugList> itemList = new List<GetDrugList>();
+                List<GetDrugTypes> itemList = new List<GetDrugTypes>();
 
                 IMenuDBManger menuDBManager = new MenuDBManager();
                 IList<GetDrugTypesResult> MainMenuResults = menuDBManager.GetDrugTypes(pagesize,pagenumber);
 
                 foreach (GetDrugTypesResult result in MainMenuResults)
                 {
-                    itemList.Add(new GetDrugList
+                    itemList.Add(new GetDrugTypes
                     {
                         DrugTypeID = result.DrugTypeID,
                         DrugTypeName = result.DrugTypeName,

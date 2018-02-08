@@ -33,8 +33,14 @@ namespace RxOutlet.Models
         public string PhysicianName { get; set; }
         public string PhysicianNumber { get; set; }
         public string MedicationFor { get; set; }
-       
 
+
+
+
+   public DateTime LastFilled { get; set; }
+        public string PrescriptionNumber { get; set; }
+        public string Medication { get; set; }
+        public DateTime RefillDate { get; set; }
 
 
     }

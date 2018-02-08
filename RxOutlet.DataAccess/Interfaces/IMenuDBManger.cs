@@ -21,22 +21,23 @@ namespace RxOutlet.DataAccess.Interfaces
             IList<GetDrugTypesResult> GetDrugTypes(int pagesize,int pagenumber);
             IList<GetProductDetailsResult> GetProductDetails(int id);  
             IList<GetUserPrescriptionListResult> GetUserPrescriptionList(string UserID);
-            IList<PrescriptionListResult> GetPrescriptionList();
+            IList<GetPrescriptionListResult> GetPrescriptionList();
             IList<InsertActivationCodeResult> InsertActivationCode(string ActivationCode, string Email);
             int UpdateVerificationMail(string ActivationCode);
             ISingleResult< UploadingPrescriptionNewResult> UploadingPrescriptionNew(UploadPrescription uploadPrescription);
             ISingleResult<TransferPrescriptionResult> TransferPrescription(TransferPrescription transferPrescription);
          // ISingleResult<TransferPrescriptionResult>  TransferPrescriptionNew(TransferPrescriptionModel transferPrescription);
-        ISingleResult<CheckDLResult> CheckDL(string userid);
-        ISingleResult<ConditionBasedResult> LocateCustomer(ConditionBased conditionBased);
-        ISingleResult<PateintRegistrationResult> PatientRegistration(PateintRegistration patientRegistration);
+            ISingleResult<CheckDLResult> CheckDL(string userid);
+            ISingleResult<ConditionBasedResult> LocateCustomer(ConditionBased conditionBased);
+            ISingleResult<PateintRegistrationResult> PatientRegistration(PateintRegistration patientRegistration);
 
-        IList<GetSingUpSecurityQuestionsResult> SecurityQuestions();
+            IList<GetSingUpSecurityQuestionsResult> SecurityQuestions();
+            IList<GetStatesResult> GetStates();
 
-        IList<GetSubjectHeadingResult> GetContactUsSubjectHeading();
+            IList<GetSubjectHeadingResult> GetContactUsSubjectHeading();
 
-        ISingleResult<ContactUSInfoResult> ContactUs(ContactUs contactUs);
-
+            ISingleResult<ContactUSInfoResult> ContactUs(ContactUs contactUs);
+            ISingleResult<GetSignupDetailsResult> GetSingupDetails(string userid);
 
     }
 

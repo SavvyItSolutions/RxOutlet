@@ -26,7 +26,9 @@ namespace RxOutlet.Models
 
         public string city { get; set; }
 
-        public int State { get; set; }
+        public string State { get; set; }
+
+        public int StateID { get; set; }
 
         public string PostalCode { get; set; }
 
@@ -35,6 +37,9 @@ namespace RxOutlet.Models
         public string Gender { get; set; }
 
         public string PhoneNumber { get; set; }
+
+
+     
 
 
         public PateintRegistration()

@@ -22,8 +22,10 @@ namespace RxOutlet.Controllers
         HttpClient client;
 
         HttpClient ConfirmationEmailClient;
-        //The URL of the WEB API Service
+
+      // The URL of the WEB API Service
          string PrescriptionDetailsURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/UploadingPrescriptionNew";
+
       // string PrescriptionDetailsURL = "http://localhost:64404/api/Rxoutlet/ByteArray";
         string ConfirmationMailURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/ConfirmationMail";
 
@@ -38,12 +40,10 @@ namespace RxOutlet.Controllers
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-
             ConfirmationEmailClient = new HttpClient();
             ConfirmationEmailClient.BaseAddress = new Uri(ConfirmationMailURL);
             ConfirmationEmailClient.DefaultRequestHeaders.Accept.Clear();
             ConfirmationEmailClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
         }
 
 
@@ -75,18 +75,39 @@ namespace RxOutlet.Controllers
         public ActionResult Upload(HttpPostedFileBase photo, UploadPrescription model)
         {
 
+
+
             if (photo != null)
-            { 
-            string blobcontainer = "newprescriptions";
-            model.Filepath = imageService.UploadImageAsync(photo, blobcontainer);
-        }
+            {
+                List<string> test = new List<string>();
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                     photo = Request.Files[i];
+                    string blobcontainer = "newprescriptions";
+                  
+                    test.Add(imageService.UploadImageAsync(photo, blobcontainer));
+                  //  model.Filepath = imageService.UploadImageAsync(photo, blobcontainer);
+                   
+                }
+
+                
+                
+                string blobImagePath = "'" + String.Join("','", test) + "'";
+
+                model.Filepath = blobImagePath;
+                model.UserID = User.Identity.GetUserId();
+
+                IRxOutletService RxOutletSvc = new RxOutletService();
+                RxOutletSvc.UploadingPrescriptionNew(model);
+
+            }
             else
                 model.Filepath = "";
 
-            model.UserID = User.Identity.GetUserId();
+            //model.UserID = User.Identity.GetUserId();
 
-            IRxOutletService RxOutletSvc = new RxOutletService();
-                  RxOutletSvc.UploadingPrescriptionNew(model);
+            //IRxOutletService RxOutletSvc = new RxOutletService();
+            //      RxOutletSvc.UploadingPrescriptionNew(model);
 
 
          

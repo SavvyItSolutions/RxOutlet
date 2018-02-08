@@ -1,10 +1,11 @@
-﻿@model RxOutlet.Models.PateintRegistration
-    @{ 
+﻿
+@model RxOutlet.Models.PateintRegistration
+@{
 
-        ViewBag.Title = "Patient Registration";
+    ViewBag.Title = "Patient Registration";
 
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 <div class="container">
     <div class="row">
@@ -12,7 +13,7 @@
         <div class="main-page">
 
             <div class="page-content checkout-page">
-                <form class="form-horizontal" role="form"  action="" method="post" enctype="multipart/form-data" id="js-upload-form">
+                <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data" id="js-upload-form">
 
 
                     <h1 class="text-center" style="color: #5a88ca; margin-top:0%;">Patient Registration Form </h1>
@@ -117,7 +118,7 @@
                                             <label class="col-sm-1"> State:</label>
                                             <div class="col-sm-3">
                                                 @Html.DropDownList("States")
-                                           
+
                                             </div><!--/ [col] -->
 
 
@@ -142,10 +143,10 @@
 
                                             <label for="gender" class="col-sm-2">Gender:</label>
                                             <div class="col-sm-2">
-                                                @Html.RadioButtonFor(m=>m.Gender, "male", new { id = "male" })Male
-                                                
+                                                @Html.RadioButtonFor(m => m.Gender, "male", new { id = "male" })Male
+
                                                 @*<input type="radio" name="fruit" value="Apple">male
-                                                <input type="radio" name="fruit" value="Orange">female*@
+                                                    <input type="radio" name="fruit" value="Orange">female*@
                                                 @Html.RadioButtonFor(model => model.Gender, "female", new { id = "female" })Female
                                             </div><!--/ [col] -->
 
@@ -693,7 +694,7 @@
 </div>
 
 
-    <script type='text/javascript'>
+<script type='text/javascript'>
         $(function () {
             $('.input-group.date').datepicker({
                 calendarWeeks: false,
@@ -704,19 +705,19 @@
 
 
 
-    </script>
-    @*<script type='text/javascript'>
-        jQuery(function($){
-          $.mask.definitions['~']='[+-]';
-                        $('.input-mask-date').mask('99/99/9999');
-                        $('.input-mask-phone').mask('(999) 999-9999');
-                        $('.input-mask-eyescript').mask('~9.99 ~9.99 999');
-                        $(".input-mask-product").mask("a*-999-a999",{placeholder:" ",completed:function(){alert("You typed the following: "+this.val());}});
+</script>
+@*<script type='text/javascript'>
+    jQuery(function($){
+      $.mask.definitions['~']='[+-]';
+                    $('.input-mask-date').mask('99/99/9999');
+                    $('.input-mask-phone').mask('(999) 999-9999');
+                    $('.input-mask-eyescript').mask('~9.99 ~9.99 999');
+                    $(".input-mask-product").mask("a*-999-a999",{placeholder:" ",completed:function(){alert("You typed the following: "+this.val());}});
 
-        });
+    });
 
-                        </script>*@
-    <script type='text/javascript'>
+                    </script>*@
+<script type='text/javascript'>
         $(document).ready(function () {
             var date = new Date();
             var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
@@ -739,4 +740,4 @@
 
             $('#datepicker1,#datepicker2').datepicker('setDate', today);
         });
-    </script>
+</script>

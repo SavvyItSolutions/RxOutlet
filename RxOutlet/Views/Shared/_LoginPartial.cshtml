@@ -8,7 +8,10 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("My Settings", "MySettings", "Home", routeValues: null, htmlAttributes: new { title = "Home" })
+            @Html.ActionLink("Profile", "Profile", "Home", routeValues: null, htmlAttributes: new { title = "Home" })
+        </li> 
+        <li>
+            @Html.ActionLink("Settings", "MySettings", "Home", routeValues: null, htmlAttributes: new { title = "Home" })
         </li> 
         <li>
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })

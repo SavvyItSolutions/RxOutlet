@@ -103,5 +103,11 @@ namespace RxOutlet.Controllers
 
             return View();
         }
+
+        public ActionResult profile() //This view is strongly typed against User
+        {
+
+            return View();
+        }
     }
 }

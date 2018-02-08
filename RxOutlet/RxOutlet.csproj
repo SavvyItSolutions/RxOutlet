@@ -958,6 +958,8 @@
     <Content Include="Views\Home\Testpopup.cshtml" />
     <Content Include="Views\Account\LoginPopup.cshtml" />
     <Content Include="Views\Shared\_PatientInformation.cshtml" />
+    <Content Include="Views\Home\Profile.cshtml" />
+    <Content Include="Views\Shared\RegistratioForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

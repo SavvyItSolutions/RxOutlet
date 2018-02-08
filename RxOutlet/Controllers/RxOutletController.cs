@@ -83,6 +83,25 @@ namespace RxOutlet.Controllers
 
 
         [HttpGet]
+        public List<PateintRegistration> GetStates()
+        {
+
+            PatientRegistrationResponse resp = new PatientRegistrationResponse(2, "Default", null);
+
+            List<PateintRegistration> respModel = new List<PateintRegistration>();
+            try
+            {
+                IRxOutletService rxoutletService = new RxOutletService();
+                respModel = rxoutletService.GetStates();
+            }
+            catch (Exception ex) { resp = new PatientRegistrationResponse(3, ex.Message, null); }
+            return respModel;
+
+        }
+
+
+
+        [HttpGet]
         public List<ContactUs> GetContactUsSubjectHeading()
         {
 
@@ -93,9 +112,6 @@ namespace RxOutlet.Controllers
             {
                 IRxOutletService rxoutletService = new RxOutletService();
                 respModel = rxoutletService.GetContactUsSubjectHeading();
-
-                // var countries = db.Countries.ToList();
-                //  return Json(countries, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex) { resp = new ContactUsResponse(3, ex.Message, null); }
             return respModel;
@@ -116,9 +132,6 @@ namespace RxOutlet.Controllers
             {
                 IRxOutletService rxoutletService = new RxOutletService();
                 respModel = rxoutletService.GetSecurityQuestions();
-
-               // var countries = db.Countries.ToList();
-              //  return Json(countries, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex) { resp = new RegistrationResponseModel(3, ex.Message, null); }
             return respModel;
@@ -476,12 +489,12 @@ namespace RxOutlet.Controllers
         }
 
         [HttpGet]
-        public GetDrugNameResponse GetDrugTypes(int pageSize,int pagenumber)
+        public GetDrugTypeResponse GetDrugTypes(int objectId, int userid)
         {
 
-            GetDrugNameResponse resp = new GetDrugNameResponse();
+            GetDrugTypeResponse resp = new GetDrugTypeResponse();
             IRxOutletService itemService = new RxOutletService();
-            resp = itemService.GetDrugTypes(pageSize,pagenumber);
+            resp = itemService.GetDrugTypes(objectId, userid);
 
             return resp;
         }

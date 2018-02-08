@@ -18,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title RX Outlet</title>
     @Styles.Render("~/Content/css")
-    <link href="/Content/reset.css" rel="stylesheet" />
+    @*<link href="/Content/reset.css" rel="stylesheet" />
     <link href="/Content/jquery-ui.css" rel="stylesheet" />
     <link href="/Content/animate.css" rel="stylesheet" />
     <link href="/Content/bootstrap.css" rel="stylesheet" />
@@ -28,14 +28,14 @@
     <link href="/Content/font-awesome.min.css" rel="stylesheet" />
     <link href="/Content/font-awesome.min1.css" rel="stylesheet" />
     <link href="/Content/global.css" rel="stylesheet" />
-    <link href="/Content/global-circle.css" rel="stylesheet" />
+    <link href="/Content/global-circle.css" rel="stylesheet" />S
     <link href="/Content/jquery.autocomplete.css" rel="stylesheet" />
     <link href="/Content/owl.carousel.css" rel="stylesheet" />
     <link href="/Content/style.css" rel="stylesheet" />
     <link href="/Content/responsive.css" rel="stylesheet" />
     <link href="/Content/style-circle.css" rel="stylesheet" />
     <link href="/Content/AutoSearchStyle.css" rel="stylesheet" />
-    <link href="/Content/jquery-ui.css" rel="stylesheet" />
+    <link href="/Content/jquery-ui.css" rel="stylesheet" />*@
     <link href="/Scripts/jquery-1.10.2.js" rel="stylesheet" />
     <link href="/Scripts/jquery.countdown.js" rel="stylesheet" />
     <link href="/Scripts/jquery.plugin.js" rel="stylesheet" />
@@ -684,10 +684,12 @@ color:#00dce8;
                                     <li class="active"><a href="#">Home</a></li>
 
                                     <li >
-                                        <a href="http://rxoutlet.azurewebsites.net/Refill/Refill/2">
+                                        @*<a href="http://rxoutlet.azurewebsites.net/Refill/Refill/2">
 
                                             RX Refills
-                                        </a>
+                                        </a>*@
+
+                                        @Html.ActionLink("RX Refills", "Upload", "Prescription")
 
                                     </li>
 

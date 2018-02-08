@@ -18,7 +18,7 @@ namespace RxOutlet.Business
         GetDrugNameResponse GetDrugList();
         GetDrugNameResponse GetSupplierName();
         List<DrugSearch> GetDrugNamesSearchService();
-        GetDrugNameResponse GetDrugTypes(int pagesize,int pagenumber);
+        GetDrugTypeResponse GetDrugTypes(int pagesize,int pagenumber);
         GetDrugNameResponse GetProductDetails(int id);
         //  GetDrugNameResponse GetCartItems(string UserName);
 
@@ -38,8 +38,9 @@ namespace RxOutlet.Business
         DrivingLicenseResponse CheckDL(string userid);
         List<RegistrationModel> GetSecurityQuestions();
         List<ContactUs> GetContactUsSubjectHeading();
+        List<PateintRegistration> GetStates();
         ContactUsResponse ContactUs(ContactUs contactUs);
-
+     //   ProfileResponse GetSignupDetails(string userid);
         ConditionBasedResponse LocateCustomer(ConditionBased conditionBased);
 
     }

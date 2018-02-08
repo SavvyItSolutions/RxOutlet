@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="RxOutlet" Class="RxOutletDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=103.60.213.249,1433;Initial Catalog=RxOutlet;Persist Security Info=True;User ID=guest" SettingsObjectName="RxOutlet.DataAccess.Properties.Settings" SettingsPropertyName="RxOutletConnectionString5" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=103.60.212.138,1433;Initial Catalog=RxOutlet;Persist Security Info=True;User ID=guest" SettingsObjectName="RxOutlet.DataAccess.Properties.Settings" SettingsPropertyName="RxOutletConnectionString6" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tblMainMenu" Member="tblMainMenus">
     <Type Name="tblMainMenu">
       <Column Name="MenuID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -254,6 +254,28 @@
     <ElementType Name="GetSubjectHeadingResult">
       <Column Name="SubjectHeadingID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="SubjectHeadingName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetStates" Method="GetStates">
+    <ElementType Name="GetStatesResult">
+      <Column Name="StateId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="state" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetSignupDetails" Method="GetSignupDetails">
+    <Parameter Name="UserID" Parameter="userID" Type="System.String" DbType="NVarChar(128)" />
+    <ElementType Name="GetSignupDetailsResult">
+      <Column Name="email" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="phonenumber" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetPrescriptionList" Method="GetPrescriptionList">
+    <ElementType Name="GetPrescriptionListResult">
+      <Column Name="Lastfilled" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="prescriptionNumber" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="medication" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="refilldate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

@@ -82,6 +82,21 @@ namespace RxOutlet.Controllers
         [AllowAnonymous]
         public ActionResult SecurityQuestionsView()
         {
+            PateintRegistration objRegistration = new PateintRegistration();
+            RxOutletService objservice = new RxOutletService();
+
+            var result = objservice.GetStates();
+
+            List<SelectListItem> ObjItem = new List<SelectListItem>();
+            foreach (var x in result)
+            {
+                var p = new SelectListItem();
+                p.Text = x.State;
+                p.Value = x.StateID.ToString();
+                ObjItem.Add(p);
+            }
+            ViewBag.States = ObjItem;
+
 
             return View();
 
@@ -91,7 +106,9 @@ namespace RxOutlet.Controllers
         public ActionResult SecurityQuestionsView(ConditionBased conditionBased)
         {
 
+
             conditionBased.UserID = User.Identity.GetUserId();
+            
             conditionBased.CustomerStatus = "Exist";
             IRxOutletService RxOutletSvc = new RxOutletService();
        var rxnumber=     RxOutletSvc.LocateCustomer(conditionBased);
@@ -121,10 +138,27 @@ namespace RxOutlet.Controllers
             return View();
         }
 
+        [HttpGet]
         [AllowAnonymous]
-     
         public ActionResult Registration()
         {
+
+            PateintRegistration objRegistration = new PateintRegistration();
+            RxOutletService objservice = new RxOutletService();
+
+            var result = objservice.GetStates();
+
+            List<SelectListItem> ObjItem = new List<SelectListItem>();
+            foreach (var x in result)
+            {
+                var p = new SelectListItem();
+                p.Text = x.State;
+                p.Value = x.StateID.ToString();
+                ObjItem.Add(p);
+            }
+            ViewBag.States = ObjItem;
+
+         
             return View();
         
         }
@@ -140,9 +174,8 @@ namespace RxOutlet.Controllers
                 patientRegistration.InsuranceImagePath = imageService.UploadImageAsync(photo, BolbContainer);
             }
 
+            patientRegistration.StateID = Convert.ToInt32(Request.Form["States"]);
             patientRegistration.UserId = User.Identity.GetUserId();
-            patientRegistration.State = 1;
-            patientRegistration.Gender = "male";
 
             IRxOutletService RxOutletSvc = new RxOutletService();
             RxOutletSvc.PatientRegistration(patientRegistration);
@@ -282,23 +315,31 @@ namespace RxOutlet.Controllers
         [HttpGet]
         public  ActionResult  Register()
         {
-
-            RegistrationModel objRegistration = new RegistrationModel();
-            RxOutletService objservice = new RxOutletService();
-
-            var result =   objservice.GetSecurityQuestions();
-
-            List<SelectListItem> ObjItem = new List<SelectListItem>();
-            foreach (var x in result)
+            try
             {
-                var p = new SelectListItem();
-                p.Text = x.SecurityQuestions;
-                p.Value = x.SecurityQuestionID.ToString();
-                ObjItem.Add(p);
-            }
-            ViewBag.ListItem = ObjItem;
 
-            return View(objRegistration);
+                RegistrationModel objRegistration = new RegistrationModel();
+                RxOutletService objservice = new RxOutletService();
+
+                var result = objservice.GetSecurityQuestions();
+
+                List<SelectListItem> ObjItem = new List<SelectListItem>();
+                foreach (var x in result)
+                {
+                    var p = new SelectListItem();
+                    p.Text = x.SecurityQuestions;
+                    p.Value = x.SecurityQuestionID.ToString();
+                    ObjItem.Add(p);
+                }
+                ViewBag.ListItem = ObjItem;
+                return View();
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("LoginPopup");
+
+            }
+
         }
 
 
