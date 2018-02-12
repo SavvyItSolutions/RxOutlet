@@ -29,8 +29,8 @@ namespace RxOutlet.Controllers
 
         // HttpClient ConfirmationEmailClient;
         //The URL of the WEB API Service   
-        string RegistrationURL = "http://localhost:64404/api/Rxoutlet/SignUp";
-    //    string SignUpSecurityQuestionsURL = "http://localhost:64404/api/Rxoutlet/GetSignUpSecurityQuestions";
+        string RegistrationURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/SignUp";
+     //  string SignUpSecurityQuestionsURL = "http://localhost:64404/api/Rxoutlet/GetSignUpSecurityQuestions";
           string VerifiedEmailURL = "http://rxoutlet.azurewebsites.net/api/Rxoutlet/UpdateVerifiedEmail";
       
 
