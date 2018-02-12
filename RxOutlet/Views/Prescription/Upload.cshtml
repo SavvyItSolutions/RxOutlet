@@ -143,60 +143,55 @@
                                 <!-- div.table-responsive -->
                                 <!-- div.dataTables_borderWrap -->
                                 <div>
-                                    <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">
+                                    <div id="dynamic-table_wrapper" ng-controller="PresListCntrl as mainCtrl " class="dataTables_wrapper form-inline no-footer">
 
-
-                                        <table class="boredered" style="margin-top: 20px;">
+                                        <table  id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="dynamic-table_info">
                                             <thead>
-                                                <tr>
-                                                    <!--                                   <th ng-click="sort('EmployeeID')">Employee ID
-                                                    <span class="glyphicon sort-icon" ng-show="sortBy=='EmployeeID'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-                                                  </th> -->
-                                                    <!--                                     <th ng-click="sort('DateOfBirth')">DOB
-                                                    <span class="glyphicon sort-icon" ng-show="sortBy=='DateOfBirth'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-                                                    </th> -->
-                                                    <th ng-click="sort('FirstName')">
-                                                        Name
-                                                        <span class="glyphicon sort-icon" ng-show="sortBy=='FirstName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-                                                    </th>
-                                                    <th ng-click="sort('Phonenumber')">
-                                                        Phone
-                                                        <span class="glyphicon sort-icon" ng-show="sortBy=='Phonenumber'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-                                                    </th>
-                                                    <!--                                     <th ng-click="sort('SSN')">SSN
-                                                    <span class="glyphicon sort-icon" ng-show="sortBy=='SSN'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-                                                    </th> -->
-                                                    <th ng-click="sort('EmailID')">
-                                                        Email
-                                                        <span class="glyphicon sort-icon" ng-show="sortBy=='EmailID'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-                                                    </th>
-                                                    <!--                                   <th ng-click="sort('EmployeeRoleId')">EmployeeRoleId
-                                                    <span class="glyphicon sort-icon" ng-show="sortBy=='EmployeeRoleId'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span> -->
-                                                    </th>
-                                                    <th>Action</th>
+                                                <tr role="row">
+                                                    @*<th class="center sorting_disabled" rowspan="1" colspan="1" aria-label="">
+                                                        <label class="pos-rel">
+                                                            <input type="checkbox" class="ace">
+                                                            <span class="lbl"></span>
+                                                        </label>
+                                                    </th>*@
+                                                    <th ng-click="sort('LastFilled')" class="sorting" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" aria-label="Date activate to sort column ascending">
+                                                       LastFilled
+                                                        <span class="glyphicon sort-icon" ng-show="sortBy=='LastFilled'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                                    </th>     
+                                         
+                                                    <th ng-click="sort('PrescriptionNumber')" class="sorting" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" 
+                                                        aria-label="Precription ID activate to sort column ascending"> Precription Number
+                                                        
+                                                        <span class="glyphicon sort-icon" ng-show="sortBy=='PrescriptionNumber'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+</th>
+                                                   
+                                                     <th ng-click="sort('Medication')" class="sorting" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" aria-label="Name
+                                                        activate to sort column ascending">Name of the Medication
+                                                         <span class="glyphicon sort-icon" ng-show="sortBy=='Medication'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+                                                    <th ng-click="sort('RefillDate')"  class="sorting" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" aria-label="Link
+                                                        activate to sort column ascending">Refill Availability Date
+                                                        <span class="glyphicon sort-icon" ng-show="sortBy=='RefillDate'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+                                                    @*<th class="sorting" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" aria-label="Link
+                                                        activate to sort column ascending">Link</th>*@
+                                                    <th> {{numberOfPages}}</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr ng-repeat="employee in mainCtrl.employees| pagination: curPage * pageSize | limitTo: pageSize|orderBy:sortBy:reverse|filter:search">
-                                                    <!-- <td>{{employee.EmployeeID}}</td> -->
-                                                    <!-- <td>{{employee.DateOfBirth}}</td> -->
-                                                    <td ng-click="updateUser(employee.EmployeeID)">{{employee.FirstName}} {{employee.LastName}} </td>
-                                                    <td>{{employee.PhoneNumber}}</td>
-                                                    <!-- <td>{{employee.SSN}}</td> -->
-                                                    <td>{{employee.EmailID}}</td>
-                                                    <!-- <td>{{employee.EmployeeRoleId}}</td> -->
-                                                    <td>
-                                                        <!--                                     <a href="/images/myw3schoolsimage.jpg" download>
-                                                         <i class="fa fa-file-excel-o" aria-hidden="true"></i>
-                                                        </a> -->
 
-                                                        <i ng-click="updateUser(employee.EmployeeID)" class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                        <i class="fa fa-trash" aria-hidden="true" ng-click="mainCtrl.deleteEmployee(employee)"></i>
-                                                    </td>
+                                            <tbody ng-repeat="x in mainCtrl.employees | pagination: curPage * pageSize | limitTo: pageSize|orderBy:sortBy:reverse|filter:search">
+                                            
+                                                <tr>
+                                                    <td>  {{x.LastFilled}} </td>
+                                                    <td>  {{x.PrescriptionNumber}} </td>
+                                                    <td>  {{x.Medication}} </td>
+                                                    <td>  {{x.RefillDate}} 
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <div class="pagination pagination-centered" ng-show="products.length">
+
+
+
+                                                                          
+                                        <div class="pagination pagination-centered" >
                                             <ul class="pagination-controle pagination">
                                                 <li>
                                                     <button type="button" class="btn btn-primary" ng-disabled="curPage == 0"
@@ -205,7 +200,7 @@
                                                     </button>
                                                 </li>
                                                 <li>
-                                                    <span>Page {{curPage + 1}} of {{ numberOfPages() }}</span>
+                                                    <span>Page {{curPage + 1}} of {{numberOfPages()}}</span>
                                                 </li>
                                                 <li>
                                                     <button type="button" class="btn btn-primary"
@@ -217,78 +212,6 @@
                                             </ul>
                                         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                        <table ng-controller="PresListCntrl" id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="dynamic-table_info">
-                                            <thead>
-                                                <tr role="row">
-                                                    <th class="center sorting_disabled" rowspan="1" colspan="1" aria-label="">
-                                                        <label class="pos-rel">
-                                                            <input type="checkbox" class="ace">
-                                                            <span class="lbl"></span>
-                                                        </label>
-                                                    </th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" aria-label="Date activate to sort column ascending"> Last Filled</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" aria-label="Precription ID activate to sort column ascending"> Precription Number</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" aria-label="Name
-                                                        activate to sort column ascending">Name of the Medication</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" aria-label="Link
-                                                        activate to sort column ascending">Refill Availability Date</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" aria-label="Link
-                                                        activate to sort column ascending">Link</th>
-
-                                                </tr>
-                                            </thead>
-
-                                            <tbody ng-repeat="x in PresListCntrl.employee">
-
-
-                                            
-                                                <tr>
-                                                    <td>  {{x.LastFilled}} </td>
-                                                    <td>  {{x.PrescriptionNumber}} </td>
-                                                    <td>  {{x.Medication}} </td>
-                                                    <td>  {{x.RefillDate}} </td>
-
-
-
-
-</tr>
-                                               
-
-
-                                            </tbody>
-                                        </table>
-
-
-
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <div class="dataTables_info" id="dynamic-table_info" role="status" aria-live="polite">Showing 1 to 3 of 3 entries</div>
-                                            </div>
-                                            <div class="col-xs-6">
-                                                <div class="dataTables_paginate paging_simple_numbers" id="dynamic-table_paginate">
-                                                    <ul class="pagination">
-                                                        <li class="paginate_button previous disabled" aria-controls="dynamic-table" tabindex="0" id="dynamic-table_previous">
-                                                            <a href="#">Previous</a>
-                                                        </li>
-                                                        <li class="paginate_button active" aria-controls="dynamic-table" tabindex="0"><a href="#">1</a></li>
-                                                        <li class="paginate_button next disabled" aria-controls="dynamic-table" tabindex="0" id="dynamic-table_next"><a href="#">Next</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="row">
                                             <div class="col-xs-12 text-center">
                                                 <input type="button" value="Refill" class="btn btn-primary" />

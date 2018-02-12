@@ -24,9 +24,11 @@ using System.Security.Claims;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using System.IO;
+using System.Web.Http.Cors;
 
 namespace RxOutlet.Controllers
 {
+   
     public class RxOutletController : ApiController
     {
       
@@ -139,6 +141,7 @@ namespace RxOutlet.Controllers
         }
 
         [HttpGet]
+   
         public PrescriptionResponse GetPrescriptionList()
         {          
             PrescriptionResponse resp = new PrescriptionResponse();

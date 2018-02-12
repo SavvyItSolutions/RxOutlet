@@ -677,3 +677,6 @@ G:\GitHub Folder\RxOutlet\RxOutlet\bin\zh-Hant\System.Spatial.resources.dll
 G:\GitHub Folder\RxOutlet\RxOutlet\obj\Debug\RxOutlet.csprojResolveAssemblyReference.cache
 G:\GitHub Folder\RxOutlet\RxOutlet\obj\Debug\RxOutlet.dll
 G:\GitHub Folder\RxOutlet\RxOutlet\obj\Debug\RxOutlet.pdb
+G:\GitHub Folder\RxOutlet\RxOutlet\bin\System.Web.Cors.dll
+G:\GitHub Folder\RxOutlet\RxOutlet\bin\System.Web.Http.Cors.dll
+G:\GitHub Folder\RxOutlet\RxOutlet\bin\System.Web.Http.Cors.xml

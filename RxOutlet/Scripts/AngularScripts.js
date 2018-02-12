@@ -802,26 +802,41 @@ var usrName = "@HttpContext.Current.User.Identity.Name";
     });
 }]);
 
-
-
+app.filter('pagination', function ()
+{
+    return function(input, start)
+    {
+        if(input==undefined){
+            return ;
+        }else{
+            start = +start;
+            return input.slice(start);
+        }
+    };
+})
 app.controller("PresListCntrl", ['$log', '$scope', '$http', function ($log, $scope, $http) {
+    var ctrl = this;
+    ctrl.showProgress = true;
     $http({
         method: 'Get',
+     //   url: "http://rxoutlet.azurewebsites.net/api/RxOutlet/GetPrescriptionList",
         url: "http://localhost:64404/api/RxOutlet/GetPrescriptionList",
-       
         data: JSON.stringify(search),
     }).then(function (response) {
  //       $scope.PrescriptionList = response.data;
-        console.log('get the employee details', data.data.GetPrescriptionList);
+        console.log('get the employee details', response.data.GetPrescriptionList);
         //ctrl.companiesByUser = data[0].data.result;
         $scope.productsexpense = response.data.GetPrescriptionList.length;
+        console.log('checking the product length', $scope.productsexpense);
+        console.log('text');
         $scope.viewby = 1;
         $scope.curPage = 0;
-        $scope.pageSize = 10;
+        $scope.pageSize = 2;
         $scope.numberOfPages = function () {
             ctrl.showProgress = false;
             return Math.ceil($scope.productsexpense / $scope.pageSize);
         };
+
         $scope.setPage = function (pageNo) {
             $scope.currentPage = pageNo;
         };
