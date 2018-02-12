@@ -961,47 +961,47 @@ $(document).ready(function () {
 
 
 
-$("#btnRegister").click(function () {
+//$("#btnRegister").click(function () {
 
-    var Registration = {
-        "Name": $('#txtName').val(),
-        "Email": $('#txtEmail').val(),
-        "MobileNum": $('#txtMobileNum').val(),
-        "Password":$('#txtPassword').val()
-    };
-    $.ajax({
-        type: "POST",
-        url: 'http://rxoutlet.azurewebsites.net/api/RxOutlet/SignUp',
-      // url: '../api/RxOutlet/SignUp',
-        data: JSON.stringify(Registration),
-        contentType: "application/json;charset=utf-8",
-        sucess: function (data, status, xhr) {
-            //Id.value = "Thank you for Signing Up. We have sent an email to your authorized email address, xxx.<br>"
-            //"Please activate the account by clicking the link in the email and login below.";
-          //  window.location.href = "http://localhost:64404/Account/Login";
-            window.location.href =   "http://rxoutlet.azurewebsites.net/Account/Login";
+//    var Registration = {
+//        "Name": $('#txtName').val(),
+//        "Email": $('#txtEmail').val(),
+//        "MobileNum": $('#txtMobileNum').val(),
+//        "Password":$('#txtPassword').val()
+//    };
+//    $.ajax({
+//        type: "POST",
+//        url: 'http://rxoutlet.azurewebsites.net/api/RxOutlet/SignUp',
+//      // url: '../api/RxOutlet/SignUp',
+//        data: JSON.stringify(Registration),
+//        contentType: "application/json;charset=utf-8",
+//        sucess: function (data, status, xhr) {
+//            //Id.value = "Thank you for Signing Up. We have sent an email to your authorized email address, xxx.<br>"
+//            //"Please activate the account by clicking the link in the email and login below.";
+//          //  window.location.href = "http://localhost:64404/Account/Login";
+//            window.location.href =   "http://rxoutlet.azurewebsites.net/Account/Login";
 
-            $('#p1').show();
+//            $('#p1').show();
 
 
   
          
-        },
-        error: function (xhr) {
-            alert("Error : "+xhr.responseText);
-        }
+//        },
+//        error: function (xhr) {
+//            alert("Error : "+xhr.responseText);
+//        }
 
    
-    });
+//    });
 
-    //$("#txtName").val("");
-    //$("#txtEmail").val("");
-    //$("#txtMobileNum").val("");
-    //$("#txtPassword").val("");sujeeth
+//    //$("#txtName").val("");
+//    //$("#txtEmail").val("");
+//    //$("#txtMobileNum").val("");
+//    //$("#txtPassword").val("");sujeeth
   
-    //$("#txtConfirmPassword").val("");
-    //$("#txtCaptcha").val("");
-});
+//    //$("#txtConfirmPassword").val("");
+//    //$("#txtCaptcha").val("");
+//});
 
 
 
